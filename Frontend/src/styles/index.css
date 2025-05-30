@@ -34,3 +34,17 @@ a {
         width: 1170px;
     }
 }
+
+:root{
+    --main-color:#0E1218;
+    --secondary-color:rgb(29 34 46);
+}
+
+body{
+    background-color: var(--main-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
