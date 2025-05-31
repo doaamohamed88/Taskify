@@ -1,24 +1,41 @@
+import { useEffect } from "react";
 import { Link } from "react-router";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 
-const LoginForm = ({ onChange }) => {
+const LoginForm = ({ register, reset, errors }) => {
+  useEffect(() => {
+    reset();
+  }, [reset]);
+
   return (
     <>
       <h1 className={`${styles.formTitle}`}>Welcome back, login to continue</h1>
       <input
         className={`${styles.formInput}`}
-        type="email"
+        type="text"
         placeholder="Email"
         name="email"
-        onChange={onChange}
+        {...register("email", {
+          required: "This field is required",
+          pattern: {
+            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            message: "Invalid email address",
+          },
+        })}
       />
+      {errors.email && (
+        <p className={`${styles.error}`}>{errors.email.message}</p>
+      )}
       <input
         className={`${styles.formInput}`}
         type="password"
         placeholder="Password"
         name="password"
-        onChange={onChange}
+        {...register("password", { required: "This field is required" })}
       />
+      {errors.password && (
+        <p className={`${styles.error}`}>{errors.password.message}</p>
+      )}
       <input className={`${styles.formInput}`} type="submit" value={"Login"} />
       <Link className={`${styles.link}`} to={`/forget-password`}>
         Forget Password?

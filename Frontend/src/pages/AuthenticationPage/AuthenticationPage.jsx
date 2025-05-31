@@ -1,27 +1,46 @@
-import { useRef } from "react";
 import ForgetPasswordForm from "../../components/AuthenticationForms/ForgetPasswordForm";
 import LoginForm from "../../components/AuthenticationForms/LoginForm";
 import RegisterForm from "../../components/AuthenticationForms/RegisterForm";
 import styles from "./AuthenticationPage.module.css";
+import { useForm } from "react-hook-form";
 
 const AuthenticationPage = ({ type }) => {
-  const values = useRef({});
+  const {
+    register,
+    handleSubmit: submitHandler,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-  const handleChange = (e) => {
-    values.current[e.target.name] = e.target.value;
+  const handleSubmit = (data) => {
+    console.log(data);
   };
 
   return (
     <div className={`${styles.mainContainer}`}>
-      <form className={`${styles.formContainer}`}>
+      <form
+        className={`${styles.formContainer}`}
+        onSubmit={submitHandler(handleSubmit)}
+      >
         {(() => {
-          if (type === "login") return <LoginForm onChange={handleChange} />;
+          if (type === "login")
+            return (
+              <LoginForm register={register} reset={reset} errors={errors} />
+            );
 
           if (type === "register")
-            return <RegisterForm onChange={handleChange} />;
+            return (
+              <RegisterForm register={register} reset={reset} errors={errors} />
+            );
 
           if (type === "forgetPassword")
-            return <ForgetPasswordForm onChange={handleChange} />;
+            return (
+              <ForgetPasswordForm
+                register={register}
+                reset={reset}
+                errors={errors}
+              />
+            );
         })()}
       </form>
     </div>
