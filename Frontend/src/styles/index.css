@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root{
     --main-color:#0E1218;
     --secondary-color:rgb(29 34 46);
@@ -5,6 +7,7 @@
     --border-radius-main: 12px;
     --button-hover-color: blue;
     --section-padding: 60px;
+    --card-linear-gradient: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29));
 }
 
 *, *::before, *::after {
@@ -15,6 +18,14 @@
     -o-box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body{
+    background-color: var(--main-color);
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 a {
@@ -42,8 +53,4 @@ a {
     .container {
         width: 1170px;
     }
-}
-body{
-    background-color: var(--main-color);
-    color: white;
 }

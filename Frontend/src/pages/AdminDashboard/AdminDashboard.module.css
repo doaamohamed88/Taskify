@@ -2,19 +2,19 @@
     padding: var(--section-padding);
     margin-inline: auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 300px repeat(3, 1fr);
     grid-template-rows: auto auto 1fr;
-    gap: var(--section-padding);
+    gap: 30px;
     min-height: 100dvh;
 
     .sidebar {
         grid-area: 1 / 1 / -1 / 2;
         background-color: green;
+        border-radius: var(--border-radius-main);
     }
 
     h1 {
         grid-column: 2 / -1;
-        background-color: blue;
     }
 
     .projectProgress {
@@ -28,5 +28,5 @@
         grid-column: 2 / -1;
         grid-row: 3 / 4;
     }
-    
+
 }
