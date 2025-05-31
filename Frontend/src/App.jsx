@@ -1,12 +1,13 @@
 import { RouterProvider } from "react-router";
-import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
 import "./styles/App.css";
 import { routes } from "./routes/routes";
+import AdminDashboard from "./pages/adminDashboard/AdminDashboard";
 
 function App() {
   return (
     <>
-      <RouterProvider router={routes} />
+      {/* <RouterProvider router={routes} /> */}
+      <AdminDashboard></AdminDashboard>
     </>
   );
 }

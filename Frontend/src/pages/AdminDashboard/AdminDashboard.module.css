@@ -1,0 +1,32 @@
+.grid {
+    padding: var(--section-padding);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto 1fr;
+    gap: var(--section-padding);
+    min-height: 100dvh;
+
+    .sidebar {
+        grid-area: 1 / 1 / -1 / 2;
+        background-color: green;
+    }
+
+    h1 {
+        grid-column: 2 / -1;
+        background-color: blue;
+    }
+
+    .projectProgress {
+        background-color: red;
+        grid-column: 2 / -1;
+        grid-row: 2 / 3;
+    }
+
+    .teamMembers {
+        background-color: yellow;
+        grid-column: 2 / -1;
+        grid-row: 3 / 4;
+    }
+    
+}
