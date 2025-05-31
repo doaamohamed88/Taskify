@@ -1,11 +1,12 @@
-import Card from './Components/Card/Card';
+
+import RoutesPages from './routes/RoutesPages';
 import './styles/App.css';
 
 function App() {
 
   return (
     <>
-      <Card />
+      <RoutesPages />
     </>
   )
 }
