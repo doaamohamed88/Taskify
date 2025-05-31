@@ -1,3 +1,12 @@
+:root{
+    --main-color:#0E1218;
+    --secondary-color:rgb(29 34 46);
+    --main-trans: 0.3s;
+    --border-radius-main: 12px;
+    --button-hover-color: blue;
+    --section-padding: 60px;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -34,12 +43,6 @@ a {
         width: 1170px;
     }
 }
-
-:root{
-    --main-color:#0E1218;
-    --secondary-color:rgb(29 34 46);
-}
-
 body{
     background-color: var(--main-color);
     color: white;
