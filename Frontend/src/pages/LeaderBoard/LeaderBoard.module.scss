@@ -1,0 +1,17 @@
+.tableContainer {
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(78, 44, 44, 0);
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.tableHeaderInfo {
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
