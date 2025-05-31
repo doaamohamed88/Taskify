@@ -1,0 +1,69 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+}
+
+.formTitle {
+  width: 90%;
+}
+
+.formInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  outline: none;
+}
+
+.formInput[type="submit"] {
+  background-color: var(--secondary-color);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--button-hover-color);
+  }
+}
+
+.divider {
+  height: 1px;
+  background-color: white;
+}
+
+.link {
+  color: var(--button-hover-color);
+}
+
+.imageContainer {
+  background-image: url("./assets/waveBackground.svg");
+}
+
+@media (min-width: 769px) {
+  .formContainer {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .formContainer {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .formContainer {
+    width: 20%;
+  }
+}

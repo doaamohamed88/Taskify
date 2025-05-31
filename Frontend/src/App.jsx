@@ -1,14 +1,15 @@
+import { RouterProvider } from "react-router";
+import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
+import "./styles/App.css";
+import { routes } from "./routes/routes";
 
-import RoutesPages from './routes/RoutesPages';
-import './styles/App.css';
 
 function App() {
-
   return (
     <>
-      <RoutesPages />
+      <RouterProvider router={routes} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
