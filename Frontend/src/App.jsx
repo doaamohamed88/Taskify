@@ -1,13 +1,12 @@
-import Card from './Components/Card/Card';
-import './styles/App.css';
+import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
+import "./styles/App.css";
 
 function App() {
-
   return (
     <>
-      <Card />
+      <AuthenticationPage type={"login"} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

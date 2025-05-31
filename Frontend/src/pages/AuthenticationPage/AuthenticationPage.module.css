@@ -1,0 +1,43 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 20%;
+}
+
+.formTitle {
+  width: 90%;
+}
+
+.formInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  outline: none;
+}
+
+.formInput[type="submit"] {
+  background-color: var(--secondary-color);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: blue;
+  }
+}
+
+.divider {
+  height: 1px;
+  background-color: white;
+}
