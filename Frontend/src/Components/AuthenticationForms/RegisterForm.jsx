@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 
 const RegisterForm = ({ onChange }) => {
@@ -31,7 +32,12 @@ const RegisterForm = ({ onChange }) => {
         value={"Register"}
       />
       <hr className={`${styles.divider}`} />
-      <p>Already have an account? Login</p>
+      <p>
+        Already have an account?{" "}
+        <Link className={`${styles.link}`} to={`/`}>
+          Login
+        </Link>
+      </p>
     </>
   );
 };

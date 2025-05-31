@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 
 const ForgetPasswordForm = ({ onChange }) => {
@@ -17,7 +18,12 @@ const ForgetPasswordForm = ({ onChange }) => {
         value={"Reset Password"}
       />
       <hr className={`${styles.divider}`} />
-      <p>Don't have an account? Create one</p>
+      <p>
+        Don't have an account?{" "}
+        <Link className={`${styles.link}`} to={`/register`}>
+          Create one
+        </Link>
+      </p>
     </>
   );
 };

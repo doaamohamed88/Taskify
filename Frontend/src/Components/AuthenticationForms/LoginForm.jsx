@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 
 const LoginForm = ({ onChange }) => {
@@ -19,8 +20,16 @@ const LoginForm = ({ onChange }) => {
         onChange={onChange}
       />
       <input className={`${styles.formInput}`} type="submit" value={"Login"} />
+      <Link className={`${styles.link}`} to={`/forget-password`}>
+        Forget Password?
+      </Link>
       <hr className={`${styles.divider}`} />
-      <p>Don't have an account? Create one</p>
+      <p>
+        Don't have an account?{" "}
+        <Link className={`${styles.link}`} to={`/register`}>
+          Create one
+        </Link>
+      </p>
     </>
   );
 };
