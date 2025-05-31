@@ -3,6 +3,7 @@ import AuthenticationPage from "./pages/AuthenticationPage/AuthenticationPage";
 import "./styles/App.css";
 import { routes } from "./routes/routes";
 
+
 function App() {
   return (
     <>

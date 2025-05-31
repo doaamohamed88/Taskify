@@ -46,4 +46,6 @@ a {
 body{
     background-color: var(--main-color);
     color: white;
+    min-height: 100vh;
+
 }

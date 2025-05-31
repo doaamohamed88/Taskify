@@ -10,14 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^10.1.2",
+    "@react-three/fiber": "^9.1.2",
     "@reduxjs/toolkit": "^2.8.2",
+    "drei": "^2.2.21",
+    "gsap": "^3.13.0",
     "i18n": "^0.15.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-hook-form": "^7.56.4",
+    "react-i18next": "^15.5.2",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
-    "react-router": "^7.6.1"
+    "react-router": "^7.6.1",
+    "react-router-dom": "^7.6.1",
+    "three": "^0.177.0",
+    "three-mesh-bvh": "^0.9.0"
+
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
