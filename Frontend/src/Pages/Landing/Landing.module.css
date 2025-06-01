@@ -20,28 +20,28 @@
   justify-content: center;
 }
 
-.landing_page p {
+.landing_page .typingText {
   /* font-family: "Ancizar Serif", serif; */
   font-family: "Mona Sans", sans-serif;
   font-size: 40px;
   width: 380px;
 }
 
-.landing_content p strong:first-child {
-  color: rgb(148, 118, 214);
+.landing_content .typingText strong:first-child {
+  color: rgb(80, 62, 118);
 }
 
-.landing_content p strong:last-child {
-  color: rgb(148, 118, 214);
+.landing_content .typingText strong:last-child {
+  color: var(--lilac-color);
 }
 
 .cards_section {
-  margin: 10px;
+  margin: 20px;
   width: fit-contents;
 }
 
 .cards_section .card {
-  margin: 10px;
+  margin: 20px 0;
 }
 
 .cards_section > p {
@@ -65,7 +65,20 @@
   padding: 15px;
   box-shadow: var(--shadow);
   border-radius: var(--border-radius-main);
-  border: 5px solid rgb(148, 118, 214);
+  border: var(--lilac-border);
   margin: 10px;
   width: fit-content;
+}
+
+.logo {
+  font-family: "Caveat", sans-serif;
+  font-size: 60px;
+  color: var(--lilac-color);
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.boardName {
+  font-size: 30px;
+  font-weight: bold;
 }

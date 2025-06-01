@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <div className={classes.header}>
-      <p className={classes.logo}>Logo</p>
+      <p className={classes.logo}>Taskify</p>
       <div>
         <button
           onClick={() => handleLanguageChange(currentLang === "ar" ? "en" : "ar")}

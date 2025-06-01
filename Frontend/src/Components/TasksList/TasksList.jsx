@@ -1,4 +1,3 @@
-import Card from "../Card/Card";
 import styles from "./TasksList.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -18,11 +17,9 @@ const TasksList = ({ title }) => {
           </div>
         )}
       </div>
-      {/* <Card size="large"> */}
       <TaskCard />
       <TaskCard />
       <TaskCard />
-      {/* </Card> */}
     </div>
   );
 };
