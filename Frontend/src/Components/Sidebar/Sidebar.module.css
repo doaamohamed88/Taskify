@@ -1,45 +1,50 @@
 .sidebar {
-    border-radius: var(--border-radius-main);
-    height: 100%;
-    background-image: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29));
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* border-radius: var(--border-radius-main); */
+  position: fixed;
+  bottom: 0;
+  width: 300px;
+  height: 90vh;
+  border-top-right-radius: 60px;
+  /* background-image: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29)); */
+  background-color: var(--main-color);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+
+  .sidebarButton {
+    width: 100%;
+    padding: 15px;
+    padding-left: 40px;
+    color: #bebebe;
     display: flex;
-    flex-direction: column;
-    padding-top: 30px;
+    align-items: flex-start;
+    gap: 15px;
+    transition: var(--main-trans);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
 
-    .sidebarButton {
-        width: 100%;
-        padding: 15px;
-        padding-left: 40px;
-        color: #bebebe;
-        display: flex;
-        align-items: flex-start;
-        gap: 15px;
-        transition: var(--main-trans);
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 500;
-        letter-spacing: 1px;
-
-        .sidebarButtonIcon {
-            width: 18px;
-            height: 18px;
-        }
-
-        &:hover {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        &.active {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        .desktopOnly {
-            @media (max-width: 992px) {
-                display: none;
-            }
-        }
+    .sidebarButtonIcon {
+      width: 18px;
+      height: 18px;
     }
+
+    &:hover {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+
+    &.active {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+
+    .desktopOnly {
+      @media (max-width: 992px) {
+        display: none;
+      }
+    }
+  }
 }

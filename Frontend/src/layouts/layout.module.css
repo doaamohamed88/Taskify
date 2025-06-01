@@ -1,0 +1,14 @@
+.layout_continer {
+  display: flex;
+}
+
+.sidebar {
+  grid-area: 1 / 1 / -1 / 2;
+  background-color: green;
+  border-radius: var(--border-radius-main);
+}
+
+.outlit_container {
+  /* margin-left: 300px; */
+  width: 100%;
+}

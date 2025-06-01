@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./LeaderBoard.module.scss";
+import styles from "./LeaderBoard.module.css";
 import TeamTable from "./components/TeamTable";
 import RankCard from "./components/RankCard";
 import Podium from "./components/RankCard";
@@ -17,7 +17,7 @@ export default function LeaderBoard() {
           ${styles.rankCardContainer}
         `}
       >
-       <Podium />
+        <Podium />
 
       </div>
       <div className={styles.tableContainer} >
@@ -26,7 +26,7 @@ export default function LeaderBoard() {
           <span>Total score: {totalScore}</span>
         </div>
 
-        <TeamTable calculateTotalScore={calculateTotalScore}/>
+        <TeamTable calculateTotalScore={calculateTotalScore} />
       </div>
     </>
   );

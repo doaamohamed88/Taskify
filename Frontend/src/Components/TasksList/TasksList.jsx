@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import TaskCard from "../TaskCard/TaskCard";
 
-const TasksList = ({ title, color }) => {
+const TasksList = ({ title }) => {
   return (
     <div className={`${styles.listContainer}`}>
       <div
-        className={`${styles.titleContainer}`}
-        style={{ backgroundColor: color }}
+        className={`${styles.titleContainer} ${title === "To Do" ? styles.todo : title === "In Progress" ? styles.inProgress : styles.done}`}
+
       >
         <h1 className={`${styles.title}`}>{title}</h1>
         {title === "To Do" && (
@@ -18,9 +18,11 @@ const TasksList = ({ title, color }) => {
           </div>
         )}
       </div>
-      <Card size="large">
-        <TaskCard />
-      </Card>
+      {/* <Card size="large"> */}
+      <TaskCard />
+      <TaskCard />
+      <TaskCard />
+      {/* </Card> */}
     </div>
   );
 };

@@ -1,13 +1,16 @@
 import { Outlet } from "react-router";
 import Sidebar from "../Components/Sidebar/Sidebar";
-
-const BoardLayout = () => {
+import classes from './layout.module.css'
+export default function BoardLayout() {
   return (
-    <>
-      <Sidebar />
-      <Outlet />
-    </>
+    <div className={classes.layout_continer}>
+      <div className={classes.sidebar}>
+        <Sidebar />
+      </div>
+      <div className={classes.outlit_container}>
+        <Outlet />
+      </div>
+    </div>
   );
 };
 
-export default BoardLayout;

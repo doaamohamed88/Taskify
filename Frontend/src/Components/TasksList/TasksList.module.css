@@ -1,5 +1,8 @@
 .listContainer {
-  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
 }
 
 .titleContainer {
@@ -9,7 +12,6 @@
   margin-bottom: 10px;
   padding: 5px 25px;
   border-radius: var(--border-radius-main);
-  margin-top: 35px;
 }
 
 .iconContainer {
@@ -17,4 +19,20 @@
   border-radius: 50%;
   border: 2px solid #fff;
   cursor: pointer;
+}
+
+.titleContainer {
+  background-color: var(--main-color);
+}
+
+.todo {
+  border: 5px solid var(--todo-color);
+}
+
+.inProgress {
+  border: 5px solid var(--doing-color);
+}
+
+.done {
+  border: 5px solid var(--done-color);
 }
