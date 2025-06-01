@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./RankCard.module.scss";
 
-const Podium = () => {
+const RankCard = () => {
   const participants = [
     {
       rank: "2nd",
@@ -47,4 +47,4 @@ const Podium = () => {
   );
 };
 
-export default Podium;
+export default RankCard;

@@ -8,6 +8,7 @@
   --main-trans: 0.3s;
   --border-radius-main: 20px;
   --section-padding: 60px;
+  --section-padding-sm: 20px;
   --button-hover-color: blue;
   --card-linear-gradient: var(--gradient);
   --todo-color: #c3a0ff;
