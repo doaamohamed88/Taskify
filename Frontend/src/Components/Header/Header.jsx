@@ -18,14 +18,17 @@ function Header() {
 
   return (
     <div className={classes.header}>
-      <button
-        onClick={() => handleLanguageChange(currentLang === "ar" ? "en" : "ar")}
-      >
-        {currentLang === "ar" ? "en" : "ar"}
-      </button>
-      <button>
-        <FaIcons.FaLightbulb />
-      </button>
+      <p className={classes.logo}>Logo</p>
+      <div>
+        <button
+          onClick={() => handleLanguageChange(currentLang === "ar" ? "en" : "ar")}
+        >
+          {currentLang === "ar" ? "en" : "ar"}
+        </button>
+        <button>
+          <FaIcons.FaLightbulb />
+        </button>
+      </div>
     </div>
   );
 }
