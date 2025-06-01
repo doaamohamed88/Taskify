@@ -1,0 +1,61 @@
+.tableContainer {
+  width: 100%;
+  margin: auto;
+  // border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow);
+  background-color: var(--gradient);
+
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  padding-inline: var(--section-padding-sm);
+}
+
+.tableHead {
+    background-image: var(--card-linear-gradient);
+}
+
+.tableHeadCell {
+  color: #fff;
+  padding: 15px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.tableBodyRow {
+  border-bottom: 5px solid #50474716;
+  &:nth-child(even) {
+    background-color: var(--main-color);
+  }
+  &:nth-child(odd) {
+    background-color: var(--main-color);
+  }
+}
+
+.tableBodyCell {
+  padding: 15px;
+  text-align: left;
+}
+
+.avatarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--todo-color);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+}

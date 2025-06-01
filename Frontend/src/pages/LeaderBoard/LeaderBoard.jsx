@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "./LeaderBoard.module.css";
-import TeamTable from "./components/TeamTable";
-import RankCard from "./components/RankCard";
-import Podium from "./components/RankCard";
+import styles from "./leaderboard.module.css";
+import TeamTable from "../../Components/TeamTable";
+import RankCard from "../../Components/RankCard";
+import Card from "../../components/Card/Card";
 
 export default function LeaderBoard() {
   const [totalScore, setTotalScore] = useState(0);
@@ -11,16 +11,17 @@ export default function LeaderBoard() {
     setTotalScore(score);
   };
   return (
-    <>
-      <div
-        className={`${styles.tableContainer}
-          ${styles.rankCardContainer}
-        `}
-      >
-        <Podium />
-
+    <div className={styles.leaderBoardContainer}>
+      <div>
+        <h1 style={{ marginBottom: 15}}>Leader Board</h1>
+        <p>Check out the top teams and their scores!</p>
       </div>
-      <div className={styles.tableContainer} >
+
+      <Card size="large">
+        <RankCard />
+      </Card>
+
+      <div size="large">
         <div className={styles.tableHeaderInfo}>
           <h3 style={{ textAlign: "center" }}>team 1</h3>
           <span>Total score: {totalScore}</span>
@@ -28,6 +29,6 @@ export default function LeaderBoard() {
 
         <TeamTable calculateTotalScore={calculateTotalScore} />
       </div>
-    </>
+    </div>
   );
 }
