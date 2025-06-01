@@ -16,17 +16,13 @@
   --doing-color: #ffb6e6;
   --done-color: #a0ffe6;
   --lilac-border: 5px solid rgb(148, 118, 214);
-  scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important; /* Firefox */
+  scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -39,6 +35,8 @@ html {
     #0a0a0a 100%
   );
   background-color: var(--main-color);
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--lilac-color) var(--secondary-color) !important;
 }
 
 body {
@@ -60,41 +58,29 @@ a {
   text-decoration: none;
 }
 
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 12px !important;
   height: 12px !important;
 }
-
 ::-webkit-scrollbar-track {
   background: var(--secondary-color) !important;
   border-radius: 10px !important;
   margin: 5px !important;
 }
-
 ::-webkit-scrollbar-thumb {
   background: var(--lilac-color) !important;
   border-radius: 10px !important;
   border: 3px solid transparent !important;
   background-clip: content-box !important;
   transition: var(--main-trans) !important;
+  transform: translateZ(0);
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: var(--lilac-color) !important;
 }
 
-/* 2. Firefox */
-html {
-  scrollbar-width: thin !important;
-  scrollbar-color: var(--lilac-color) var(--secondary-color) !important;
-}
-
-/* 3. Force GPU acceleration (helps on some systems) */
-::-webkit-scrollbar-thumb {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
-
+/* Background Layers */
 .background-mesh {
   position: fixed;
   top: 0;
@@ -130,7 +116,7 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -2;
   background-image: radial-gradient(
     rgba(103, 126, 234, 0.15) 1px,
     transparent 1px
@@ -148,19 +134,21 @@ html {
   }
 }
 
+/* ✅ Geometric Grid */
 .geometric-grid {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -3; /* Behind the other layers */
   background: linear-gradient(
       90deg,
-      rgba(103, 126, 234, 0.05) 1px,
+      rgba(103, 126, 234, 0.1) 1px,
       transparent 1px
     ),
-    linear-gradient(rgba(103, 126, 234, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(103, 126, 234, 0.1) 1px, transparent 1px);
+  background-color: transparent;
   background-size: 40px 40px;
   animation: grid-pulse 8s ease-in-out infinite alternate;
 }
@@ -174,25 +162,209 @@ html {
   }
 }
 
+/* Container Fix */
 .container {
   margin-inline: auto;
   padding-inline: 15px;
+}
 
-  @media (min-width: 769px) {
-    .container {
-      width: 750px;
-    }
+@media (min-width: 769px) {
+  .container {
+    width: 750px;
   }
-
-  @media (min-width: 992px) {
-    .container {
-      width: 970px;
-    }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
   }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-  @media (min-width: 1200px) {
-    .container {
-      width: 1170px;
-    }
+:root {
+  --main-color: #0e1218;
+  --secondary-color: rgb(29 34 46);
+  --lilac-color: rgb(148, 118, 214);
+  --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
+  --gradient: linear-gradient(130deg, rgb(41, 45, 66), rgb(19, 21, 29));
+  --main-trans: 0.3s;
+  --border-radius-main: 20px;
+  --section-padding: 60px;
+  --section-padding-sm: 20px;
+  --button-hover-color: blue;
+  --card-linear-gradient: var(--gradient);
+  --todo-color: #c3a0ff;
+  --doing-color: #ffb6e6;
+  --done-color: #a0ffe6;
+  --lilac-border: 5px solid rgb(148, 118, 214);
+  scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: radial-gradient(
+    ellipse at bottom,
+    #5f4bb6 0%,
+    #1b1537 40%,
+    #0a0a0a 100%
+  );
+  background-color: var(--main-color);
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--lilac-color) var(--secondary-color) !important;
+}
+
+body {
+  background-color: var(--main-color);
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background: radial-gradient(
+    ellipse at bottom,
+    #5f4bb6 0%,
+    #1b1537 40%,
+    #0a0a0a 100%
+  );
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+::-webkit-scrollbar-track {
+  background: var(--secondary-color) !important;
+  border-radius: 10px !important;
+  margin: 5px !important;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--lilac-color) !important;
+  border-radius: 10px !important;
+  border: 3px solid transparent !important;
+  background-clip: content-box !important;
+  transition: var(--main-trans) !important;
+  transform: translateZ(0);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lilac-color) !important;
+}
+
+/* Background Layers */
+.background-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(
+      circle at 15% 50%,
+      rgba(103, 126, 234, 0.1) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(118, 75, 162, 0.1) 0%,
+      transparent 25%
+    );
+  animation: mesh-move 20s infinite alternate;
+}
+
+@keyframes mesh-move {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.2) rotate(2deg);
+  }
+}
+
+.dots-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: radial-gradient(
+    rgba(103, 126, 234, 0.15) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  animation: dots-scroll 100s linear infinite;
+}
+
+@keyframes dots-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1000px 1000px;
+  }
+}
+
+/* ✅ Geometric Grid */
+.geometric-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3; /* Behind the other layers */
+  background: linear-gradient(
+      90deg,
+      rgba(103, 126, 234, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(103, 126, 234, 0.1) 1px, transparent 1px);
+  background-color: transparent;
+  background-size: 40px 40px;
+  animation: grid-pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes grid-pulse {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* Container Fix */
+.container {
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+@media (min-width: 769px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
   }
 }
