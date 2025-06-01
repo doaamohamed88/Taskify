@@ -1,10 +1,10 @@
 .layout_continer {
-  display: flex;
+  /* display: flex; */
 }
 
 .sidebar {
   grid-area: 1 / 1 / -1 / 2;
-  background-color: green;
+  /* background-color: green; */
   border-radius: var(--border-radius-main);
 }
 
