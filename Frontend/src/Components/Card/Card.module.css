@@ -1,7 +1,21 @@
-.card{
-    width: 200px;
-    height: 150px;
-    background: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    box-shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
-    border-radius: 20px;
+.card {
+  width: 200px;
+  height: 150px;
+  background: linear-gradient(
+    130deg,
+    rgb(44, 47, 68),
+    rgb(19, 21, 29)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
+  border-radius: 20px;
+}
+
+.large {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 20px;
+  gap: 10px;
 }

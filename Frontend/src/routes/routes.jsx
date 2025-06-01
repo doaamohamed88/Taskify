@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import AuthenticationPage from "../pages/AuthenticationPage/AuthenticationPage";
 import LeaderBoard from "../pages/leaderboard/leaderboard";
+import BoardPage from "../pages/BoardPage/BoardPage";
 
 export const routes = createBrowserRouter([
   {
@@ -18,5 +19,9 @@ export const routes = createBrowserRouter([
   {
     path: "/leader-board",
     element: <LeaderBoard />,
+  },
+  {
+    path: "/board",
+    element: <BoardPage />,
   },
 ]);
