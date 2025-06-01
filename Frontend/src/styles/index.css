@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');:root {
+:root {
   --main-color: #0e1218;
   --secondary-color: rgb(29 34 46);
   --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
@@ -8,7 +9,7 @@
   --border-radius-main: 20px;
   --section-padding: 60px;
   --button-hover-color: blue;
-
+  --card-linear-gradient: var(--gradient);
 }
 
 *,

@@ -13,7 +13,7 @@
         padding-left: 40px;
         color: #bebebe;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 15px;
         transition: var(--main-trans);
         cursor: pointer;
