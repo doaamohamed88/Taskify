@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TeamTable.module.scss";
+import styles from "./TeamTable.module.css";
 
 function createData(rank, name, score) {
   return { rank, name, score };

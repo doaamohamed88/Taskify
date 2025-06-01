@@ -13,15 +13,17 @@
 
   .rankCardContainer {
     display: flex;
+    background: linear-gradient(135deg, #00000000, #3b3b3b00, #8a2be2);
     flex-direction: row;
     align-items: center;
+    padding: 10px;
     gap: 3rem;
     flex: 1;
     max-width: 600px;
     width: 100%;
     margin: auto;
   }
-  
+
   .tableHeaderInfo {
     width: 100%;
     margin-bottom: 20px;
@@ -32,4 +34,7 @@
   }
 }
 
-
+/* .card {
+  background: var(--gradient);
+  box-shadow: var(--shadow);
+} */

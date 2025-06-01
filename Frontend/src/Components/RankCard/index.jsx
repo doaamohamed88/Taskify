@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./RankCard.module.scss";
+import styles from "./RankCard.module.css";
 
 const RankCard = () => {
   const participants = [
@@ -28,21 +28,23 @@ const RankCard = () => {
 
   return (
     <div className={styles.podium}>
-      {participants.map((participant, index) => (
-        <div
-          key={index}
-          className={`${styles["podium-item"]} ${styles[participant.heightClass]
-            }`}
-          style={{
-            backgroundImage: `url(${participant.bg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className={styles.rank}>{participant.rank}</div>
-          <img src={participant.img} alt={participant.name} />
-        </div>
-      ))}
+      <div className={styles.container}>
+        {participants.map((participant, index) => (
+          <div
+            key={index}
+            className={`${styles["podium-item"]} ${styles[participant.heightClass]
+              }`}
+            style={{
+              backgroundImage: `url(${participant.bg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className={styles.rank}>{participant.rank}</div>
+            <img src={participant.img} alt={participant.name} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

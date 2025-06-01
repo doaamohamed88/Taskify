@@ -1,22 +1,25 @@
 .tableContainer {
   width: 100%;
   margin: auto;
-  // border: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #00000000, #3b3b3b00, #8a2be2);
+  padding: 20px;
   border-radius: var(--border-radius-main);
-    box-shadow: var(--shadow);
-  background-color: var(--gradient);
-
-  overflow: hidden;
+  border: 1px solid var(--lilac-color);
+  border-radius: var(--border-radius-main);
+  box-shadow: var(--shadow);
 }
 
 .table {
   width: 100%;
-  border-collapse: collapse;
+   border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--border-radius-main);
   padding-inline: var(--section-padding-sm);
+  border-radius: var(--border);
 }
 
 .tableHead {
-    background-image: var(--card-linear-gradient);
+  background-image: var(--card-linear-gradient);
 }
 
 .tableHeadCell {
@@ -58,4 +61,18 @@
   align-items: center;
   font-size: 14px;
   font-weight: bold;
+}
+
+.table thead tr:first-child th:first-child {
+  border-top-left-radius: var(--border-radius-main);
+}
+.table thead tr:first-child th:last-child {
+  border-top-right-radius: var(--border-radius-main);
+}
+.tableBodyRow:last-child td:first-child {
+  border-bottom-left-radius: var(--border-radius-main);
+}
+
+.tableBodyRow:last-child td:last-child {
+  border-bottom-right-radius: var(--border-radius-main);
 }
