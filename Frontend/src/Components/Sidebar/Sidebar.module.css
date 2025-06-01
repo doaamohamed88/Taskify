@@ -1,11 +1,6 @@
 .sidebar {
-  /* border-radius: var(--border-radius-main); */
-  position: fixed;
-  bottom: 0;
   width: 300px;
-  height: 90vh;
   border-top-right-radius: 60px;
-  /* background-image: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29)); */
   background-color: var(--main-color);
   box-shadow: var(--shadow);
   display: flex;
