@@ -42,7 +42,7 @@ export default function TeamTable({ calculateTotalScore }) {
   calculateTotalScore(totalScore);
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 300 }} aria-label="simple table">
         <TableHead>
           <StyledTableRow>
             <StyledTableCell>Rank</StyledTableCell>

@@ -3,38 +3,60 @@
   justify-content: center;
   align-items: flex-start;
   background: radial-gradient(circle, #1a1a2e, #0f0f1e);
-//   min-height: 30rem;
   border-radius: 20px;
   padding: 20px;
   justify-content: space-between;
   width: 100%;
+  position: relative;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+  }
 
   .podium-item {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     text-align: center;
-    margin: 0 10px;
+    gap: 10px;
     border-radius: 20px;
     padding: 10px;
-    width: 100px;
+    width: calc(100% / 3 - 20px);
+    
+    @media (max-width: 600px) {
+      width: 100%;
+      max-width: 300px;
+    }
 
     &.first {
-    //   background: linear-gradient(180deg, #ffdd00, #f7a800);
       background-image: "./images/bg1.png";
       height: 18rem;
+
+      @media (max-width: 600px) {
+        order: 1;
+      }
     }
 
     &.second {
       background: linear-gradient(180deg, #6c63ff, #5548c8);
       height: 15rem;
+
+       @media (max-width: 600px) {
+        order: 2;
+      }
     }
 
     &.third {
       background: linear-gradient(180deg, #d76dfb, #b13eca);
       height: 15rem;
+
+      @media (max-width: 600px) {
+        order: 3;
+      }
     }
 
     img {

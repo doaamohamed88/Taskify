@@ -1,12 +1,28 @@
+.leaderboardGrid {
+  padding: var(--section-padding);
+  margin-inline: auto;
+  gap: 30px;
+  width: 100%;
+  overflow: auto;
+
+  @media (max-width: 768px) {
+    padding: var(--section-padding-sm);
+  }
+}
+
+
 .tableContainer {
   padding: 20px;
   border: 1px solid white;
   border-radius: 20px;
-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  max-width: 600px;
+  width: 100%;
   margin: auto;
   margin-top: 50px;
- background: linear-gradient(135deg, #000000, #3b3b3b, #8a2be2);}
+  background-image: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29));
+}
 
 .rankCardContainer {
   display: flex;
@@ -14,7 +30,9 @@ box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
   align-items: center;
   gap: 3rem;
   flex: 1;
+  max-width: 600px;
   width: 100%;
+  margin: auto;
 }
 
 .tableHeaderInfo {
@@ -23,4 +41,7 @@ box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.header {
+  padding-bottom: 25px;
 }
