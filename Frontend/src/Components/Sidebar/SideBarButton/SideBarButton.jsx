@@ -5,7 +5,7 @@ export default function SideBarButton({ title, icon, active }) {
   return (
     <div className={`${st.sidebarButton} ${active ? st.active : ''}`}>
         <FontAwesomeIcon icon={icon} className={st.sidebarButtonIcon}></FontAwesomeIcon>
-        <span>{title}</span>
+        <span className={st.desktopOnly}>{title}</span>
     </div>
   )
 }
