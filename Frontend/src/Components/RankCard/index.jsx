@@ -31,9 +31,8 @@ const RankCard = () => {
       {participants.map((participant, index) => (
         <div
           key={index}
-          className={`${styles["podium-item"]} ${
-            styles[participant.heightClass]
-          }`}
+          className={`${styles["podium-item"]} ${styles[participant.heightClass]
+            }`}
           style={{
             backgroundImage: `url(${participant.bg})`,
             backgroundSize: "cover",

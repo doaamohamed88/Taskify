@@ -1,10 +1,11 @@
 .boardContainer {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 25px;
   justify-content: center;
-  align-items: center;
   padding: 0 2%;
+  margin-top: 100px;
 }
 
 @media (min-width: 769px) {

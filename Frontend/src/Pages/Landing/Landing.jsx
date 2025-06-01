@@ -22,7 +22,7 @@ export default function LandingPage() {
                         <p>Created</p>
                         <div>
                             <div className={classes.card}>
-                                <Card />
+                                <Card ></Card>
                             </div>
                             <div className={classes.card}>
                                 <Card />

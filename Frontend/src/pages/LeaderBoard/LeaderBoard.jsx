@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./LeaderBoard.module.scss";
+import styles from "./leaderboard.module.css";
 import TeamTable from "../../Components/TeamTable";
 import RankCard from "../../Components/RankCard";
 import Card from "../../components/Card/Card";
