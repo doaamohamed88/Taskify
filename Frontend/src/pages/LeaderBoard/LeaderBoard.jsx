@@ -7,7 +7,6 @@ import Podium from "./components/RankCard";
 export default function LeaderBoard() {
   const [totalScore, setTotalScore] = useState(0);
 
-  // دالة لحساب المجموع من TeamTable
   const calculateTotalScore = (score) => {
     setTotalScore(score);
   };
