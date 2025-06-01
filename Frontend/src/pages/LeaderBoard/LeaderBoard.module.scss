@@ -1,47 +1,35 @@
-.leaderboardGrid {
+.leaderBoardContainer {
   padding: var(--section-padding);
   margin-inline: auto;
-  gap: 30px;
-  width: 100%;
+  width: 90%;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 
   @media (max-width: 768px) {
     padding: var(--section-padding-sm);
   }
+
+  .rankCardContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    flex: 1;
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+  }
+  
+  .tableHeaderInfo {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 
-.tableContainer {
-  padding: 20px;
-  border: 1px solid white;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  max-width: 600px;
-  width: 100%;
-  margin: auto;
-  margin-top: 50px;
-  background-image: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29));
-}
-
-.rankCardContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 3rem;
-  flex: 1;
-  max-width: 600px;
-  width: 100%;
-  margin: auto;
-}
-
-.tableHeaderInfo {
-  margin-bottom: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.header {
-  padding-bottom: 25px;
-}
