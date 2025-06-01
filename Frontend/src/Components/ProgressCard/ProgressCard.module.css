@@ -1,9 +1,10 @@
 .progressCard {
   border-radius: var(--border-radius-main);
   background-image: var(--card-linear-gradient);
-  padding: 60px;
+  padding: var(--section-padding);
   cursor: pointer;
   transition: var(--main-trans);
+  flex: 1;
 
   .progressCardTitle {
     position: relative;
@@ -45,6 +46,23 @@
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
     transform: translateY(-5px);
+  }
+
+  @media (max-width: 992px) {
+    padding: 30px;
+    .progressCardTitle {
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    .progressCardTitle {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    
   }
 }
 

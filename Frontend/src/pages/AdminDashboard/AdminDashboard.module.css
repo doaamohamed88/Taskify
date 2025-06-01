@@ -24,6 +24,7 @@
         grid-column: 2 / -1;
         grid-row: 2 / 3;
         display: flex;
+        flex-wrap: wrap;
         gap: 30px;
         align-items: center;
     }
@@ -53,6 +54,28 @@
                 background-color: var(--secondary-color);
             }
         }
+    }
+
+    @media (max-width: 1350px) {
+        max-height: none;
+        overflow: initial;
+    }
+
+    @media (max-width: 992px) {
+        grid-template-columns: 100px repeat(3, 1fr);    
+    }
+
+    @media (max-width: 768px) {
+        padding: 30px;
+        h1 {
+            font-size: 1.6em;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        gap: 20px;
+        padding-inline: 15px;
     }
 
 }

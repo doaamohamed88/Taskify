@@ -9,6 +9,12 @@
   color: white;
   text-align: center;
   font-weight: bold;
+
+  @media (max-width: 576px) {
+    width: 120px;
+    height: 120px;
+    
+  }
 }
 
 /* -------------------------------------
@@ -29,6 +35,12 @@
   text-align: center;
   letter-spacing: 1px;
   font-size: 22px;
+
+  @media (max-width: 576px) {
+    width: 90px;
+    height: 90px;
+    font-size: 16px;
+  }
 }
 
 /* -------------------------------------
