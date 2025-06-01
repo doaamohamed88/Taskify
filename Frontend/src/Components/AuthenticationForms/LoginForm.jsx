@@ -11,7 +11,7 @@ const LoginForm = ({ register, reset, errors }) => {
     <>
       <h1 className={`${styles.formTitle}`}>Welcome back, login to continue</h1>
       <input
-        className={`${styles.formInput}`}
+        className={`${styles.formInput} ${errors.email && `${styles.error}`}`}
         type="text"
         placeholder="Email"
         name="email"
@@ -24,17 +24,19 @@ const LoginForm = ({ register, reset, errors }) => {
         })}
       />
       {errors.email && (
-        <p className={`${styles.error}`}>{errors.email.message}</p>
+        <p className={`${styles.errorMsg}`}>{errors.email.message}</p>
       )}
       <input
-        className={`${styles.formInput}`}
+        className={`${styles.formInput} ${
+          errors.password && `${styles.error}`
+        }`}
         type="password"
         placeholder="Password"
         name="password"
         {...register("password", { required: "This field is required" })}
       />
       {errors.password && (
-        <p className={`${styles.error}`}>{errors.password.message}</p>
+        <p className={`${styles.errorMsg}`}>{errors.password.message}</p>
       )}
       <input className={`${styles.formInput}`} type="submit" value={"Login"} />
       <Link className={`${styles.link}`} to={`/forget-password`}>

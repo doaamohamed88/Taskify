@@ -25,6 +25,15 @@
   outline: none;
 }
 
+.error {
+  border: 2px solid red;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 12px;
+}
+
 .formInput[type="submit"] {
   background-color: var(--secondary-color);
   color: #fff;
