@@ -1,23 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-:root{
-    --main-color:#0E1218;
-    --secondary-color:rgb(29 34 46);
-    --main-trans: 0.3s;
-    --border-radius-main: 12px;
-    --button-hover-color: blue;
-    --section-padding: 60px;
-    --card-linear-gradient: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29));
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');:root {
+  --main-color: #0e1218;
+  --secondary-color: rgb(29 34 46);
+  --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
+  --gradient: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29));
+  --main-trans: 0.3s;
+  --border-radius-main: 20px;
+  --section-padding: 60px;
+  --button-hover-color: blue;
+
 }
 
-*, *::before, *::after {
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body{
@@ -29,28 +32,69 @@ body{
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .container {
-    margin-inline: auto;
-    padding-inline: 15px;
+  margin-inline: auto;
+  padding-inline: 15px;
 }
 
 @media (min-width: 769px) {
-    .container {
-        width: 750px;
-    }
+  .container {
+    width: 750px;
+  }
 }
 
 @media (min-width: 992px) {
-    .container {
-        width: 970px;
-    }
+  .container {
+    width: 970px;
+  }
 }
 
 @media (min-width: 1200px) {
-    .container {
-        width: 1170px;
-    }
+  .container {
+    width: 1170px;
+  }
 }
+
+/* 1. WebKit (Chrome, Safari, Edge) */
+:root {
+  scrollbar-color: #9476d6 var(--secondary-color) !important; /* Firefox */
+}
+
+::-webkit-scrollbar {
+  width: 12px !important; 
+  height: 12px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-color) !important;
+  border-radius: 10px !important; 
+  margin: 5px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9476d6 !important;
+  border-radius: 10px !important;
+  border: 3px solid transparent !important;
+  background-clip: content-box !important;
+  transition: var(--main-trans) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9476d6 !important;
+}
+
+/* 2. Firefox */
+html {
+  scrollbar-width: thin !important;
+  scrollbar-color: #9476d6 var(--secondary-color) !important;
+}
+
+/* 3. Force GPU acceleration (helps on some systems) */
+::-webkit-scrollbar-thumb {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+

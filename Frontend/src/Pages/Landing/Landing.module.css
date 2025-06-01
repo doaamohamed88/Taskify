@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 .landing_page {
   width: 100%;
   position: relative;
@@ -12,17 +13,26 @@
   align-items: center;
 }
 
-.landing_page .section{
+.landing_page .section {
   width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
+.landing_page p {
+  /* font-family: "Ancizar Serif", serif; */
+  font-family: "Mona Sans", sans-serif;
+  font-size: 40px;
+  width: 380px;
+}
 
-.landing_page p{
-  font-family: "Ancizar Serif", serif;
-  font-size: 25px;
+.landing_content p strong:first-child {
+  color: rgb(148, 118, 214);
+}
+
+.landing_content p strong:last-child {
+  color: rgb(148, 118, 214);
 }
 
 .background_mesh {
@@ -32,9 +42,16 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: 
-    radial-gradient(circle at 15% 50%, rgba(103, 126, 234, 0.1) 0%, transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(118, 75, 162, 0.1) 0%, transparent 25%);
+  background: radial-gradient(
+      circle at 15% 50%,
+      rgba(103, 126, 234, 0.1) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(118, 75, 162, 0.1) 0%,
+      transparent 25%
+    );
   animation: mesh-move 20s infinite alternate;
 }
 
@@ -54,7 +71,10 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-image: radial-gradient(rgba(103, 126, 234, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(103, 126, 234, 0.15) 1px,
+    transparent 1px
+  );
   background-size: 40px 40px;
   animation: dots-scroll 100s linear infinite;
 }
@@ -75,8 +95,11 @@
   width: 100%;
   height: 100%;
   z-index: -1;
-  background:
-    linear-gradient(90deg, rgba(103, 126, 234, 0.05) 1px, transparent 1px),
+  background: linear-gradient(
+      90deg,
+      rgba(103, 126, 234, 0.05) 1px,
+      transparent 1px
+    ),
     linear-gradient(rgba(103, 126, 234, 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   animation: grid-pulse 8s ease-in-out infinite alternate;
@@ -91,4 +114,37 @@
   }
 }
 
+.cards_section {
+  margin: 10px;
+  width: fit-contents;
+}
 
+.cards_section .card {
+  margin: 10px;
+}
+
+.cards_section > p {
+  width: fit-content;
+}
+
+/* .landing_page .section:first-child{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.landing_page button {
+  position: relative;
+  top: 5px;
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  outline: none;
+  padding: 15px;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius-main);
+  border: 5px solid rgb(148, 118, 214);
+  margin: 10px;
+  width: fit-content;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Header.module.css';
 import i18n from '../../i18n';
-
+import * as FaIcons from 'react-icons/fa6'
 function Header() {
     const [currentLang, setCurrentLang] = useState(i18n.language);
 
@@ -19,6 +19,9 @@ function Header() {
         <div className={classes.header}>
             <button onClick={() => handleLanguageChange(currentLang === 'ar' ? 'en' : 'ar')}>
                 {currentLang === 'ar' ? 'en' : 'ar'}
+            </button>
+            <button>
+                <FaIcons.FaLightbulb />
             </button>
         </div>
     );
