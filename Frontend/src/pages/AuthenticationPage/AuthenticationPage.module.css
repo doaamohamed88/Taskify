@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 20%;
+  width: 90%;
 }
 
 .formTitle {
@@ -33,7 +33,7 @@
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: blue;
+    background-color: var(--button-hover-color);
   }
 }
 
@@ -43,5 +43,27 @@
 }
 
 .link {
-  color: blue;
+  color: var(--button-hover-color);
+}
+
+.imageContainer {
+  background-image: url("./assets/waveBackground.svg");
+}
+
+@media (min-width: 769px) {
+  .formContainer {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .formContainer {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .formContainer {
+    width: 20%;
+  }
 }

@@ -1,0 +1,20 @@
+.listContainer {
+  width: 100%;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px 25px;
+  border-radius: var(--border-radius-main);
+  margin-top: 35px;
+}
+
+.iconContainer {
+  padding: 5px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
