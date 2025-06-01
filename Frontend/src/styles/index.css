@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 :root {
   --main-color: #0e1218;
   --secondary-color: rgb(29 34 46);
   --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
-  --gradient: linear-gradient(130deg, rgb(44, 47, 68), rgb(19, 21, 29));
+  --gradient: linear-gradient(130deg, rgb(41, 45, 66), rgb(19, 21, 29));
   --main-trans: 0.3s;
   --border-radius-main: 20px;
   --section-padding: 60px;
   --button-hover-color: blue;
   --card-linear-gradient: var(--gradient);
+  --todo-color: #c3a0ff;
+  --doing-color: #ffb6e6;
+  --done-color: #a0ffe6;
+  scrollbar-color: #9476d6 var(--secondary-color) !important; /* Firefox */
 }
 
 *,
@@ -24,12 +28,19 @@
   padding: 0;
 }
 
-body{
-    background-color: var(--main-color);
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
+body {
+  background-color: var(--main-color);
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background: radial-gradient(
+    ellipse at bottom,
+    #5f4bb6 0%,
+    #1b1537 40%,
+    #0a0a0a 100%
+  );
+  min-height: 100vh;
 }
 
 a {
@@ -59,19 +70,14 @@ a {
   }
 }
 
-/* 1. WebKit (Chrome, Safari, Edge) */
-:root {
-  scrollbar-color: #9476d6 var(--secondary-color) !important; /* Firefox */
-}
-
 ::-webkit-scrollbar {
-  width: 12px !important; 
+  width: 12px !important;
   height: 12px !important;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--secondary-color) !important;
-  border-radius: 10px !important; 
+  border-radius: 10px !important;
   margin: 5px !important;
 }
 
@@ -99,3 +105,81 @@ html {
   -webkit-transform: translateZ(0);
 }
 
+.background-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(
+      circle at 15% 50%,
+      rgba(103, 126, 234, 0.1) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(118, 75, 162, 0.1) 0%,
+      transparent 25%
+    );
+  animation: mesh-move 20s infinite alternate;
+}
+
+@keyframes mesh-move {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.2) rotate(2deg);
+  }
+}
+
+.dots-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: radial-gradient(
+    rgba(103, 126, 234, 0.15) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  animation: dots-scroll 100s linear infinite;
+}
+
+@keyframes dots-scroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1000px 1000px;
+  }
+}
+
+.geometric-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(
+      90deg,
+      rgba(103, 126, 234, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(103, 126, 234, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes grid-pulse {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}

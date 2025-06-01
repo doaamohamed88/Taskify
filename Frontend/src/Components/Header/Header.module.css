@@ -1,24 +1,24 @@
-.header{
-    display: flex;
-    justify-content: flex-end;
+.header {
+  position: fixed;
+  right: 0;
 }
-.header button{
-    position:relative ;
-    top: 5px;
-    background-color: var(--main-color);
-    color:white;
-    border: none;
-    outline: none;
-    padding: 15px;
-    box-shadow: var(--shadow);
-    border-radius: var(--border-radius-main);
-    border: 5px solid rgb(148, 118, 214);
-    margin: 10px;
+.header button {
+  position: relative;
+  top: 5px;
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  outline: none;
+  padding: 15px;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius-main);
+  border: 5px solid rgb(148, 118, 214);
+  margin: 10px;
 }
 
-[dir='ltr'] .header button{
-    left: 0;
+[dir="ltr"] .header button {
+  left: 0;
 }
-[dir='rtl'] .header button{
-    right: 0;
+[dir="rtl"] .header button {
+  right: 0;
 }

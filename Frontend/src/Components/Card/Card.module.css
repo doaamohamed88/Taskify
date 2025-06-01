@@ -1,10 +1,11 @@
 .card {
   width: 200px;
   height: 150px;
-  background: var(--gradient);
+  /* background: var(--gradient); */
+  background-color: var(--main-color);
   box-shadow: var(--shadow);
   border-radius: var(--border-radius-main);
-  border: 5px solid rgb(148, 118, 214);
+  /* border: 5px solid rgb(148, 118, 214); */
 }
 
 .large {

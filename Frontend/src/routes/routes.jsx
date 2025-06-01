@@ -15,28 +15,28 @@ export const routes = createBrowserRouter([
     element: loggedIn ? <MainLayout /> : <AuthenticationPage type={"login"} />,
     children: loggedIn
       ? [
-          {
-            path: "/",
-            element: <LandingPage />,
-          },
-          {
-            element: <BoardLayout />,
-            children: [
-              {
-                path: "/tasks",
-                element: <BoardPage />,
-              },
-              {
-                path: "/leader-board",
-                element: <LeaderBoard />,
-              },
-              {
-                path: "/dashboard",
-                element: <AdminDashboard />,
-              },
-            ],
-          },
-        ]
+        {
+          path: "/",
+          element: <LandingPage />,
+        },
+        {
+          element: <BoardLayout />,
+          children: [
+            {
+              path: "/tasks",
+              element: <BoardPage />,
+            },
+            {
+              path: "/leader-board",
+              element: <LeaderBoard />,
+            },
+            {
+              path: "/dashboard",
+              element: <AdminDashboard />,
+            },
+          ],
+        },
+      ]
       : null,
   },
   {

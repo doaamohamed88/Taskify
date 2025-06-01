@@ -6,14 +6,8 @@
   grid-template-rows: auto auto 1fr;
   gap: 30px;
   min-height: 100dvh;
-  max-height: 100dvh;
-  overflow: hidden;
-
-  .sidebar {
-    grid-area: 1 / 1 / -1 / 2;
-    background-color: green;
-    border-radius: var(--border-radius-main);
-  }
+  /* max-height: 100dvh; */
+  /* overflow: hidden; */
 
   h1 {
     grid-column: 2 / -1;
