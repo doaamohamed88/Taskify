@@ -1,0 +1,81 @@
+.grid {
+    padding: var(--section-padding);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 300px repeat(3, 1fr);
+    grid-template-rows: auto auto 1fr;
+    gap: 30px;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+
+    .sidebar {
+        grid-area: 1 / 1 / -1 / 2;
+        background-color: green;
+        border-radius: var(--border-radius-main);
+    }
+
+    h1 {
+        grid-column: 2 / -1;
+        letter-spacing: 1px;
+    }
+
+    .projectProgress {
+        grid-column: 2 / -1;
+        grid-row: 2 / 3;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .teamMembers {
+        grid-column: 2 / -1;
+        grid-row: 3 / 4;
+        border-radius: var(--border-radius-main);
+        background-image: var(--card-linear-gradient);
+
+        h2 {
+            padding: 30px;
+        }
+
+        .memberCard {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 10px;
+            background-color: var(--main-color);
+            padding: 15px 40px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--main-trans);
+
+            &:hover {
+                background-color: var(--secondary-color);
+            }
+        }
+    }
+
+    @media (max-width: 1350px) {
+        max-height: none;
+        overflow: initial;
+    }
+
+    @media (max-width: 992px) {
+        grid-template-columns: 100px repeat(3, 1fr);    
+    }
+
+    @media (max-width: 768px) {
+        padding: 30px;
+        h1 {
+            font-size: 1.6em;
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        gap: 20px;
+        padding-inline: 15px;
+    }
+
+}
