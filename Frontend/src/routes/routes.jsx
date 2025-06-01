@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import AuthenticationPage from "../pages/AuthenticationPage/AuthenticationPage";
+import AdminDashboard from "../pages/adminDashboard/AdminDashboard";
 
 export const routes = createBrowserRouter([
   {
@@ -14,4 +15,8 @@ export const routes = createBrowserRouter([
     path: "/forget-password",
     element: <AuthenticationPage type={"forgetPassword"} />,
   },
+  {
+    path: "/dashboard",
+    element: <AdminDashboard></AdminDashboard>,
+  }
 ]);
