@@ -11,7 +11,7 @@ const ForgetPasswordForm = ({ register, reset, errors }) => {
     <>
       <h1 className={`${styles.formTitle}`}>Forget password</h1>
       <input
-        className={`${styles.formInput}`}
+        className={`${styles.formInput} ${errors.email && `${styles.error}`}`}
         type="text"
         placeholder="Email"
         name="email"
@@ -24,7 +24,7 @@ const ForgetPasswordForm = ({ register, reset, errors }) => {
         })}
       />
       {errors.email && (
-        <p className={`${styles.error}`}>{errors.email.message}</p>
+        <p className={`${styles.errorMsg}`}>{errors.email.message}</p>
       )}
       <input
         className={`${styles.formInput}`}
