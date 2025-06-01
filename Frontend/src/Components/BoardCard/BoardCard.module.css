@@ -19,11 +19,17 @@
 .board_card::before {
   content: "";
   position: absolute;
-  left: 0;
   top: 30px;
   width: 4px;
   height: 100px; /* Adjust as needed */
   border-radius: 10px;
+}
+
+[dir="ltr"] .board_card::before {
+  left: 0;
+}
+[dir="rtl"] .board_card::before {
+  right: 0;
 }
 
 .board_card.created::before {
