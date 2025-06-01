@@ -2,6 +2,7 @@ import BoardCard from '../../Components/BoardCard/BoardCard';
 import Modal from '../../Components/Modal/Modal';
 import classes from './Landing.module.css';
 import { useRef } from 'react';
+import * as FaIcons from 'react-icons/fa6'
 export default function LandingPage() {
     const modalRef = useRef();
     function handleShowModal() {
@@ -17,7 +18,10 @@ export default function LandingPage() {
                     <div>
                         <p className={classes.typingText}>
                             <strong>Transform Chaos into Clarity - Organize Tasks, </strong>Boost Productivity, and Achieve More with <span className={classes.logo}>Taskify</span></p>
-                        <button onClick={handleShowModal}>Create board</button>
+                        <button onClick={handleShowModal}>
+                            Create board
+                            <FaIcons.FaArrowRight className={classes.icon} />
+                        </button>
                         <Modal ref={modalRef} >
                             <p>ssss</p>
                         </Modal>
