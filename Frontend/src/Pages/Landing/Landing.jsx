@@ -1,4 +1,4 @@
-import Card from '../../components/Card/Card';
+import BoardCard from '../../Components/BoardCard/BoardCard';
 import classes from './Landing.module.css';
 
 export default function LandingPage() {
@@ -13,30 +13,30 @@ export default function LandingPage() {
                 <div className={classes.section}>
                     <div>
                         <p className={classes.typingText}>
-                            <strong>Transform Chaos into Clarity – Organize Tasks, </strong>Boost Productivity, and Achieve More with <strong>Task Manager</strong></p>
+                            <strong>Transform Chaos into Clarity - Organize Tasks, </strong>Boost Productivity, and Achieve More with <span className={classes.logo}>Taskify</span></p>
                         <button>Create board</button>
                     </div>
                 </div>
                 <div className={classes.section}>
                     <div className={classes.cards_section}>
-                        <p>Created</p>
+                        <p className={classes.boardName}>Created</p>
                         <div>
                             <div className={classes.card}>
-                                <Card ></Card>
+                                <BoardCard boardType="created" />
                             </div>
                             <div className={classes.card}>
-                                <Card />
+                                <BoardCard boardType="created" />
                             </div>
                         </div>
                     </div>
                     <div className={classes.cards_section}>
-                        <p>Involved</p>
+                        <p className={classes.boardName}>Envolved</p>
                         <div>
                             <div className={classes.card}>
-                                <Card />
+                                <BoardCard boardType="envolved" />
                             </div>
                             <div className={classes.card}>
-                                <Card />
+                                <BoardCard boardType="envolved" />
                             </div>
 
                         </div>

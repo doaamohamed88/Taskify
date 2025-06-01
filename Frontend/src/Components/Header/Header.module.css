@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap");
+
 .header {
   width: 100%;
   display: flex;
@@ -16,7 +18,7 @@
   padding: 15px;
   box-shadow: var(--shadow);
   border-radius: var(--border-radius-main);
-  border: 5px solid rgb(148, 118, 214);
+  border: var(--lilac-border);
   margin: 0 5px;
 }
 
@@ -25,4 +27,12 @@
 }
 [dir="rtl"] .header button {
   right: 0;
+}
+
+.logo {
+  font-family: "Caveat", sans-serif;
+  font-size: 38px;
+  color: var(--lilac-color);
+  font-weight: bold;
+  margin-left: 15px;
 }

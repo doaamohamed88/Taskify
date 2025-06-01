@@ -9,7 +9,7 @@
   background-color: var(--gradient);
   padding: 20px;
   border-radius: var(--border-radius-main);
-  border: 1px solid rgb(148, 118, 214);
+  border: var(--lilac-border);
 }
 
 .icon {
