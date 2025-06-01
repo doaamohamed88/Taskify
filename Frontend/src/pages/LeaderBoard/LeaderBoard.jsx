@@ -21,14 +21,14 @@ export default function LeaderBoard() {
         <RankCard />
       </Card>
 
-      <Card size="large">
+      <div size="large">
         <div className={styles.tableHeaderInfo}>
           <h3 style={{ textAlign: "center" }}>team 1</h3>
           <span>Total score: {totalScore}</span>
         </div>
 
         <TeamTable calculateTotalScore={calculateTotalScore} />
-      </Card>
+      </div>
     </div>
   );
 }
