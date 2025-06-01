@@ -1,10 +1,14 @@
 .header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  align-items: center;
+  padding: 8px;
   position: fixed;
-  right: 0;
+  top: 0;
 }
 .header button {
-  position: relative;
-  top: 5px;
   background-color: var(--main-color);
   color: white;
   border: none;
@@ -13,7 +17,7 @@
   box-shadow: var(--shadow);
   border-radius: var(--border-radius-main);
   border: 5px solid rgb(148, 118, 214);
-  margin: 10px;
+  margin: 0 5px;
 }
 
 [dir="ltr"] .header button {
