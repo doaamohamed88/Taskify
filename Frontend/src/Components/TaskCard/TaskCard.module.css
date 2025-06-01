@@ -1,0 +1,27 @@
+.taskContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+  background-color: rgba(29, 34, 46, 0.6);
+  padding: 20px;
+  border-radius: var(--border-radius-main);
+}
+
+.icon {
+  align-self: flex-end;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.avatar {
+  padding: 10px;
+  border-radius: 100%;
+  background-color: red;
+}
