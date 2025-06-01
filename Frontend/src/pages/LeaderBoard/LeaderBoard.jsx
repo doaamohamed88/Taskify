@@ -13,7 +13,7 @@ export default function LeaderBoard() {
   return (
     <div className={styles.leaderBoardContainer}>
       <div>
-        <h1>Leader Board</h1>
+        <h1 style={{ marginBottom: 15}}>Leader Board</h1>
         <p>Check out the top teams and their scores!</p>
       </div>
 

@@ -1,7 +1,7 @@
 .tableContainer {
   width: 100%;
   margin: auto;
-  border: 1px solid #e0e0e0;
+  // border: 1px solid #e0e0e0;
   border-radius: var(--border-radius-main);
     box-shadow: var(--shadow);
   background-color: var(--gradient);
@@ -27,8 +27,9 @@
 }
 
 .tableBodyRow {
+  border-bottom: 5px solid #50474716;
   &:nth-child(even) {
-    background-color: var(--secondary-color);
+    background-color: var(--main-color);
   }
   &:nth-child(odd) {
     background-color: var(--main-color);
