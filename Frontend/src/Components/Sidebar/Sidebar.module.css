@@ -33,6 +33,12 @@
       background-color: rgb(42, 29, 70);
     }
 
+    &:dir(rtl) {
+      left: 0;
+      right: auto;
+      translate: -50% -50%;
+    }
+
     /* @media (max-width: 992px) {
       display: none;
     } */
