@@ -28,7 +28,7 @@
   background: var(--main-color);
 }
 .tableBodyRow :hover {
-  background-color: rgba(118, 160, 205, 0.605);
+  background-color: rgba(9, 27, 47, 0.605);
   transform: scale(1.02);
   transition: all 0.3s ease;
 }
