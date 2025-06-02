@@ -4,9 +4,8 @@
   gap: 15px;
   width: 100%;
   align-items: flex-start;
-  /* background-color: rgba(29, 34, 46, 0.6); */
   box-shadow: var(--shadow);
-  background-color: var(--gradient);
+  background-color: var(--transperant);
   padding: 20px;
   border-radius: var(--border-radius-main);
   border: var(--lilac-border);
@@ -27,6 +26,6 @@
 .avatar {
   padding: 10px;
   border-radius: 100%;
-  background: var(--gradient);
+  background-color: var(--transperant);
   box-shadow: var(--shadow);
 }

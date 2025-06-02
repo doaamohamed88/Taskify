@@ -11,7 +11,7 @@
 
 .table {
   width: 100%;
-   border-collapse: separate;
+  border-collapse: separate;
   border-spacing: 0;
   border-radius: var(--border-radius-main);
   padding-inline: var(--section-padding-sm);
@@ -19,7 +19,7 @@
 }
 
 .tableHead {
-  background-image: var(--card-linear-gradient);
+  background: var(--main-color);
 }
 
 .tableHeadCell {

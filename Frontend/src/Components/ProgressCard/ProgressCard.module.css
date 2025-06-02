@@ -1,6 +1,7 @@
 .progressCard {
   border-radius: var(--border-radius-main);
-  background-image: var(--card-linear-gradient);
+  background-image: var(--transperant);
+  box-shadow: var(--shadow);
   padding: var(--section-padding);
   cursor: pointer;
   transition: var(--main-trans);
@@ -71,6 +72,9 @@
       font-size: 16px;
       margin-top: 20px;
     }
-    
   }
+
 }
+
+}
+
