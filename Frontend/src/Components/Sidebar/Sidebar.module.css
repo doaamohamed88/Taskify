@@ -11,6 +11,7 @@
   position: relative;
   border-radius: 12px;
   height: 100%;
+  transition: 0.5s;
 
   .collapse {
     position: absolute;
@@ -31,6 +32,10 @@
 
     &:hover {
       background-color: rgb(42, 29, 70);
+    }
+
+    &.pointRight {
+      rotate: 180deg;
     }
 
     &:dir(rtl) {
@@ -75,6 +80,18 @@
 
     .desktopOnly {
       @media (max-width: 992px) {
+        display: none;
+      }
+    }
+  }
+
+  &.collapsed {
+    width: 100%;
+    
+    .sidebarButton {
+      padding-left: 15px;
+      
+      .desktopOnly {
         display: none;
       }
     }

@@ -1,5 +1,14 @@
 .layout_continer {
   display: flex;
+
+  &.collapsed .outlit_container {
+    margin-left: 100px;
+
+    &:dir(rtl) {
+      margin-right: 100px;
+      margin-left: 0;
+    }
+  }
 }
 
 .sidebar {
