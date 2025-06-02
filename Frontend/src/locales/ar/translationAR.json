@@ -1,1 +1,10 @@
-{}
+{
+    "Welcome back, ": "مرحباً بك, ",
+    "Team Members": "أعضاء الفريق",
+    "Completed": "مكتمل",
+    "In Progress": "قيد التقدم",
+    "Not Started": "لم يبدأ بعد",
+    "Dashboard": "لوحة التحكم",
+    "Tasks": "المهام",
+    "Leaderboard": "لوحة المتصدرين"
+}

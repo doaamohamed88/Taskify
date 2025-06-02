@@ -2,11 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ProgressCard from "../../Components/ProgressCard/ProgressCard"
 import st from "./AdminDashboard.module.css"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { useTranslation } from "react-i18next"
 
 export default function AdminDashboard() {
+
+  const { t } = useTranslation()
+
   return (
     <div className={st.grid}>
-      <h1>Welcome back, Admin 👋</h1>
+      <h1>{t('Welcome back, ')}Admin 👋</h1>
       <div className={st.projectProgress}>
         <ProgressCard title="Completed" colorScheme="green" score={65}></ProgressCard>
         <ProgressCard title="In Progress" colorScheme="blue" score={15}></ProgressCard>
@@ -14,7 +18,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className={st.teamMembers}>
-        <h2>Team Members</h2>
+        <h2>{t('Team Members')}</h2>
         <div className={st.memberCard}>
           <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
           Alice Johnson
