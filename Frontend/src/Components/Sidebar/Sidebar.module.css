@@ -42,11 +42,16 @@
       left: 0;
       right: auto;
       translate: -50% -50%;
+      rotate: 180deg;
+
+      &.pointRight {
+        rotate: 0deg;
+      }
     }
 
-    /* @media (max-width: 992px) {
+    @media (max-width: 992px) {
       display: none;
-    } */
+    }
   }
 
   .sidebarButton {
