@@ -27,7 +27,7 @@
     align-items: center;
     cursor: pointer;
     box-shadow: var(--shadow);
-    transition: var(--main-trans);
+    transition: var(--main-trans), rotate var(--main-trans) 0.2s;
     z-index: 10;
 
     &:hover {
@@ -92,22 +92,21 @@
 
   &.collapsed {
     width: 100%;
-    
+
     .sidebarButton {
       padding-left: 15px;
-      
+
       .desktopOnly {
         display: none;
       }
     }
   }
 
-  @media (max-width: 992PX) {
+  @media (max-width: 992px) {
     width: 100%;
 
     .sidebarButton {
       padding-left: 15px;
     }
   }
-
 }
