@@ -38,7 +38,7 @@ export default function Sidebar() {
         active={path == "/tasks"}
         linkTo="/tasks"
       ></SideBarButton>
-      <div className={`${st.collapse} ${!collapseState && st.pointRight}`} onClick={toggleCollapse}>
+      <div className={`${st.collapse} ${collapseState && st.pointRight}`} onClick={toggleCollapse}>
         <FontAwesomeIcon icon={faAngleLeft}></FontAwesomeIcon>
       </div>
     </div>
