@@ -1,1 +1,10 @@
-{}
+{
+    "Welcome back, ": "Welcome back, ",
+    "Team Members": "Team Members",
+    "Completed": "Completed",
+    "In Progress": "In Progress",
+    "Not Started": "Not Started",
+    "Dashboard": "Dashboard",
+    "Tasks": "Tasks",
+    "Leaderboard": "Leaderboard"
+}
