@@ -3,13 +3,20 @@ import st from "./sidebar.module.css"
 import SideBarButton from "./SideBarButton/SideBarButton"
 import { useLocation } from "react-router"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useState } from "react"
 
 export default function Sidebar() {
+
+  const [ colapsState, setCollapseState ] = useState(true)
+  const toggleCollapse = () => {
+    setCollapseState(!colapsState)
+  }
+
   const location = useLocation()
   const path = location.pathname
 
   return (
-    <div className={st.sidebar}>
+    <div className={`${st.sidebar} ${colapsState ? st.collapsed : ""}`}>
       <SideBarButton
         title="Dashboard"
         icon={faDashboard}
@@ -28,7 +35,7 @@ export default function Sidebar() {
         active={path == "/tasks"}
         linkTo="/tasks"
       ></SideBarButton>
-      <div className={st.collapse}>
+      <div className={st.collapse} onClick={toggleCollapse}>
         <FontAwesomeIcon icon={faAngleLeft}></FontAwesomeIcon>
       </div>
     </div>
