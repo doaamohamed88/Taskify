@@ -19,7 +19,7 @@
 }
 
 .tableHead {
-  background-image: var(--transperant);
+  background: var(--main-color);
 }
 
 .tableHeadCell {
