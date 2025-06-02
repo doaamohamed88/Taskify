@@ -6,6 +6,7 @@
   grid-area: 1 / 1 / -1 / 2;
   /* background-color: green; */
   border-radius: var(--border-radius-main);
+  width: fit-content;
 }
 
 .outlit_container {

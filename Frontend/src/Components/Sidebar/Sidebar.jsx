@@ -1,7 +1,8 @@
-import { faBorderAll, faDashboard, faTrophy } from "@fortawesome/free-solid-svg-icons"
+import { faAngleLeft, faBorderAll, faDashboard, faTrophy } from "@fortawesome/free-solid-svg-icons"
 import st from "./sidebar.module.css"
 import SideBarButton from "./SideBarButton/SideBarButton"
 import { useLocation } from "react-router"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function Sidebar() {
   const location = useLocation()
@@ -27,6 +28,9 @@ export default function Sidebar() {
         active={path == "/tasks"}
         linkTo="/tasks"
       ></SideBarButton>
+      <div className={st.collapse}>
+        <FontAwesomeIcon icon={faAngleLeft}></FontAwesomeIcon>
+      </div>
     </div>
   )
 }
