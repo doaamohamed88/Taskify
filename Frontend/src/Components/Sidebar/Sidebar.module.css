@@ -44,9 +44,9 @@
       translate: -50% -50%;
     }
 
-    /* @media (max-width: 992px) {
+    @media (max-width: 992px) {
       display: none;
-    } */
+    }
   }
 
   .sidebarButton {
