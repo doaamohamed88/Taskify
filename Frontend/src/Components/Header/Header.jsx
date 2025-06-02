@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import classes from "./Header.module.css";
 import i18n from "../../i18n";
 import * as FaIcons from "react-icons/fa6";
+import { Link } from 'react-router-dom'
 function Header() {
   const [currentLang, setCurrentLang] = useState(i18n.language);
 
@@ -18,7 +19,9 @@ function Header() {
 
   return (
     <div className={classes.header}>
-      <p className={classes.logo}>Taskify</p>
+      <Link to='/'>
+        <p className={classes.logo}>Taskify</p>
+      </Link>
       <div>
         <button
           onClick={() => handleLanguageChange(currentLang === "ar" ? "en" : "ar")}
