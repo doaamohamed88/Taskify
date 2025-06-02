@@ -25,14 +25,30 @@ const getUserByEmail = (email) => {
     const users = getAllUsers();
     const user = users.find(user => user.email === email);
     if (!user) {
+        return null;
+    }
+    return user;
+}
+
+const login = (email, password) => {
+    const users = getAllUsers();
+    const user = users.find(user => user.email === email);
+    if (!user) {
         throw new Error('User not found');
+    }
+    if (user.password !== password) {
+        throw new Error('Invalid Credentials');
     }
     return user;
 }
 
 const addUser = (userData) => {
     const users = getAllUsers();
-    const newUser = { id: uuid(), ...userData };
+    const existingUser = users.find(user => user.email === userData.email);
+    if (existingUser) {
+        throw new Error('User already exists');
+    }
+    const newUser = { id: uuid(), ...userData, boards: [], verified: false };
     users.push(newUser);
     fileUtils.write(usersFilePath, users);
     return newUser;
@@ -54,5 +70,6 @@ module.exports = {
     getUserById,
     getUserByEmail,
     addUser,
-    updateUser
+    updateUser,
+    login
 };

@@ -4,6 +4,8 @@
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  position: relative;
+  z-index: 1;
 }
 
 .formContainer {
@@ -23,6 +25,11 @@
   border-radius: 5px;
   width: 100%;
   outline: none;
+}
+
+.successMsg {
+  color: green;
+  font-size: 12px;
 }
 
 .error {
@@ -53,6 +60,16 @@
 
 .link {
   color: var(--button-hover-color);
+}
+
+.otpContainer {
+  display: flex;
+  gap: 5%;
+  width: 100%;
+}
+
+.otpInput {
+  text-align: center;
 }
 
 .imageContainer {
