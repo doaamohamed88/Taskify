@@ -16,11 +16,21 @@
   left: 0;
   height: calc(100dvh - 100px);
   z-index: 1000;
+
+  &:dir(rtl) {
+    right: 0;
+    left: auto;
+  }
 }
 
 .outlit_container {
   margin-left: 300px;
   width: 100%;
+
+  &:dir(rtl) {
+    margin-right: 300px;
+    margin-left: 0;
+  }
 
   @media (max-width: 992px) {
     margin-left: 100px;
