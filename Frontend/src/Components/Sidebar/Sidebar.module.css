@@ -1,11 +1,37 @@
 .sidebar {
   width: 300px;
-  border-top-right-radius: 60px;
-  background-color: var(--main-color);
+  /* border-top-right-radius: 60px; */
+  background-image: linear-gradient(to bottom right, #0a0a0c, #1a1435);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 30px;
+  position: relative;
+  border-radius: 12px;
+
+  .collapse {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    border-radius: 50%;
+    background-color: rgb(32, 22, 54);
+    width: 30px;
+    height: 30px;
+    translate: 50% -50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--main-trans);
+    z-index: 10;
+
+    &:hover {
+      background-color: var(--secondary-color);
+    }
+  }
 
   .sidebarButton {
     width: 100%;
@@ -27,12 +53,12 @@
     }
 
     &:hover {
-      background-color: var(--secondary-color);
+      background-color: rgb(54, 42, 80);
       color: white;
     }
 
     &.active {
-      background-color: var(--secondary-color);
+      background-color: var(--lilac-color);
       color: white;
     }
 
