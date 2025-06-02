@@ -7,6 +7,12 @@
   border: 1px solid var(--lilac-color);
   border-radius: var(--border-radius-main);
   box-shadow: var(--shadow);
+  position: relative;
+  overflow: auto;
+
+  @media (max-width: 600px) {
+      padding-inline: 0;
+    }
 }
 
 .table {

@@ -83,14 +83,14 @@
   animation: arrow-move 0.8s infinite;
 }
 
-@keyframes arrow-move {
+/* @keyframes arrow-move {
   0% {
     transform: translateX(-5px);
   }
   100% {
     transform: translateX(5px);
   }
-}
+} */
 
 .logo {
   font-family: "Caveat", sans-serif;
