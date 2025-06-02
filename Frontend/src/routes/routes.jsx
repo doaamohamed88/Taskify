@@ -7,7 +7,7 @@ import LandingPage from "../Pages/Landing/Landing";
 import BoardLayout from "../layouts/BoardLayout";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 
-const loggedIn = true;
+const loggedIn = false;
 
 export const routes = createBrowserRouter([
   {
