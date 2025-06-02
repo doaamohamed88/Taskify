@@ -27,7 +27,8 @@
     grid-column: 2 / -1;
     grid-row: 3 / 4;
     border-radius: var(--border-radius-main);
-    background-image: var(--card-linear-gradient);
+    background-image: var(--transperant);
+    box-shadow: var(--shadow);
 
     h2 {
       padding: 30px;
