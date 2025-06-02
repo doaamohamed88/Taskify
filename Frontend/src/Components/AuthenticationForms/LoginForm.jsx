@@ -2,8 +2,12 @@ import { Link } from "react-router";
 import { useForm } from "react-hook-form";
 import { login } from "../../services/userService";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/userSlice";
 
 const LoginForm = () => {
+  const userDispatch = useDispatch();
+
   const {
     register,
     handleSubmit: submitHandler,
@@ -14,7 +18,7 @@ const LoginForm = () => {
   const handleSubmit = async ({ email, password }) => {
     try {
       const response = await login(email, password);
-      console.log(response);
+      userDispatch(setUser(response));
     } catch (error) {
       setError("root", {
         message: error.message,
