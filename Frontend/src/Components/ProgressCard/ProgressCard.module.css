@@ -7,6 +7,10 @@
   transition: var(--main-trans);
   flex: 1;
 
+  &:dir(rtl) {
+    text-align: right;
+  }
+
   .progressCardTitle {
     position: relative;
     font-size: 22px;
@@ -23,6 +27,11 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
+
+      &:dir(rtl) {
+        margin-right: 0;
+        margin-left: 10px;
+      }
     }
   }
 
@@ -64,4 +73,8 @@
       margin-top: 20px;
     }
   }
+
 }
+
+}
+
