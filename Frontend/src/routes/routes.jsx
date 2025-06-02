@@ -2,10 +2,10 @@ import { createBrowserRouter } from "react-router";
 import AuthenticationPage from "../pages/AuthenticationPage/AuthenticationPage";
 import LeaderBoard from "../pages/leaderboard/leaderboard";
 import BoardPage from "../pages/BoardPage/BoardPage";
-import AdminDashboard from "../pages/adminDashboard/AdminDashboard";
 import MainLayout from "../layouts/MainLayout";
 import LandingPage from "../Pages/Landing/Landing";
 import BoardLayout from "../layouts/BoardLayout";
+import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 
 const loggedIn = true;
 

@@ -5,18 +5,20 @@
   grid-template-columns: 300px repeat(3, 1fr);
   grid-template-rows: auto auto 1fr;
   gap: 30px;
-  min-height: 100dvh;
+  /* margin-top: 100px; */
+  padding-top: 100px;
+  /* min-height: 100dvh; */
   /* max-height: 100dvh; */
   /* overflow: hidden; */
 
   h1 {
-    grid-column: 2 / -1;
+    grid-column: 1 / -1;
     letter-spacing: 1px;
   }
 
   .projectProgress {
-    grid-column: 2 / -1;
-    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+    /* grid-row: 2 / 3; */
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
@@ -24,8 +26,8 @@
   }
 
   .teamMembers {
-    grid-column: 2 / -1;
-    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+    /* grid-row: 3 / 4; */
     border-radius: var(--border-radius-main);
     background-image: var(--transperant);
     box-shadow: var(--shadow);
@@ -51,17 +53,13 @@
     }
   }
 
-  @media (max-width: 1350px) {
-    max-height: none;
-    overflow: initial;
-  }
-
   @media (max-width: 992px) {
-    grid-template-columns: 100px repeat(3, 1fr);
+    /* grid-template-columns: 100px repeat(3, 1fr); */
+    padding-inline: 30px;
   }
 
   @media (max-width: 768px) {
-    padding: 30px;
+    /* padding: 30px; */
     h1 {
       font-size: 1.6em;
       text-align: center;
