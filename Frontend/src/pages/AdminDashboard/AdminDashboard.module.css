@@ -69,5 +69,7 @@
   @media (max-width: 576px) {
     gap: 20px;
     padding-inline: 15px;
+    padding-left: 0;
+    grid-template-columns: 1fr;
   }
 }
