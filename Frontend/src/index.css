@@ -23,15 +23,16 @@
     #1b1537 40%,
     #0a0a0a 100%
   );
+  --table-bg:0e1218;
   scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
 }
 
 .light {
-  --main-color: #fdfcff;              
-  --secondary-color: #f4f1fb;          
+  --main-color: rgb(148, 118, 214);              
+  --secondary-color:  #8251a1b5;          
   --text-color: #4c3f68;              
   --text-secondary: #756a8d;           
-
+ --table-bg: var(--main-color);
   --primary-color: #c6b8e9;           
   --button-hover-color: #b0a3db;       
   --lilac-border: 2px solid #d9cee9;   
@@ -39,20 +40,19 @@
   --todo-color: #e9e5fa;               
   --doing-color: #ffe6f2;             
   --done-color: #e0f7f4;    
-  
 
 
   --background-gradient: radial-gradient(
     ellipse at bottom,
-     #c6b8e9 0%,
-    #d9cee9 40%,                      
-    #fdfcff 100%                      
+     #fdfcff 0%,
+    #f3f3f6 40%,                      
+    #f6f5f9 100%                      
   );
 
 
 
   
-  --shadow: 0 6px 20px rgba(156, 139, 197, 0.2); 
+  --shadow: 0 6px 15px rgba(158, 139, 197, 0.627); 
 
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: 1px solid rgba(214, 203, 235, 0.4);

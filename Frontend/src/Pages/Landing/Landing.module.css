@@ -51,7 +51,7 @@
 .landing_page button {
   position: relative;
   top: 5px;
-  background-color: var(--main-color);
+  background-color: var(--lilac-color);
   color: white;
   border: none;
   outline: none;
