@@ -5,6 +5,9 @@
   height: 150px;
   width: 250px;
   position: relative;
+  /* border-color: rgba(80, 62, 118, 0.845);
+  border-style: solid;
+  border-width: 1px; */
 }
 
 .board_card p {

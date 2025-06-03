@@ -24,14 +24,14 @@
   border-radius: var(--border);
 }
 
-.tableHead {
+.tableHead,.tableBodyRow {
   background: var(--main-color);
 }
-.tableBodyRow :hover {
+/* .tableBodyRow :hover {
   background-color: rgba(9, 27, 47, 0.605);
   transform: scale(1.02);
   transition: all 0.3s ease;
-}
+} */
 .tableHeadCell {
   color: #fff;
   padding: 15px;
@@ -44,12 +44,12 @@
 
 .tableBodyRow {
   border-bottom: 5px solid #50474716;
-  &:nth-child(even) {
+  /* &:nth-child(even) {
     background-color: var(--main-color);
   }
   &:nth-child(odd) {
     background-color: var(--main-color);
-  }
+  } */
 }
 
 .tableBodyCell {

@@ -1,5 +1,5 @@
 .podium {
-  background: linear-gradient(135deg, #00000000, #3b3b3b00, #8a2be2);
+  background: linear-gradient(135deg, #00000000, #3b3b3b00, #9c46edfe);
   border-radius: var(--border-radius-main);
   border: 1px solid var(--lilac-color);
   padding: 20px;
@@ -7,7 +7,7 @@
   .container{
     width: 100%;
     position: relative;
-    background-color:#0e1218cf;
+    background-color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: flex-start;
