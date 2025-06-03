@@ -6,13 +6,16 @@
     "admin": "abdelrahmanali58@gmail.com",
     "members": [
       {
-        "email": "user@user.com"
+        "email": "user@user.com",
+        "score": 47
       },
       {
-        "email": "abdelrahmanali58@gmail.com"
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 14
       },
       {
-        "email": "kareem.mohamed.ayman@gmail.com"
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 9
       }
     ],
     "tasks": [
@@ -22,7 +25,8 @@
         "description": "This is task 1",
         "status": "todo",
         "dueDate": "2026-10-01",
-        "assignee": "user@user.com"
+        "assignee": "user@user.com",
+        "difficulty": "easy"
       },
       {
         "id": "2",
@@ -30,7 +34,8 @@
         "description": "This is task 2",
         "status": "in-progress",
         "dueDate": "2025-10-02",
-        "assignee": "abdelrahmanali58@gmail.com"
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "medium"
       },
       {
         "id": "3",
@@ -38,7 +43,8 @@
         "description": "This is task 3",
         "status": "done",
         "dueDate": "2025-10-06",
-        "assignee": "kareem.mohamed.ayman@gmail.com"
+        "assignee": "kareem.mohamed.ayman@gmail.com",
+        "difficulty": "hard"
       }
     ]
   },
@@ -49,13 +55,16 @@
     "admin": "kareem.mohamed.ayman@gmail.com",
     "members": [
       {
-        "email": "user@user.com"
+        "email": "user@user.com",
+        "score": 35
       },
       {
-        "email": "abdelrahmanali58@gmail.com"
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 39
       },
       {
-        "email": "kareem.mohamed.ayman@gmail.com"
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 13
       }
     ],
     "tasks": [
@@ -65,7 +74,8 @@
         "description": "This is task 4",
         "status": "todo",
         "dueDate": "2026-10-01",
-        "assignee": "user@user.com"
+        "assignee": "user@user.com",
+        "difficulty": "easy"
       },
       {
         "id": "5",
@@ -73,7 +83,8 @@
         "description": "This is task 5",
         "status": "in-progress",
         "dueDate": "2025-10-02",
-        "assignee": "abdelrahmanali58@gmail.com"
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "easy"
       },
       {
         "id": "6",
@@ -81,7 +92,8 @@
         "description": "This is task 6",
         "status": "done",
         "dueDate": "2025-10-06",
-        "assignee": "abdelrahmanali58@gmail.com"
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "easy"
       }
     ]
   }

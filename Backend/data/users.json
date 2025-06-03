@@ -9,7 +9,8 @@
       }
     ],
     "verified": true,
-    "name": "User"
+    "name": "User",
+    "image": "https://example.com/image1.jpg"
   },
   {
     "id": "f0d1f381-6eb3-4924-a5de-0334cfd36c2f",
@@ -21,7 +22,8 @@
       }
     ],
     "verified": true,
-    "name": "Abdelrahman Ali"
+    "name": "Abdelrahman Ali",
+    "image": "https://example.com/image1.jpg"
   },
   {
     "id": "g2142b90-676b-496x-azc1-e53f121d06f9",
@@ -33,6 +35,7 @@
       }
     ],
     "verified": true,
-    "name": "Kareem Ayman"
+    "name": "Kareem Ayman",
+    "image": "https://example.com/image1.jpg"
   }
 ]
