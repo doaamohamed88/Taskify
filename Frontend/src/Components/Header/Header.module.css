@@ -20,6 +20,12 @@
   border-radius: var(--border-radius-main);
   border: var(--lilac-border);
   margin: 0 5px;
+  cursor: pointer;
+  transition: var(--main-trans);
+
+  &:hover {
+    background-color: var(--lilac-color);
+  }
 }
 
 .logo {
