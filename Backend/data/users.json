@@ -6,6 +6,9 @@
     "boards": [
       {
         "id": "b1142a90-676b-490b-adc5-e53f121d02f6"
+      },
+      {
+        "id": "b2142b90-676b-496x-azc1-e53f121d06f9"
       }
     ],
     "verified": true,
@@ -19,6 +22,24 @@
     "boards": [
       {
         "id": "b1142a90-676b-490b-adc5-e53f121d02f6"
+      },
+      {
+        "id": "b2142b90-676b-496x-azc1-e53f121d06f9"
+      },
+      {
+        "id": "b3142c90-1234-4abc-9def-111111111111"
+      },
+      {
+        "id": "b4142d90-5678-4def-8abc-222222222222"
+      },
+      {
+        "id": "b5142e90-9012-4fgh-7ijk-333333333333"
+      },
+      {
+        "id": "b6142f90-3456-4klm-8nop-444444444444"
+      },
+      {
+        "id": "b7143090-7890-4qrs-1tuv-555555555555"
       }
     ],
     "verified": true,
@@ -32,10 +53,78 @@
     "boards": [
       {
         "id": "b1142a90-676b-490b-adc5-e53f121d02f6"
+      },
+      {
+        "id": "b2142b90-676b-496x-azc1-e53f121d06f9"
+      },
+      {
+        "id": "b3142c90-1234-4abc-9def-111111111111"
+      },
+      {
+        "id": "b4142d90-5678-4def-8abc-222222222222"
+      },
+      {
+        "id": "b5142e90-9012-4fgh-7ijk-333333333333"
+      },
+      {
+        "id": "b6142f90-3456-4klm-8nop-444444444444"
+      },
+      {
+        "id": "b7143090-7890-4qrs-1tuv-555555555555"
       }
     ],
     "verified": true,
     "name": "Kareem Ayman",
     "image": "https://example.com/image1.jpg"
+  },
+  {
+    "id": "doaa-uuid-001",
+    "email": "doaa@example.com",
+    "password": "doaa123",
+    "boards": [
+      {
+        "id": "b3142c90-1234-4abc-9def-111111111111"
+      },
+      {
+        "id": "b4142d90-5678-4def-8abc-222222222222"
+      },
+      {
+        "id": "b5142e90-9012-4fgh-7ijk-333333333333"
+      },
+      {
+        "id": "b6142f90-3456-4klm-8nop-444444444444"
+      },
+      {
+        "id": "b7143090-7890-4qrs-1tuv-555555555555"
+      }
+    ],
+    "verified": true,
+    "name": "Doaa",
+    "image": "https://example.com/image2.jpg"
+  },
+  {
+    "id": "jameela-uuid-001",
+    "email": "jameela@example.com",
+    "password": "jameela123",
+    "boards": [
+      {
+        "id": "b3142c90-1234-4abc-9def-111111111111"
+      },
+      {
+        "id": "b4142d90-5678-4def-8abc-222222222222"
+      },
+      {
+        "id": "b5142e90-9012-4fgh-7ijk-333333333333"
+      },
+      {
+        "id": "b6142f90-3456-4klm-8nop-444444444444"
+      },
+      {
+        "id": "b7143090-7890-4qrs-1tuv-555555555555"
+      }
+    ],
+    "verified": true,
+    "name": "Jameela",
+    "image": "https://example.com/image3.jpg"
   }
 ]
