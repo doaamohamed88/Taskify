@@ -12,7 +12,6 @@ const AppRoutes = () => {
   const loggedIn = useSelector((state) => state.user);
   // const loggedIn = true;
 
-  console.log("User logged in:", loggedIn);
   const routes = createBrowserRouter([
     {
       path: "/",
