@@ -4,6 +4,7 @@
     "name": "Board 1",
     "description": "This is board 1",
     "admin": "abdelrahmanali58@gmail.com",
+    "due": "2025-10-01",
     "members": [
       {
         "email": "user@user.com",
@@ -53,6 +54,7 @@
     "name": "Board 2",
     "description": "This is board 2",
     "admin": "kareem.mohamed.ayman@gmail.com",
+    "due": "2025-10-01",
     "members": [
       {
         "email": "user@user.com",
@@ -94,6 +96,256 @@
         "dueDate": "2025-10-06",
         "assignee": "abdelrahmanali58@gmail.com",
         "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "b3142c90-1234-4abc-9def-111111111111",
+    "name": "Project Phoenix",
+    "description": "A board for the Phoenix project.",
+    "admin": "abdelrahmanali58@gmail.com",
+    "due": "2025-12-15",
+    "members": [
+      {
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 22
+      },
+      {
+        "email": "doaa@example.com",
+        "score": 18
+      },
+      {
+        "email": "jameela@example.com",
+        "score": 25
+      }
+    ],
+    "tasks": [
+      {
+        "id": "7",
+        "title": "Design UI",
+        "description": "Create wireframes for the app.",
+        "status": "todo",
+        "dueDate": "2025-11-01",
+        "assignee": "doaa@example.com",
+        "difficulty": "medium"
+      },
+      {
+        "id": "8",
+        "title": "Setup Backend",
+        "description": "Initialize Express server.",
+        "status": "in-progress",
+        "dueDate": "2025-11-10",
+        "assignee": "kareem.mohamed.ayman@gmail.com",
+        "difficulty": "hard"
+      },
+      {
+        "id": "9",
+        "title": "Write Docs",
+        "description": "Document API endpoints.",
+        "status": "todo",
+        "dueDate": "2025-12-01",
+        "assignee": "jameela@example.com",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "b4142d90-5678-4def-8abc-222222222222",
+    "name": "Kareem's Kanban",
+    "description": "Personal Kanban for Kareem.",
+    "admin": "kareem.mohamed.ayman@gmail.com",
+    "due": "2026-01-20",
+    "members": [
+      {
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 30
+      },
+      {
+        "email": "doaa@example.com",
+        "score": 12
+      },
+      {
+        "email": "jameela@example.com",
+        "score": 17
+      }
+    ],
+    "tasks": [
+      {
+        "id": "10",
+        "title": "Setup CI/CD",
+        "description": "Configure GitHub Actions.",
+        "status": "todo",
+        "dueDate": "2026-01-05",
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "medium"
+      },
+      {
+        "id": "11",
+        "title": "Write Tests",
+        "description": "Add unit tests.",
+        "status": "in-progress",
+        "dueDate": "2026-01-10",
+        "assignee": "doaa@example.com",
+        "difficulty": "hard"
+      },
+      {
+        "id": "12",
+        "title": "Deploy App",
+        "description": "Deploy to production.",
+        "status": "todo",
+        "dueDate": "2026-01-15",
+        "assignee": "jameela@example.com",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "b5142e90-9012-4fgh-7ijk-333333333333",
+    "name": "Sprint Alpha",
+    "description": "Alpha sprint planning board.",
+    "admin": "kareem.mohamed.ayman@gmail.com",
+    "due": "2025-09-30",
+    "members": [
+      {
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 27
+      },
+      {
+        "email": "doaa@example.com",
+        "score": 20
+      },
+      {
+        "email": "jameela@example.com",
+        "score": 15
+      }
+    ],
+    "tasks": [
+      {
+        "id": "13",
+        "title": "Plan Sprint",
+        "description": "Define sprint goals.",
+        "status": "todo",
+        "dueDate": "2025-09-10",
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "medium"
+      },
+      {
+        "id": "14",
+        "title": "Assign Tasks",
+        "description": "Distribute tasks among team.",
+        "status": "in-progress",
+        "dueDate": "2025-09-15",
+        "assignee": "doaa@example.com",
+        "difficulty": "easy"
+      },
+      {
+        "id": "15",
+        "title": "Review Progress",
+        "description": "Mid-sprint review.",
+        "status": "todo",
+        "dueDate": "2025-09-25",
+        "assignee": "jameela@example.com",
+        "difficulty": "medium"
+      }
+    ]
+  },
+  {
+    "id": "b6142f90-3456-4klm-8nop-444444444444",
+    "name": "Doaa's Dashboard",
+    "description": "Dashboard for Doaa's tasks.",
+    "admin": "doaa@example.com",
+    "due": "2026-03-10",
+    "members": [
+      {
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 19
+      },
+      {
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 23
+      },
+      {
+        "email": "jameela@example.com",
+        "score": 21
+      }
+    ],
+    "tasks": [
+      {
+        "id": "16",
+        "title": "Gather Requirements",
+        "description": "Meet with stakeholders.",
+        "status": "todo",
+        "dueDate": "2026-02-15",
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "easy"
+      },
+      {
+        "id": "17",
+        "title": "Create Mockups",
+        "description": "Design mockups for dashboard.",
+        "status": "in-progress",
+        "dueDate": "2026-02-25",
+        "assignee": "kareem.mohamed.ayman@gmail.com",
+        "difficulty": "medium"
+      },
+      {
+        "id": "18",
+        "title": "Feedback Session",
+        "description": "Collect feedback from users.",
+        "status": "todo",
+        "dueDate": "2026-03-05",
+        "assignee": "jameela@example.com",
+        "difficulty": "easy"
+      }
+    ]
+  },
+  {
+    "id": "b7143090-7890-4qrs-1tuv-555555555555",
+    "name": "Jameela's Journey",
+    "description": "Tracking Jameela's learning path.",
+    "admin": "jameela@example.com",
+    "due": "2026-05-01",
+    "members": [
+      {
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 16
+      },
+      {
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 20
+      },
+      {
+        "email": "doaa@example.com",
+        "score": 24
+      }
+    ],
+    "tasks": [
+      {
+        "id": "19",
+        "title": "Enroll in Course",
+        "description": "Sign up for online course.",
+        "status": "todo",
+        "dueDate": "2026-04-10",
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "easy"
+      },
+      {
+        "id": "20",
+        "title": "Complete Module 1",
+        "description": "Finish first module.",
+        "status": "in-progress",
+        "dueDate": "2026-04-20",
+        "assignee": "doaa@example.com",
+        "difficulty": "medium"
+      },
+      {
+        "id": "21",
+        "title": "Project Submission",
+        "description": "Submit final project.",
+        "status": "todo",
+        "dueDate": "2026-04-30",
+        "assignee": "kareem.mohamed.ayman@gmail.com",
+        "difficulty": "hard"
       }
     ]
   }
