@@ -1,9 +1,99 @@
 [
   {
     "id": "b1142a90-676b-490b-adc5-e53f121d02f6",
+    "name": "Board 1",
+    "description": "This is board 1",
+    "admin": "abdelrahmanali58@gmail.com",
     "members": [
       {
-        "email": "updated"
+        "email": "user@user.com",
+        "score": 47
+      },
+      {
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 14
+      },
+      {
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 9
+      }
+    ],
+    "tasks": [
+      {
+        "id": "1",
+        "title": "Task 1",
+        "description": "This is task 1",
+        "status": "todo",
+        "dueDate": "2026-10-01",
+        "assignee": "user@user.com",
+        "difficulty": "easy"
+      },
+      {
+        "id": "2",
+        "title": "Task 2",
+        "description": "This is task 2",
+        "status": "in-progress",
+        "dueDate": "2025-10-02",
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "medium"
+      },
+      {
+        "id": "3",
+        "title": "Task 3",
+        "description": "This is task 3",
+        "status": "done",
+        "dueDate": "2025-10-06",
+        "assignee": "kareem.mohamed.ayman@gmail.com",
+        "difficulty": "hard"
+      }
+    ]
+  },
+  {
+    "id": "b2142b90-676b-496x-azc1-e53f121d06f9",
+    "name": "Board 2",
+    "description": "This is board 2",
+    "admin": "kareem.mohamed.ayman@gmail.com",
+    "members": [
+      {
+        "email": "user@user.com",
+        "score": 35
+      },
+      {
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 39
+      },
+      {
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 13
+      }
+    ],
+    "tasks": [
+      {
+        "id": "4",
+        "title": "Task 4",
+        "description": "This is task 4",
+        "status": "todo",
+        "dueDate": "2026-10-01",
+        "assignee": "user@user.com",
+        "difficulty": "easy"
+      },
+      {
+        "id": "5",
+        "title": "Task 5",
+        "description": "This is task 5",
+        "status": "in-progress",
+        "dueDate": "2025-10-02",
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "easy"
+      },
+      {
+        "id": "6",
+        "title": "Task 6",
+        "description": "This is task 6",
+        "status": "done",
+        "dueDate": "2025-10-06",
+        "assignee": "abdelrahmanali58@gmail.com",
+        "difficulty": "easy"
       }
     ],
     "name": "Board 1",
