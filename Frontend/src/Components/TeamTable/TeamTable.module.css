@@ -11,8 +11,8 @@
   overflow: auto;
 
   @media (max-width: 600px) {
-      padding-inline: 0;
-    }
+    padding-inline: 0;
+  }
 }
 
 .table {
@@ -37,6 +37,9 @@
   padding: 15px;
   font-weight: bold;
   text-align: left;
+  [dir="rtl"] & {
+    text-align: right;
+  }
 }
 
 .tableBodyRow {
@@ -52,6 +55,9 @@
 .tableBodyCell {
   padding: 15px;
   text-align: left;
+  [dir="rtl"] & {
+    text-align: right;
+  }
 }
 
 .avatarWrapper {
@@ -75,14 +81,30 @@
 
 .table thead tr:first-child th:first-child {
   border-top-left-radius: var(--border-radius-main);
+  [dir="rtl"] & {
+    border-top-left-radius: 0;
+    border-top-right-radius: var(--border-radius-main);
+  }
 }
 .table thead tr:first-child th:last-child {
   border-top-right-radius: var(--border-radius-main);
+  [dir="rtl"] & {
+    border-top-right-radius: 0;
+    border-top-left-radius: var(--border-radius-main);
+  }
 }
 .tableBodyRow:last-child td:first-child {
   border-bottom-left-radius: var(--border-radius-main);
+  [dir="rtl"] & {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: var(--border-radius-main);
+  }
 }
 
 .tableBodyRow:last-child td:last-child {
   border-bottom-right-radius: var(--border-radius-main);
+  [dir="rtl"] & {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: var(--border-radius-main);
+  }
 }

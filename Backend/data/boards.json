@@ -5,6 +5,11 @@
       {
         "email": "updated"
       }
-    ]
+    ],
+    "name": "Board 1",
+    "description": "This is the first board",
+    "owner": {
+      "email": "owner@example.com"
+    }
   }
 ]

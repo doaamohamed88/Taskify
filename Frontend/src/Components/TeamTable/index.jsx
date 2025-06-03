@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./TeamTable.module.css";
+import { useTranslation } from "react-i18next";
 
 function createData(rank, name, score) {
   return { rank, name, score };
@@ -13,6 +14,7 @@ const rows = [
 ];
 
 export default function TeamTable({ calculateTotalScore }) {
+  const { t } = useTranslation();
   const totalScore = rows.reduce((acc, row) => acc + row.score, 0);
 
   calculateTotalScore(totalScore);
@@ -22,9 +24,9 @@ export default function TeamTable({ calculateTotalScore }) {
       <table className={styles.table}>
         <thead className={styles.tableHead}>
           <tr>
-            <th className={styles.tableHeadCell}>Rank</th>
-            <th className={styles.tableHeadCell}>Name</th>
-            <th className={styles.tableHeadCell}>Score</th>
+            <th className={styles.tableHeadCell}>{t('Rank')}</th>
+            <th className={styles.tableHeadCell}>{t('Name')}</th>
+            <th className={styles.tableHeadCell}>{t('Score')}</th>
           </tr>
         </thead>
         <tbody>

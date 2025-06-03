@@ -1,10 +1,17 @@
 {
-    "Welcome back, ": "مرحباً بك, ",
-    "Team Members": "أعضاء الفريق",
-    "Completed": "مكتمل",
-    "In Progress": "قيد التقدم",
-    "Not Started": "لم يبدأ بعد",
-    "Dashboard": "لوحة التحكم",
-    "Tasks": "المهام",
-    "Leaderboard": "لوحة المتصدرين"
+  "Welcome back, ": "مرحباً بك, ",
+  "Team Members": "أعضاء الفريق",
+  "Completed": "مكتمل",
+  "In Progress": "قيد التقدم",
+  "Not Started": "لم يبدأ بعد",
+  "Dashboard": "لوحة التحكم",
+  "Tasks": "المهام",
+  "Leaderboard": "لوحة المتصدرين",
+  "leader-board-description": "تحقق من أفضل الفرق ونقاطها!",
+  "total-score": "إجمالي النقاط",
+  "Rank": "الترتيب",
+  "Name": "الاسم",
+  "Score": "النقاط",
+  "To Do": "المهام",
+  "Done": "تم الانتهاء"
 }
