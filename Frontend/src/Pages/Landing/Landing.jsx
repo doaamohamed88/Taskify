@@ -23,7 +23,7 @@ export default function LandingPage() {
                             <FaIcons.FaArrowRight className={classes.icon} />
                         </button>
                         <Modal ref={modalRef} >
-                            <p>ssss</p>
+
                         </Modal>
                     </div>
                 </div>

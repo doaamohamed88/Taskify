@@ -1,81 +1,111 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
+import { useForm } from "react-hook-form";
+import { registerUser } from "../../services/userService";
+import { sendOTP } from "../../services/otpService";
+import OTPForm from "./OTPForm";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 
-const RegisterForm = ({ register, reset, errors }) => {
-  const passwordValues = useRef({});
+let user = null;
 
-  useEffect(() => {
-    reset();
-  }, [reset]);
+const RegisterForm = () => {
+  const [registered, setRegistered] = useState(false);
 
-  const handlePasswordChanges = (e) => {
-    passwordValues.current[e.target.name] = e.target.value;
+  const {
+    register,
+    handleSubmit: submitHandler,
+    formState: { errors },
+    setError,
+    getValues,
+  } = useForm();
+
+  const handleSubmit = async ({ email, password }) => {
+    try {
+      user = await registerUser(email, password);
+      await sendOTP(email);
+      setRegistered(true);
+    } catch (error) {
+      setError("root", {
+        message: error.message,
+      });
+    }
   };
 
   return (
     <>
-      <h1 className={`${styles.formTitle}`}>Create an account</h1>
-      <input
-        className={`${styles.formInput} ${errors.email && `${styles.error}`}`}
-        type="text"
-        placeholder="Email"
-        name="email"
-        {...register("email", {
-          required: "This field is required",
-          pattern: {
-            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: "Invalid email address",
-          },
-        })}
-      />
-      {errors.email && (
-        <p className={`${styles.errorMsg}`}>{errors.email.message}</p>
+      {registered ? (
+        <OTPForm user={user} verifyAccount={true} />
+      ) : (
+        <form
+          className={`${styles.formContainer}`}
+          onSubmit={submitHandler(handleSubmit)}
+        >
+          <h1 className={`${styles.formTitle}`}>Create an account</h1>
+          {errors.root && (
+            <p className={`${styles.errorMsg}`}>{errors.root.message}</p>
+          )}
+          <input
+            className={`${styles.formInput} ${
+              errors.email && `${styles.error}`
+            }`}
+            type="text"
+            placeholder="Email"
+            name="email"
+            {...register("email", {
+              required: "This field is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalid email address",
+              },
+            })}
+          />
+          {errors.email && (
+            <p className={`${styles.errorMsg}`}>{errors.email.message}</p>
+          )}
+          <input
+            className={`${styles.formInput} ${
+              errors.password && `${styles.error}`
+            }`}
+            type="password"
+            placeholder="Password"
+            name="password"
+            {...register("password", { required: "This field is required" })}
+          />
+          {errors.password && (
+            <p className={`${styles.errorMsg}`}>{errors.password.message}</p>
+          )}
+          <input
+            className={`${styles.formInput} ${
+              errors.confirmPassword && `${styles.error}`
+            }`}
+            type="password"
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            {...register("confirmPassword", {
+              required: "This field is required",
+              validate: (value) =>
+                value === getValues("password") || "Passwords do not match",
+            })}
+          />
+          {errors.confirmPassword && (
+            <p className={`${styles.errorMsg}`}>
+              {errors.confirmPassword.message}
+            </p>
+          )}
+          <input
+            className={`${styles.formInput}`}
+            type="submit"
+            value={"Register"}
+          />
+          <hr className={`${styles.divider}`} />
+          <p>
+            Already have an account?{" "}
+            <Link className={`${styles.link}`} to={`/`}>
+              Login
+            </Link>
+          </p>
+        </form>
       )}
-      <input
-        className={`${styles.formInput} ${
-          errors.password && `${styles.error}`
-        }`}
-        type="password"
-        placeholder="Password"
-        name="password"
-        onChange={handlePasswordChanges}
-        {...register("password", { required: "This field is required" })}
-      />
-      {errors.password && (
-        <p className={`${styles.errorMsg}`}>{errors.password.message}</p>
-      )}
-      <input
-        className={`${styles.formInput} ${
-          errors.confirmPassword && `${styles.error}`
-        }`}
-        type="password"
-        placeholder="Confirm Password"
-        name="confirmPassword"
-        onChange={handlePasswordChanges}
-        {...register("confirmPassword", {
-          required: "This field is required",
-          validate: () =>
-            passwordValues.current.password !==
-              passwordValues.current.confirmPassword ||
-            "Passwords does not match",
-        })}
-      />
-      {errors.confirmPassword && (
-        <p className={`${styles.errorMsg}`}>{errors.confirmPassword.message}</p>
-      )}
-      <input
-        className={`${styles.formInput}`}
-        type="submit"
-        value={"Register"}
-      />
-      <hr className={`${styles.divider}`} />
-      <p>
-        Already have an account?{" "}
-        <Link className={`${styles.link}`} to={`/`}>
-          Login
-        </Link>
-      </p>
     </>
   );
 };

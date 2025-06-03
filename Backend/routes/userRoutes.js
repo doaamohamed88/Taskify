@@ -12,6 +12,16 @@ userRouter.get('/', (_, res) => {
     }
 });
 
+userRouter.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const user = userService.login(email, password);
+        res.send(user);
+    } catch (error) {
+        res.status(500).send({ message: 'Invalid Credentials' });
+    }
+});
+
 userRouter.get('/:id', (req, res) => {
     try {
         const user = userService.getUserById(req.params.id);
@@ -24,6 +34,9 @@ userRouter.get('/:id', (req, res) => {
 userRouter.get('/email/:email', (req, res) => {
     try {
         const user = userService.getUserByEmail(req.params.email);
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
         res.send(user);
     } catch (error) {
         res.status(500).send({ message: 'Error retrieving user by email' });
@@ -33,10 +46,6 @@ userRouter.get('/email/:email', (req, res) => {
 userRouter.post('/', (req, res) => {
     const userData = req.body;
     try {
-        const emailExists = userService.getUserByEmail(userData.email);
-        if (emailExists) {
-            return res.status(400).send({ message: 'Email already exists' });
-        }
         const newUser = userService.addUser(userData);
         res.status(201).send(newUser);
     } catch (error) {
