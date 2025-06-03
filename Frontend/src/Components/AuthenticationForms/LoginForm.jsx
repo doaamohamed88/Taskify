@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
-import { login } from "../../services/userService";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
+
+const SERVER_URL = import.meta.env.VITE_SERVER
 
 const LoginForm = () => {
   const userDispatch = useDispatch();
@@ -15,16 +16,36 @@ const LoginForm = () => {
     setError,
   } = useForm();
 
+  // const handleSubmit = async ({ email, password }) => {
+  //   try {
+  //     const response = await login(email, password);
+  //     userDispatch(setUser(response));
+  //   } catch (error) {
+  //     setError("root", {
+  //       message: error.message,
+  //     });
+  //   }
+  // };
+
+  // fetching response from server url instead of using login function directly
   const handleSubmit = async ({ email, password }) => {
     try {
-      const response = await login(email, password);
-      userDispatch(setUser(response));
+      const response = await fetch(`${SERVER_URL}users/login`, {
+        body: JSON.stringify({ email, password }), method: "POST", headers: {"Content-Type": "application/json"}
+      })
+      if(!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Login failed");
+      }
+      const data = await response.json();
+      userDispatch(setUser(data));
     } catch (error) {
       setError("root", {
-        message: error.message,
+        message: error.message || "An error occurred during login",
       });
+      return;
     }
-  };
+  }
 
   return (
     <>
