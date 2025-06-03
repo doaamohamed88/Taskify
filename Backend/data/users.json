@@ -3,14 +3,36 @@
     "id": "d6e1845a-5aa8-4afb-b4e0-b56db766182d",
     "email": "user@user.com",
     "password": "aaa",
-    "boards": [],
-    "verified": true
+    "boards": [
+      {
+        "id": "b1142a90-676b-490b-adc5-e53f121d02f6"
+      }
+    ],
+    "verified": true,
+    "name": "User"
   },
   {
     "id": "f0d1f381-6eb3-4924-a5de-0334cfd36c2f",
     "email": "abdelrahmanali58@gmail.com",
     "password": "aa",
-    "boards": [],
-    "verified": true
+    "boards": [
+      {
+        "id": "b1142a90-676b-490b-adc5-e53f121d02f6"
+      }
+    ],
+    "verified": true,
+    "name": "Abdelrahman Ali"
+  },
+  {
+    "id": "g2142b90-676b-496x-azc1-e53f121d06f9",
+    "email": "kareem.mohamed.ayman@gmail.com",
+    "password": "aa",
+    "boards": [
+      {
+        "id": "b1142a90-676b-490b-adc5-e53f121d02f6"
+      }
+    ],
+    "verified": true,
+    "name": "Kareem Ayman"
   }
 ]
