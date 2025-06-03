@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import * as FaIcons from "react-icons/fa6"
 import { motion } from "framer-motion" // eslint-disable-line no-unused-vars
 import { useSelector } from "react-redux"
+import { getBoardById } from "../../services/boardService"
 
 const SERVER_URL = import.meta.env.VITE_SERVER
 
@@ -15,15 +16,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     userBoards.forEach((board) => {
-      fetch(`${SERVER_URL}boards/${board.id}`, {
-        method: "GET",
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to fetch boards")
-          }
-          return response.json()
-        })
+      getBoardById(board.id)
         .then((data) => {
           setBoards((prevBoards) => [...prevBoards, data])
         })
