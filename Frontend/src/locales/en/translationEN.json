@@ -1,10 +1,17 @@
 {
-    "Welcome back, ": "Welcome back, ",
-    "Team Members": "Team Members",
-    "Completed": "Completed",
-    "In Progress": "In Progress",
-    "Not Started": "Not Started",
-    "Dashboard": "Dashboard",
-    "Tasks": "Tasks",
-    "Leaderboard": "Leaderboard"
+  "Welcome back, ": "Welcome back, ",
+  "Team Members": "Team Members",
+  "Completed": "Completed",
+  "In Progress": "In Progress",
+  "Not Started": "Not Started",
+  "Dashboard": "Dashboard",
+  "Tasks": "Tasks",
+  "Leaderboard": "Leaderboard",
+  "leader-board-description": "Check out the top teams and their scores!",
+  "total-score": "Total Score",
+  "Rank": "Rank",
+  "Name": "Name",
+  "Score": "Score",
+  "To Do": "To Do",
+  "Done": "Done"
 }

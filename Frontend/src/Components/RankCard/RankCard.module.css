@@ -14,12 +14,13 @@
     justify-content: space-between;
     padding:25px;
     border-radius: var(--border-radius-main);
-  }
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 10px;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 10px;
+    }
   }
 
   .podium-item {

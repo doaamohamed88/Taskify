@@ -95,6 +95,11 @@
         "assignee": "abdelrahmanali58@gmail.com",
         "difficulty": "easy"
       }
-    ]
+    ],
+    "name": "Board 1",
+    "description": "This is the first board",
+    "owner": {
+      "email": "owner@example.com"
+    }
   }
 ]
