@@ -9,8 +9,8 @@ import BoardLayout from "../layouts/BoardLayout";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 
 const AppRoutes = () => {
-  // const loggedIn = useSelector((state) => state.user);
-  const loggedIn = true
+  const loggedIn = useSelector((state) => state.user);
+  // const loggedIn = true
 
   const routes = createBrowserRouter([
     {
