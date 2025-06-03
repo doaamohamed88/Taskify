@@ -1,58 +1,133 @@
-import BoardCard from '../../Components/BoardCard/BoardCard';
-import Modal from '../../Components/Modal/Modal';
-import classes from './Landing.module.css';
-import { useRef } from 'react';
-import * as FaIcons from 'react-icons/fa6'
+import BoardCard from "../../Components/BoardCard/BoardCard";
+import Modal from "../../Components/Modal/Modal";
+import classes from "./Landing.module.css";
+import { useRef } from "react";
+import * as FaIcons from "react-icons/fa6";
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
+
 export default function LandingPage() {
-    const modalRef = useRef();
-    function handleShowModal() {
-        modalRef.current.open();
-    }
-    return (
-        <div className={classes.landing_page}>
-            <div className={classes.background_mesh}></div>
-            <div className={classes.geometric_grid}></div>
+  const modalRef = useRef();
 
-            <div className={classes.landing_content}>
-                <div className={classes.section}>
-                    <div>
-                        <p className={classes.typingText}>
-                            <strong>Transform Chaos into Clarity - Organize Tasks, </strong>Boost Productivity, and Achieve More with <span className={classes.logo}>Taskify</span></p>
-                        <button onClick={handleShowModal}>
-                            Create board
-                            <FaIcons.FaArrowRight className={classes.icon} />
-                        </button>
-                        <Modal ref={modalRef} >
+  function handleShowModal() {
+    modalRef.current.open();
+  }
 
-                        </Modal>
-                    </div>
-                </div>
-                <div className={classes.section}>
-                    <div className={classes.cards_section}>
-                        <p className={classes.boardName}>Created</p>
-                        <div>
-                            <div className={classes.card}>
-                                <BoardCard boardType="created" />
-                            </div>
-                            <div className={classes.card}>
-                                <BoardCard boardType="created" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className={classes.cards_section}>
-                        <p className={classes.boardName}>Envolved</p>
-                        <div>
-                            <div className={classes.card}>
-                                <BoardCard boardType="envolved" />
-                            </div>
-                            <div className={classes.card}>
-                                <BoardCard boardType="envolved" />
-                            </div>
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  };
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
+  const buttonVariants = {
+    hover: { scale: 1.05 },
+    tap: { scale: 0.95 },
+  };
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2, 
+      duration: 0.8, 
+      ease: "easeOut", 
+    },
+  }),
+};
+
+  return (
+    <motion.div
+      className={classes.landing_page}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <div className={classes.background_mesh}></div>
+      <div className={classes.geometric_grid}></div>
+
+      <div className={classes.landing_content}>
+        <div className={classes.section}>
+          <div>
+            <motion.p
+              className={classes.typingText}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <strong>
+                Transform Chaos into Clarity - Organize Tasks,{" "}
+              </strong>
+              Boost Productivity, and Achieve More with{" "}
+              <span className={classes.logo}>Taskify</span>
+            </motion.p>
+            <motion.button
+              onClick={handleShowModal}
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              Create board
+              <FaIcons.FaArrowRight className={classes.icon} />
+            </motion.button>
+            <Modal ref={modalRef}></Modal>
+          </div>
         </div>
-    );
+        <div className={classes.section}>
+          <div className={classes.cards_section}>
+            <motion.p
+              className={classes.boardName}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              Created
+            </motion.p>
+            <div>
+              {[...Array(2)].map((_, i) => (
+                <motion.div
+                  className={classes.card}
+                  key={i}
+                  custom={i}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <BoardCard boardType="created" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+          <div className={classes.cards_section}>
+            <motion.p
+              className={classes.boardName}
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              Envolved
+            </motion.p>
+            <div>
+              {[...Array(2)].map((_, i) => (
+                <motion.div
+                  className={classes.card}
+                  key={i}
+                  custom={i}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <BoardCard boardType="envolved" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
 }

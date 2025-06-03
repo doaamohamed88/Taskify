@@ -9,6 +9,7 @@
   padding: 8px;
   position: fixed;
   top: 0;
+  z-index: 1000;
 }
 .header button {
   background-color: var(--main-color);
@@ -21,11 +22,6 @@
   border: var(--lilac-border);
   margin: 0 5px;
   cursor: pointer;
-  transition: var(--main-trans);
-
-  &:hover {
-    background-color: var(--lilac-color);
-  }
 }
 
 .logo {

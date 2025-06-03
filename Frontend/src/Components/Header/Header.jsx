@@ -3,8 +3,10 @@ import classes from "./Header.module.css";
 import i18n from "../../i18n";
 import * as FaIcons from "react-icons/fa6";
 import { Link } from 'react-router-dom'
+import { useTheme } from "../../context/ThemeContext";
 function Header() {
-  const [currentLang, setCurrentLang] = useState(i18n.language);
+const [currentLang, setCurrentLang] = useState(i18n.language);
+const { toggleTheme } = useTheme();
 
   const handleLanguageChange = (lang) => {
     i18n
@@ -28,7 +30,7 @@ function Header() {
         >
           {currentLang === "ar" ? "en" : "ar"}
         </button>
-        <button>
+        <button onClick={toggleTheme}>
           <FaIcons.FaLightbulb />
         </button>
       </div>
