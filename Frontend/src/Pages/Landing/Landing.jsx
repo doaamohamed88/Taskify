@@ -74,7 +74,23 @@ export default function LandingPage() {
               Create board
               <FaIcons.FaArrowRight className={classes.icon} />
             </motion.button>
-            <Modal ref={modalRef}></Modal>
+            <Modal ref={modalRef}>
+              <form action="" className={classes.form}>
+                <p>Create Board</p>
+                <div className={classes.input_container}>
+                  <label htmlFor="title">Board Title</label>
+                  <input type="text" name="title" id="title " placeholder="Enter board title" />
+                </div>
+                <div className={classes.input_container}>
+                  <label htmlFor="members">Members</label>
+                  <input type="search" name="members" id="members " placeholder="Add Members" />
+                </div>
+                <div className={classes.buttons}>
+                  <button className={classes.main_button}>Create</button>
+                  <button className={classes.close}>Close</button>
+                </div>
+              </form>
+            </Modal>
           </div>
         </div>
         <div className={classes.section}>
