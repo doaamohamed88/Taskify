@@ -18,7 +18,7 @@ userRouter.post('/login', (req, res) => {
         const user = userService.login(email, password);
         res.send(user);
     } catch (error) {
-        res.status(500).send({ message: 'Invalid Credentials' });
+        res.status(500).send({ message: error.message });
     }
 });
 

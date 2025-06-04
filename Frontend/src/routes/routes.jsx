@@ -9,8 +9,7 @@ import BoardLayout from "../layouts/BoardLayout";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 
 const AppRoutes = () => {
-  // const loggedIn = useSelector((state) => state.user);
-  const loggedIn = true;
+  const loggedIn = useSelector((state) => state.user);
 
   const routes = createBrowserRouter([
     {
@@ -22,28 +21,28 @@ const AppRoutes = () => {
       ),
       children: loggedIn
         ? [
-          {
-            path: "/",
-            element: <LandingPage />,
-          },
-          {
-            element: <BoardLayout />,
-            children: [
-              {
-                path: "/tasks",
-                element: <BoardPage />,
-              },
-              {
-                path: "/leader-board",
-                element: <LeaderBoard />,
-              },
-              {
-                path: "/dashboard",
-                element: <AdminDashboard />,
-              },
-            ],
-          },
-        ]
+            {
+              path: "/",
+              element: <LandingPage />,
+            },
+            {
+              element: <BoardLayout />,
+              children: [
+                {
+                  path: "/tasks",
+                  element: <BoardPage />,
+                },
+                {
+                  path: "/leader-board",
+                  element: <LeaderBoard />,
+                },
+                {
+                  path: "/dashboard",
+                  element: <AdminDashboard />,
+                },
+              ],
+            },
+          ]
         : null,
     },
     {
