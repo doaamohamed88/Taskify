@@ -51,6 +51,20 @@ const RegisterForm = () => {
               )}
               <input
                 className={`${styles.formInput} ${
+                  errors.name && `${styles.error}`
+                }`}
+                type="text"
+                placeholder="Name"
+                name="name"
+                {...register("name", {
+                  required: "This field is required",
+                })}
+              />
+              {errors.name && (
+                <p className={`${styles.errorMsg}`}>{errors.name.message}</p>
+              )}
+              <input
+                className={`${styles.formInput} ${
                   errors.email && `${styles.error}`
                 }`}
                 type="text"

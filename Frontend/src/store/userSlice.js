@@ -8,7 +8,9 @@ import { createSlice } from "@reduxjs/toolkit";
 //     verified: false,
 // };
 
-const initialState = null;
+const initialState = sessionStorage.getItem("user")
+    ? JSON.parse(sessionStorage.getItem("user"))
+    : null;
 
 const userSlice = createSlice({
     name: "user",
@@ -16,6 +18,7 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             state = { ...state, ...action.payload };
+            sessionStorage.setItem("user", JSON.stringify(state));
             return state;
         },
         setBoards: (state, action) => {

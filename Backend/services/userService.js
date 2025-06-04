@@ -36,6 +36,9 @@ const login = (email, password) => {
     if (!user) {
         throw new Error('User not found');
     }
+    if (!user.verified) {
+        throw new Error('User not verified');
+    }
     if (user.password !== password) {
         throw new Error('Invalid Credentials');
     }
