@@ -1,0 +1,95 @@
+.membersContainer {
+  background: var(--main-color);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow);
+  padding: var(--section-padding-sm);
+  max-width: 450px;
+  max-height: 300px;
+  width: 80%;
+  overflow: auto;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+}
+
+h3 {
+  border-bottom: 2px solid var(--lilac-color);
+  margin-bottom: var(--section-padding-sm);
+  padding-bottom: var(--section-padding-sm);
+  font-family: "Caveat", sans-serif;
+  font-size: var(--main-font-size);
+  color: var(--lilac-color);
+  text-align: center;
+  font-weight: bold;
+}
+
+.cardMembers,
+.boardMembers {
+  margin-top: var(--section-padding-sm);
+}
+
+h4 {
+  font-size: 1rem;
+  color: var(--label-color);
+  margin-bottom: 5px;
+}
+
+.memberItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--border-radius-sm);
+  padding: 5px 10px;
+  background: var(--input-color);
+  border-radius: 5px;
+  gap: 0.5rem;
+}
+
+.memberAvatar {
+  width: 30px;
+  height: 30px;
+  background: var(--lilac-color);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex: none;
+  /* margin-right: 10px; */
+}
+
+.memberName {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.addIcon,
+.removeIcon {
+  cursor: pointer;
+  color: var(--lilac-color);
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+.removeIcon:hover {
+  color: var(--white);
+  background-color: var(--lilac-color);
+  border-radius: 50%;
+  padding: 3px;
+}
