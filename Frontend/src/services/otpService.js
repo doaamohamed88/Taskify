@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/otp';
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL + '/otp';
 
 export const sendOTP = async (email) => {
     const response = await fetch(`${BASE_URL}/generate`, {
