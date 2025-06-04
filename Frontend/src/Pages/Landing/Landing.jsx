@@ -1,3 +1,4 @@
+
 import BoardCard from "../../Components/BoardCard/BoardCard";
 import Modal from "../../Components/Modal/Modal";
 import classes from "./Landing.module.css";

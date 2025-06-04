@@ -5,6 +5,7 @@ import { verifyOTP } from "../../services/otpService";
 import { verifyUser } from "../../services/userService";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 import ResetPasswordForm from "./ResetPasswordForm";
+import { motion } from "framer-motion";
 
 const OTPForm = ({ user, verifyAccount = false }) => {
   const [verified, setVerified] = useState(false);
@@ -29,43 +30,87 @@ const OTPForm = ({ user, verifyAccount = false }) => {
     }
   };
 
+  const formVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }, 
+    },
+    exit: { opacity: 0, y: 50, transition: { duration: 0.5 } },
+  };
+
+  const otpInputVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (i) => ({
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.3, delay: i * 0.1 }, 
+    }),
+  };
+
   return (
     <>
       {verified && !verifyAccount ? (
         <ResetPasswordForm user={user} />
       ) : (
-        <form
-          className={`${styles.formContainer}`}
+        <motion.form
+          className={`${styles.parentContainer}`}
           onSubmit={submitHandler(handleSubmit)}
+          variants={formVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
         >
-          <p className={`${styles.formTitle}`}>
+          <motion.p
+            className={`${styles.formTitle}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             A verification code has been sent to your email, please enter it
             below.
-          </p>
+          </motion.p>
           {(() => {
             if (errors.root) {
               return (
-                <p className={`${styles.errorMsg}`}>{errors.root.message}</p>
+                <motion.p
+                  className={`${styles.errorMsg}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }} // Slower transition for error message
+                >
+                  {errors.root.message}
+                </motion.p>
               );
             }
 
             if (verified) {
               return (
-                <p className={`${styles.successMsg}`}>
+                <motion.p
+                  className={`${styles.successMsg}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }} 
+                >
                   Account verified successfully. You can now{" "}
                   <Link className={`${styles.link}`} to={`/`}>
                     Login.
                   </Link>
-                </p>
+                </motion.p>
               );
             }
           })()}
           <div className={`${styles.otpContainer}`}>
             {[...Array(6)].map((_, i) => (
-              <input
+              <motion.input
                 className={`${styles.formInput} ${styles.otpInput}`}
                 key={i}
                 maxLength={1}
+                custom={i}
+                variants={otpInputVariants}
+                initial="hidden"
+                animate="visible"
                 {...register(`otp${i}`, {
                   required: true,
                   onChange: (e) => {
@@ -75,12 +120,14 @@ const OTPForm = ({ user, verifyAccount = false }) => {
               />
             ))}
           </div>
-          <input
+          <motion.input
             className={`${styles.formInput}`}
             type="submit"
             value="Submit"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           />
-        </form>
+        </motion.form>
       )}
     </>
   );
