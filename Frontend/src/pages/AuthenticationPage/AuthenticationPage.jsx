@@ -7,9 +7,6 @@ import styles from "./AuthenticationPage.module.css";
 const AuthenticationPage = ({ type }) => {
   return (
     <div className={`${styles.mainContainer}`}>
-      {/* <div className={`${styles.imageContainer}`}>
-        <img src={waveBackground} alt="background" />
-      </div> */}
       {(() => {
         if (type === "login") return <LoginForm />;
 
