@@ -1,51 +1,32 @@
-import BoardCard from "../../Components/BoardCard/BoardCard"
-import Modal from "../../Components/Modal/Modal"
-import classes from "./Landing.module.css"
-import { useEffect, useRef, useState } from "react"
-import * as FaIcons from "react-icons/fa6"
-import { motion } from "framer-motion" // eslint-disable-line no-unused-vars
-import { useSelector } from "react-redux"
-import { getBoardById } from "../../services/boardService"
 
-const SERVER_URL = import.meta.env.VITE_SERVER
+import BoardCard from "../../Components/BoardCard/BoardCard";
+import Modal from "../../Components/Modal/Modal";
+import classes from "./Landing.module.css";
+import { useRef } from "react";
+import * as FaIcons from "react-icons/fa6";
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 
 export default function LandingPage() {
-  const userBoards = useSelector((state) => state.user.boards)
-  const userEmail = useSelector((state) => state.user.email)
-  const [boards, setBoards] = useState([])
-
-  useEffect(() => {
-    userBoards.forEach((board) => {
-      getBoardById(board.id)
-        .then((data) => {
-          setBoards((prevBoards) => [...prevBoards, data])
-        })
-        .catch((error) => {
-          console.error("Error fetching boards:", error)
-        })
-    })
-  }, [])
-
-  const modalRef = useRef()
+  const modalRef = useRef();
 
   function handleShowModal() {
-    modalRef.current.open()
+    modalRef.current.open();
   }
 
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  }
+  };
 
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  }
+  };
 
   const buttonVariants = {
     hover: { scale: 1.05 },
     tap: { scale: 0.95 },
-  }
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -58,7 +39,7 @@ export default function LandingPage() {
         ease: "easeOut",
       },
     }),
-  }
+  };
 
   return (
     <motion.div
@@ -79,7 +60,9 @@ export default function LandingPage() {
               initial="hidden"
               animate="visible"
             >
-              <strong>Transform Chaos into Clarity - Organize Tasks, </strong>
+              <strong>
+                Transform Chaos into Clarity - Organize Tasks,{" "}
+              </strong>
               Boost Productivity, and Achieve More with{" "}
               <span className={classes.logo}>Taskify</span>
             </motion.p>
@@ -92,7 +75,23 @@ export default function LandingPage() {
               Create board
               <FaIcons.FaArrowRight className={classes.icon} />
             </motion.button>
-            <Modal ref={modalRef}></Modal>
+            <Modal ref={modalRef}>
+              <form action="" className={classes.form}>
+                <p>Create Board</p>
+                <div className={classes.input_container}>
+                  <label htmlFor="title">Board Title</label>
+                  <input type="text" name="title" id="title " placeholder="Enter board title" />
+                </div>
+                <div className={classes.input_container}>
+                  <label htmlFor="members">Members</label>
+                  <input type="search" name="members" id="members " placeholder="Add Members" />
+                </div>
+                <div className={classes.buttons}>
+                  <button className={classes.main_button}>Create</button>
+                  <button className={classes.close}>Close</button>
+                </div>
+              </form>
+            </Modal>
           </div>
         </div>
         <div className={classes.section}>
@@ -106,20 +105,18 @@ export default function LandingPage() {
               Created
             </motion.p>
             <div>
-              {boards.map((b, i) => 
-                b.admin === userEmail && (
-                  <motion.div
-                    className={classes.card}
-                    key={i}
-                    custom={i}
-                    variants={cardVariants}
-                    initial="hidden"
-                    animate="visible"
-                  >
-                    <BoardCard boardType="created" boardName={b.name} dueDate={b.due} />
-                  </motion.div>
-                )
-              )}
+              {[...Array(2)].map((_, i) => (
+                <motion.div
+                  className={classes.card}
+                  key={i}
+                  custom={i}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <BoardCard boardType="created" />
+                </motion.div>
+              ))}
             </div>
           </div>
           <div className={classes.cards_section}>
@@ -132,8 +129,7 @@ export default function LandingPage() {
               Envolved
             </motion.p>
             <div>
-              {boards.map((b, i) => 
-              b.admin !== userEmail && (
+              {[...Array(2)].map((_, i) => (
                 <motion.div
                   className={classes.card}
                   key={i}
@@ -142,7 +138,7 @@ export default function LandingPage() {
                   initial="hidden"
                   animate="visible"
                 >
-                  <BoardCard boardType="envolved" boardName={b.name} dueDate={b.due}/>
+                  <BoardCard boardType="envolved" />
                 </motion.div>
               ))}
             </div>
@@ -150,5 +146,5 @@ export default function LandingPage() {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }

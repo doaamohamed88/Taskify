@@ -1,7 +1,6 @@
 .modal {
   margin: auto;
   width: 450px;
-  height: 300px;
   border-radius: var(--border-radius-main);
   background-color: var(--transperant);
   outline: none;

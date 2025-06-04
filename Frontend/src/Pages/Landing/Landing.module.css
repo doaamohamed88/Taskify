@@ -104,3 +104,149 @@
   font-size: 30px;
   font-weight: bold;
 }
+
+/*???????? MODAL ????????*/
+
+.form {
+  padding: 35px;
+}
+
+.form p {
+  font-family: "Caveat", sans-serif;
+  font-size: var(--main-font-size);
+  color: var(--lilac-color);
+  text-align: center;
+  font-weight: bold;
+}
+
+.form .input_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form label {
+  color: var(--white);
+  margin-bottom: 8px;
+  font-weight: 200;
+}
+
+.form input {
+  padding: 15px;
+  background-color: var(--main-color);
+  border: var(--lilac-border);
+  border-radius: var(--border-radius-main);
+  outline: none;
+  caret-color: var(--lilac-color);
+}
+
+.form input:focus {
+  outline: none;
+}
+
+.form input::placeholder {
+  opacity: 1;
+  transition: 0.4s;
+  font-size: 16px;
+}
+.form input:focus::placeholder {
+  opacity: 0;
+}
+
+/*???????? MODAL ????????*/
+
+/* ???? NEON BUTTON ?????? */
+
+.buttons {
+  margin-top: 25px;
+}
+
+.main_button {
+  position: relative;
+  padding: 0.75em 1.5em;
+  border-radius: var(--border-radius-main);
+  border: 2px solid var(--lilac-color);
+  font-size: 0.938em;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.125em;
+  background: transparent;
+  color: var(--lilac-color);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 transparent;
+  transition: all 0.3s ease-in-out;
+  width: 50%;
+}
+
+.main_button:hover {
+  background: var(--transparent);
+  box-shadow: 0 0 20px 5px var(--lilac-color);
+  color: #ffffff;
+}
+
+.main_button::before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--lilac-color),
+    transparent
+  );
+  box-shadow: 0 0 50px 30px var(--lilac-color);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease-in-out;
+}
+
+.main_button:hover::before {
+  animation: neon-shine 0.6s 0s linear;
+}
+
+@keyframes neon-shine {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+.main_button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 0 0 transparent;
+  transition: all 0.2s ease-in;
+}
+
+/* ???? NEON BUTTON ?????? */
+
+/* ??? CLOSE BUTTON */
+
+.close {
+  padding: 0.75em 1.5em;
+  border-radius: var(--border-radius-main);
+  font-size: 0.938em;
+  border: none;
+  width: 50%;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.125em;
+  background: transparent;
+  color: var(--lilac-color);
+  cursor: pointer;
+}
+
+/* ??? CLOSE BUTTON */
