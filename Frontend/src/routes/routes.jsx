@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import { useSelector } from "react-redux";
 import AuthenticationPage from "../pages/AuthenticationPage/AuthenticationPage";
 import LeaderBoard from "../pages/leaderboard/leaderboard";
 import BoardPage from "../pages/BoardPage/BoardPage";
@@ -7,51 +6,59 @@ import MainLayout from "../layouts/MainLayout";
 import LandingPage from "../Pages/Landing/Landing";
 import BoardLayout from "../layouts/BoardLayout";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
+import ProtectedRoute from "../layouts/ProtectedRoute";
+import GuestRoute from "../layouts/GuestRoute";
 
 const AppRoutes = () => {
-  const loggedIn = useSelector((state) => state.user);
-
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: loggedIn ? (
-        <MainLayout />
-      ) : (
-        <AuthenticationPage type={"login"} />
+      element: (
+        <ProtectedRoute>
+          <MainLayout />
+        </ProtectedRoute>
       ),
-      children: loggedIn
-        ? [
+      children: [
+        {
+          index: true,
+          element: <LandingPage />,
+        },
+        {
+          element: <BoardLayout />,
+          children: [
             {
-              path: "/",
-              element: <LandingPage />,
+              path: "tasks",
+              element: <BoardPage />,
             },
             {
-              element: <BoardLayout />,
-              children: [
-                {
-                  path: "/tasks",
-                  element: <BoardPage />,
-                },
-                {
-                  path: "/leader-board",
-                  element: <LeaderBoard />,
-                },
-                {
-                  path: "/dashboard",
-                  element: <AdminDashboard />,
-                },
-              ],
+              path: "leader-board",
+              element: <LeaderBoard />,
             },
-          ]
-        : null,
+            {
+              path: "dashboard",
+              element: <AdminDashboard />,
+            },
+          ],
+        },
+      ],
     },
     {
-      path: "/register",
-      element: <AuthenticationPage type={"register"} />,
-    },
-    {
-      path: "/forget-password",
-      element: <AuthenticationPage type={"forgetPassword"} />,
+      element: <GuestRoute />,
+      children: [
+        {
+          index: true,
+          path: "/login",
+          element: <AuthenticationPage type="login" />,
+        },
+        {
+          path: "/register",
+          element: <AuthenticationPage type="register" />,
+        },
+        {
+          path: "/forget-password",
+          element: <AuthenticationPage type="forgetPassword" />,
+        },
+      ],
     },
   ]);
 
