@@ -11,4 +11,6 @@ app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/otp', otpRouter);
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("http://localhost:3000")
+})

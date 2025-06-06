@@ -1,8 +1,11 @@
 .modal {
   margin: auto;
   width: 450px;
+  height: fit-content;
   border-radius: var(--border-radius-main);
   background-color: var(--main-color);
+  background-color: var(--transperant);
+  background-color: rgba(9, 5, 22, 0.734);
   outline: none;
   border: var(--lilac-border);
   box-shadow: var(--shadow);

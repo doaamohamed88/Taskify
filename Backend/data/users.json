@@ -189,5 +189,20 @@
     "password": "2",
     "boards": [],
     "verified": false
+  },
+  {
+    "id": "14539d46-41cb-45e6-b880-3be3a1fec35a",
+    "email": "jameelaabdlruhman@gmail.com",
+    "password": "123456789",
+    "boards": [],
+    "verified": true
+  },
+  {
+   "id": "14539d46-41cb-45e6-b880-3be3a5fec35a",
+    "email": "jameelaabdlruhman@gmail.com",
+    "password": "123456789",
+    "boards": [],
+    "name":"whcifnv",
+    "verified": true
   }
 ]
