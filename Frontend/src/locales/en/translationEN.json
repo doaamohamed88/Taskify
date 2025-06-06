@@ -13,5 +13,8 @@
   "Name": "Name",
   "Score": "Score",
   "To Do": "To Do",
-  "Done": "Done"
+  "Done": "Done",
+  "deleteMemberConfirm": "Are you sure you want to delete {{name}} from the team?",
+  "Cancel": "Cancel",
+  "Yes, Delete": "Yes, Delete"
 }
