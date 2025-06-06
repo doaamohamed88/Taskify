@@ -5,7 +5,12 @@ import classes from "./Landing.module.css";
 import { useRef } from "react";
 import * as FaIcons from "react-icons/fa6";
 import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
+// import { useAction } from "react-router";
+// function boardData(prevstate, formData) {
+//   const boardTitle=formData.get('title');
+//   const member=formData.get('members');
 
+// }
 export default function LandingPage() {
   const modalRef = useRef();
 
@@ -87,8 +92,8 @@ export default function LandingPage() {
                   <input type="search" name="members" id="members " placeholder="Add Members" />
                 </div>
                 <div className={classes.buttons}>
-                  <button className={classes.main_button}>Create</button>
                   <button className={classes.close}>Close</button>
+                  <button className={classes.main_button}>Create</button>
                 </div>
               </form>
             </Modal>

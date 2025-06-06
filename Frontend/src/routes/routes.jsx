@@ -10,6 +10,8 @@ import ProtectedRoute from "../layouts/ProtectedRoute";
 import GuestRoute from "../layouts/GuestRoute";
 
 const AppRoutes = () => {
+  // const loggedIn = useSelector((state) => state.user);
+  const loggedIn = true;
   const routes = createBrowserRouter([
     {
       path: "/",

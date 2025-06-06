@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialBoardState = [];
+const initialBoardState = { boards: [] };
 const BoardSlice = createSlice({
     name: "board",
     initialState: initialBoardState,
