@@ -1,3 +1,4 @@
+const { request } = require('express');
 const fileUtils = require('../utils/fileUtils');
 process.loadEnvFile('./env/.env');
 const usersFilePath = process.env.usersFilePath;
@@ -28,6 +29,15 @@ const getUserByEmail = (email) => {
         return null;
     }
     return user;
+}
+
+const searchUsers = (search) => {
+    let users = getAllUsers();
+    const pattern = new RegExp(search);
+    users = users.filter((user) => {
+        return pattern.test(user.email) || pattern.test(user.name);
+    })
+    return users;
 }
 
 const login = (email, password) => {
@@ -62,10 +72,13 @@ const updateUser = (id, userData) => {
     return users[userIndex];
 }
 
+
+
 module.exports = {
     getAllUsers,
     getUserById,
     getUserByEmail,
+    searchUsers,
     addUser,
     updateUser,
     login

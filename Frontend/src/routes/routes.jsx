@@ -8,7 +8,6 @@ import BoardLayout from "../layouts/BoardLayout";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 import ProtectedRoute from "../layouts/ProtectedRoute";
 import GuestRoute from "../layouts/GuestRoute";
-
 const AppRoutes = () => {
   const routes = createBrowserRouter([
     {

@@ -5,12 +5,18 @@ const authService = require('../services/authService');
 
 const userRouter = Router();
 
-userRouter.get('/', (_, res) => {
+userRouter.get('/', (req, res) => {
     try {
-        const users = userService.getAllUsers();
+        const { search } = req.query
+        let users = [];
+        if (search) {
+            users = userService.searchUsers(search);
+        } else {
+            users = userService.getAllUsers();
+        }
         res.send(users);
     } catch (error) {
-        res.status(500).send({ message: 'Error retrieving users' });
+        res.status(500).send({ message: 'Error retrieving users', devMessage: error.message });
     }
 });
 
