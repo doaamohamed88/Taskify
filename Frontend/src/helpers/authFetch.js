@@ -20,7 +20,7 @@ export const authFetch = async (url, options = {}) => {
 
         if (refreshResponse.ok) {
             const data = await refreshResponse.json();
-            localStorage.setItem("accessToken", data.accessToken);
+            localStorage.setItem("token", data.accessToken);
 
             headers.Authorization = `Bearer ${data.accessToken}`;
             return fetch(url, { ...options, headers });
