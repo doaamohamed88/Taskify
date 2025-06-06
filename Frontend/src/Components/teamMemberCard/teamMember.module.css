@@ -1,0 +1,75 @@
+.memberCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  background-color: var(--main-color);
+  padding: 15px 40px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: var(--main-trans);
+
+  &:hover {
+    background-color: var(--secondary-color);
+  }
+}
+
+.deleteIcon {
+  color: orangered;
+  transition: var(--main-trans);
+
+  &:hover {
+    color: rgb(255, 155, 119);
+    transform: scale(1.2);
+  }
+}
+
+.left {
+  display: flex;
+  gap: 15px;
+}
+
+.deleteModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  background-color: var(--main-color);
+  padding: 30px;
+  border-radius: var(--border-radius-main);
+  box-shadow: var(--shadow);
+  transition: var(--main-trans);
+  max-width: 330px;
+  min-width: 240px;
+  text-align: center;
+  box-shadow: var(--shadow), 0 0 0 100vw rgba(0,0,0,0.4); /* overlay effect */
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius-main);
+    cursor: pointer;
+    transition: var(--main-trans);
+    outline: none;
+    border: none;
+    font-weight: 600;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:nth-of-type(2) {
+      background-color: orangered;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      margin: 5px;
+    }
+  }
+}

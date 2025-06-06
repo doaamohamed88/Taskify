@@ -2,7 +2,7 @@
   margin: auto;
   width: 450px;
   border-radius: var(--border-radius-main);
-  background-color: var(--transperant);
+  background-color: var(--main-color);
   outline: none;
   border: var(--lilac-border);
   box-shadow: var(--shadow);

@@ -11,6 +11,7 @@
   --main-font-size: 38px;
   --main-trans: 0.3s;
   --border-radius-main: 20px;
+  --border-radius-sm: 8px;
   --section-padding: 60px;
   --section-padding-sm: 20px;
   --button-hover-color: blue;
@@ -25,6 +26,8 @@
     #1b1537 40%,
     #0a0a0a 100%
   );
+  --label-color: #c0c0c0;
+  --input-color: #2d2d42;
   --table-bg: 0e1218;
   scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
 }

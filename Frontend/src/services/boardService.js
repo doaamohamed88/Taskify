@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/boards'
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL + '/boards';
 
 export const getBoardById = async (id) => {
   const response = await fetch(`${BASE_URL}/${id}`, {
