@@ -1,6 +1,7 @@
+const jwt = require('jsonwebtoken');
 const { Router } = require('express');
 const userService = require('../services/userService');
-const tokenUtils = require('../utils/tokenUtils');
+const authService = require('../services/authService');
 
 const userRouter = Router();
 
@@ -17,8 +18,9 @@ userRouter.post('/login', (req, res) => {
     const { email, password } = req.body;
     try {
         const user = userService.login(email, password);
-        const token = tokenUtils.generateToken(user);
-        res.send({ user, token });
+        const token = authService.generateAccessToken(user);
+        const refreshToken = authService.generateRefreshToken(user);
+        res.send({ token, refreshToken });
     } catch (error) {
         res.status(500).send({ message: error.message });
     }
@@ -63,6 +65,26 @@ userRouter.put('/:id', (req, res) => {
     } catch (error) {
         res.status(500).send({ message: 'Error updating user' });
     }
+});
+
+userRouter.post('/token', (req, res) => {
+    const { token } = req.body;
+    if (!token) return res.status(401).send({ message: 'Refresh token required' });
+    if (!authService.isRefreshTokenValid(token))
+        return res.status(403).send({ message: 'Invalid refresh token' });
+
+    jwt.verify(token, REFRESH_SECRET, (err, user) => {
+        if (err) return res.status(403).send({ message: 'Expired refresh token' });
+
+        const accessToken = authService.generateAccessToken(user);
+        res.send({ accessToken });
+    });
+});
+
+userRouter.post('/logout', (req, res) => {
+    const { token } = req.body;
+    authService.removeRefreshToken(token);
+    res.send({ message: 'Logged out successfully' });
 });
 
 module.exports = userRouter;
