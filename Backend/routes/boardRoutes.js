@@ -1,7 +1,9 @@
 const { Router } = require('express');
 const boardService = require('../services/boardService');
+const { authenticate } = require('../middleware/authMiddleware');
 
 const boardRouter = Router();
+boardRouter.use(authenticate);
 
 boardRouter.get('/:id', (req, res) => {
     try {

@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const userService = require('../services/userService');
+const tokenUtils = require('../utils/tokenUtils');
 
 const userRouter = Router();
 
@@ -16,7 +17,8 @@ userRouter.post('/login', (req, res) => {
     const { email, password } = req.body;
     try {
         const user = userService.login(email, password);
-        res.send(user);
+        const token = tokenUtils.generateToken(user);
+        res.send({ user, token });
     } catch (error) {
         res.status(500).send({ message: error.message });
     }

@@ -33,15 +33,9 @@ const getUserByEmail = (email) => {
 const login = (email, password) => {
     const users = getAllUsers();
     const user = users.find(user => user.email === email);
-    if (!user) {
-        throw new Error('User not found');
-    }
-    if (!user.verified) {
-        throw new Error('User not verified');
-    }
-    if (user.password !== password) {
-        throw new Error('Invalid Credentials');
-    }
+    if (!user) throw new Error('User not found');
+    if (!user.verified) throw new Error('User not verified');
+    if (user.password !== password) throw new Error('Invalid Credentials');
     return user;
 }
 
