@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ProgressCard from "../../Components/ProgressCard/ProgressCard"
+import TeamMember from "../../Components/teamMemberCard/TeamMember"
 import st from "./AdminDashboard.module.css"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { useTranslation } from "react-i18next"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
 export default function AdminDashboard() {
 
@@ -18,27 +19,15 @@ export default function AdminDashboard() {
       </div>
 
       <div className={st.teamMembers}>
-        <h2>{t('Team Members')}</h2>
-        <div className={st.memberCard}>
-          <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-          Alice Johnson
+        <div className={st.teamMembersHeader}>
+          <h2>{t('Team Members')}</h2>
+          <FontAwesomeIcon icon={faPlus} className={st.addIcon}></FontAwesomeIcon>
         </div>
-        <div className={st.memberCard}>
-          <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-          Bob Smith
-        </div>
-        <div className={st.memberCard}>
-          <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-          Charlie Brown
-        </div>
-        <div className={st.memberCard}>
-          <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-          Diana Prince
-        </div>
-        <div className={st.memberCard}>
-          <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
-          Ethan Hunt
-        </div>
+        <TeamMember name='Alice Johnson'></TeamMember>
+        <TeamMember name='Bob Smith'></TeamMember>
+        <TeamMember name='Charlie Brown'></TeamMember>
+        <TeamMember name='Diana Prince'></TeamMember>
+        <TeamMember name='Ethan Hunt'></TeamMember>
       </div>
     </div>
   )
