@@ -32,44 +32,54 @@
 
 .deleteModal {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  background-color: var(--main-color);
-  padding: 30px;
-  border-radius: var(--border-radius-main);
-  box-shadow: var(--shadow);
-  transition: var(--main-trans);
-  max-width: 330px;
-  min-width: 240px;
-  text-align: center;
-  box-shadow: var(--shadow), 0 0 0 100vw rgba(0,0,0,0.4); /* overlay effect */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: rgba(0, 0, 0, 0.4);
 
-  p {
-    margin-bottom: 15px;
-  }
-
-  button {
-    margin: 0 10px;
-    padding: 10px 20px;
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background-color: var(--main-color);
+    padding: 30px;
     border-radius: var(--border-radius-main);
-    cursor: pointer;
+    box-shadow: var(--shadow);
     transition: var(--main-trans);
-    outline: none;
-    border: none;
-    font-weight: 600;
+    max-width: 330px;
+    min-width: 240px;
+    text-align: center;
+    box-shadow: var(--shadow), 0 0 0 100vw rgba(0, 0, 0, 0.4); /* overlay effect */
 
-    &:hover {
-      transform: scale(1.1);
+    p {
+      margin-bottom: 15px;
     }
 
-    &:nth-of-type(2) {
-      background-color: orangered;
-      color: white;
-    }
+    button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border-radius: var(--border-radius-main);
+      cursor: pointer;
+      transition: var(--main-trans);
+      outline: none;
+      border: none;
+      font-weight: 600;
 
-    @media (max-width: 600px) {
-      margin: 5px;
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &:nth-of-type(2) {
+        background-color: orangered;
+        color: white;
+      }
+
+      @media (max-width: 600px) {
+        margin: 5px;
+      }
     }
   }
 }
