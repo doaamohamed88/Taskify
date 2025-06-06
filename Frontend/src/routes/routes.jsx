@@ -8,7 +8,6 @@ import BoardLayout from "../layouts/BoardLayout";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 import ProtectedRoute from "../layouts/ProtectedRoute";
 import GuestRoute from "../layouts/GuestRoute";
-import { useSelector } from "react-redux";
 const AppRoutes = () => {
   const routes = createBrowserRouter([
     {

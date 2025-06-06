@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
-import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/userSlice";
+import { jwtDecode } from "jwt-decode";
 import { login } from "../../services/userService";
+import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 
 const LoginForm = () => {
   const userDispatch = useDispatch();
@@ -18,7 +19,10 @@ const LoginForm = () => {
   const handleSubmit = async ({ email, password }) => {
     try {
       const response = await login(email, password);
-      userDispatch(setUser(response));
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("refreshToken", response.refreshToken);
+      const decoded = jwtDecode(response.token);
+      userDispatch(setUser(decoded));
     } catch (error) {
       setError("root", {
         message: error.message,
