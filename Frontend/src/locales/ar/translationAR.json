@@ -16,5 +16,10 @@
   "Done": "تم الانتهاء",
   "deleteMemberConfirm": "هل تريد حذف {{name}} من الفريق؟",
   "Cancel": "الغاء",
-  "Yes, Delete": "نعم، حذف"
+  "Yes, Delete": "نعم، حذف",
+  "Add New Team Member": "اضافة عضو جديد للفريق",
+  "Please Enter Team Member Email:": "يرجى ادخال البريد الالكتروني للعضو",
+  "Close": "اغلاق",
+  "Add": "اضافة",
+  "Enter Email": "ادخل البريد الالكتروني"
 }

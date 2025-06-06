@@ -16,5 +16,10 @@
   "Done": "Done",
   "deleteMemberConfirm": "Are you sure you want to delete {{name}} from the team?",
   "Cancel": "Cancel",
-  "Yes, Delete": "Yes, Delete"
+  "Yes, Delete": "Yes, Delete",
+  "Add New Team Member": "Add New Team Member",
+  "Please Enter Team Member Email:" : "Please Enter Team Member Email:",
+  "Close": "Close",
+  "Add": "Add",
+  "Enter Email": "Enter Email"
 }

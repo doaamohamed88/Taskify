@@ -4,12 +4,16 @@ import TeamMember from "../../Components/teamMemberCard/TeamMember"
 import st from "./AdminDashboard.module.css"
 import { useTranslation } from "react-i18next"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { useRef } from "react"
+import Modal from "../../Components/Modal/Modal"
 
 export default function AdminDashboard() {
 
+  const modalRef = useRef()
   const { t } = useTranslation()
 
   return (
+    <>
     <div className={st.grid}>
       <h1>{t('Welcome back, ')}Admin 👋</h1>
       <div className={st.projectProgress}>
@@ -21,7 +25,7 @@ export default function AdminDashboard() {
       <div className={st.teamMembers}>
         <div className={st.teamMembersHeader}>
           <h2>{t('Team Members')}</h2>
-          <FontAwesomeIcon icon={faPlus} className={st.addIcon}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faPlus} className={st.addIcon} onClick={() => modalRef.current.open()}></FontAwesomeIcon>
         </div>
         <TeamMember name='Alice Johnson'></TeamMember>
         <TeamMember name='Bob Smith'></TeamMember>
@@ -30,5 +34,20 @@ export default function AdminDashboard() {
         <TeamMember name='Ethan Hunt'></TeamMember>
       </div>
     </div>
+
+    <Modal ref={modalRef}>
+      <form action="" onSubmit={(e) => e.preventDefault()}>
+        <h3 className="modal-title">{t('Add New Team Member')}</h3>
+        <label htmlFor="teamMemberEmail">{t('Please Enter Team Member Email:')}</label>
+        <input type="email" id="teamMemberEmail" name="teamMemberEmail" placeholder={t('Enter Email')}></input>
+        <div className={st.buttons}>
+          <button onClick={() => modalRef.current.close()}>{t('Close')}</button>
+          <button type="submit">{t('Add')}</button>
+        </div>
+      </form>
+
+    </Modal>
+
+    </>
   )
 }
