@@ -30,56 +30,49 @@
   gap: 15px;
 }
 
-.deleteModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999999;
-  background-color: rgba(0, 0, 0, 0.4);
+.modal {
+  padding: 30px;
+  color: var(--white);
 
-  .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    background-color: var(--main-color);
-    padding: 30px;
+  p {
+    margin-bottom: 15px;
+  }
+
+  button:first-child {
+    padding: 0.75em 1.5em;
     border-radius: var(--border-radius-main);
-    box-shadow: var(--shadow);
-    transition: var(--main-trans);
-    max-width: 330px;
-    min-width: 240px;
-    text-align: center;
-    box-shadow: var(--shadow), 0 0 0 100vw rgba(0, 0, 0, 0.4); /* overlay effect */
+    font-size: 0.938em;
+    border: none;
+    width: 50%;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    background: transparent;
+    color: var(--lilac-color);
+    cursor: pointer;
+  }
 
-    p {
-      margin-bottom: 15px;
-    }
+  button:last-child {
+    position: relative;
+    padding: 0.75em 1.5em;
+    border-radius: var(--border-radius-main);
+    border: 2px solid var(--lilac-color);
+    font-size: 0.938em;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.125em;
+    background: transparent;
+    color: var(--lilac-color);
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 transparent;
+    transition: all 0.3s ease-in-out;
+    width: 50%;
 
-    button {
-      margin: 0 10px;
-      padding: 10px 20px;
-      border-radius: var(--border-radius-main);
-      cursor: pointer;
-      transition: var(--main-trans);
-      outline: none;
-      border: none;
-      font-weight: 600;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-
-      &:nth-of-type(2) {
-        background-color: orangered;
-        color: white;
-      }
-
-      @media (max-width: 600px) {
-        margin: 5px;
-      }
+    &:hover {
+      background: var(--transparent);
+      box-shadow: 0 0 20px 5px var(--lilac-color);
+      color: #ffffff;
     }
   }
 }
