@@ -24,9 +24,11 @@ export default function TeamMember({ name }) {
 
       {showModal && (
         <div className={st.deleteModal}>
-          <p>{t("deleteMemberConfirm", {name})}</p>
-          <button onClick={() => setShowModal(false)}>{t('Cancel')}</button>
-          <button>{t('Yes, Delete')}</button>
+          <div className={st.modal}>
+            <p>{t("deleteMemberConfirm", { name })}</p>
+            <button onClick={() => setShowModal(false)}>{t("Cancel")}</button>
+            <button>{t("Yes, Delete")}</button>
+          </div>
         </div>
       )}
     </div>
