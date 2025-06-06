@@ -16,18 +16,18 @@
 }
 
 .deleteIcon {
-    color: orangered;
-    transition: var(--main-trans);
+  color: orangered;
+  transition: var(--main-trans);
 
-    &:hover {
-        color: rgb(255, 155, 119);
-        transform: scale(1.2);
-    }
+  &:hover {
+    color: rgb(255, 155, 119);
+    transform: scale(1.2);
+  }
 }
 
 .left {
-    display: flex;
-    gap: 15px
+  display: flex;
+  gap: 15px;
 }
 
 .deleteModal {
@@ -41,7 +41,9 @@
   box-shadow: var(--shadow);
   transition: var(--main-trans);
   max-width: 330px;
+  min-width: 240px;
   text-align: center;
+  box-shadow: var(--shadow), 0 0 0 100vw rgba(0,0,0,0.4); /* overlay effect */
 
   p {
     margin-bottom: 15px;
