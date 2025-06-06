@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     </div>
 
     <Modal ref={modalRef}>
-      <form action="">
+      <form action="" onSubmit={(e) => e.preventDefault()}>
         <h3 className="modal-title">{t('Add New Team Member')}</h3>
         <label htmlFor="teamMemberEmail">Please Enter Team Member Email:</label>
         <input type="email" id="teamMemberEmail" name="teamMemberEmail" placeholder="Enter Email"></input>
