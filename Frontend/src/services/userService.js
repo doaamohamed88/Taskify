@@ -17,13 +17,13 @@ export const login = async (email, password) => {
     return response.json();
 }
 
-export const registerUser = async (email, password) => {
+export const registerUser = async (name, email, password) => {
     const response = await fetch(BASE_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
     });
 
     if (!response.ok) {

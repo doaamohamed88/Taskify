@@ -19,9 +19,9 @@ const RegisterForm = () => {
     getValues,
   } = useForm();
 
-  const handleSubmit = async ({ email, password }) => {
+  const handleSubmit = async ({ name, email, password }) => {
     try {
-      user = await registerUser(email, password);
+      user = await registerUser(name, email, password);
       await sendOTP(email);
       setRegistered(true);
     } catch (error) {
