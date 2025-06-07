@@ -7,7 +7,7 @@
   --lilac-color: rgb(148, 118, 214);
   --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
   --transperant: rgba(255, 255, 255, 0);
-  --white: white;
+  --base-color: white;
   --main-font-size: 38px;
   --main-trans: 0.3s;
   --border-radius-main: 20px;
@@ -31,6 +31,17 @@
   --table-bg: 0e1218;
   scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
 }
+/* 
+.light {
+  --shadow: rgba(11, 0, 98, 0.548) 0px 7px 29px 0px;
+  --base-color: rgb(80, 62, 118);
+  --background-gradient: radial-gradient(
+    ellipse at bottom,
+    #fdfcff 0%,
+    #f3f3f6 40%,
+    #f6f5f9 100%
+  );
+} */
 
 .light {
   --main-color: rgb(148, 118, 214);
@@ -77,7 +88,10 @@
 
 body {
   background: var(--background-gradient);
+
   color: var(--text-color);
+  /* background-color: #f1e4c4; */
+
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
