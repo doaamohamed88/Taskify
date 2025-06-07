@@ -19,9 +19,9 @@ const LoginForm = () => {
   const handleSubmit = async ({ email, password }) => {
     try {
       const response = await login(email, password);
-      localStorage.setItem("token", response.token);
+      localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("refreshToken", response.refreshToken);
-      const decoded = jwtDecode(response.token);
+      const decoded = jwtDecode(response.accessToken);
       userDispatch(setUser(decoded));
     } catch (error) {
       setError("root", {

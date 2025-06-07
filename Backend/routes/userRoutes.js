@@ -24,9 +24,9 @@ userRouter.post('/login', (req, res) => {
     const { email, password } = req.body;
     try {
         const user = userService.login(email, password);
-        const token = authService.generateAccessToken(user);
+        const accessToken = authService.generateAccessToken(user);
         const refreshToken = authService.generateRefreshToken(user);
-        res.send({ token, refreshToken });
+        res.send({ accessToken, refreshToken });
     } catch (error) {
         res.status(500).send({ message: error.message });
     }
