@@ -21,9 +21,9 @@ const getBoardById = (id) => {
     return board;
 }
 
-const addBoard = (boardData) => {
+const addBoard = (boardData, owner) => {
     const boards = getAllBoards();
-    const newBoard = { id: uuid(), ...boardData };
+    const newBoard = { id: uuid(), owner: owner.userId, ...boardData };
     boards.push(newBoard);
     fileUtils.write(boardsFilePath, boards);
     return newBoard;

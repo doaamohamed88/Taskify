@@ -46,13 +46,14 @@
 
 .cards_section > p {
   width: fit-content;
+  color: rgb(80, 62, 118);
 }
 
 .landing_page button {
   position: relative;
   top: 5px;
   background-color: var(--transparent);
-  color: white;
+  color: var(--base-color);
   border: none;
   outline: none;
   padding: 15px;
@@ -69,7 +70,7 @@
 }
 
 .landing_page button .icon {
-  color: var(--white);
+  color: var(--base-color);
   transition: 0.4s;
 }
 
@@ -127,7 +128,7 @@
 }
 
 .form label {
-  color: var(--white);
+  color: var(--var(--base-color));
   margin-bottom: 8px;
   font-weight: 200;
 }

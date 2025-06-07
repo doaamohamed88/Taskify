@@ -6,6 +6,7 @@ const boardRouter = Router();
 boardRouter.use(authenticate);
 
 boardRouter.get('/:id', (req, res) => {
+    console.log("cur user", req.user);
     try {
         const board = boardService.getBoardById(req.params.id);
         res.send(board);
@@ -16,11 +17,12 @@ boardRouter.get('/:id', (req, res) => {
 
 boardRouter.post('/', (req, res) => {
     const boardData = req.body;
+    const owner = req.user;
     try {
-        const newBoard = boardService.addBoard(boardData);
+        const newBoard = boardService.addBoard(boardData, owner);
         res.status(201).send(newBoard);
     } catch (error) {
-        res.status(500).send({ message: 'Error adding board' });
+        res.status(500).send({ message: 'Error adding board', devMessage: error.message });
     }
 });
 
