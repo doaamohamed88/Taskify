@@ -4,9 +4,14 @@ process.loadEnvFile('./env/.env');
 const usersFilePath = process.env.usersFilePath;
 const { v4: uuid } = require('uuid');
 
-const getAllUsers = () => {
+const getAllUsers = (query = null) => {
     try {
-        return fileUtils.read(usersFilePath);
+        const users = fileUtils.read(usersFilePath);
+        if (query) {
+            const pattern = new RegExp(query, 'i');
+            return users.filter(user => pattern.test(user.email) || pattern.test(user.name));
+        }
+        return users;
     } catch (error) {
         console.error('Error reading users file:', error);
         return [];
@@ -29,15 +34,6 @@ const getUserByEmail = (email) => {
         return null;
     }
     return user;
-}
-
-const searchUsers = (search) => {
-    let users = getAllUsers();
-    const pattern = new RegExp(search);
-    users = users.filter((user) => {
-        return pattern.test(user.email) || pattern.test(user.name);
-    })
-    return users;
 }
 
 const login = (email, password) => {
@@ -72,14 +68,23 @@ const updateUser = (id, userData) => {
     return users[userIndex];
 }
 
-
+const resetPassword = (email, newPassword) => {
+    const users = getAllUsers();
+    const user = users.find(user => user.email === email);
+    if (!user) {
+        throw new Error('User not found');
+    }
+    user.password = newPassword;
+    fileUtils.write(usersFilePath, users);
+    return user;
+}
 
 module.exports = {
     getAllUsers,
     getUserById,
     getUserByEmail,
-    searchUsers,
     addUser,
     updateUser,
+    resetPassword,
     login
 };

@@ -65,7 +65,7 @@ export const verifyUser = async (id) => {
 }
 
 export const updatePassword = async (id, password) => {
-    const response = await fetch(`${BASE_URL}/${id}`, {
+    const response = await fetch(`${BASE_URL}/${id}/reset-password`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

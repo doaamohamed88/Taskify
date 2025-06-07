@@ -1,19 +1,15 @@
 const jwt = require('jsonwebtoken');
 const { Router } = require('express');
+const { authenticate } = require('../middlewares/authMiddleware');
 const userService = require('../services/userService');
 const authService = require('../services/authService');
 
 const userRouter = Router();
 
-userRouter.get('/', (req, res) => {
+userRouter.get('/', authenticate, (req, res) => {
     try {
         const { search } = req.query
-        let users = [];
-        if (search) {
-            users = userService.searchUsers(search);
-        } else {
-            users = userService.getAllUsers();
-        }
+        const users = search ? userService.getAllUsers(search) : userService.getAllUsers();
         res.send(users);
     } catch (error) {
         res.status(500).send({ message: 'Error retrieving users', devMessage: error.message });
@@ -32,7 +28,7 @@ userRouter.post('/login', (req, res) => {
     }
 });
 
-userRouter.get('/:id', (req, res) => {
+userRouter.get('/:id', authenticate, (req, res) => {
     try {
         const user = userService.getUserById(req.params.id);
         res.send(user);
@@ -63,10 +59,20 @@ userRouter.post('/', (req, res) => {
     }
 });
 
-userRouter.put('/:id', (req, res) => {
+userRouter.put('/:id', authenticate, (req, res) => {
     const userData = req.body;
     try {
         const updatedUser = userService.updateUser(req.params.id, userData);
+        res.send(updatedUser);
+    } catch (error) {
+        res.status(500).send({ message: 'Error updating user' });
+    }
+});
+
+userRouter.put('/:id/reset-password', (req, res) => {
+    const { password } = req.body;
+    try {
+        const updatedUser = userService.resetPassword(req.params.id, password);
         res.send(updatedUser);
     } catch (error) {
         res.status(500).send({ message: 'Error updating user' });
