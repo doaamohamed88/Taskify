@@ -76,7 +76,7 @@ userRouter.put('/:id', (req, res) => {
 userRouter.post('/token', (req, res) => {
     const { token } = req.body;
     if (!token) return res.status(401).send({ message: 'Refresh token required' });
-    if (!authService.isRefreshTokenValid(token))
+    if (!authService.isTokenValid(token))
         return res.status(403).send({ message: 'Invalid refresh token' });
 
     jwt.verify(token, REFRESH_SECRET, (err, user) => {
@@ -89,7 +89,7 @@ userRouter.post('/token', (req, res) => {
 
 userRouter.post('/logout', (req, res) => {
     const { token } = req.body;
-    authService.removeRefreshToken(token);
+    authService.removeToken(token);
     res.send({ message: 'Logged out successfully' });
 });
 
