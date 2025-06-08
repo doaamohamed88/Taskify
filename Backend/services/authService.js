@@ -16,7 +16,7 @@ const saveTokens = (tokens) => {
 }
 
 const generateAccessToken = (user) => {
-    return jwt.sign({ id: user.id, email: user.email, boards: user.boards, name: user.name, verified: user.verified }, JWT_SECRET, { expiresIn: '1m' });
+    return jwt.sign({ id: user.id, email: user.email, boards: user.boards, name: user.name, verified: user.verified }, JWT_SECRET, { expiresIn: '15m' });
 }
 
 const generateRefreshToken = (user) => {
