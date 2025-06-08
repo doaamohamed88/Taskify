@@ -58,6 +58,8 @@ const addUser = (userData) => {
 }
 
 const updateUser = (id, userData) => {
+    // console.log(id);
+
     const users = getAllUsers();
     const userIndex = users.findIndex(user => user.id === id);
     if (userIndex === -1) {

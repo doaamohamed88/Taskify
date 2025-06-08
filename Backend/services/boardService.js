@@ -1,3 +1,4 @@
+const { updateUser, getAllUsers } = require('./userService')
 const fileUtils = require('../utils/fileUtils');
 process.loadEnvFile('./env/.env');
 const boardsFilePath = process.env.boardsFilePath;
@@ -12,6 +13,13 @@ const getAllBoards = () => {
     }
 }
 
+const getBoardsByUser = (userId) => {
+    const boards = getAllBoards();
+    let ownerBoards = boards.filter(board => board.owner === userId);
+    let memberBoards = boards.filter(board => board.members.includes(userId))
+    return [...ownerBoards, ...memberBoards];
+};
+
 const getBoardById = (id) => {
     const boards = getAllBoards();
     const board = boards.find(board => board.id === id);
@@ -23,7 +31,16 @@ const getBoardById = (id) => {
 
 const addBoard = (boardData, owner) => {
     const boards = getAllBoards();
+    const users = getAllUsers();
     const newBoard = { id: uuid(), owner: owner.userId, ...boardData };
+
+    updateUser(owner.userId, { ...owner, boards: [...owner.boards, newBoard.id] })
+
+    boardData.members.forEach((memberId) => {
+        let member = users.find((user) => user.id === memberId);
+        updateUser(memberId, { ...member, boards: [...member.boards, newBoard.id] })
+    });
+
     boards.push(newBoard);
     fileUtils.write(boardsFilePath, boards);
     return newBoard;
@@ -56,5 +73,6 @@ module.exports = {
     getBoardById,
     addBoard,
     updateBoard,
-    deleteBoard
+    deleteBoard,
+    getBoardsByUser
 };

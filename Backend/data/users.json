@@ -20,27 +20,7 @@
     "email": "abdelrahmanali58@gmail.com",
     "password": "aa",
     "boards": [
-      {
-        "id": "b1142a90-676b-490b-adc5-e53f121d02f6"
-      },
-      {
-        "id": "b2142b90-676b-496x-azc1-e53f121d06f9"
-      },
-      {
-        "id": "b3142c90-1234-4abc-9def-111111111111"
-      },
-      {
-        "id": "b4142d90-5678-4def-8abc-222222222222"
-      },
-      {
-        "id": "b5142e90-9012-4fgh-7ijk-333333333333"
-      },
-      {
-        "id": "b6142f90-3456-4klm-8nop-444444444444"
-      },
-      {
-        "id": "b7143090-7890-4qrs-1tuv-555555555555"
-      }
+      "daea2dd5-7c1b-49f3-a8c7-6e7e923063de"
     ],
     "verified": true,
     "name": "Abdelrahman Ali",
@@ -71,11 +51,16 @@
       },
       {
         "id": "b7143090-7890-4qrs-1tuv-555555555555"
-      }
+      },
+      "daea2dd5-7c1b-49f3-a8c7-6e7e923063de",
+      "35cc0c80-d377-4abc-a679-63c866da29ec"
     ],
     "verified": true,
     "name": "Kareem Ayman",
-    "image": "https://example.com/image1.jpg"
+    "image": "https://example.com/image1.jpg",
+    "userId": "g2142b90-676b-496x-azc1-e53f121d06f9",
+    "iat": 1749403567,
+    "exp": 1749404467
   },
   {
     "id": "doaa-uuid-001",
@@ -121,7 +106,8 @@
       },
       {
         "id": "b7143090-7890-4qrs-1tuv-555555555555"
-      }
+      },
+      "35cc0c80-d377-4abc-a679-63c866da29ec"
     ],
     "verified": true,
     "name": "Jameela",
@@ -194,15 +180,13 @@
     "id": "14539d46-41cb-45e6-b880-3be3a1fec35a",
     "email": "jameelaabdlruhman@gmail.com",
     "password": "123456789",
-    "boards": [],
-    "verified": true
-  },
-  {
-   "id": "14539d46-41cb-45e6-b880-3be3a5fec35a",
-    "email": "jameelaabdlruhman@gmail.com",
-    "password": "123456789",
-    "boards": [],
-    "name":"whcifnv",
-    "verified": true
+    "boards": [
+      "60c407f4-4664-41be-a549-a6f901f2b455",
+      "daea2dd5-7c1b-49f3-a8c7-6e7e923063de"
+    ],
+    "verified": true,
+    "userId": "14539d46-41cb-45e6-b880-3be3a1fec35a",
+    "iat": 1749401695,
+    "exp": 1749402595
   }
 ]
