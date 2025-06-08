@@ -47,7 +47,7 @@ export default function LandingPage() {
               <FaIcons.FaArrowRight className={classes.icon} />
             </motion.button>
             <Modal ref={modalRef}>
-              <CreateBoardForm />
+              <CreateBoardForm onClose={() => modalRef.current.close()} />
             </Modal>
           </div>
         </div>
