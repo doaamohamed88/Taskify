@@ -3,15 +3,26 @@ import Modal from "../../Components/Modal/Modal";
 import classes from "./Landing.module.css";
 import * as FaIcons from "react-icons/fa6";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { cardVariants, buttonVariants, textVariants, containerVariants } from "../../Components/UI/LandingAnimation";
 import CreateBoardForm from "../../Components/CreateBoardForm/CreateBoardForm";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserBoards } from '../../store/board/BoardActions';
 // import { useSelector } from 'react-redux';
 export default function LandingPage() {
   const modalRef = useRef();
   function handleShowModal() {
     modalRef.current.open();
   }
+  const dispatch = useDispatch();
+  const { data: boards, loading, error } = useSelector(state => state.boards);
+
+  useEffect(() => {
+    dispatch(fetchUserBoards());
+  }, [dispatch]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
     <motion.div
@@ -25,6 +36,12 @@ export default function LandingPage() {
       <div className={classes.landing_content}>
         <div className={classes.section}>
           <div>
+            <ul>
+              {boards.map(board => (
+                <li key={board.id}>{board.title}</li>
+              ))}
+            </ul>
+
             <motion.p
               className={classes.typingText}
               variants={textVariants}

@@ -5,6 +5,16 @@ const { authenticate } = require('../middleware/authMiddleware');
 const boardRouter = Router();
 boardRouter.use(authenticate);
 
+boardRouter.get('/', (req, res) => {
+    try {
+        const userId = req.user.userId;
+        const userBoards = boardService.getBoardsByUser(userId);
+        res.send(userBoards);
+    } catch (error) {
+        res.status(500).send({ message: 'Error retrieving boards', devMessage: error.message });
+    }
+});
+
 boardRouter.get('/:id', (req, res) => {
     console.log("cur user", req.user);
     try {
@@ -46,5 +56,6 @@ boardRouter.delete('/:id', (req, res) => {
         res.status(404).send({ message: 'Board not found' });
     }
 });
+
 
 module.exports = boardRouter;
