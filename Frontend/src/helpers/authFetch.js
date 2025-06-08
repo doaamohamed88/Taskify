@@ -1,9 +1,9 @@
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL + '/users';
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL;
 
 const generateRefreshToken = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
     if (refreshToken) {
-        const response = await fetch(`${BASE_URL}/token`, {
+        const response = await fetch(`${BASE_URL}/users/token`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,9 +30,9 @@ export const authFetch = async (url, options = {}) => {
         Authorization: accessToken ? `Bearer ${accessToken}` : "",
     };
 
-    const response = await fetch(url, { ...options, headers });
+    const response = await fetch(`${BASE_URL}${url}`, { ...options, headers });
 
-    if (response.status === 401) {
+    if (response.status === 403 || response.status === 401) {
         try {
             const newAccessToken = await generateRefreshToken();
             headers.Authorization = `Bearer ${newAccessToken}`;

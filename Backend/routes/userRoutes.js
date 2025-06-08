@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
+process.loadEnvFile('./env/.env');
 const { Router } = require('express');
-const { authenticate } = require('../middlewares/authMiddleware');
+const { authenticate } = require('../middleware/authMiddleware');
 const userService = require('../services/userService');
 const authService = require('../services/authService');
+const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
 const userRouter = Router();
 

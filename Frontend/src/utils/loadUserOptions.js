@@ -1,4 +1,4 @@
-import { api } from './api';
+import { authFetch } from '../helpers/authFetch';
 
 export const loadUserOptions = async (inputValue, callback) => {
     if (!inputValue) {
@@ -7,8 +7,10 @@ export const loadUserOptions = async (inputValue, callback) => {
     }
 
     try {
-        const response = await api.get(`users/?search=${inputValue}`);
-        const members = response.data;
+        const response = await authFetch(`/users?search=${inputValue}`, {
+            method: 'GET',
+        });
+        const members = response;
         const formatted = members.map(member => ({
             value: member.id,
             label: member.name,
