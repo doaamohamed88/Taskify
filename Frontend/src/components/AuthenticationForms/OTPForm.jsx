@@ -5,7 +5,7 @@ import { verifyOTP } from "../../services/otpService";
 import { verifyUser } from "../../services/userService";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 import ResetPasswordForm from "./ResetPasswordForm";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 
 const OTPForm = ({ user, verifyAccount = false }) => {
   const [verified, setVerified] = useState(false);

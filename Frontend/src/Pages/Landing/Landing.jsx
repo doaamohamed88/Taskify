@@ -2,7 +2,7 @@ import BoardCard from "../../Components/BoardCard/BoardCard";
 import Modal from "../../Components/Modal/Modal";
 import classes from "./Landing.module.css";
 import * as FaIcons from "react-icons/fa6";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 import { useRef, useEffect } from "react";
 import { cardVariants, buttonVariants, textVariants, containerVariants } from "../../Components/UI/LandingAnimation";
 import CreateBoardForm from "../../Components/CreateBoardForm/CreateBoardForm";
