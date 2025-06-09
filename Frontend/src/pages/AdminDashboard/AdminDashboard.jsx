@@ -141,6 +141,7 @@ export default function AdminDashboard() {
             colorScheme="red"
             score={parseFloat(notStartedTasks)}
           ></ProgressCard>
+
         </div>
 
         <div className={styles.teamMembers}>
@@ -159,7 +160,6 @@ export default function AdminDashboard() {
             memberInfo.map((memb) => (
               <TeamMember key={memb.email} name={memb.name} email={memb.email}></TeamMember>
             ))}
-
         </div>
       </div>
 
@@ -188,6 +188,7 @@ export default function AdminDashboard() {
           </div>
         </form>
       </Modal>
+
     </>
   )
 }

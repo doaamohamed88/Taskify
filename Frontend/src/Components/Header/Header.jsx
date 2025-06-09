@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 import { useState, useEffect } from "react"
 import classes from "./Header.module.css"
 import i18n from "../../i18n"
@@ -14,6 +14,7 @@ function Header() {
   const [themeIcon, setThemeIcon] = useState("light")
   const [toggleMobileMenu, setToggleMobileMenu] = useState(false)
   const { toggleTheme } = useTheme()
+
 
   const handleLanguageChange = (lang) => {
     i18n
