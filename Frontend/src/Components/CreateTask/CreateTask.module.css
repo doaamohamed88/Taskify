@@ -12,10 +12,16 @@
   font-weight: bold;
 }
 
+.container {
+  display: flex;
+  gap: 20px;
+}
+
 .form .input_container {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .form label {
@@ -24,7 +30,8 @@
   font-weight: 200;
 }
 
-.form input {
+.form input,
+.form textarea {
   padding: 15px;
   background-color: var(--main-color);
   border: var(--lilac-border);
@@ -32,6 +39,13 @@
   outline: none;
   caret-color: var(--lilac-color);
   color: var(--lilac-color);
+}
+
+.form textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 80px;
+  flex-grow: 1;
 }
 
 .form input:focus {

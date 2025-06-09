@@ -57,5 +57,15 @@ boardRouter.delete('/:id', (req, res) => {
     }
 });
 
+boardRouter.post('/:id/tasks', (req, res) => {
+    console.log("cur user", req.body);
+    try {
+        const task = boardService.createTask(req.params.id, req.body);
+        res.send(task);
+    } catch (error) {
+        res.status(404).send({ message: 'Board not found', devMessage: error.message });
+    }
+});
+
 
 module.exports = boardRouter;

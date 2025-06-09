@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useState, useEffect } from "react"
 import classes from "./Header.module.css"
 import i18n from "../../i18n"

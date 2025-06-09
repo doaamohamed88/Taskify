@@ -56,7 +56,7 @@
   --todo-color: #e9e5fa;
   --doing-color: #ffe6f2;
   --done-color: #e0f7f4;
-
+  --base-color: #0e1218;
   --background-gradient: radial-gradient(
     ellipse at bottom,
     #fdfcff 0%,

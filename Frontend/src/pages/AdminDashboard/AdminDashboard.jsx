@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ProgressCard from "../../Components/ProgressCard/ProgressCard"
 import TeamMember from "../../Components/teamMemberCard/TeamMember"
-import st from "./AdminDashboard.module.css"
+import styles from "./AdminDashboard.module.css"
 import { useTranslation } from "react-i18next"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useRef, useState } from "react"
@@ -57,27 +57,27 @@ export default function AdminDashboard() {
     setTotalTasks(boardData.tasks.length)
     setCompletedTasks(
       boardData.tasks.length > 0 &&
-        Math.round(
-          (boardData.tasks.filter((task) => task.status === "done").length /
-            boardData.tasks.length) *
-            100
-        )
+      Math.round(
+        (boardData.tasks.filter((task) => task.status === "done").length /
+          boardData.tasks.length) *
+        100
+      )
     )
     setInProgressTasks(
       boardData.tasks.length > 0 &&
-        Math.round(
-          (boardData.tasks.filter((task) => task.status === "in-progress").length /
-            boardData.tasks.length) *
-            100
-        )
+      Math.round(
+        (boardData.tasks.filter((task) => task.status === "in-progress").length /
+          boardData.tasks.length) *
+        100
+      )
     )
     setNotStartedTasks(
       boardData.tasks.length > 0 &&
-        Math.round(
-          (boardData.tasks.filter((task) => task.status === "todo").length /
-            boardData.tasks.length) *
-            100
-        )
+      Math.round(
+        (boardData.tasks.filter((task) => task.status === "todo").length /
+          boardData.tasks.length) *
+        100
+      )
     )
   }
 
@@ -120,12 +120,12 @@ export default function AdminDashboard() {
 
   return (
     <>
-      <div className={st.grid}>
+      <div className={styles.grid}>
         <h1>
           {t("Welcome back, ")}
           {adminInfo.name} 👋
         </h1>
-        <div className={st.projectProgress}>
+        <div className={styles.projectProgress}>
           <ProgressCard
             title="Completed"
             colorScheme="green"
@@ -143,12 +143,12 @@ export default function AdminDashboard() {
           ></ProgressCard>
         </div>
 
-        <div className={st.teamMembers}>
-          <div className={st.teamMembersHeader}>
+        <div className={styles.teamMembers}>
+          <div className={styles.teamMembersHeader}>
             <h2>{t("Team Members")}</h2>
             <FontAwesomeIcon
               icon={faPlus}
-              className={st.addIcon}
+              className={styles.addIcon}
               onClick={() => {
                 resetInput()
                 modalRef.current.open()
@@ -159,6 +159,7 @@ export default function AdminDashboard() {
             memberInfo.map((memb) => (
               <TeamMember key={memb.email} name={memb.name} email={memb.email}></TeamMember>
             ))}
+
         </div>
       </div>
 
@@ -174,8 +175,8 @@ export default function AdminDashboard() {
             value={emailInput}
             onChange={(e) => setEmailInput(e.target.value)}
           ></input>
-          <span className={st.error}>{emailError}</span>
-          <div className={st.buttons}>
+          <span className={styles.error}>{emailError}</span>
+          <div className={styles.buttons}>
             <button
               onClick={() => {
                 modalRef.current.close()
