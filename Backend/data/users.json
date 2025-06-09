@@ -20,8 +20,7 @@
     "email": "abdelrahmanali58@gmail.com",
     "password": "aa",
     "boards": [
-      "daea2dd5-7c1b-49f3-a8c7-6e7e923063de",
-      "3aad2613-6ed7-4ff3-8874-d26a24d10272"
+      "daea2dd5-7c1b-49f3-a8c7-6e7e923063de"
     ],
     "verified": true,
     "name": "Abdelrahman Ali",
@@ -54,15 +53,14 @@
         "id": "b7143090-7890-4qrs-1tuv-555555555555"
       },
       "daea2dd5-7c1b-49f3-a8c7-6e7e923063de",
-      "35cc0c80-d377-4abc-a679-63c866da29ec",
-      "3aad2613-6ed7-4ff3-8874-d26a24d10272"
+      "35cc0c80-d377-4abc-a679-63c866da29ec"
     ],
     "verified": true,
     "name": "Kareem Ayman",
     "image": "https://example.com/image1.jpg",
     "userId": "g2142b90-676b-496x-azc1-e53f121d06f9",
-    "iat": 1749465630,
-    "exp": 1749466530
+    "iat": 1749403567,
+    "exp": 1749404467
   },
   {
     "id": "doaa-uuid-001",
@@ -83,8 +81,7 @@
       },
       {
         "id": "b7143090-7890-4qrs-1tuv-555555555555"
-      },
-      "3aad2613-6ed7-4ff3-8874-d26a24d10272"
+      }
     ],
     "verified": true,
     "name": "Doaa",
