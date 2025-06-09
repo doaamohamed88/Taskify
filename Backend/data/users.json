@@ -20,7 +20,10 @@
     "email": "abdelrahmanali58@gmail.com",
     "password": "aa",
     "boards": [
-      "daea2dd5-7c1b-49f3-a8c7-6e7e923063de"
+      "daea2dd5-7c1b-49f3-a8c7-6e7e923063de",
+      "d0ada734-9ddb-45c5-b961-d3335a9b40e9",
+      "16c0b57c-4b97-4930-b74f-714769a857e2",
+      "360a1678-a880-4c2e-bbd6-b4ce636d5e54"
     ],
     "verified": true,
     "name": "Abdelrahman Ali",
@@ -53,7 +56,8 @@
         "id": "b7143090-7890-4qrs-1tuv-555555555555"
       },
       "daea2dd5-7c1b-49f3-a8c7-6e7e923063de",
-      "35cc0c80-d377-4abc-a679-63c866da29ec"
+      "35cc0c80-d377-4abc-a679-63c866da29ec",
+      "d0ada734-9ddb-45c5-b961-d3335a9b40e9"
     ],
     "verified": true,
     "name": "Kareem Ayman",
@@ -110,11 +114,17 @@
       "35cc0c80-d377-4abc-a679-63c866da29ec",
       {
         "id": "b2142b90-676b-496x-azc1-e53f121d06f9"
-      }
+      },
+      "d0ada734-9ddb-45c5-b961-d3335a9b40e9",
+      "16c0b57c-4b97-4930-b74f-714769a857e2",
+      "360a1678-a880-4c2e-bbd6-b4ce636d5e54"
     ],
     "verified": true,
     "name": "Jameela",
-    "image": "https://example.com/image3.jpg"
+    "image": "https://example.com/image3.jpg",
+    "userId": "jameela-uuid-001",
+    "iat": 1749423250,
+    "exp": 1749424150
   },
   {
     "id": "2afa3554-8024-46a0-8537-7fa2ed59aea8",

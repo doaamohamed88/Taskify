@@ -1,10 +1,10 @@
-import classes from "./BoardCard.module.css";
+import styles from "./BoardCard.module.css";
 
-function BoardCard({ boardType, boardName, dueDate }) {
+function BoardCard({ board, boardType }) {
   return (
-    <div className={`${classes.board_card} ${boardType === 'created' ? classes.created : classes.envolved}`}>
-      <p>{boardName}</p>
-      <p>{dueDate}</p>
+    <div className={`${styles.board_card} ${boardType === 'created' ? styles.created : styles.envolved}`}>
+      <p>{board.title}</p>
+      {/* <p>{dueDate}</p> */}
     </ div>
   )
 }

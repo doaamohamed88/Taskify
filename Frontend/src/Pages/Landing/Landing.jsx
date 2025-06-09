@@ -1,6 +1,6 @@
 import BoardCard from "../../Components/BoardCard/BoardCard";
 import Modal from "../../Components/Modal/Modal";
-import classes from "./Landing.module.css";
+import styles from "./Landing.module.css";
 import * as FaIcons from "react-icons/fa6";
 import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 import { useRef, useEffect } from "react";
@@ -8,42 +8,53 @@ import { cardVariants, buttonVariants, textVariants, containerVariants } from ".
 import CreateBoardForm from "../../Components/CreateBoardForm/CreateBoardForm";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserBoards } from '../../store/board/BoardActions';
-// import { useSelector } from 'react-redux';
+import { jwtDecode } from "jwt-decode";
+
 export default function LandingPage() {
   const modalRef = useRef();
-  function handleShowModal() {
-    modalRef.current.open();
-  }
+  const accessToken = localStorage.getItem("accessToken");
+  const user = accessToken ? jwtDecode(accessToken) : null;
+  const userId = user?.id;
   const dispatch = useDispatch();
   const { data: boards, loading, error } = useSelector(state => state.boards);
 
+
+  function handleShowModal() {
+    modalRef.current.open();
+  }
+
+  const createdBoards = boards.filter(board => board.owner === userId).slice(0, 2);
+  const involvedBoards = boards.filter(board =>
+    Array.isArray(board.members) && board.members.includes(userId) && board.owner !== userId
+  ).slice(0, 2);
+  console.log(boards)
   useEffect(() => {
     dispatch(fetchUserBoards());
-  }, [dispatch]);
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
     <motion.div
-      className={classes.landing_page}
+      className={styles.landing_page}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className={classes.background_mesh}></div>
-      <div className={classes.geometric_grid}></div>
-      <div className={classes.landing_content}>
-        <div className={classes.section}>
+      <div className={styles.background_mesh}></div>
+      <div className={styles.geometric_grid}></div>
+      <div className={styles.landing_content}>
+        <div className={styles.section}>
           <div>
-            <ul>
+            {/* <ul>
               {boards.map(board => (
                 <li key={board.id}>{board.title}</li>
               ))}
-            </ul>
+            </ul> */}
 
             <motion.p
-              className={classes.typingText}
+              className={styles.typingText}
               variants={textVariants}
               initial="hidden"
               animate="visible"
@@ -52,7 +63,7 @@ export default function LandingPage() {
                 Transform Chaos into Clarity - Organize Tasks,{" "}
               </strong>
               Boost Productivity, and Achieve More with{" "}
-              <span className={classes.logo}>Taskify</span>
+              <span className={styles.logo}>Taskify</span>
             </motion.p>
             <motion.button
               onClick={handleShowModal}
@@ -61,7 +72,7 @@ export default function LandingPage() {
               whileTap="tap"
             >
               Create board
-              <FaIcons.FaArrowRight className={classes.icon} />
+              <FaIcons.FaArrowRight className={styles.icon} />
             </motion.button>
             <Modal ref={modalRef}>
               <CreateBoardForm onClose={() => modalRef.current.close()} />
@@ -69,10 +80,10 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <div className={classes.section}>
-          <div className={classes.cards_section}>
+        <div className={styles.section}>
+          <div className={styles.cards_section}>
             <motion.p
-              className={classes.boardName}
+              className={styles.boardName}
               variants={textVariants}
               initial="hidden"
               animate="visible"
@@ -80,23 +91,16 @@ export default function LandingPage() {
               Created
             </motion.p>
             <div>
-              {[...Array(2)].map((_, i) => (
-                <motion.div
-                  className={classes.card}
-                  key={i}
-                  custom={i}
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <BoardCard boardType="created" />
+              {createdBoards.map(board => (
+                <motion.div className={styles.card} key={board.id} variants={cardVariants} initial="hidden" animate="visible">
+                  <BoardCard board={board} boardType="created" />
                 </motion.div>
               ))}
             </div>
           </div>
-          <div className={classes.cards_section}>
+          <div className={styles.cards_section}>
             <motion.p
-              className={classes.boardName}
+              className={styles.boardName}
               variants={textVariants}
               initial="hidden"
               animate="visible"
@@ -104,16 +108,9 @@ export default function LandingPage() {
               Involved
             </motion.p>
             <div>
-              {[...Array(2)].map((_, i) => (
-                <motion.div
-                  className={classes.card}
-                  key={i}
-                  custom={i}
-                  variants={cardVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <BoardCard boardType="involved" />
+              {involvedBoards.map(board => (
+                <motion.div className={styles.card} key={board.id} variants={cardVariants} initial="hidden" animate="visible">
+                  <BoardCard board={board} boardType="involved" />
                 </motion.div>
               ))}
             </div>
