@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import MobileMenu from "../MobileMenu/MobileMenu"
 import { logout } from "../../services/userService"
+import { t } from "i18next"
 function Header() {
   const [currentLang, setCurrentLang] = useState(i18n.language)
   const [themeIcon, setThemeIcon] = useState("light")
@@ -58,7 +59,7 @@ function Header() {
         <div>
           <button className={classes.signOut} onClick={logout}>
             <FaIcons.FaUser />
-            Sign Out
+            {t('Sign Out')}
           </button>
         </div>
 
