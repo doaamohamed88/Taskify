@@ -7,6 +7,7 @@ import { useTheme } from "../../context/ThemeContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import MobileMenu from "../MobileMenu/MobileMenu"
+import { logout } from "../../services/userService"
 function Header() {
   const [currentLang, setCurrentLang] = useState(i18n.language)
   const [themeIcon, setThemeIcon] = useState("light")
@@ -53,7 +54,7 @@ function Header() {
         </Link>
 
         <div>
-          <button className={classes.signOut}>
+          <button className={classes.signOut} onClick={logout}>
             <FaIcons.FaUser />
             Sign Out
           </button>

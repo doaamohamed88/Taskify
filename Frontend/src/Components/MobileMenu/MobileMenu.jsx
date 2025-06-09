@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FaUser } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 import classes from "./MobileMenu.module.css"
+import { logout } from "../../services/userService"
 
 export default function MobileMenu({
   toggleTheme,
@@ -13,7 +14,6 @@ export default function MobileMenu({
   toggleMobileMenu,
   setToggleMobileMenu,
 }) {
-
   return (
     <div className={`${classes.mobileMenu} ${toggleMobileMenu ? classes.showMenu : ""}`}>
       <Link to="/" onClick={() => setToggleMobileMenu(false)}>
@@ -25,8 +25,7 @@ export default function MobileMenu({
           onClick={() => {
             toggleTheme()
             setThemeIcon(themeIcon === "light" ? "dark" : "light")
-        setToggleMobileMenu(false)
-
+            setToggleMobileMenu(false)
           }}
         >
           {themeIcon === "light" ? (
@@ -37,14 +36,20 @@ export default function MobileMenu({
         </button>
         <button
           className={classes.lang}
-          onClick={() => {handleLanguageChange(currentLang === "ar" ? "en" : "ar")
-        setToggleMobileMenu(false)}
-
-          }
+          onClick={() => {
+            handleLanguageChange(currentLang === "ar" ? "en" : "ar")
+            setToggleMobileMenu(false)
+          }}
         >
           {currentLang === "ar" ? "en" : "ar"}
         </button>
-        <button className={classes.signOut} onClick={() => setToggleMobileMenu(false)}>
+        <button
+          className={classes.signOut}
+          onClick={() => {
+            setToggleMobileMenu(false)
+            logout()
+          }}
+        >
           <FaUser />
           Sign Out
         </button>
