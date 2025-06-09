@@ -10,6 +10,12 @@
   position: fixed;
   top: 0;
   z-index: 1000;
+
+  &>div {
+    @media (max-width: 769px) {
+      display: none;
+    }
+  }
 }
 .header button {
   background-color: var(--main-color);
@@ -39,8 +45,27 @@
   margin-left: 15px;
 }
 
+.lang {
+  text-transform: uppercase;
+}
+
 .signOut {
   display: flex;
   gap: 5px;
   align-items: flex-start;
+}
+
+.bars {
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 15px;
+  transition: var(--main-trans);
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+
+  &.rotateIcon {
+    transform: rotate(180deg);
+  }
 }
