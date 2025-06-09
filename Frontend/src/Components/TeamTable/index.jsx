@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./TeamTable.module.css";
 import { useTranslation } from "react-i18next";
 
@@ -12,11 +12,25 @@ function createTableData(members) {
   });
 }
 
-export default function TeamTable({ members }) {
+export default function TeamTable({ boardMembers }) {
   const { t } = useTranslation();
 
-  const rows = useMemo(() => createTableData(members), [members]);
-
+    const [members, setMembers] = useState([]);
+  
+    const fetchTeamMembers = async () => {
+      const membersData = boardMembers?.length
+        ? [...boardMembers]?.sort((a, b) => b.score - a.score)
+        : [];
+  
+        const rows = createTableData(membersData);
+      setMembers([...rows]);
+    };
+  
+    useEffect(() => {
+      fetchTeamMembers();
+    }, [boardMembers, boardMembers]);
+  
+  
   if (!members || members.length === 0) {
     return <p>{t("No members found")}</p>;
   }
@@ -32,13 +46,13 @@ export default function TeamTable({ members }) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
+          {members.map((row) => (
             <tr key={row.rank} className={styles.tableBodyRow}>
               <td className={styles.tableBodyCell}>{row.rank}</td>
               <td className={styles.tableBodyCell}>
                 <div className={styles.avatarWrapper}>
                   <div className={styles.avatar}>
-                    {row.name.charAt(0).toUpperCase()}
+                    {row?.name?.charAt(0)?.toUpperCase()}
                   </div>
                   {row.name}
                 </div>

@@ -4,49 +4,42 @@ import TeamTable from "../../Components/TeamTable";
 import RankCard from "../../Components/RankCard";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBoardById } from "../../services/boardService";
+import { setSelectedBoard } from "../../store/selectedBoard";
 
 export default function LeaderBoard() {
   const { t } = useTranslation();
 
-  const [members, setMembers] = useState([]);
+  const dispatch = useDispatch();
+  const userBoardId = useSelector((state) => state.user.boards[0].id);
+  const selectedBoard = useSelector((state) => state.selectedBoard);
+
   const [totalScore, setTotalScore] = useState(0);
 
   useEffect(() => {
-    // fetch the mebers of the team and calculate the total score
-    const fetchTeamMembers = async () => {
-      try {
-        // const response = await fetch('/members');
-        // const data = await response.json();
+    const fetchBoard = async () => {
+      let board = null;
+      if (userBoardId) {
+        try {
+          board = await getBoardById(userBoardId);
 
-        const data = [
-          {
-            email: "user@user.com",
-            score: 35,
-          },
-          {
-            email: "abdelrahmanali58@gmail.com",
-            score: 39,
-          },
-          {
-            email: "kareem.mohamed.ayman@gmail.com",
-            score: 13,
-          },
-        ];
+          const total = board?.members?.reduce(
+            (acc, member) => acc + member.score,
+            0
+          );
+          setTotalScore(total);
 
-        const sortedData = data.sort((a, b) => b.score - a.score);
-        setMembers(sortedData);
-        
-        const score = data?.length
-          ? data.reduce((acc, member) => acc + member.score, 0)
-          : 0;
-        setTotalScore(score);
-      } catch (error) {
-        console.error("Error fetching team members:", error);
+          dispatch(setSelectedBoard(board));
+        } catch (error) {
+          console.error("Error fetching board:", error);
+        }
       }
     };
 
-    fetchTeamMembers();
-  }, []);
+    setTotalScore(0);
+    fetchBoard();
+  }, [userBoardId]);
 
   return (
     <div className={styles.leaderBoardContainer}>
@@ -61,13 +54,15 @@ export default function LeaderBoard() {
 
       <div size="large">
         <div className={styles.tableHeaderInfo}>
-          <h3 style={{ textAlign: "center" }}> Team Name </h3>
+          <h3 style={{ textAlign: "center" }}>
+            {selectedBoard?.name || "Team Name"}{" "}
+          </h3>
           <span>
             {t("total-score")}: {totalScore}
           </span>
         </div>
 
-        <TeamTable members={members} />
+        <TeamTable boardMembers={selectedBoard?.members || []} />
       </div>
     </div>
   );
