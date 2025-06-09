@@ -7,6 +7,7 @@ import { useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { updateSelectedBoard } from "../../store/selectedBoard"
 import { updateBoard } from "../../services/boardService"
+import { getUserByEmail, updateUser } from "../../services/userService"
 
 export default function TeamMember({ name, email }) {
   const { t } = useTranslation()
@@ -24,6 +25,14 @@ export default function TeamMember({ name, email }) {
     const updatedBoard = { ...boardData, members: updatedMembers }
     dispatch(updateSelectedBoard(updatedBoard))
     updateBoard(boardData.id, updatedBoard)
+
+    const updateUserBoards = async () => {
+      const user = await getUserByEmail(email)
+      const updatedUser = { ...user, boards: user.boards.filter((board) => board.id !== boardData.id) }
+      updateUser(user.id, updatedUser)
+    }
+
+    updateUserBoards()
   }
 
   return (
