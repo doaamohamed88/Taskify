@@ -1,4 +1,4 @@
-import classes from './Modal.module.css'
+import styles from './Modal.module.css'
 import { createPortal } from "react-dom";
 
 import { useRef, useImperativeHandle, forwardRef } from 'react'
@@ -13,7 +13,7 @@ const Modal = forwardRef(function Modal(props, ref) {
         }
     }))
     return createPortal(
-        <dialog ref={modalRef} className={classes.modal}>
+        <dialog ref={modalRef} className={styles.modal}>
             {props.children}
         </dialog>, document.getElementById('root')
     )

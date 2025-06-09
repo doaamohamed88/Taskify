@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import st from "./teamMember.module.css"
+import styles from "./teamMember.module.css"
 import { faTrash, faUser } from "@fortawesome/free-solid-svg-icons"
 import { useTranslation } from "react-i18next"
 import Modal from "../Modal/Modal"
@@ -37,22 +37,22 @@ export default function TeamMember({ name, email }) {
 
   return (
     <>
-      <div className={st.memberCard}>
-        <div className={st.left}>
+      <div className={styles.memberCard}>
+        <div className={styles.left}>
           <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
           {name}
         </div>
         <div>
           <FontAwesomeIcon
             icon={faTrash}
-            className={st.deleteIcon}
+            className={styles.deleteIcon}
             onClick={() => modalRef.current.open()}
           ></FontAwesomeIcon>
         </div>
       </div>
 
       <Modal ref={modalRef}>
-        <div className={st.modal}>
+        <div className={styles.modal}>
           <p>{t("deleteMemberConfirm", { name })}</p>
           <div className="buttons">
             <button onClick={() => modalRef.current.close()}>{t("Cancel")}</button>

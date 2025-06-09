@@ -69,11 +69,23 @@ const deleteBoard = (id) => {
     return deletedBoard[0];
 }
 
+const createTask = (boardId, taskData) => {
+    console.log(taskData);
+    const board = getAllBoards().find((board) => board.id === boardId);
+    const task = { id: uuid(), ...taskData };
+
+    board.tasks.push(task);
+    return task;
+    // return true
+
+}
+
 module.exports = {
     getAllBoards,
     getBoardById,
     addBoard,
     updateBoard,
     deleteBoard,
-    getBoardsByUser
+    getBoardsByUser,
+    createTask
 };

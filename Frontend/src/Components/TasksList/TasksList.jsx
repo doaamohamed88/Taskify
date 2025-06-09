@@ -3,10 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import TaskCard from "../TaskCard/TaskCard";
 import { useTranslation } from "react-i18next";
-
+import Modal from "../Modal/Modal";
+import { useRef } from "react";
+import CreateTask from "../CreateTask/CreateTask";
 const TasksList = ({ title }) => {
   const { t } = useTranslation();
+  const modalRef = useRef();
 
+  function showModal() {
+    modalRef.current.open();
+  }
   return (
     <div className={`${styles.listContainer}`}>
       <div
@@ -16,7 +22,10 @@ const TasksList = ({ title }) => {
         <h1 className={`${styles.title}`}>{t(title)}</h1>
         {title === "To Do" && (
           <div className={`${styles.iconContainer}`}>
-            <FontAwesomeIcon icon={faPlus} size="lg" />
+            <FontAwesomeIcon icon={faPlus} size="lg" onClick={showModal} />
+            <Modal ref={modalRef}>
+              <CreateTask />
+            </Modal>
           </div>
         )}
       </div>
