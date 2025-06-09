@@ -3,20 +3,10 @@ import { authFetch } from "../helpers/authFetch";
 const BASE_URL = '/users';
 
 export const login = async (email, password) => {
-    const response = await fetch(`${BASE_URL}/login`, {
+    return await authFetch(`${BASE_URL}/login`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ email, password }),
     });
-
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
-    }
-
-    return response.json();
 }
 
 export const registerUser = async (name, email, password) => {
