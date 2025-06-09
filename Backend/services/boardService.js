@@ -73,11 +73,8 @@ const createTask = (boardId, taskData) => {
     console.log(taskData);
     const board = getAllBoards().find((board) => board.id === boardId);
     const task = { id: uuid(), ...taskData };
-
     board.tasks.push(task);
     return task;
-    // return true
-
 }
 
 module.exports = {
