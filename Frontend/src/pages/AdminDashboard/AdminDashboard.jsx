@@ -78,6 +78,7 @@ export default function AdminDashboard() {
 
   function getMemberNames() {
     boardData.members.forEach(memb => {
+      if (memb.email === adminInfo.email) return
       getUserByEmail(memb.email).then(res => {
         setMemberNames(arr => {
           if (arr.includes(res.name)) return arr
