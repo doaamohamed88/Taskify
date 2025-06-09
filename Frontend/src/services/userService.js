@@ -36,13 +36,19 @@ export const registerUser = async (name, email, password) => {
 }
 
 export const getUserByEmail = async (email) => {
-    return await authFetch(`/users/email/${email}`, {
+    const response = await fetch(`${BASE_URL}/email/${email}`, {
         method: 'GET',
     });
+
+    if (!response.ok) {
+        throw new Error("User not found");
+    }
+
+    return response.json();
 }
 
 export const verifyUser = async (id) => {
-    const response = await fetch(`${BASE_URL}/${id}`, {
+    const response = await fetch(`${BASE_URL}/${id}/verify`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -58,15 +64,32 @@ export const verifyUser = async (id) => {
 }
 
 export const updatePassword = async (id, password) => {
-    return await authFetch(`/users/${id}/reset-password`, {
+    const response = await fetch(`${BASE_URL}/${id}/reset-password`, {
         method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ password }),
     });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+    }
+
+    return response.json();
 }
 
 export const updateUser = async (id, data) => {
-    return await authFetch(`${BASE_URL}/${id}`, {
+    const response = await authFetch(`/${id}`, {
         method: "PUT",
         body: JSON.stringify(data),
     });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+    }
+
+    return response.json();
 }

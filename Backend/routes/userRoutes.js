@@ -81,6 +81,15 @@ userRouter.put('/:id/reset-password', (req, res) => {
     }
 });
 
+userRouter.put('/:id/verify', (req, res) => {
+    try {
+        const updatedUser = userService.verifyUser(req.params.id);
+        res.send(updatedUser);
+    } catch (error) {
+        res.status(500).send({ message: 'Error updating user' });
+    }
+});
+
 userRouter.post('/token', (req, res) => {
     const { token } = req.body;
     if (!token) return res.status(401).send({ message: 'Refresh token required' });
