@@ -1,4 +1,6 @@
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL + '/users';
+import { authFetch } from "../helpers/authFetch";
+
+const BASE_URL = '/users';
 
 export const login = async (email, password) => {
     const response = await fetch(`${BASE_URL}/login`, {
@@ -34,18 +36,9 @@ export const registerUser = async (name, email, password) => {
 }
 
 export const getUserByEmail = async (email) => {
-    const response = await fetch(`${BASE_URL}/email/${email}`, {
+    return await authFetch(`${BASE_URL}/email/${email}`, {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
     });
-
-    if (!response.ok) {
-        throw new Error("User not found");
-    }
-
-    return response.json();
 }
 
 export const verifyUser = async (id) => {

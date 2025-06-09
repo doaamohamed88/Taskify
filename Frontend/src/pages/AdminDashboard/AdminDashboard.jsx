@@ -9,6 +9,7 @@ import Modal from "../../Components/Modal/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { setSelectedBoard } from "../../store/selectedBoard"
 import { getBoardById } from "../../services/boardService"
+import { getUserByEmail } from "../../services/userService"
 
 export default function AdminDashboard() {
   const modalRef = useRef()
@@ -23,6 +24,7 @@ export default function AdminDashboard() {
   const [completedTasks, setCompletedTasks] = useState(0)
   const [inProgressTasks, setInProgressTasks] = useState(0)
   const [notStartedTasks, setNotStartedTasks] = useState(0)
+  const [memberNames, setMemberNames] = useState([])
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -42,6 +44,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (boardData) {
       calculateProgress()
+      getMemberNames()
     }
   }, [boardData])
 
@@ -52,25 +55,35 @@ export default function AdminDashboard() {
         Math.round(
           (boardData.tasks.filter((task) => task.status === "done").length /
             boardData.tasks.length) *
-          100
+            100
         )
     )
     setInProgressTasks(
       boardData.tasks.length > 0 &&
-      Math.round(
-        (boardData.tasks.filter((task) => task.status === "in-progress").length /
-          boardData.tasks.length) *
-        100
-      )
+        Math.round(
+          (boardData.tasks.filter((task) => task.status === "in-progress").length /
+            boardData.tasks.length) *
+            100
+        )
     )
     setNotStartedTasks(
       boardData.tasks.length > 0 &&
-      Math.round(
-        (boardData.tasks.filter((task) => task.status === "todo").length /
-          boardData.tasks.length) *
-        100
-      )
+        Math.round(
+          (boardData.tasks.filter((task) => task.status === "todo").length /
+            boardData.tasks.length) *
+            100
+        )
     )
+  }
+
+  function getMemberNames() {
+    boardData.members.forEach(memb => {
+      getUserByEmail(memb.email).then(res => {
+        setMemberNames(arr => {
+          return [...arr, res.name]
+        })
+      })
+    })
   }
 
   return (
@@ -81,9 +94,21 @@ export default function AdminDashboard() {
           {adminInfo.name} 👋
         </h1>
         <div className={st.projectProgress}>
-          <ProgressCard title="Completed" colorScheme="green" score={parseFloat(completedTasks)}></ProgressCard>
-          <ProgressCard title="In Progress" colorScheme="blue" score={parseFloat(inProgressTasks)}></ProgressCard>
-          <ProgressCard title="Not Started" colorScheme="red" score={parseFloat(notStartedTasks)}></ProgressCard>
+          <ProgressCard
+            title="Completed"
+            colorScheme="green"
+            score={parseFloat(completedTasks)}
+          ></ProgressCard>
+          <ProgressCard
+            title="In Progress"
+            colorScheme="blue"
+            score={parseFloat(inProgressTasks)}
+          ></ProgressCard>
+          <ProgressCard
+            title="Not Started"
+            colorScheme="red"
+            score={parseFloat(notStartedTasks)}
+          ></ProgressCard>
         </div>
 
         <div className={st.teamMembers}>
@@ -95,9 +120,10 @@ export default function AdminDashboard() {
               onClick={() => modalRef.current.open()}
             ></FontAwesomeIcon>
           </div>
-          {boardData && boardData.members.map((member) => (
-            <TeamMember key={crypto.randomUUID()} name={member.email}></TeamMember>
-          ))}
+          {memberNames &&
+            memberNames.map((member) => (
+              <TeamMember key={crypto.randomUUID()} name={member}></TeamMember>
+            ))}
         </div>
       </div>
 
