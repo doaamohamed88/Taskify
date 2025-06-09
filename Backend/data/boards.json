@@ -67,6 +67,10 @@
       {
         "email": "kareem.mohamed.ayman@gmail.com",
         "score": 13
+      },
+      {
+        "score": 0,
+        "email": "jameela@example.com"
       }
     ],
     "tasks": [
