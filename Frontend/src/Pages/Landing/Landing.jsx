@@ -91,6 +91,14 @@ export default function LandingPage() {
               Created
             </motion.p>
             <div>
+              {
+                (createdBoards.length === 0 && involvedBoards > 0) && (
+                  <div className={styles.empty_state}>
+                    <h3>No Boards Yet</h3>
+                    <p>Start by creating your first board and invite your team.</p>
+                  </div>
+                )
+              }
               {createdBoards.map(board => (
                 <motion.div className={styles.card} key={board.id} variants={cardVariants} initial="hidden" animate="visible">
                   <BoardCard board={board} boardType="created" />
@@ -108,6 +116,14 @@ export default function LandingPage() {
               Involved
             </motion.p>
             <div>
+              {
+                (involvedBoards.length === 0 && createdBoards.length > 0) && (
+                  <div className={styles.empty_state}>
+                    <h3>No Boards Yet</h3>
+                    <p>You haven’t been added to any boards yet. Once someone invites you, they’ll appear here!</p>
+                  </div>
+                )
+              }
               {involvedBoards.map(board => (
                 <motion.div className={styles.card} key={board.id} variants={cardVariants} initial="hidden" animate="visible">
                   <BoardCard board={board} boardType="involved" />

@@ -57,15 +57,46 @@ boardRouter.delete('/:id', (req, res) => {
     }
 });
 
-boardRouter.post('/:id/tasks', (req, res) => {
+
+boardRouter.post("/:id/tasks", (req, res) => {
     console.log("cur user", req.body);
     try {
         const task = boardService.createTask(req.params.id, req.body);
         res.send(task);
     } catch (error) {
-        res.status(404).send({ message: 'Board not found', devMessage: error.message });
+        res.status(404).send({
+            message: "Board not found",
+            devMessage: error.message,
+        });
     }
 });
 
+boardRouter.put("/:id/tasks/:taskId", (req, res) => {
+    const boardId = req.params.id;
+    const taskId = req.params.taskId;
+    const taskData = req.body;
+    try {
+        const updatedTask = boardService.updateTask(boardId, taskId, taskData);
+        res.send(updatedTask);
+    } catch (error) {
+        res.status(404).send({
+            message: "Task not found or update failed",
+            devMessage: error.message,
+        });
+    }
+});
+boardRouter.delete("/:id/tasks/:taskId", (req, res) => {
+    const boardId = req.params.id;
+    const taskId = req.params.taskId;
+    try {
+        const deletedTask = boardService.deleteTask(boardId, taskId);
+        res.send({ message: "Task deleted successfully", data: deletedTask });
+    } catch (error) {
+        res.status(404).send({
+            message: "Task not found",
+            devMessage: error.message,
+        });
+    }
+});
 
 module.exports = boardRouter;

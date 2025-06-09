@@ -1,13 +1,13 @@
 .board_card {
   box-shadow: var(--shadow);
   border-radius: var(--border-radius-main);
-  padding: 10px;
+  padding: 10px 15px;
   height: 150px;
   width: 250px;
   position: relative;
-  /* border-color: rgba(80, 62, 118, 0.845);
-  border-style: solid;
-  border-width: 1px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .board_card p {
@@ -47,4 +47,31 @@
   box-shadow: 0 0 10px #7f5eff, 0 0 20px #4ae4ff, 0 0 30px #4ae4ff;
   background: linear-gradient(to bottom, #5ee7df, #b490ca);
   box-shadow: 0 0 6px #5ee7df, 0 0 12px #b490ca, 0 0 18px #b490ca;
+}
+
+.members {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  position: relative;
+}
+
+.member_circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border: 2px solid white;
+  position: relative;
+  margin-left: -10px; /* Creates overlap */
+  z-index: 1;
+}
+
+.member_circle:first-child {
+  margin-left: 0;
 }
