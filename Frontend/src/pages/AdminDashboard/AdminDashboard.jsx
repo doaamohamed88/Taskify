@@ -8,9 +8,10 @@ import { useEffect, useRef, useState } from "react"
 import Modal from "../../Components/Modal/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { setSelectedBoard } from "../../store/selectedBoard"
-import { getBoardById } from "../../services/boardService"
-import { getUserByEmail } from "../../services/userService"
+import { getBoardById, updateBoard } from "../../services/boardService"
+import { getUserByEmail, updateUser } from "../../services/userService"
 import { set } from "react-hook-form"
+import { hasMinLength, isEmail, isNotEmpty } from "../../utils/validation"
 
 export default function AdminDashboard() {
   const modalRef = useRef()
@@ -26,6 +27,8 @@ export default function AdminDashboard() {
   const [inProgressTasks, setInProgressTasks] = useState(0)
   const [notStartedTasks, setNotStartedTasks] = useState(0)
   const [memberInfo, setMemberInfo] = useState([])
+  const [emailInput, setEmailInput] = useState("")
+  const [emailError, setEmailError] = useState("")
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -90,6 +93,31 @@ export default function AdminDashboard() {
     })
   }
 
+  function addMember(e) {
+    e.preventDefault()
+    if (!isEmail(emailInput) || !isNotEmpty(emailInput) || !hasMinLength(emailInput, 5)) {
+      setEmailError("Please enter a valid email address")
+    } else if (boardData.members.some((member) => member.email === emailInput)) {
+      setEmailError("Member already exists")
+    } else {
+      getUserByEmail(emailInput).then((res) => {
+        const updatedBoard = { ...boardData, members: [...boardData.members, { score: 0, email: res.email }] }
+        dispatch(setSelectedBoard(updatedBoard))
+        updateBoard(boardData.id, updatedBoard)
+        updateUser(res.id, { boards: [...res.boards, { id: boardData.id }] })
+        resetInput()
+        modalRef.current.close()
+      }).catch((err) => {
+        setEmailError("User does not exist")
+      })
+    }
+  }
+
+  function resetInput() {
+    setEmailInput("")
+    setEmailError("")
+  }
+
   return (
     <>
       <div className={st.grid}>
@@ -121,22 +149,21 @@ export default function AdminDashboard() {
             <FontAwesomeIcon
               icon={faPlus}
               className={st.addIcon}
-              onClick={() => modalRef.current.open()}
+              onClick={() => {
+                resetInput()
+                modalRef.current.open()
+              }}
             ></FontAwesomeIcon>
           </div>
           {memberInfo &&
             memberInfo.map((memb) => (
-              <TeamMember
-                key={memb.email}
-                name={memb.name}
-                email={memb.email}
-              ></TeamMember>
+              <TeamMember key={memb.email} name={memb.name} email={memb.email}></TeamMember>
             ))}
         </div>
       </div>
 
       <Modal ref={modalRef}>
-        <form action="" onSubmit={(e) => e.preventDefault()}>
+        <form action="" onSubmit={(e) => addMember(e)}>
           <h3 className="modal-title">{t("Add New Team Member")}</h3>
           <label htmlFor="teamMemberEmail">{t("Please Enter Team Member Email:")}</label>
           <input
@@ -144,9 +171,18 @@ export default function AdminDashboard() {
             id="teamMemberEmail"
             name="teamMemberEmail"
             placeholder={t("Enter Email")}
+            value={emailInput}
+            onChange={(e) => setEmailInput(e.target.value)}
           ></input>
+          <span className={st.error}>{emailError}</span>
           <div className={st.buttons}>
-            <button onClick={() => modalRef.current.close()}>{t("Close")}</button>
+            <button
+              onClick={() => {
+                modalRef.current.close()
+              }}
+            >
+              {t("Close")}
+            </button>
             <button type="submit">{t("Add")}</button>
           </div>
         </form>
