@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
-  const userBoardId = useSelector((state) => state.user.boards[1].id)
+  const userBoardId = useSelector((state) => state.user.boards[0].id)
   const boardData = useSelector((state) => state.selectedBoard)
   const adminInfo = useSelector((state) => state.user)
 

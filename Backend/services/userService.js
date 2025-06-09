@@ -58,8 +58,6 @@ const addUser = (userData) => {
 }
 
 const updateUser = (id, userData) => {
-    // console.log(id);
-
     const users = getAllUsers();
     const userIndex = users.findIndex(user => user.id === id);
     if (userIndex === -1) {
@@ -70,13 +68,24 @@ const updateUser = (id, userData) => {
     return users[userIndex];
 }
 
-const resetPassword = (email, newPassword) => {
+const resetPassword = (id, newPassword) => {
     const users = getAllUsers();
-    const user = users.find(user => user.email === email);
+    const user = users.find(user => user.id === id);
     if (!user) {
         throw new Error('User not found');
     }
     user.password = newPassword;
+    fileUtils.write(usersFilePath, users);
+    return user;
+}
+
+const verifyUser = (id) => {
+    const users = getAllUsers();
+    const user = users.find(user => user.id === id);
+    if (!user) {
+        throw new Error('User not found');
+    }
+    user.verified = true;
     fileUtils.write(usersFilePath, users);
     return user;
 }
@@ -88,5 +97,6 @@ module.exports = {
     addUser,
     updateUser,
     resetPassword,
+    verifyUser,
     login
 };
