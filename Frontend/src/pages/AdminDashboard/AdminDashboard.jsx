@@ -80,6 +80,7 @@ export default function AdminDashboard() {
     boardData.members.forEach(memb => {
       getUserByEmail(memb.email).then(res => {
         setMemberNames(arr => {
+          if (arr.includes(res.name)) return arr
           return [...arr, res.name]
         })
       })
