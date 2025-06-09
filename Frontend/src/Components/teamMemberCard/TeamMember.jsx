@@ -4,10 +4,27 @@ import { faTrash, faUser } from "@fortawesome/free-solid-svg-icons"
 import { useTranslation } from "react-i18next"
 import Modal from "../Modal/Modal"
 import { useRef } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { updateSelectedBoard } from "../../store/selectedBoard"
+import { updateBoard } from "../../services/boardService"
 
-export default function TeamMember({ name }) {
+export default function TeamMember({ name, email }) {
   const { t } = useTranslation()
   const modalRef = useRef()
+  const boardData = useSelector((state) => state.selectedBoard)
+  const dispatch = useDispatch()
+
+
+  function deleteMember() {
+    modalRef.current.close()
+
+    const updatedMembers = boardData.members.filter(
+      (member) => member.email !== email
+    )
+    const updatedBoard = { ...boardData, members: updatedMembers }
+    dispatch(updateSelectedBoard(updatedBoard))
+    updateBoard(boardData.id, updatedBoard)
+  }
 
   return (
     <>
@@ -30,7 +47,7 @@ export default function TeamMember({ name }) {
           <p>{t("deleteMemberConfirm", { name })}</p>
           <div className="buttons">
             <button onClick={() => modalRef.current.close()}>{t("Cancel")}</button>
-            <button>{t("Yes, Delete")}</button>
+            <button onClick={deleteMember}>{t("Yes, Delete")}</button>
           </div>
         </div>
       </Modal>
