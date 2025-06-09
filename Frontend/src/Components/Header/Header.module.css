@@ -20,8 +20,15 @@
   box-shadow: var(--shadow);
   border-radius: var(--border-radius-main);
   border: var(--lilac-border);
+  border-width: 2px;
   margin: 0 5px;
   cursor: pointer;
+  transition: var(--main-trans);
+
+  &:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+  }
 }
 
 .logo {
@@ -30,4 +37,10 @@
   color: var(--lilac-color);
   font-weight: bold;
   margin-left: 15px;
+}
+
+.signOut {
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
 }
