@@ -14,7 +14,7 @@ export default function LandingPage() {
   const modalRef = useRef();
   const accessToken = localStorage.getItem("accessToken");
   const user = accessToken ? jwtDecode(accessToken) : null;
-  const userId = user?.userId;
+  const userId = user?.id;
   const dispatch = useDispatch();
   const { data: boards, loading, error } = useSelector(state => state.boards);
 
@@ -27,10 +27,10 @@ export default function LandingPage() {
   const involvedBoards = boards.filter(board =>
     Array.isArray(board.members) && board.members.includes(userId) && board.owner !== userId
   ).slice(0, 2);
-
+  console.log(boards)
   useEffect(() => {
     dispatch(fetchUserBoards());
-  }, [dispatch]);
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
