@@ -70,13 +70,37 @@ const deleteBoard = (id) => {
 }
 
 const createTask = (boardId, taskData) => {
-    console.log(taskData);
-    const board = getAllBoards().find((board) => board.id === boardId);
+    const allBoards = getAllBoards();
+    const board = allBoards.find((board) => board.id === boardId);
     const task = { id: uuid(), ...taskData };
     board.tasks.push(task);
+    fileUtils.write(boardsFilePath, allBoards);
     return task;
-}
+};
 
+const updateTask = (boardId, taskId, taskData) => {
+    const allBoards = getAllBoards();
+    const board = allBoards.find((board) => board.id === boardId);
+    const taskIndex = board.tasks.findIndex((task) => task.id === taskId);
+    if (taskIndex === -1) {
+        throw new Error("Task not found");
+    }
+    board.tasks[taskIndex] = { ...board.tasks[taskIndex], ...taskData };
+    fileUtils.write(boardsFilePath, allBoards);
+    return board.tasks[taskIndex];
+};
+
+const deleteTask = (boardId, taskId) => {
+    const allBoards = getAllBoards();
+    const board = allBoards.find((board) => board.id === boardId);
+    const taskIndex = board.tasks.findIndex((task) => task.id === taskId);
+    if (taskIndex === -1) {
+        throw new Error("Task not found");
+    }
+    const deletedTask = board.tasks.splice(taskIndex, 1);
+    fileUtils.write(boardsFilePath, allBoards);
+    return deletedTask[0];
+};
 module.exports = {
     getAllBoards,
     getBoardById,
@@ -84,5 +108,7 @@ module.exports = {
     updateBoard,
     deleteBoard,
     getBoardsByUser,
-    createTask
+    createTask,
+    updateTask,
+    deleteTask,
 };
