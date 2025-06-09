@@ -2,11 +2,11 @@
 
 .mobileMenu {
   width: 100vw;
-  height: calc(100dvh - 70px);
+  height: calc(100dvh - 60px);
   position: fixed;
   z-index: 9999;
   top: 70px;
-  transform: translateY(-100dvh);
+  transform: translateY(-110dvh);
   transition: transform 0.4s var(--main-trans);
   left: 0;
   background-image: var(--background-gradient);
