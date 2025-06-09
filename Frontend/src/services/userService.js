@@ -72,3 +72,10 @@ export const updatePassword = async (id, password) => {
 
     return response.json();
 }
+
+export const updateUser = async (id, data) => {
+    return await authFetch(`${BASE_URL}/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+    });
+}

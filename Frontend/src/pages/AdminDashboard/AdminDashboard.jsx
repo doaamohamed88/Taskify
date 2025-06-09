@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setSelectedBoard } from "../../store/selectedBoard"
 import { getBoardById } from "../../services/boardService"
 import { getUserByEmail } from "../../services/userService"
+import { set } from "react-hook-form"
 
 export default function AdminDashboard() {
   const modalRef = useRef()
@@ -24,7 +25,7 @@ export default function AdminDashboard() {
   const [completedTasks, setCompletedTasks] = useState(0)
   const [inProgressTasks, setInProgressTasks] = useState(0)
   const [notStartedTasks, setNotStartedTasks] = useState(0)
-  const [memberNames, setMemberNames] = useState([])
+  const [memberInfo, setMemberInfo] = useState([])
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -44,7 +45,8 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (boardData) {
       calculateProgress()
-      getMemberNames()
+      setMemberInfo([])
+      getMemberInfo()
     }
   }, [boardData])
 
@@ -76,12 +78,13 @@ export default function AdminDashboard() {
     )
   }
 
-  function getMemberNames() {
-    boardData.members.forEach(memb => {
-      getUserByEmail(memb.email).then(res => {
-        setMemberNames(arr => {
-          if (arr.includes(res.name)) return arr
-          return [...arr, res.name]
+  function getMemberInfo() {
+    boardData.members.forEach((memb) => {
+      if (memb.email === adminInfo.email) return
+      getUserByEmail(memb.email).then((res) => {
+        setMemberInfo((arr) => {
+          if (arr.some((member) => member.email === res.email)) return arr
+          return [...arr, { name: res.name, email: res.email }]
         })
       })
     })
@@ -121,9 +124,13 @@ export default function AdminDashboard() {
               onClick={() => modalRef.current.open()}
             ></FontAwesomeIcon>
           </div>
-          {memberNames &&
-            memberNames.map((member) => (
-              <TeamMember key={crypto.randomUUID()} name={member}></TeamMember>
+          {memberInfo &&
+            memberInfo.map((memb) => (
+              <TeamMember
+                key={memb.email}
+                name={memb.name}
+                email={memb.email}
+              ></TeamMember>
             ))}
         </div>
       </div>
