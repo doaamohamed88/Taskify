@@ -37,7 +37,7 @@ export const authFetch = async (url, options = {}) => {
             const newAccessToken = await generateRefreshToken();
             headers.Authorization = `Bearer ${newAccessToken}`;
 
-            const retryResponse = await fetch(url, { ...options, headers });
+            const retryResponse = await fetch(`${BASE_URL}${url}`, { ...options, headers });
             if (!retryResponse.ok) {
                 throw new Error("Retry request failed");
             }

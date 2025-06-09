@@ -1,14 +1,16 @@
-const BASE_URL = import.meta.env.VITE_APP_BASE_URL + '/boards';
+import { authFetch } from "../helpers/authFetch"
+
+const BASE_URL = "/boards"
 
 export const getBoardById = async (id) => {
-  const response = await fetch(`${BASE_URL}/${id}`, {
+  return await authFetch(`${BASE_URL}/${id}`, {
     method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    throw new Error("Failed to fetch board");
-  }
-  return response.json();
-};
+  })
+}
+
+export const updateBoard = async (id, data) => {
+  return await authFetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  })
+}

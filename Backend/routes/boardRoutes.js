@@ -7,7 +7,7 @@ boardRouter.use(authenticate);
 
 boardRouter.get('/', (req, res) => {
     try {
-        const userId = req.user.userId;
+        const userId = req.user.id;
         const userBoards = boardService.getBoardsByUser(userId);
         res.send(userBoards);
     } catch (error) {

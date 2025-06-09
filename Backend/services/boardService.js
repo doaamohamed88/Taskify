@@ -32,9 +32,10 @@ const getBoardById = (id) => {
 const addBoard = (boardData, owner) => {
     const boards = getAllBoards();
     const users = getAllUsers();
-    const newBoard = { id: uuid(), owner: owner.userId, ...boardData };
+    const newBoard = { id: uuid(), owner: owner.id, ...boardData };
+    console.log("New board created:", newBoard);
 
-    updateUser(owner.userId, { ...owner, boards: [...owner.boards, newBoard.id] })
+    updateUser(owner.id, { ...owner, boards: [...owner.boards, newBoard.id] })
 
     boardData.members.forEach((memberId) => {
         let member = users.find((user) => user.id === memberId);
