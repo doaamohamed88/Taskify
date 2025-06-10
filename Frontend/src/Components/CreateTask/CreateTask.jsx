@@ -7,10 +7,7 @@ import { authFetch } from "../../helpers/authFetch";
 import { createTask } from "../../services/boardService";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSelectedBoard } from "../../store/selectedBoard";
-<<<<<<< HEAD
-=======
 
->>>>>>> 59cd2de (fix createTask form)
 function CreateTask({ onClose, boardId }) {
   // const titleRef = useRef();
   // const descriptionRef = useRef();
@@ -21,14 +18,10 @@ function CreateTask({ onClose, boardId }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ status: "To Do" });
   const [selectedMembers, setSelectedMembers] = useState([]);
-<<<<<<< HEAD
   const mySelectedBoard = useSelector((state) => state.selectedBoard);
-  const dispatch = useDispatch()
-  console.log(formData);
-=======
   const dispatch = useDispatch();
-  const selectedBoardTasks = useSelector((state) => state.selectedBoard.tasks);
->>>>>>> 59cd2de (fix createTask form)
+  console.log(formData);
+
   // Handler to update formData on focus
   const handleFocus = (field, ref) => {
     setFormData((prev) => ({
@@ -64,8 +57,8 @@ function CreateTask({ onClose, boardId }) {
       const response = await createTask(boardId, formData);
       console.log("Task created:", response);
       const updatedBoard = {
-      ...mySelectedBoard,
-      tasks: [...(mySelectedBoard.tasks || []), response],
+        ...mySelectedBoard,
+        tasks: [...(mySelectedBoard.tasks || []), response],
       };
       dispatch(updateSelectedBoard(updatedBoard));
 
