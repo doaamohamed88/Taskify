@@ -21,8 +21,8 @@ const TaskDetails = ({ modalRef, task }) => {
     description: task.description || "",
     status: task.status || "todo",
     dueDate: task.dueDate || "",
-    assignee: task.assignee || "",
-    difficulty: task.difficulty || "",
+    members: task.members || "",
+    priority: task.priority || "",
   });
     const selectedBoard = useSelector((state) => state.selectedBoard);
 
@@ -30,10 +30,13 @@ const TaskDetails = ({ modalRef, task }) => {
   const [status, setStatus] = useState(detail.status);
   const [isEditing, setIsEditing] = useState(false);
 
-  // set assignee users form task details object as initial card members
-  const [cardMembers, setCardMembers] = useState(task?.assignee || []);
+  // set members users form task details object as initial card members
+  const [cardMembers, setCardMembers] = useState(task?.members || []);
   const [showMember, setShowMember] = useState(false);
 
+  console.log('cardMembers:', {cardMembers, task, selectedBoard});
+
+  
   useEffect(() => {
     setDetail(task);
   }, [task]);
@@ -53,7 +56,7 @@ const TaskDetails = ({ modalRef, task }) => {
     console.log("Updated Task:", {
       ...detail,
       status: status,
-      assignee: cardMembers.map((member) => (member?.name || member?.email)).join(", "),
+      members: cardMembers.map((member) => (member?.name || member?.email)).join(", "),
     });
     modalRef.current.close(); // Close the modal after saving
   };
@@ -101,7 +104,7 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
-            value={task.difficulty}
+            value={task.priority}
             disabled={!isEditing}
           />
         </div>
@@ -138,13 +141,13 @@ const TaskDetails = ({ modalRef, task }) => {
           />
         </div>
 
-        {/* Assignee */}
+        {/* members */}
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaUser className={classes.icon} />
-            <label className={classes.label}>Assignee</label>
+            <label className={classes.label}>members</label>
           </div>
-          {/* <div className={classes.value}>{detail.assignee}</div> */}
+          {/* <div className={classes.value}>{detail.members}</div> */}
           <div className={`${classes.value} ${classes.members_container}`}>
             {cardMembers.map((member) => (
               <div
@@ -152,7 +155,7 @@ const TaskDetails = ({ modalRef, task }) => {
                 className={`${classes.member} ${classes.truncate}`}
               >
                 <span className={classes.memberAvatar}>
-                  {(member.name || member.email)?.slice(0, 2).toUpperCase()}
+                  {(member.label || member.email)?.slice(0, 2).toUpperCase()}
                 </span>
               </div>
             ))}
@@ -170,7 +173,7 @@ const TaskDetails = ({ modalRef, task }) => {
           >
             <Members
               boardMembers={boardMembers}
-              initialCardMembers={task?.assignee || []}
+              initialCardMembers={task?.members || []}
               setCardMembers={setCardMembers}
               cardMembers={cardMembers}
               closeMember={() => setShowMember(false)}

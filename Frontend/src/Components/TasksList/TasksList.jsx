@@ -24,7 +24,7 @@ const TasksList = ({ title }) => {
   const [tasks, setTasks] = useState(
     boardTasks.filter((task) => task.status === filter)
   );
-  console.log(tasks);
+  console.log({tasks, selectedBoard});
 
   useEffect(() => {
     setTasks(boardTasks.filter((task) => task.status === filter));
