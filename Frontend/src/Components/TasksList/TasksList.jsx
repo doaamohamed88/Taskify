@@ -11,10 +11,10 @@ import { useSelector } from "react-redux";
 const TasksList = ({ title }) => {
   const filter =
     title === "To Do"
-      ? "todo"
+      ? "To Do"
       : title === "In Progress"
-      ? "in-progress"
-      : "done";
+      ? "In Progress"
+      : "Done";
   const selectedBoard = useSelector((state) => state.selectedBoard);
   const boardTasks =
     selectedBoard && Array.isArray(selectedBoard.tasks)
@@ -24,6 +24,7 @@ const TasksList = ({ title }) => {
   const [tasks, setTasks] = useState(
     boardTasks.filter((task) => task.status === filter)
   );
+  console.log(tasks);
 
   useEffect(() => {
     setTasks(boardTasks.filter((task) => task.status === filter));
