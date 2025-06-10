@@ -58,7 +58,7 @@ export default function AdminDashboard() {
     setCompletedTasks(
       boardData.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "done").length /
+        (boardData.tasks.filter((task) => task.status === "Done").length /
           boardData.tasks.length) *
         100
       )
@@ -66,7 +66,7 @@ export default function AdminDashboard() {
     setInProgressTasks(
       boardData.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "in-progress").length /
+        (boardData.tasks.filter((task) => task.status === "In Progress").length /
           boardData.tasks.length) *
         100
       )
@@ -74,7 +74,7 @@ export default function AdminDashboard() {
     setNotStartedTasks(
       boardData.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "todo").length /
+        (boardData.tasks.filter((task) => task.status === "To Do").length /
           boardData.tasks.length) *
         100
       )
