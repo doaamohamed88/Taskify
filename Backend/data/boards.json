@@ -30,5 +30,25 @@
         "email": "abdelrahmanali58@gmail.com"
       }
     ]
+  },
+  {
+    "id": "0983abac-ea98-4c8b-921a-9adfc15f0dde",
+    "owner": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
+    "createdAt": "2025-06-10T09:50:05.865Z",
+    "title": "Test board",
+    "members": [
+      {
+        "id": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
+        "email": "doaa@gmail.com"
+      },
+      {
+        "id": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+        "email": "Kareem.Mohamed.ayman@gmail.com"
+      },
+      {
+        "id": "a86ad48e-d083-468b-8235-1160ae3bf2e1",
+        "email": "abdelrahmanali58@gmail.com"
+      }
+    ]
   }
 ]
