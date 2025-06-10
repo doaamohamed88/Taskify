@@ -51,17 +51,21 @@ function Header() {
           </button>
         </div>
 
-        <Link to="/createdboardsPage">
-          <p className={styles.header_link}>{t("Created Boards")}</p>
-        </Link>
+        <div>
+          <Link to="/createdboardsPage">
+            <p className={styles.header_link}>{t("Created Boards")}</p>
+          </Link>
+        </div>
 
         <Link to="/">
           <p className={styles.logo}>Taskify</p>
         </Link>
 
-        <Link to="/involvedboardsPage">
-          <p className={styles.header_link}>{t("Involved Boards")}</p>
-        </Link>
+        <div>
+          <Link to="/involvedboardsPage">
+            <p className={styles.header_link}>{t("Involved Boards")}</p>
+          </Link>
+        </div>
 
         <div>
           <button className={styles.signOut} onClick={logout}>
