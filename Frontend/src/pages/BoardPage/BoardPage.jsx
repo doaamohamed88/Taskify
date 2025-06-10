@@ -25,11 +25,9 @@ const BoardPage = () => {
     if (!over || !active) return;
     if (active.id === over.id) return;
 
-    // Find the dragged task
     const draggedTask = tasks.find((t) => t.id === active.id);
     if (!draggedTask) return;
 
-    // If dropped in a new column, update status
     const newStatus = over.id;
     if (STATUSES.includes(newStatus) && draggedTask.status !== newStatus) {
       const updatedTasks = tasks.map((task) =>
@@ -42,7 +40,6 @@ const BoardPage = () => {
       return;
     }
 
-    // Reorder within the same column
     const activeIndex = tasks.findIndex((t) => t.id === active.id);
     const overIndex = tasks.findIndex((t) => t.id === over.id);
     if (activeIndex === -1 || overIndex === -1) return;
