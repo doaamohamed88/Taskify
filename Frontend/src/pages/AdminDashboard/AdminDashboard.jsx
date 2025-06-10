@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   const { t } = useTranslation()
 
   const dispatch = useDispatch()
-  const userBoardId = useSelector((state) => state.user.boards[0].id)
+  // const userBoardId = useSelector((state) => state.user.boards[0].id)
   const boardData = useSelector((state) => state.selectedBoard)
   const adminInfo = useSelector((state) => state.user)
 
@@ -30,20 +30,20 @@ export default function AdminDashboard() {
   const [emailInput, setEmailInput] = useState("")
   const [emailError, setEmailError] = useState("")
 
-  useEffect(() => {
-    const fetchBoard = async () => {
-      let board = null
-      if (userBoardId) {
-        try {
-          board = await getBoardById(userBoardId)
-          dispatch(setSelectedBoard(board))
-        } catch (error) {
-          console.error("Error fetching board:", error)
-        }
-      }
-    }
-    fetchBoard()
-  }, [userBoardId])
+  // useEffect(() => {
+  //   const fetchBoard = async () => {
+  //     let board = null
+  //     if (userBoardId) {
+  //       try {
+  //         board = await getBoardById(userBoardId)
+  //         dispatch(setSelectedBoard(board))
+  //       } catch (error) {
+  //         console.error("Error fetching board:", error)
+  //       }
+  //     }
+  //   }
+  //   fetchBoard()
+  // }, [userBoardId])
 
   useEffect(() => {
     if (boardData) {
@@ -58,7 +58,7 @@ export default function AdminDashboard() {
     setCompletedTasks(
       boardData.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "done").length /
+        (boardData.tasks.filter((task) => task.status === "Done").length /
           boardData.tasks.length) *
         100
       )
@@ -66,7 +66,7 @@ export default function AdminDashboard() {
     setInProgressTasks(
       boardData.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "in-progress").length /
+        (boardData.tasks.filter((task) => task.status === "In Progress").length /
           boardData.tasks.length) *
         100
       )
@@ -74,7 +74,7 @@ export default function AdminDashboard() {
     setNotStartedTasks(
       boardData.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "todo").length /
+        (boardData.tasks.filter((task) => task.status === "To Do").length /
           boardData.tasks.length) *
         100
       )
