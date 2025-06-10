@@ -13,14 +13,16 @@ const TasksList = ({ title }) => {
     title === "To Do"
       ? "todo"
       : title === "In Progress"
-        ? "in-progress"
-        : "done";
+      ? "in-progress"
+      : "done";
   const selectedBoard = useSelector((state) => state.selectedBoard);
-  const boardTasks = selectedBoard && Array.isArray(selectedBoard.tasks) ? selectedBoard.tasks : [];
+  const boardTasks =
+    selectedBoard && Array.isArray(selectedBoard.tasks)
+      ? selectedBoard.tasks
+      : [];
   const [tasks, setTasks] = useState(
     boardTasks.filter((task) => task.status === filter)
   );
-
 
   useEffect(() => {
     setTasks(boardTasks.filter((task) => task.status === filter));
@@ -32,22 +34,31 @@ const TasksList = ({ title }) => {
   function showModal() {
     modalRef.current.open();
   }
+
+  function handleCloseModal() {
+    modalRef.current.close();
+  }
+
   return (
     <div className={`${styles.listContainer}`}>
       <div
-        className={`${styles.titleContainer} ${title === "To Do"
-          ? styles.todo
-          : title === "In Progress"
+        className={`${styles.titleContainer} ${
+          title === "To Do"
+            ? styles.todo
+            : title === "In Progress"
             ? styles.inProgress
             : styles.done
-          }`}
+        }`}
       >
         <h1 className={`${styles.title}`}>{t(title)}</h1>
         {title === "To Do" && (
           <div className={`${styles.iconContainer}`}>
             <FontAwesomeIcon icon={faPlus} size="lg" onClick={showModal} />
             <Modal ref={modalRef}>
-              <CreateTask />
+              <CreateTask
+                onClose={handleCloseModal}
+                boardId={selectedBoard.id}
+              />
             </Modal>
           </div>
         )}
@@ -55,9 +66,7 @@ const TasksList = ({ title }) => {
       {tasks.length === 0 ? (
         <div>No tasks available.</div>
       ) : (
-        tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))
+        tasks.map((task) => <TaskCard key={task.id} task={task} />)
       )}
     </div>
   );
