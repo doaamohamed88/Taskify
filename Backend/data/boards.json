@@ -72,6 +72,48 @@
             "label": "Kareem"
           }
         ]
+      },
+      {
+        "id": "3a71d5c1-862a-4128-b8h5-z59ed5460f09",
+        "title": "Designing",
+        "description": "Designing the project",
+        "priority": "easy",
+        "status": "In Progress",
+        "dueDate": "2026-12-05",
+        "members": [
+          {
+            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+            "label": "Kareem"
+          }
+        ]
+      },
+      {
+        "id": "3a71d5c1-862a-4618-b8h5-z59eh5460f09",
+        "title": "Brainstorming",
+        "description": "Brainstorming the project",
+        "priority": "easy",
+        "status": "Done",
+        "dueDate": "2026-12-05",
+        "members": [
+          {
+            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+            "label": "Kareem"
+          }
+        ]
+      },
+      {
+        "id": "3a71d5h9-521n-4128-b8h5-z59ed5460f09",
+        "title": "Frontend",
+        "description": "Frontend Work",
+        "priority": "easy",
+        "status": "Done",
+        "dueDate": "2026-12-05",
+        "members": [
+          {
+            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+            "label": "Kareem"
+          }
+        ]
       }
     ],
     "members": [
