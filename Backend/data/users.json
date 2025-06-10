@@ -4,11 +4,15 @@
     "name": "Kareem",
     "email": "kareem.mohamed.ayman@gmail.com",
     "password": "aa",
-    "boards": [
-      "3d0e054b-ecbb-4b49-93eb-da4feed3486f"
-    ],
-    "verified": true,
-    "iat": 1749566302,
-    "exp": 1749567202
+    "boards": [],
+    "verified": true
+  },
+  {
+    "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+    "name": "Abdelrahman",
+    "email": "abdelrahmanali58@gmail.com",
+    "password": "123456789",
+    "boards": [],
+    "verified": true
   }
 ]
