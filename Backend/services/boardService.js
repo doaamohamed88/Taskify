@@ -53,7 +53,6 @@ const addBoard = (boardData, owner) => {
     };
     console.log("New board created:", newBoard);
 
-    // updateUser(owner.id, { ...owner, boards: [...owner.boards, newBoard.id] })
     updateUser(owner.id, {
         ...owner,
         boards: Array.from(new Set([...(owner.boards || []), newBoard.id]))
