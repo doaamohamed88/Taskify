@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 import classes from "./MobileMenu.module.css"
 import { logout } from "../../services/userService"
+import { t } from "i18next"
 
 export default function MobileMenu({
   toggleTheme,
@@ -21,6 +22,18 @@ export default function MobileMenu({
       </Link>
 
       <div>
+        <button onClick={() => setToggleMobileMenu(false)}>
+          <Link to="/createdboardsPage">
+            <p>{t("Created Boards")}</p>
+          </Link>
+        </button>
+        
+        <button onClick={() => setToggleMobileMenu(false)}>
+          <Link to="/involvedboardsPage">
+            <p>{t("Involved Boards")}</p>
+          </Link>
+        </button>
+
         <button
           onClick={() => {
             toggleTheme()
