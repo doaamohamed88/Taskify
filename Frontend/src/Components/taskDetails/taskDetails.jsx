@@ -12,61 +12,36 @@ import {
   FaPen,
 } from "react-icons/fa";
 import Members from "./Members";
+import { useSelector } from "react-redux";
 
 const TaskDetails = ({ modalRef, task }) => {
   const [detail, setDetail] = useState({
     id: task.id,
-    title: "",
-    description: "",
-    status: "todo",
-    dueDate: "",
-    assignee: "",
-    difficulty: "",
+    title: task.title || "",
+    description: task.description || "",
+    status: task.status || "todo",
+    dueDate: task.dueDate || "",
+    assignee: task.assignee || "",
+    difficulty: task.difficulty || "",
   });
+    const selectedBoard = useSelector((state) => state.selectedBoard);
+
   const [boardMembers, setBoardMembers] = useState([]);
-
   const [status, setStatus] = useState(detail.status);
-
   const [isEditing, setIsEditing] = useState(false);
 
-  const initialCardMembers = [{ id: 4, name: "Doaa Tawfik" }];
   // set assignee users form task details object as initial card members
-  const [cardMembers, setCardMembers] = useState(initialCardMembers);
+  const [cardMembers, setCardMembers] = useState(task?.assignee || []);
   const [showMember, setShowMember] = useState(false);
 
   useEffect(() => {
-    // Fetch task detals based on task id ...
-    fetchTaskDetails();
-    // Fetch getBoardById to get its members...
-    fetchBoardMembers();
-  }, []);
+    setDetail(task);
+  }, [task]);
 
-  const fetchTaskDetails = async () => {
-    // Simulate fetching task details from an API based on taskId come as prop or form url...
-    const fetchedTask = {
-      id: "10",
-      title: "Setup CI/CD",
-      description: "Configure GitHub Actions.",
-      status: "todo",
-      dueDate: "2026-01-05",
-      assignee: "abdelrahmanali58@gmail.com",
-      difficulty: "medium",
-    };
-    setDetail(fetchedTask);
-  };
+  useEffect(() => {
+    setBoardMembers(selectedBoard.members || []);
+  }, [selectedBoard]);
 
-  const fetchBoardMembers = async () => {
-    // Simulate fetching board members from an API
-    const fetchedMembers = [
-      { id: 1, name: "Abdelrahman Ali" },
-      { id: 2, name: "Jamila Ahmed" },
-      { id: 3, name: "Kareem Ayman" },
-      { id: 4, name: "Doaa Tawfik" },
-      { id: 5, name: "Mohamed Salah" },
-      { id: 6, name: "Fatma Ali" },
-    ];
-    setBoardMembers(fetchedMembers);
-  };
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
@@ -78,7 +53,7 @@ const TaskDetails = ({ modalRef, task }) => {
     console.log("Updated Task:", {
       ...detail,
       status: status,
-      assignee: cardMembers.map((member) => member.name).join(", "),
+      assignee: cardMembers.map((member) => (member?.name || member?.email)).join(", "),
     });
     modalRef.current.close(); // Close the modal after saving
   };
@@ -177,7 +152,7 @@ const TaskDetails = ({ modalRef, task }) => {
                 className={`${classes.member} ${classes.truncate}`}
               >
                 <span className={classes.memberAvatar}>
-                  {member.name?.slice(0, 2).toUpperCase()}
+                  {(member.name || member.email)?.slice(0, 2).toUpperCase()}
                 </span>
               </div>
             ))}
