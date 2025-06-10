@@ -102,10 +102,6 @@ function CreateTask({ onClose, boardId }) {
             required
           />
         </div>
-        <div className={styles.input_container}>
-          <label htmlFor="status">Status</label>
-           <input type="text" name="status" id="status" value={'To Do'} disabled />
-        </div>
       </div>
       <div className={styles.conatiner}>
         <div className={styles.input_container}>

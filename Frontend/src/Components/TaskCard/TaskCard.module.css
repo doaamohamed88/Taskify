@@ -9,7 +9,9 @@
   padding: 20px;
   border-radius: var(--border-radius-main);
   border: var(--lilac-border);
-  cursor: pointer !important;
+  /* cursor: pointer !important; */
+  cursor: grab;
+  transition: box-shadow 0.2s, background-color 0.2s, transform 0.2s;
 }
 
 .icon {
@@ -29,4 +31,13 @@
   border-radius: 100%;
   background-color: var(--transperant);
   box-shadow: var(--shadow);
+}
+
+.dragging {
+  box-shadow: 0 4px 12px var(--shadow-color, rgba(162, 89, 255, 0.15));
+  background-color: var(--lilac-color, #6c2eb7); /* Use your dark purple */
+  color: #fff;
+  /* Add a slight scale for feedback */
+  transform: scale(1.03);
+  transition: box-shadow 0.2s, background-color 0.2s, color 0.2s, transform 0.2s;
 }

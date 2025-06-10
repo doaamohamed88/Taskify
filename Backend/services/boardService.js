@@ -16,7 +16,7 @@ const getAllBoards = () => {
 const getBoardsByUser = (userId) => {
     const boards = getAllBoards();
     let ownerBoards = boards.filter(board => board.owner === userId);
-    let memberBoards = boards.filter(board => board.members.includes(userId))
+    let memberBoards = boards.filter(board => board.members.some(member => member.id === userId));
     return [...ownerBoards, ...memberBoards];
 };
 
@@ -32,23 +32,38 @@ const getBoardById = (id) => {
 const addBoard = (boardData, owner) => {
     const boards = getAllBoards();
     const users = getAllUsers();
-
+    // const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData };
     const members = boardData.members.map((memberId) => {
-        const member = users.find((user) => user.id === memberId);
-        return member ? { id: member.id, email: member.email, name: member.name } : { id: memberId, email: null, name: null };
+        const user = users.find((user) => user.id === memberId);
+        return {
+            id: user.id,
+            name: user.name, // or whatever fields you need
+            email: user.email,
+        };
     });
-    const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData, members, tasks: [] };
+
+    const newBoard = {
+        id: uuid(),
+        owner: owner.id,
+        createdAt: new Date().toISOString(),
+        title: boardData.title,
+        description: boardData.description,
+        members,
+        tasks: [],
+    };
     console.log("New board created:", newBoard);
 
-    updateUser(owner.id, { ...owner, boards: [...owner.boards, newBoard.id] })
-
+    // updateUser(owner.id, { ...owner, boards: [...owner.boards, newBoard.id] })
+    updateUser(owner.id, {
+        ...owner,
+        boards: Array.from(new Set([...(owner.boards || []), newBoard.id]))
+    });
     boardData.members.forEach((memberId) => {
         let member = users.find((user) => user.id === memberId);
         updateUser(memberId, { ...member, boards: [...member.boards, newBoard.id] })
     });
 
     boards.push(newBoard);
-
     fileUtils.write(boardsFilePath, boards);
     return newBoard;
 }
@@ -78,22 +93,7 @@ const deleteBoard = (id) => {
 const createTask = (boardId, taskData) => {
     const allBoards = getAllBoards();
     const board = allBoards.find((board) => board.id === boardId);
-    const users = getAllUsers();
-    const members = (taskData.members || []).map((member) => {
-        if (typeof member === 'object' && member.id && member.name && member.email) {
-            return member;
-        } else if (typeof member === 'string') {
-            const user = users.find((u) => u.id === member);
-            return user ? { id: user.id, email: user.email, name: user.name } : { id: member, email: null, name: null };
-        } else if (typeof member === 'object' && member.id) {
-            // member is an object with id only
-            const user = users.find((u) => u.id === member.id);
-            return user ? { id: user.id, email: user.email, name: user.name } : { id: member.id, email: null, name: null };
-        } else {
-            return { id: member, email: null, name: null };
-        }
-    });
-    const task = { id: uuid(), ...taskData, members };
+    const task = { id: uuid(), ...taskData };
     board.tasks.push(task);
     fileUtils.write(boardsFilePath, allBoards);
     return task;

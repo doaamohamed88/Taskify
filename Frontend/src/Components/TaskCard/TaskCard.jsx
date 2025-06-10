@@ -3,8 +3,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./TaskCard.module.css";
 import { faEllipsis, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import TaskDetails from "../taskDetails/taskDetails";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 const TaskCard = ({ task }) => {
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({ id: task.id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1
+  };
+
   const modalRef = useRef();
 
   function handleShowModal() {
@@ -13,7 +30,11 @@ const TaskCard = ({ task }) => {
 
   return (
     <>
-      <div className={`${styles.taskContainer}`} onClick={handleShowModal}>
+      <div ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className={`${styles.taskContainer} ${isDragging ? styles.dragging : ""}`} onClick={handleShowModal}>
         <FontAwesomeIcon className={styles.icon} icon={faEllipsis} size="lg" />
         <h3>{task.title}</h3>
 
