@@ -24,6 +24,8 @@ export default function CreateBoardForm({ onClose }) {
         const title = boardTitleRef.current?.value;
         const selectInstance = membersRef.current;
         const selectedMembers = selectInstance?.getValue() || [];
+        console.log(selectedMembers);
+
         const selectedMemberIds = selectedMembers.map((opt) => opt.value);
 
         const validationErrors = [];

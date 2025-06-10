@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function BoardCard({ board, boardType }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const allUsers = useSelector(state => state.user.allUsers || []);
 
   function getRandomColor(index) {
     const colors = ["#FFC107", "#03A9F4", "#E91E63", "#4CAF50", "#9C27B0"];
@@ -17,8 +16,6 @@ function BoardCard({ board, boardType }) {
     dispatch(setSelectedBoard(board));
     navigate(`/${board.id}/leader-board`);
   };
-  console.log(board);
-
 
   return (
     <div

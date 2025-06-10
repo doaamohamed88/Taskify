@@ -19,35 +19,38 @@ import { useTranslation } from "react-i18next";
 export default function LandingPage() {
   const modalRef = useRef();
   const accessToken = localStorage.getItem("accessToken");
+
   const user = accessToken ? jwtDecode(accessToken) : null;
+
   const userId = user?.id;
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { data: boards, loading, error } = useSelector((state) => state.boards);
 
   const [dir, setDir] = useState("ltr");
 
+  const createdBoards = boards.filter((board) => String(board.owner) === String(userId)).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 2);
+
+  const involvedBoards = boards
+    .filter(
+      (board) =>
+        board.members.find((member) => String(member.id) === String(userId)))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 2);
+
+  console.log(boards.filter((board) => board.members.find((member) => String(member.id) === String(userId))).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 2));
+
+
+  function handleShowModal() {
+    modalRef.current.open();
+  }
   useEffect(() => {
     const direction = document.documentElement.getAttribute("dir") || "ltr";
     setDir(direction);
   }, []);
-  function handleShowModal() {
-    modalRef.current.open();
-  }
 
-  const createdBoards = boards
-    .filter((board) => board.owner === userId)
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .slice(0, 2);
-  const involvedBoards = boards
-    .filter(
-      (board) =>
-        Array.isArray(board.members) &&
-        board.members.includes(userId) &&
-        board.owner !== userId
-    )
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // most recent first
-    .slice(0, 2);
+
   useEffect(() => {
     dispatch(fetchUserBoards());
   }, [dispatch]);
