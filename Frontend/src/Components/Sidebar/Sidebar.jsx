@@ -10,6 +10,8 @@ export default function Sidebar() {
   const { id } = useParams();
   const collapseState = useSelector((state) => state.sidebarCollaps.collapsed)
   const dispatch = useDispatch()
+  const userId = useSelector((state) => state.user.id)
+  const boardOwner = useSelector((state) => state.selectedBoard.owner)
 
   const toggleCollapse = () => {
     dispatch(toggleSidebar())
@@ -20,12 +22,12 @@ export default function Sidebar() {
 
   return (
     <div className={`${styles.sidebar} ${collapseState ? styles.collapsed : ""}`}>
-      <SideBarButton
+      {boardOwner === userId && <SideBarButton
         title="Dashboard"
         icon={faDashboard}
         active={path === `/${id}/dashboard`}
         linkTo={`/${id}/dashboard`}
-      ></SideBarButton>
+      ></SideBarButton>}
       <SideBarButton
         title="Leaderboard"
         icon={faTrophy}
