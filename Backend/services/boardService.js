@@ -37,7 +37,8 @@ const addBoard = (boardData, owner) => {
         const member = users.find((user) => user.id === memberId);
         return member ? { id: member.id, email: member.email } : { id: memberId, email: null };
     });
-    const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData, members };
+    // Add tasks: []
+    const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData, members, tasks: [] };
     console.log("New board created:", newBoard);
 
     updateUser(owner.id, { ...owner, boards: [...owner.boards, newBoard.id] })
@@ -48,7 +49,6 @@ const addBoard = (boardData, owner) => {
     });
 
     boards.push(newBoard);
-
     fileUtils.write(boardsFilePath, boards);
     return newBoard;
 }
