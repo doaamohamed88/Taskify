@@ -30,18 +30,19 @@ export default function LandingPage() {
 
   const [dir, setDir] = useState("ltr");
 
-  const createdBoards = boards.filter((board) => String(board.owner) === String(userId)).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 2);
+  const createdBoards = boards
+    .filter((board) => String(board.owner) === String(userId))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 2);
 
   const involvedBoards = boards
     .filter(
       (board) =>
-        board.members.find((member) => String(member.id) === String(userId)))
+        board.members.find((member) => String(member.id) === String(userId)) &&
+        String(board.owner) !== String(userId) // Exclude boards where user is owner
+    )
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 2);
-
-  console.log(boards.filter((board) => board.members.find((member) => String(member.id) === String(userId))).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 2));
-
-
   function handleShowModal() {
     modalRef.current.open();
   }

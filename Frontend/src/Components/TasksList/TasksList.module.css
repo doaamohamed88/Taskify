@@ -19,9 +19,8 @@
   border-radius: 50%;
   border: 2px solid #fff;
   cursor: pointer;
-}ئ
-
-.titleContainer {
+}
+ئ .titleContainer {
   background-color: var(--main-color);
 }
 
@@ -35,4 +34,29 @@
 
 .done {
   border: 5px solid var(--done-color);
+}
+
+.taskList {
+  min-height: 120px;
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s, border 0.2s;
+}
+
+.draggingOver {
+  background-color: var(
+    --main-color,
+    #e0f7fa
+  ); /* fallback to old color if not set */
+  border: 2px dashed var(--lilac-color, #a259ff);
+  min-height: 120px;
+  transition: background-color 0.2s, border 0.2s;
+}
+
+.dragging {
+  box-shadow: 0 4px 12px var(--shadow-color, rgba(162, 89, 255, 0.15));
+  background-color: var(--lilac-color, #a259ff);
+  color: #fff;
+  transform: scale(1.03);
+  transition: box-shadow 0.2s, background-color 0.2s, color 0.2s, transform 0.2s;
 }
