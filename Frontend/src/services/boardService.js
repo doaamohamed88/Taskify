@@ -14,3 +14,10 @@ export const updateBoard = async (id, data) => {
     body: JSON.stringify(data),
   })
 }
+
+export const updateTask = async (boardId, taskId, data) => {
+  return await authFetch(`${BASE_URL}/${boardId}/tasks/${taskId}`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  })
+}
