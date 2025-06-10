@@ -143,12 +143,19 @@ const TaskDetails = ({ modalRef, task }) => {
             <FaCheckCircle className={classes.icon} />
             <label className={classes.label}>Priority</label>
           </div>
-          <input
+          <select
+            name="difficulty"
+            id="difficulty"
             className={`${classes.value} ${classes.input}`}
             value={detail.priority}
             onChange={(e) => isEditing && setDetail({ ...detail, priority: e.target.value })}
+            required
             disabled={!isEditing}
-          />
+          >
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
         </div>
 
         {/* Status Dropdown */}
@@ -164,9 +171,9 @@ const TaskDetails = ({ modalRef, task }) => {
             className={`${classes.value} ${classes.input}`}
             disabled={!isEditing}
           >
-            <option value="todo">To Do</option>
-            <option value="inprogress">In Progress</option>
-            <option value="done">Done</option>
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
           </select>
         </div>
 

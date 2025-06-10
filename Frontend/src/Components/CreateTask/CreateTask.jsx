@@ -8,22 +8,17 @@ import { useDispatch } from "react-redux";
 import { updateSelectedBoard } from "../../store/selectedBoard";
 import useSelectedBoard from "../../hooks/useSelectedBoard";
 
+const INITIAL_FORM_DATA = {
+  status: "To Do",
+};
+
 function CreateTask({ onClose, boardId }) {
   const membersRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ status: "To Do" });
-  const [selectedMembers, setSelectedMembers] = useState([]);
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const { selectedBoard } = useSelectedBoard();
   const dispatch = useDispatch();
   console.log(formData);
-
-  // Handler to update formData on focus
-  const handleFocus = (field, ref) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: ref.current ? ref.current.value : "",
-    }));
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +28,7 @@ function CreateTask({ onClose, boardId }) {
     }));
   };
 
+  console.log('formData', formData);
   console.log('members,,,,,', membersRef?.current?.getValue());
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +38,7 @@ function CreateTask({ onClose, boardId }) {
       formData.members = selected.map((opt) => ({
         id: opt.value,
         name: opt.label,
-        email: opt.email
+        email: opt.email,
       }));
       const response = await createTask(boardId, formData);
       console.log("Task created:", response);
@@ -52,6 +48,7 @@ function CreateTask({ onClose, boardId }) {
       };
       onClose();
       dispatch(updateSelectedBoard(updatedBoard));
+      setFormData(INITIAL_FORM_DATA);
 
       // Optionally reset form or show success message here
     } catch (error) {
@@ -68,16 +65,29 @@ function CreateTask({ onClose, boardId }) {
       <div className={styles.container}>
         <div className={styles.input_container}>
           <label htmlFor="title">Title</label>
-          <input type="text" name="title" id="title" onChange={handleChange} />
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={formData.title || ""}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className={styles.input_container}>
           <label htmlFor="difficulty">Difficulty</label>
-          <input
-            type="text"
+
+          <select
             name="difficulty"
             id="difficulty"
+            value={formData.difficulty || ""}
             onChange={handleChange}
-          />
+            required
+          >
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
         </div>
       </div>
       <div className={styles.conatiner}>
@@ -87,16 +97,14 @@ function CreateTask({ onClose, boardId }) {
             type="text"
             name="description"
             id="description"
+            value={formData.description || ""}
             onChange={handleChange}
+            required
           />
         </div>
         <div className={styles.input_container}>
           <label htmlFor="status">Status</label>
-          <select name="status" onChange={handleChange}>
-            <option>To Do</option>
-            <option>In Progress</option>
-            <option>Done</option>
-          </select>
+           <input type="text" name="status" id="status" value={'To Do'} disabled />
         </div>
       </div>
       <div className={styles.conatiner}>
@@ -106,7 +114,9 @@ function CreateTask({ onClose, boardId }) {
             type="date"
             name="due-date"
             id="due-date"
+            value={formData["due-date"] || ""}
             onChange={handleChange}
+            required
           />
         </div>
         <div className={styles.input_container}>

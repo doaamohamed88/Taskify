@@ -41,6 +41,46 @@
             "email": "abdelrahmanali58@gmail.com"
           }
         ]
+      },
+      {
+        "id": "61635f65-fae6-48f3-bec5-800a896ac6e1",
+        "title": "task2",
+        "description": "desc 2",
+        "status": "Done",
+        "dueDate": "2025-02-22",
+        "members": [
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
+          {
+            "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+            "name": "Doaa Tawik",
+            "email": "doaatawfik82001@gmail.com"
+          }
+        ],
+        "priority": "Easy"
+      },
+      {
+        "id": "f7afcd23-a08a-4f24-88cf-791cb642ca2a",
+        "title": "Task 33",
+        "description": "medium task 33",
+        "status": "In Progress",
+        "dueDate": "2025-02-22",
+        "members": [
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
+          {
+            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
+        ],
+        "priority": "Medium"
       }
     ],
     "status": "To Do",
