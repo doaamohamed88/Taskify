@@ -9,6 +9,11 @@
   flex-direction: column;
   justify-content: space-around;
   cursor: pointer;
+  transition: var(--main-trans);
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .board_card p {
