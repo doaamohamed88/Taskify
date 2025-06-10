@@ -9,6 +9,12 @@
   flex-direction: column;
   justify-content: space-around;
   cursor: pointer;
+  transition: var(--main-trans);
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    transform: translateY(-5px);
+  }
 }
 
 .board_card p {
