@@ -5,6 +5,8 @@ import SelectStyle from "../UI/SelectStyle";
 import AsyncSelect from "react-select/async";
 import { authFetch } from "../../helpers/authFetch";
 import { createTask } from "../../services/boardService";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSelectedBoard } from "../../store/selectedBoard";
 function CreateTask({ onClose, boardId }) {
   const titleRef = useRef();
   const descriptionRef = useRef();
@@ -15,6 +17,8 @@ function CreateTask({ onClose, boardId }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({});
   const [selectedMembers, setSelectedMembers] = useState([]);
+  const mySelectedBoard = useSelector((state) => state.selectedBoard);
+  const dispatch = useDispatch()
   console.log(formData);
   // Handler to update formData on focus
   const handleFocus = (field, ref) => {
@@ -40,6 +44,11 @@ function CreateTask({ onClose, boardId }) {
       setIsSubmitting(true);
       const response = await createTask(boardId, data);
       console.log("Task created:", response);
+      const updatedBoard = {
+      ...mySelectedBoard,
+      tasks: [...(mySelectedBoard.tasks || []), response],
+      };
+      dispatch(updateSelectedBoard(updatedBoard));
       // Optionally reset form or show success message here
     } catch (error) {
       console.error("Error creating task:", error);
