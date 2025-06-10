@@ -170,7 +170,7 @@ const TaskDetails = ({ modalRef, task }) => {
           >
             <Members
               boardMembers={boardMembers}
-              initialCardMembers={initialCardMembers}
+              initialCardMembers={task?.assignee || []}
               setCardMembers={setCardMembers}
               cardMembers={cardMembers}
               closeMember={() => setShowMember(false)}
