@@ -1,6 +1,6 @@
-import classes from "./taskDetails.module.css";
-import Modal from "../Modal/Modal";
-import { useEffect, useState } from "react";
+import classes from "./taskDetails.module.css"
+import Modal from "../Modal/Modal"
+import { useEffect, useState } from "react"
 import {
   FaUser,
   FaCalendarAlt,
@@ -10,80 +10,95 @@ import {
   FaUserPlus,
   FaPlus,
   FaPen,
-} from "react-icons/fa";
-import Members from "./Members";
-import { useDispatch } from "react-redux";
-import { updateSelectedBoard } from "../../store/selectedBoard";
-import { updateBoard } from "../../services/boardService";
-import { useParams } from "react-router";
-import useSelectedBoard from "../../hooks/useSelectedBoard";
+} from "react-icons/fa"
+import Members from "./Members"
+import { useDispatch } from "react-redux"
+import { updateSelectedBoard } from "../../store/selectedBoard"
+import { updateBoard } from "../../services/boardService"
+import { useParams } from "react-router"
+import useSelectedBoard from "../../hooks/useSelectedBoard"
 
 const TaskDetails = ({ modalRef, task }) => {
-  const { id } = useParams;
+  const { id } = useParams
   const [detail, setDetail] = useState({
     id: task.id,
     title: task.title || "",
     description: task.description || "",
     status: task.status || "todo",
-    dueDate: task.dueDate || "",
+    dueDate: task.dueDate || task["due-date"],
     members: task.members || "",
-    priority: task.priority || "",
-  });
-  const { selectedBoard } = useSelectedBoard();
-  const dispatch = useDispatch();
+    priority: task.difficulty || "",
+  })
+  const { selectedBoard } = useSelectedBoard()
+  const dispatch = useDispatch()
 
-  const boardId = id || selectedBoard?.id || null;
+  const boardId = id || selectedBoard?.id || null
 
-  const [boardMembers, setBoardMembers] = useState([]);
-  const [status, setStatus] = useState(detail.status);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [boardMembers, setBoardMembers] = useState([])
+  const [status, setStatus] = useState(detail.status)
+  const [isEditing, setIsEditing] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // set members users form task details object as initial card members
-  const [cardMembers, setCardMembers] = useState(task?.members || []);
-  const [showMember, setShowMember] = useState(false);
+  const [cardMembers, setCardMembers] = useState(task?.members || [])
+  const [showMember, setShowMember] = useState(false)
 
-  console.log("cardMembers:", { cardMembers, task, selectedBoard });
-
-  useEffect(() => {
-    setDetail(task);
-  }, [task]);
+  console.log("cardMembers:", { cardMembers, task, selectedBoard })
 
   useEffect(() => {
-    setBoardMembers(selectedBoard.members || []);
-  }, [selectedBoard]);
+    setDetail({
+      id: task.id,
+      title: task.title || "",
+      description: task.description || "",
+      status: task.status || "todo",
+      dueDate: task.dueDate || task["due-date"] || "",
+      members: task.members || "",
+      priority: task.priority || task.difficulty || "",
+    })
+  }, [task])
+
+  useEffect(() => {
+    setBoardMembers(selectedBoard.members || [])
+  }, [selectedBoard])
+
+  useEffect(() => {
+    console.log(isEditing)
+  }, [isEditing])
 
   const handleStatusChange = (e) => {
-    setStatus(e.target.value);
-  };
+    setStatus(e.target.value)
+  }
 
   const handleUpdateTask = async (e) => {
-    e.preventDefault();
-    // send the updated task details to your updateTask() API
-    const data = {
+    e.preventDefault()
+
+    // Prepare updated task data
+    const updatedTask = {
       ...detail,
-      status: status,
+      status,
       members: [...cardMembers],
-    };
+    }
+
+    // Update tasks array
+    const updatedTasks = selectedBoard.tasks.map((t) => (t.id === detail.id ? updatedTask : t))
+    const updatedBoard = { ...selectedBoard, tasks: updatedTasks }
 
     try {
-      setIsSubmitting(true);
-      const response = await updateBoard(boardId, data);
-      console.log("Task updated:", response);
-      // Optionally reset form or show success message here
+      setIsSubmitting(true)
+      // Update backend (send the whole board or just the task, depending on your API)
+      await updateBoard(boardId, updatedBoard)
+      // Or, if you have updateTask: await updateTask(boardId, detail.id, updatedTask);
+
+      // Update Redux store
+      dispatch(updateSelectedBoard(updatedBoard))
     } catch (error) {
-      console.error("Error updating task:", error);
-      // Optionally show error message here
+      console.error("Error updating task:", error)
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
+      setIsEditing(false)
+      modalRef.current.close()
     }
-    modalRef.current.close(); // Close the modal after saving
-    const updatedTasks = selectedBoard.tasks.map((t) =>
-      t.id === detail.id ? { ...t, ...detail, status, members: cardMembers } : t
-    );
-    const updatedBoard = { ...selectedBoard, tasks: updatedTasks };
-    dispatch(updateSelectedBoard(updatedBoard));
-  };
+  }
 
   return (
     <Modal ref={modalRef}>
@@ -102,7 +117,8 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
-            value={task.title}
+            value={detail.title}
+            onChange={(e) => isEditing && setDetail({ ...detail, title: e.target.value })}
             disabled={!isEditing}
           />
         </div>
@@ -115,7 +131,8 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
-            value={task.description}
+            value={detail.description}
+            onChange={(e) => isEditing && setDetail({ ...detail, description: e.target.value })}
             disabled={!isEditing}
           />
         </div>
@@ -128,7 +145,8 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
-            value={task.difficulty}
+            value={detail.priority}
+            onChange={(e) => isEditing && setDetail({ ...detail, priority: e.target.value })}
             disabled={!isEditing}
           />
         </div>
@@ -160,7 +178,8 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
-            value={task['due-date']}
+            value={detail.dueDate}
+            onChange={(e) => isEditing && setDetail({ ...detail, dueDate: e.target.value })}
             disabled={!isEditing}
           />
         </div>
@@ -174,19 +193,13 @@ const TaskDetails = ({ modalRef, task }) => {
           {/* <div className={classes.value}>{detail.members}</div> */}
           <div className={`${classes.value} ${classes.members_container}`}>
             {cardMembers.map((member) => (
-              <div
-                key={member.id}
-                className={`${classes.member} ${classes.truncate}`}
-              >
+              <div key={member.id} className={`${classes.member} ${classes.truncate}`}>
                 <span className={classes.memberAvatar}>
                   {(member.name || member.email)?.slice(0, 2).toUpperCase()}
                 </span>
               </div>
             ))}
-            <FaPlus
-              className={classes.addIcon}
-              onClick={() => isEditing && setShowMember(true)}
-            />
+            <FaPlus className={classes.addIcon} onClick={() => isEditing && setShowMember(true)} />
           </div>
           <br />
           <div
@@ -214,17 +227,13 @@ const TaskDetails = ({ modalRef, task }) => {
           >
             Save {isSubmitting && <span className={classes.loading}>...</span>}
           </button>
-          <button
-            className={classes.close}
-            type="button"
-            onClick={() => modalRef.current.close()}
-          >
+          <button className={classes.close} type="button" onClick={() => modalRef.current.close()}>
             Close
           </button>
         </div>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default TaskDetails;
+export default TaskDetails
