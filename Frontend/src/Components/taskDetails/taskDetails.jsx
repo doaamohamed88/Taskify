@@ -62,7 +62,7 @@ const TaskDetails = ({ modalRef, task }) => {
     const data ={
       ...detail,
       status: status,
-      members: cardMembers.map((member) => (member?.name || member?.email)).join(", "),
+      members: [...cardMembers],
     };
 
     try {
