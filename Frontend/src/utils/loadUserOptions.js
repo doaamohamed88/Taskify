@@ -14,6 +14,7 @@ export const loadUserOptions = async (inputValue, callback) => {
         const formatted = members.map(member => ({
             value: member.id,
             label: member.name,
+            email: member.email
         }));
         callback(formatted);
     } catch (error) {

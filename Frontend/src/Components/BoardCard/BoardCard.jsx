@@ -17,7 +17,7 @@ function BoardCard({ board, boardType }) {
     dispatch(setSelectedBoard(board));
     navigate(`/${board.id}/leader-board`);
   };
-  console.log(board);
+  console.log('board', board);
 
 
   return (
@@ -28,7 +28,7 @@ function BoardCard({ board, boardType }) {
     >
       <p className={styles.title}>{board.title}</p>
       <div className={styles.members}>
-        {board.members?.map((member, idx) => (
+        {board.members?.length && board.members?.map((member, idx) => (
           <div
             key={idx}
             className={styles.member_circle}
@@ -36,7 +36,7 @@ function BoardCard({ board, boardType }) {
           >
             {/* {console.log(member.email)} */}
 
-            {member.email.charAt(0).toUpperCase()}
+            {member?.email?.charAt(0).toUpperCase()}
           </div>
         ))}
       </div>

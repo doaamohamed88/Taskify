@@ -6,7 +6,7 @@ function createTableData(members) {
   return members.map((member, index) => {
     return {
       rank: index + 1,
-      name: member.email,
+      name: member.name || member.email || '',
       score: member.score || 0, // Default to 0 if score is not defined
     };
   });

@@ -1,33 +1,51 @@
 [
   {
-    "id": "d428789d-021c-4628-832c-9b866ce8347a",
+    "id": "e3667def-e940-4ee5-8165-2eafcaf82ac7",
     "owner": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
-    "createdAt": "2025-06-10T15:03:47.993Z",
-    "title": "Doaa's Board",
+    "createdAt": "2025-06-10T17:28:39.451Z",
+    "title": "Task 1",
     "members": [
       {
         "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+        "name": "Kareem",
         "email": "kareem.mohamed.ayman@gmail.com"
       },
       {
         "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+        "name": "Abdelrahman",
         "email": "abdelrahmanali58@gmail.com"
+      },
+      {
+        "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+        "email": "doaatawfik82001@gmail.com",
+        "name": "Doaa Tawik"
       }
     ],
     "tasks": [
       {
-        "id": "40637760-54f7-4e89-8462-e7b540d48a40",
+        "id": "e3667def-e940-4ee5-8165-2eafcaf82ac7",
         "status": "To Do",
-        "title": "task1",
+        "title": "Task 1",
         "difficulty": "Easy",
-        "description": "this is desc for task 1",
+        "description": "desc 1",
         "due-date": "2025-02-22",
         "members": [
-          "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-          "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
-          "f64bc1a1-2317-45a1-9591-407ae86a6945"
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
+          {
+            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
         ]
       }
-    ]
+    ],
+    "status": "To Do",
+    "difficulty": "Easy",
+    "description": "desc 1",
+    "due-date": "2025-02-22"
   }
 ]
