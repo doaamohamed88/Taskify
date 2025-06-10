@@ -31,17 +31,31 @@
   --table-bg: 0e1218;
   scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
 }
-/* 
-.light {
-  --shadow: rgba(11, 0, 98, 0.548) 0px 7px 29px 0px;
-  --base-color: rgb(80, 62, 118);
+:root {
+  --main-color: #0e1218;
+  --secondary-color: rgb(29 34 46);
+  --text-color: #ffffff;
+  --text-secondary: #c0c0c0;
+  --table-bg: var(--main-color);
+  --primary-color: #5f4bb6;
+  --button-hover-color: #3f3b4d;
+  --lilac-border: 5px solid rgb(148, 118, 214);
+  --todo-color: #c3a0ff;
+  --doing-color: #ffb6e6;
+  --done-color: #a0ffe6;
+  --base-color: white;
   --background-gradient: radial-gradient(
     ellipse at bottom,
-    #fdfcff 0%,
-    #f3f3f6 40%,
-    #f6f5f9 100%
+    #5f4bb6 0%,
+    #1b1537 40%,
+    #0a0a0a 100%
   );
-} */
+
+  --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
+
+  --glass-bg: rgba(14, 18, 24, 0.8);
+  --glass-border: rgba(29, 34, 46, 0.4);
+}
 
 .light {
   --main-color: rgb(148, 118, 214);
@@ -51,11 +65,10 @@
   --table-bg: var(--main-color);
   --primary-color: #c6b8e9;
   --button-hover-color: #b0a3db;
-  --lilac-border: 2px solid #d9cee9;
-
-  --todo-color: #e9e5fa;
-  --doing-color: #ffe6f2;
-  --done-color: #e0f7f4;
+  --lilac-border: 5px solid rgb(148, 118, 214);
+  --todo-color: #9b7ede; /* medium lavender */
+  --doing-color: #ff80b3; /* medium pink */
+  --done-color: #4ddbb2; /* teal/mint green */
   --base-color: #0e1218;
   --background-gradient: radial-gradient(
     ellipse at bottom,
@@ -65,7 +78,6 @@
   );
 
   --shadow: 0 6px 15px rgba(158, 139, 197, 0.627);
-
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: 1px solid rgba(214, 203, 235, 0.4);
   --glass-shadow: 0 10px 35px rgba(156, 139, 197, 0.15);
@@ -208,6 +220,14 @@ a {
   100% {
     opacity: 0.7;
   }
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+  background-color: var(--lilac-color) !important; /* Your custom green */
+  color: white !important; /* Optional: Ensure text stays white */
+}
+.Toastify__close-button {
+  color: white;
 }
 
 /* Layout */

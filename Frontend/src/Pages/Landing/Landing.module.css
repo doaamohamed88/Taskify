@@ -21,7 +21,6 @@
 }
 
 .landing_page .typingText {
-  /* font-family: "Ancizar Serif", serif; */
   font-family: "Mona Sans", sans-serif;
   font-size: 40px;
   width: 380px;
@@ -69,11 +68,6 @@
   font-size: 18px;
 }
 
-.landing_page button .icon {
-  color: var(--base-color);
-  transition: 0.4s;
-}
-
 [dir="ltr"] .landing_page button .icon {
   margin-left: 10px;
 }
@@ -108,5 +102,75 @@
 }
 
 .img {
-  width: 300px;
+  width: 370px;
+}
+
+@media screen and (max-width: 1024px) {
+  .landing_page {
+    margin-top: 50px;
+  }
+  .landing_content {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .landing_page .section {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .landing_page .typingText {
+    font-size: 32px;
+    width: auto;
+    text-align: center;
+  }
+
+  .landing_page button {
+    margin: 20px auto;
+  }
+
+  .cards_section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cards_section > p {
+    text-align: center;
+  }
+
+  .img {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .section:last-child {
+    flex-direction: column;
+  }
+  .landing_page {
+    margin-top: 50px;
+  }
+  .landing_page .typingText {
+    font-size: 24px;
+  }
+
+  .logo {
+    font-size: 40px;
+  }
+
+  .landing_page button {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+
+  .boardName {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .img {
+    width: 250px;
+  }
 }

@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react"
-import classes from "./Header.module.css"
+import styles from "./Header.module.css"
 import i18n from "../../i18n"
 import * as FaIcons from "react-icons/fa6"
 import { Link } from "react-router-dom"
@@ -9,14 +9,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import MobileMenu from "../MobileMenu/MobileMenu"
 import { logout } from "../../services/userService"
-import { t } from "i18next"
+import { useTranslation } from "react-i18next"
 function Header() {
   const [currentLang, setCurrentLang] = useState(i18n.language)
   const [themeIcon, setThemeIcon] = useState("light")
   const [toggleMobileMenu, setToggleMobileMenu] = useState(false)
   const { toggleTheme } = useTheme()
-
-
+  const { t } = useTranslation();
   const handleLanguageChange = (lang) => {
     i18n
       .changeLanguage(lang)
@@ -30,7 +29,7 @@ function Header() {
 
   return (
     <>
-      <div className={classes.header}>
+      <div className={styles.header}>
         <div>
           <button
             onClick={() => {
@@ -45,19 +44,27 @@ function Header() {
             )}
           </button>
           <button
-            className={classes.lang}
+            className={styles.lang}
             onClick={() => handleLanguageChange(currentLang === "ar" ? "en" : "ar")}
           >
             {currentLang === "ar" ? "en" : "ar"}
           </button>
         </div>
 
+        <Link to="/createdboardsPage">
+          <p className={styles.header_link}>{t("Created Boards")}</p>
+        </Link>
+
         <Link to="/">
-          <p className={classes.logo}>Taskify</p>
+          <p className={styles.logo}>Taskify</p>
+        </Link>
+
+        <Link to="/involvedboardsPage">
+          <p className={styles.header_link}>{t("Involved Boards")}</p>
         </Link>
 
         <div>
-          <button className={classes.signOut} onClick={logout}>
+          <button className={styles.signOut} onClick={logout}>
             <FaIcons.FaUser />
             {t('Sign Out')}
           </button>
@@ -65,7 +72,7 @@ function Header() {
 
         <FontAwesomeIcon
           icon={faBars}
-          className={`${classes.bars} ${toggleMobileMenu ? classes.rotateIcon : ""}`}
+          className={`${styles.bars} ${toggleMobileMenu ? styles.rotateIcon : ""}`}
           onClick={() => setToggleMobileMenu(!toggleMobileMenu)}
         ></FontAwesomeIcon>
       </div>

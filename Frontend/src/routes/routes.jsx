@@ -8,6 +8,7 @@ import BoardLayout from "../layouts/BoardLayout";
 import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
 import ProtectedRoute from "../layouts/ProtectedRoute";
 import GuestRoute from "../layouts/GuestRoute";
+import Boards from "../Pages/Boards/Boards";
 const AppRoutes = () => {
   const routes = createBrowserRouter([
     {
@@ -21,6 +22,14 @@ const AppRoutes = () => {
         {
           index: true,
           element: <LandingPage />,
+        },
+        {
+          path: 'createdboardsPage',
+          element: <Boards />
+        },
+        {
+          path: 'involvedboardsPage',
+          element: <Boards />
         },
         {
           element: <BoardLayout />,
