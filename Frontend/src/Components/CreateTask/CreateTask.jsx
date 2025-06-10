@@ -33,6 +33,7 @@ function CreateTask({ onClose, boardId }) {
     }));
   };
 
+  console.log('formData', formData);
   console.log('members,,,,,', membersRef?.current?.getValue());
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -72,12 +73,16 @@ function CreateTask({ onClose, boardId }) {
         </div>
         <div className={styles.input_container}>
           <label htmlFor="difficulty">Difficulty</label>
-          <input
-            type="text"
+
+          <select
             name="difficulty"
             id="difficulty"
             onChange={handleChange}
-          />
+          >
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
         </div>
       </div>
       <div className={styles.conatiner}>
@@ -92,11 +97,7 @@ function CreateTask({ onClose, boardId }) {
         </div>
         <div className={styles.input_container}>
           <label htmlFor="status">Status</label>
-          <select name="status" onChange={handleChange}>
-            <option>To Do</option>
-            <option>In Progress</option>
-            <option>Done</option>
-          </select>
+           <input type="text" name="status" id="status" value={'To Do'} disabled />
         </div>
       </div>
       <div className={styles.conatiner}>
