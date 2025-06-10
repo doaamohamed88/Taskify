@@ -32,7 +32,12 @@ const getBoardById = (id) => {
 const addBoard = (boardData, owner) => {
     const boards = getAllBoards();
     const users = getAllUsers();
-    const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData };
+    // Build members array as array of { id, email }
+    const members = boardData.members.map((memberId) => {
+        const member = users.find((user) => user.id === memberId);
+        return member ? { id: member.id, email: member.email } : { id: memberId, email: null };
+    });
+    const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData, members };
     console.log("New board created:", newBoard);
 
     updateUser(owner.id, { ...owner, boards: [...owner.boards, newBoard.id] })
@@ -43,6 +48,7 @@ const addBoard = (boardData, owner) => {
     });
 
     boards.push(newBoard);
+
     fileUtils.write(boardsFilePath, boards);
     return newBoard;
 }

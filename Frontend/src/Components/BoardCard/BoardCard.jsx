@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 function BoardCard({ board, boardType }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const allUsers = useSelector(state => state.user.allUsers || []);
+
   function getRandomColor(index) {
     const colors = ["#FFC107", "#03A9F4", "#E91E63", "#4CAF50", "#9C27B0"];
     return colors[index % colors.length];
@@ -15,6 +17,8 @@ function BoardCard({ board, boardType }) {
     dispatch(setSelectedBoard(board));
     navigate(`/leader-board`);
   };
+  console.log(board);
+
 
   return (
     <div
@@ -24,13 +28,15 @@ function BoardCard({ board, boardType }) {
     >
       <p className={styles.title}>{board.title}</p>
       <div className={styles.members}>
-        {board.members?.map((member, index) => (
+        {board.members?.map((member, idx) => (
           <div
-            key={index}
+            key={idx}
             className={styles.member_circle}
-            style={{ backgroundColor: getRandomColor(index) }}
+            style={{ backgroundColor: getRandomColor(idx) }}
           >
-            {member.charAt(0).toUpperCase()}
+            {/* {console.log(member.email)} */}
+
+            {member.email.charAt(0).toUpperCase()}
           </div>
         ))}
       </div>
