@@ -11,7 +11,7 @@
   top: 0;
   z-index: 1000;
 
-  &>div {
+  & > div {
     @media (max-width: 769px) {
       display: none;
     }
@@ -39,10 +39,15 @@
 
 .logo {
   font-family: "Caveat", sans-serif;
-  font-size: 38px;
+  font-size: 50px;
   color: var(--lilac-color);
   font-weight: bold;
-  margin-left: 15px;
+}
+
+.header_link {
+  font-size: 20px;
+  color: var(--lilac-color);
+  font-weight: bold;
 }
 
 .lang {

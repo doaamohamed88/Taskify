@@ -1,0 +1,31 @@
+.container {
+  padding: 100px 70px;
+  min-height: 100vh;
+}
+
+.boardName {
+  text-align: center;
+  font-size: 50px;
+  border: var(--lilac-border);
+  padding: 15px;
+  border-radius: var(--border-radius-main);
+}
+
+.cards_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.card {
+  width: fit-content;
+}

@@ -32,7 +32,7 @@ const getBoardById = (id) => {
 const addBoard = (boardData, owner) => {
     const boards = getAllBoards();
     const users = getAllUsers();
-    const newBoard = { id: uuid(), owner: owner.id, ...boardData };
+    const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData };
     console.log("New board created:", newBoard);
 
     updateUser(owner.id, { ...owner, boards: [...owner.boards, newBoard.id] })
