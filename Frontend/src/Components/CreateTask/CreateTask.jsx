@@ -71,6 +71,7 @@ function CreateTask({ onClose, boardId }) {
             id="title"
             value={formData.title || ""}
             onChange={handleChange}
+            required
           />
         </div>
         <div className={styles.input_container}>

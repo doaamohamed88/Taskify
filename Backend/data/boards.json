@@ -61,6 +61,26 @@
           }
         ],
         "priority": "Easy"
+      },
+      {
+        "id": "f7afcd23-a08a-4f24-88cf-791cb642ca2a",
+        "title": "Task 33",
+        "description": "medium task 33",
+        "status": "In Progress",
+        "dueDate": "2025-02-22",
+        "members": [
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
+          {
+            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
+        ],
+        "priority": "Medium"
       }
     ],
     "status": "To Do",
