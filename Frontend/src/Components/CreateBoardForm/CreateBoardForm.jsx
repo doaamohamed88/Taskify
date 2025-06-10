@@ -7,8 +7,10 @@ import { loadUserOptions } from "../../utils/loadUserOptions";
 import { authFetch } from "../../helpers/authFetch";
 import { useDispatch } from "react-redux";
 import { fetchUserBoards } from "../../store/board/BoardActions";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 export default function CreateBoardForm({ onClose }) {
-
+    const { t } = useTranslation();
     const boardTitleRef = useRef();
     const membersRef = useRef();
     const [errors, setErrors] = useState([]);
@@ -43,6 +45,15 @@ export default function CreateBoardForm({ onClose }) {
             boardTitleRef.current.value = "";
             if (selectInstance) selectInstance.clearValue();
             dispatch(fetchUserBoards());
+            toast.success("Board created successfully!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored", // "light" | "dark" | "colored"
+            });
             onClose();
         } catch (error) {
             console.error("Error creating board", error);
@@ -54,9 +65,9 @@ export default function CreateBoardForm({ onClose }) {
 
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
-            <p>Create Board</p>
+            <p>{t("Create Board")}</p>
             <div className={styles.input_container}>
-                <label htmlFor="title">Board Title</label>
+                <label htmlFor="title">{t("Board Title")}</label>
                 <input
                     type="text"
                     id="title"
@@ -67,24 +78,24 @@ export default function CreateBoardForm({ onClose }) {
                 />
             </div>
             <div className={styles.input_container}>
-                <label htmlFor="members">Members</label>
+                <label htmlFor="members">{t("Members")}</label>
                 <AsyncSelect
                     isMulti
                     cacheOptions
                     defaultOptions={false}
                     loadOptions={loadUserOptions}
                     ref={membersRef}
-                    placeholder="Search and select members..."
+                    placeholder={t("Search and select members...")}
                     styles={SelectStyle}
                     isDisabled={isSubmitting}
                 />
             </div>
             <div className={styles.buttons}>
                 <button type="button" className={styles.close} onClick={onClose} disabled={isSubmitting}>
-                    Close
+                    {t("Close")}
                 </button>
                 <button type="submit" className={styles.main_button} disabled={isSubmitting}>
-                    {isSubmitting ? "Creating..." : "Create"}
+                    {isSubmitting ? t("Creating...") : t("Create")}
                 </button>
             </div>
             {errors.length > 0 && (

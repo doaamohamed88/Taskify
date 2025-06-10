@@ -10,7 +10,6 @@ function BoardCard({ board, boardType }) {
     const colors = ["#FFC107", "#03A9F4", "#E91E63", "#4CAF50", "#9C27B0"];
     return colors[index % colors.length];
   }
-  console.log(board.members);
 
   const handleNavigate = () => {
     dispatch(setSelectedBoard(board));
@@ -19,9 +18,8 @@ function BoardCard({ board, boardType }) {
 
   return (
     <div
-      className={`${styles.board_card} ${
-        boardType === "created" ? styles.created : styles.envolved
-      }`}
+      className={`${styles.board_card} ${boardType === "created" ? styles.created : styles.envolved
+        }`}
       onClick={handleNavigate}
     >
       <p className={styles.title}>{board.title}</p>

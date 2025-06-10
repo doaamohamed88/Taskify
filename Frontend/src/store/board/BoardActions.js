@@ -6,8 +6,6 @@ export const fetchUserBoards = createAsyncThunk(
     'boards/fetchUserBoards',
     async (_, { rejectWithValue }) => {
         try {
-            // const response = await api.get('/boards');
-            // return response.data;
             const response = await authFetch('/boards', {
                 method: 'GET',
             });

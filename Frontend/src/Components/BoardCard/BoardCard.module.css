@@ -69,10 +69,21 @@
   font-size: 16px;
   border: 2px solid white;
   position: relative;
-  margin-left: -10px; /* Creates overlap */
   z-index: 1;
 }
 
-.member_circle:first-child {
+[dir="ltr"] .member_circle {
+  margin-left: -10px; /* Creates overlap */
+}
+
+[dir="rtl"] .member_circle {
+  margin-right: -10px; /* Creates overlap */
+}
+
+[dir="ltr"] .member_circle:first-child {
   margin-left: 0;
+}
+
+[dir="rtl"] .member_circle:first-child {
+  margin-right: 0;
 }

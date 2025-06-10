@@ -1,0 +1,119 @@
+import { useLocation } from "react-router"
+import { useDispatch, useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { fetchUserBoards } from "../../store/board/BoardActions";
+import styles from './Boards.module.css'
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
+import BoardCard from "../../Components/BoardCard/BoardCard";
+import {
+    cardVariants,
+    buttonVariants,
+    textVariants,
+    containerVariants,
+} from "../../Components/UI/LandingAnimation";
+import noboard from '../../assets/noboards.png'
+function Boards() {
+    const location = useLocation().pathname;
+    const dispatch = useDispatch();
+    const accessToken = localStorage.getItem("accessToken");
+    const user = accessToken ? jwtDecode(accessToken) : null;
+    const userId = user?.id;
+    const { t } = useTranslation();
+    const { data: boards, loading, error } = useSelector((state) => state.boards);
+
+    const createdBoards = boards
+        .filter((board) => board.owner === userId)
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const involvedBoards = boards
+        .filter(
+            (board) =>
+                Array.isArray(board.members) &&
+                board.members.includes(userId) &&
+                board.owner !== userId
+        )
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    useEffect(() => {
+        dispatch(fetchUserBoards());
+    }, [dispatch]);
+
+    if (loading) return <p>{t("Loading...")}</p>;
+    if (error) return <p style={{ color: "red" }}>{error}</p>;
+    return (
+        <>
+            {location === '/createdboardsPage' && (
+                <div className={styles.container}>
+                    {(createdBoards.length === 0) && (
+                        <img src={noboard} className={styles.img} alt="No boards" />
+                    )}
+
+                    {createdBoards.length > 0 && (
+                        <div className={styles.cards_section}>
+                            <motion.p
+                                className={styles.boardName}
+                                variants={textVariants}
+                                initial="hidden"
+                                animate="visible"
+                            >
+                                {t("Created")}
+                            </motion.p>
+
+                            <div className={styles.cards}>
+                                {createdBoards.map((board) => (
+                                    <motion.div
+                                        className={styles.card}
+                                        key={board.id}
+                                        variants={cardVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
+                                        <BoardCard board={board} boardType="created" />
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+            {location === '/involvedboardsPage' && (
+                <div className={styles.container}>
+                    {(involvedBoards.length === 0) && (
+                        <img src={noboard} className={styles.img} alt="No boards" />
+                    )}
+
+                    {involvedBoards.length > 0 && (
+                        <div className={styles.cards_section}>
+                            <motion.p
+                                className={styles.boardName}
+                                variants={textVariants}
+                                initial="hidden"
+                                animate="visible"
+                            >
+                                {t("Involved")}
+                            </motion.p>
+
+                            <div className={styles.cards}>
+                                {involvedBoards.map((board) => (
+                                    <motion.div
+                                        className={styles.card}
+                                        key={board.id}
+                                        variants={cardVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
+                                        <BoardCard board={board} boardType="involved" />
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+
+        </>
+    )
+}
+
+export default Boards
