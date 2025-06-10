@@ -5,9 +5,9 @@ import { useLocation } from "react-router"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useDispatch, useSelector } from "react-redux"
 import { toggleSidebar } from "../../store/sidebarSlice"
-
+import { useParams } from "react-router"
 export default function Sidebar() {
-
+  const { id } = useParams();
   const collapseState = useSelector((state) => state.sidebarCollaps.collapsed)
   const dispatch = useDispatch()
 
@@ -23,20 +23,20 @@ export default function Sidebar() {
       <SideBarButton
         title="Dashboard"
         icon={faDashboard}
-        active={path == "/dashboard"}
-        linkTo="/dashboard"
+        active={path === `/${id}/dashboard`}
+        linkTo={`/${id}/dashboard`}
       ></SideBarButton>
       <SideBarButton
         title="Leaderboard"
         icon={faTrophy}
-        active={path == "/leader-board"}
-        linkTo="/leader-board"
+        active={path === `/${id}/leader-board`}
+        linkTo={`/${id}/leader-board`}
       ></SideBarButton>
       <SideBarButton
         title="Tasks"
         icon={faBorderAll}
-        active={path == "/tasks"}
-        linkTo="/tasks"
+        active={path === `/${id}/tasks`}
+        linkTo={`/${id}/tasks`}
       ></SideBarButton>
       <div className={`${styles.collapse} ${collapseState && styles.pointRight}`} onClick={toggleCollapse}>
         <FontAwesomeIcon icon={faAngleLeft}></FontAwesomeIcon>
