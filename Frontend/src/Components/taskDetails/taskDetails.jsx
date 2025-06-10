@@ -13,8 +13,11 @@ import {
 } from "react-icons/fa";
 import Members from "./Members";
 import { useSelector } from "react-redux";
+import { updateBoard } from "../../services/boardService";
+import { useParams } from "react-router";
 
 const TaskDetails = ({ modalRef, task }) => {
+  const {id} = useParams
   const [detail, setDetail] = useState({
     id: task.id,
     title: task.title || "",
@@ -26,9 +29,12 @@ const TaskDetails = ({ modalRef, task }) => {
   });
     const selectedBoard = useSelector((state) => state.selectedBoard);
 
+    const boardId = id || selectedBoard?.id || null;
+
   const [boardMembers, setBoardMembers] = useState([]);
   const [status, setStatus] = useState(detail.status);
   const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // set members users form task details object as initial card members
   const [cardMembers, setCardMembers] = useState(task?.members || []);
@@ -50,14 +56,26 @@ const TaskDetails = ({ modalRef, task }) => {
     setStatus(e.target.value);
   };
 
-  const handleUpdateTask = (e) => {
+  const handleUpdateTask = async (e) => {
     e.preventDefault();
     // send the updated task details to your updateTask() API
-    console.log("Updated Task:", {
+    const data ={
       ...detail,
       status: status,
       members: cardMembers.map((member) => (member?.name || member?.email)).join(", "),
-    });
+    };
+
+    try {
+          setIsSubmitting(true);
+          const response = await updateBoard(boardId, data);
+          console.log("Task updated:", response);
+          // Optionally reset form or show success message here
+        } catch (error) {
+          console.error("Error updating task:", error);
+          // Optionally show error message here
+        } finally {
+          setIsSubmitting(false);
+        }
     modalRef.current.close(); // Close the modal after saving
   };
 
@@ -117,7 +135,7 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <select
             id="status"
-            value={task.status}
+            value={status}
             onChange={handleStatusChange}
             className={`${classes.value} ${classes.input}`}
             disabled={!isEditing}
@@ -161,7 +179,7 @@ const TaskDetails = ({ modalRef, task }) => {
             ))}
             <FaPlus
               className={classes.addIcon}
-              onClick={() => setShowMember(true)}
+              onClick={() => isEditing && setShowMember(true)}
             />
           </div>
           <br />
@@ -183,8 +201,8 @@ const TaskDetails = ({ modalRef, task }) => {
 
         {/* Buttons */}
         <div className={classes.buttons}>
-          <button className={classes.main_button} type="submit">
-            Save
+          <button className={classes.main_button} type="submit" disabled={!isEditing || isSubmitting}>
+            Save {isSubmitting && <span className={classes.loading}>...</span>} 
           </button>
           <button
             className={classes.close}
