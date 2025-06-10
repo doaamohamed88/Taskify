@@ -1,62 +1,18 @@
 [
   {
-    "id": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
-    "name": "jameela13",
-    "email": "jameelaabdlruhman@gmail.com",
-    "password": "123456789",
-    "boards": [
-      "5c433d3f-7e2f-4b1f-a836-a8c78142383e",
-      "6d82c01c-1524-4176-bed8-732eadf38a28",
-      "4b16aeb8-d221-4aba-800e-6354232b8262",
-      "60ff3382-4ec5-41b3-a908-c4fa31158416",
-      "0983abac-ea98-4c8b-921a-9adfc15f0dde",
-      "1157f3cd-5e68-4ddd-a9d2-112df1f2911d",
-      "4b16aeb8-d221-4aba-800e-6354232b8262"
-    ],
-    "verified": true,
-    "iat": 1749548932,
-    "exp": 1749549832
-  },
-  {
-    "id": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+    "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
     "name": "Kareem",
-    "email": "Kareem.Mohamed.ayman@gmail.com",
+    "email": "kareem.mohamed.ayman@gmail.com",
     "password": "aa",
-    "boards": [
-      "60ff3382-4ec5-41b3-a908-c4fa31158416",
-      "0983abac-ea98-4c8b-921a-9adfc15f0dde",
-      "1157f3cd-5e68-4ddd-a9d2-112df1f2911d"
-    ],
-    "verified": true,
-    "iat": 1749550544,
-    "exp": 1749551444
+    "boards": [],
+    "verified": true
   },
   {
-    "id": "a86ad48e-d083-468b-8235-1160ae3bf2e1",
-    "name": "Abdelrahman Ali Fathy Ali",
+    "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+    "name": "Abdelrahman",
     "email": "abdelrahmanali58@gmail.com",
     "password": "123456789",
-    "boards": [
-      "60ff3382-4ec5-41b3-a908-c4fa31158416",
-      "0983abac-ea98-4c8b-921a-9adfc15f0dde",
-      "1157f3cd-5e68-4ddd-a9d2-112df1f2911d"
-    ],
-    "verified": true,
-    "iat": 1749547047,
-    "exp": 1749547947
-  },
-  {
-    "id": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
-    "name": "Doaa Tawik",
-    "email": "doaa@gmail.com",
-    "password": "doaa12345",
-    "boards": [
-      "60ff3382-4ec5-41b3-a908-c4fa31158416",
-      "0983abac-ea98-4c8b-921a-9adfc15f0dde",
-      "1157f3cd-5e68-4ddd-a9d2-112df1f2911d"
-    ],
-    "verified": true,
-    "iat": 1749548283,
-    "exp": 1749549183
+    "boards": [],
+    "verified": true
   }
 ]
