@@ -4,7 +4,9 @@
     "name": "Kareem",
     "email": "kareem.mohamed.ayman@gmail.com",
     "password": "aa",
-    "boards": [],
+    "boards": [
+      "d428789d-021c-4628-832c-9b866ce8347a"
+    ],
     "verified": true
   },
   {
@@ -12,7 +14,21 @@
     "name": "Abdelrahman",
     "email": "abdelrahmanali58@gmail.com",
     "password": "123456789",
-    "boards": [],
+    "boards": [
+      "d428789d-021c-4628-832c-9b866ce8347a"
+    ],
     "verified": true
+  },
+  {
+    "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+    "name": "Doaa Tawik",
+    "email": "doaatawfik82001@gmail.com",
+    "password": "doaa12345",
+    "boards": [
+      "d428789d-021c-4628-832c-9b866ce8347a"
+    ],
+    "verified": true,
+    "iat": 1749567796,
+    "exp": 1749568696
   }
 ]
