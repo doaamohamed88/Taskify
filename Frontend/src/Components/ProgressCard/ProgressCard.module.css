@@ -37,19 +37,19 @@
 
   &.green .progressCardTitle {
     span {
-      background-color: green;
+      background-color: var(--done-color);
     }
   }
 
   &.blue .progressCardTitle {
     span {
-      background-color: blue;
+      background-color: var(--doing-color);
     }
   }
 
   &.red .progressCardTitle {
     span {
-      background-color: red;
+      background-color: #ffb480;
     }
   }
 
