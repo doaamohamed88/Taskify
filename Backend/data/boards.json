@@ -50,5 +50,41 @@
         "email": "abdelrahmanali58@gmail.com"
       }
     ]
+  },
+  {
+    "id": "1157f3cd-5e68-4ddd-a9d2-112df1f2911d",
+    "owner": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+    "createdAt": "2025-06-10T10:16:30.268Z",
+    "title": "Kareem's Board",
+    "tasks": [
+      {
+        "id": "3a71d1c1-812a-4128-b8b5-a59ed5369f09",
+        "title": "Planning",
+        "description": "planning the project",
+        "priority": "easy",
+        "status": "To Do",
+        "dueDate": "2026-12-05",
+        "members": [
+          {
+            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+            "label": "Kareem"
+          }
+        ]
+      }
+    ],
+    "members": [
+      {
+        "id": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
+        "email": "jameelaabdlruhman@gmail.com"
+      },
+      {
+        "id": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
+        "email": "doaa@gmail.com"
+      },
+      {
+        "id": "a86ad48e-d083-468b-8235-1160ae3bf2e1",
+        "email": "abdelrahmanali58@gmail.com"
+      }
+    ]
   }
 ]

@@ -14,6 +14,7 @@ function CreateTask({ onClose, boardId }) {
   const membersRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({});
+  const [selectedMembers, setSelectedMembers] = useState([]);
   console.log(formData);
   // Handler to update formData on focus
   const handleFocus = (field, ref) => {
@@ -32,7 +33,7 @@ function CreateTask({ onClose, boardId }) {
       priority: priorityRef.current.value,
       status: statusRef.current.value,
       dueDate: dueDateRef.current.value,
-      members: membersRef.current ? membersRef.current.getValue() : [],
+      members: selectedMembers,
     };
 
     try {
@@ -122,7 +123,7 @@ function CreateTask({ onClose, boardId }) {
             ref={membersRef}
             placeholder="Search and select members..."
             styles={SelectStyle}
-            onChange={(e) => (membersRef.current = e)}
+            onChange={setSelectedMembers}
           />
         </div>
       </div>
