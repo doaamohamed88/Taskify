@@ -15,7 +15,7 @@ function BoardCard({ board, boardType }) {
 
   const handleNavigate = () => {
     dispatch(setSelectedBoard(board));
-    navigate(`/leader-board`);
+    navigate(`/${board.id}/leader-board`);
   };
   console.log(board);
 
