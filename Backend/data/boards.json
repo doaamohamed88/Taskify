@@ -10,8 +10,7 @@
         "email": "jameelaabdlruhman@gmail.com"
       }
     ],
-    "tasks": [
-    ]
+    "tasks": []
   },
   {
     "id": "60ff3382-4ec5-41b3-a908-c4fa31158416",
@@ -54,10 +53,10 @@
     ]
   },
   {
-    "id": "1157f3cd-5e68-4ddd-a9d2-112df1f2911d",
+    "id": "e0cc88f8-8412-4ac4-a53c-5a64711ee99a",
     "owner": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
     "createdAt": "2025-06-10T10:16:30.268Z",
-    "title": "Kareem's Board",
+    "title": "fds",
     "tasks": [
       {
         "id": "3a71d1c1-812a-4128-b8b5-a59ed5369f09",
@@ -114,21 +113,34 @@
             "label": "Kareem"
           }
         ]
+      },
+      {
+        "id": "e0cc88f8-8412-4ac4-a53c-5a64711ee99a",
+        "title": "fds",
+        "description": "sfdcsx",
+        "priority": "medium",
+        "status": "To Do",
+        "dueDate": "2025-02-03",
+        "members": [
+          {
+            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
+            "label": "Kareem"
+          },
+          {
+            "value": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
+            "label": "Doaa Tawik"
+          },
+          {
+            "value": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
+            "label": "jameela13"
+          }
+        ]
       }
     ],
-    "members": [
-      {
-        "id": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
-        "email": "jameelaabdlruhman@gmail.com"
-      },
-      {
-        "id": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
-        "email": "doaa@gmail.com"
-      },
-      {
-        "id": "a86ad48e-d083-468b-8235-1160ae3bf2e1",
-        "email": "abdelrahmanali58@gmail.com"
-      }
-    ]
+    "members": "doaa@gmail.com, abdelrahmanali58@gmail.com",
+    "description": "sfdcsx",
+    "priority": "medium",
+    "status": "inprogress",
+    "dueDate": "2025-02-03"
   }
 ]
