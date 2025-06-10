@@ -129,17 +129,17 @@ export default function AdminDashboard() {
           <ProgressCard
             title="Completed"
             colorScheme="green"
-            score={parseFloat(completedTasks)}
+            score={parseFloat(completedTasks || 0)}
           ></ProgressCard>
           <ProgressCard
             title="In Progress"
             colorScheme="blue"
-            score={parseFloat(inProgressTasks)}
+            score={parseFloat(inProgressTasks || 0)}
           ></ProgressCard>
           <ProgressCard
             title="Not Started"
             colorScheme="red"
-            score={parseFloat(notStartedTasks)}
+            score={parseFloat(notStartedTasks || 0)}
           ></ProgressCard>
 
         </div>
