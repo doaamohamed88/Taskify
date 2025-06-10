@@ -33,12 +33,16 @@ function CreateTask({ onClose, boardId }) {
     }));
   };
 
+  console.log('members,,,,,', membersRef?.current?.getValue());
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setIsSubmitting(true);
       const selected = membersRef.current.getValue() || [];
-      formData.members = selected.map((opt) => opt.value);
+      formData.members = selected.map((opt) => ({
+        id: opt.value,
+        name: opt.label
+      }));
       const response = await createTask(boardId, formData);
       console.log("Task created:", response);
       const updatedBoard = {

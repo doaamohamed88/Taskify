@@ -128,7 +128,7 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
-            value={task.priority}
+            value={task.difficulty}
             disabled={!isEditing}
           />
         </div>
@@ -160,7 +160,7 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
-            value={task.dueDate}
+            value={task['due-date']}
             disabled={!isEditing}
           />
         </div>
@@ -179,7 +179,7 @@ const TaskDetails = ({ modalRef, task }) => {
                 className={`${classes.member} ${classes.truncate}`}
               >
                 <span className={classes.memberAvatar}>
-                  {(member.label || member.email)?.slice(0, 2).toUpperCase()}
+                  {(member.name || member.email)?.slice(0, 2).toUpperCase()}
                 </span>
               </div>
             ))}
