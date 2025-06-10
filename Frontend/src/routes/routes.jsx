@@ -33,6 +33,7 @@ const AppRoutes = () => {
         },
         {
           element: <BoardLayout />,
+          path: ":id",
           children: [
             {
               path: "tasks",
