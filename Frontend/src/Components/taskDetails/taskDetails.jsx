@@ -12,7 +12,8 @@ import {
   FaPen,
 } from "react-icons/fa";
 import Members from "./Members";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSelectedBoard } from "../../store/selectedBoard";
 import { updateBoard } from "../../services/boardService";
 import { useParams } from "react-router";
 
@@ -27,7 +28,8 @@ const TaskDetails = ({ modalRef, task }) => {
     members: task.members || "",
     priority: task.priority || "",
   });
-    const selectedBoard = useSelector((state) => state.selectedBoard);
+  const selectedBoard = useSelector((state) => state.selectedBoard);
+  const dispatch = useDispatch()
 
     const boardId = id || selectedBoard?.id || null;
 
@@ -77,6 +79,13 @@ const TaskDetails = ({ modalRef, task }) => {
           setIsSubmitting(false);
         }
     modalRef.current.close(); // Close the modal after saving
+    const updatedTasks = selectedBoard.tasks.map((t) =>
+      t.id === detail.id
+        ? { ...t, ...detail, status, members: cardMembers }
+        : t
+    );
+    const updatedBoard = { ...selectedBoard, tasks: updatedTasks };
+    dispatch(updateSelectedBoard(updatedBoard));
   };
 
   return (
