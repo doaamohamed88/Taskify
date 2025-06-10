@@ -27,7 +27,7 @@ const TaskDetails = ({ modalRef, task }) => {
     status: task.status || "todo",
     dueDate: task.dueDate || task["due-date"],
     members: task.members || "",
-    priority: task.difficulty || "",
+    difficulty: task.difficulty || "",
   })
   const { selectedBoard } = useSelectedBoard()
   const dispatch = useDispatch()
@@ -53,7 +53,7 @@ const TaskDetails = ({ modalRef, task }) => {
       status: task.status || "todo",
       dueDate: task.dueDate || task["due-date"] || "",
       members: task.members || "",
-      priority: task.priority || task.difficulty || "",
+      difficulty: task.priority || task.difficulty || "",
     })
   }, [task])
 
@@ -147,8 +147,8 @@ const TaskDetails = ({ modalRef, task }) => {
             name="difficulty"
             id="difficulty"
             className={`${classes.value} ${classes.input}`}
-            value={detail.priority}
-            onChange={(e) => isEditing && setDetail({ ...detail, priority: e.target.value })}
+            value={detail.difficulty}
+            onChange={(e) => isEditing && setDetail({ ...detail, difficulty: e.target.value })}
             required
             disabled={!isEditing}
           >

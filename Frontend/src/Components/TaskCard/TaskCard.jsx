@@ -34,7 +34,7 @@ const TaskCard = ({ task }) => {
         style={style}
         {...attributes}
         {...listeners}
-        className={`${styles.taskContainer} ${isDragging ? styles.dragging : ""}`} onClick={handleShowModal}>
+        className={`${styles.taskContainer} ${isDragging ? styles.dragging : ""}`} onDoubleClick={handleShowModal}>
         <FontAwesomeIcon className={styles.icon} icon={faEllipsis} size="lg" />
         <h3>{task.title}</h3>
 
