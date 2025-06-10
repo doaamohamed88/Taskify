@@ -12,7 +12,7 @@
   right: 0;
 }
 
-h3 {
+.membersContainer h3 {
   border-bottom: 2px solid var(--lilac-color);
   margin-bottom: var(--section-padding-sm);
   padding-bottom: var(--section-padding-sm);

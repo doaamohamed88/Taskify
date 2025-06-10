@@ -14,7 +14,7 @@ import CreateBoardForm from "../../Components/CreateBoardForm/CreateBoardForm";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserBoards } from "../../store/board/BoardActions";
 import { jwtDecode } from "jwt-decode";
-
+import noboard from '../../assets/noboards.png'
 export default function LandingPage() {
   const modalRef = useRef();
   const accessToken = localStorage.getItem("accessToken");
@@ -120,6 +120,9 @@ export default function LandingPage() {
                 </motion.div>
               ))}
             </div>
+            {(createdBoards.length === 0 && involvedBoards.length === 0) &&
+              <img src={noboard} className={styles.img}></img>
+            }
           </div>
           <div className={styles.cards_section}>
             <motion.p
