@@ -9,7 +9,7 @@
         "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
         "name": "Kareem",
         "email": "kareem.mohamed.ayman@gmail.com",
-        "score": 35
+        "score": 55
       },
       {
         "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
@@ -84,6 +84,21 @@
           }
         ],
         "priority": "Easy"
+      },
+      {
+        "id": "17f341eb-1f6d-42e0-b5b7-513424daccd3",
+        "status": "Done",
+        "title": "Task 4",
+        "difficulty": "Hard",
+        "description": "hard task",
+        "due-date": "2025-02-03",
+        "members": [
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ]
       }
     ],
     "status": "To Do",
