@@ -1,133 +1,32 @@
 [
   {
-    "id": "4b16aeb8-d221-4aba-800e-6354232b8262",
-    "owner": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
-    "createdAt": "2025-06-10T09:16:38.300Z",
-    "title": "jameela's board",
+    "id": "d428789d-021c-4628-832c-9b866ce8347a",
+    "owner": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+    "createdAt": "2025-06-10T15:03:47.993Z",
+    "title": "Doaa's Board",
     "members": [
       {
-        "id": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
-        "email": "jameelaabdlruhman@gmail.com"
+        "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+        "email": "kareem.mohamed.ayman@gmail.com"
+      },
+      {
+        "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+        "email": "abdelrahmanali58@gmail.com"
       }
     ],
     "tasks": [
-    ]
-  },
-  {
-    "id": "60ff3382-4ec5-41b3-a908-c4fa31158416",
-    "owner": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
-    "createdAt": "2025-06-10T09:38:38.686Z",
-    "title": "doaa Board",
-    "members": [
       {
-        "id": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
-        "email": "jameelaabdlruhman@gmail.com"
-      },
-      {
-        "id": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
-        "email": "Kareem.Mohamed.ayman@gmail.com"
-      },
-      {
-        "id": "a86ad48e-d083-468b-8235-1160ae3bf2e1",
-        "email": "abdelrahmanali58@gmail.com"
-      }
-    ]
-  },
-  {
-    "id": "0983abac-ea98-4c8b-921a-9adfc15f0dde",
-    "owner": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
-    "createdAt": "2025-06-10T09:50:05.865Z",
-    "title": "Test board",
-    "members": [
-      {
-        "id": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
-        "email": "doaa@gmail.com"
-      },
-      {
-        "id": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
-        "email": "Kareem.Mohamed.ayman@gmail.com"
-      },
-      {
-        "id": "a86ad48e-d083-468b-8235-1160ae3bf2e1",
-        "email": "abdelrahmanali58@gmail.com"
-      }
-    ]
-  },
-  {
-    "id": "1157f3cd-5e68-4ddd-a9d2-112df1f2911d",
-    "owner": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
-    "createdAt": "2025-06-10T10:16:30.268Z",
-    "title": "Kareem's Board",
-    "tasks": [
-      {
-        "id": "3a71d1c1-812a-4128-b8b5-a59ed5369f09",
-        "title": "Planning",
-        "description": "planning the project",
-        "priority": "easy",
+        "id": "40637760-54f7-4e89-8462-e7b540d48a40",
         "status": "To Do",
-        "dueDate": "2026-12-05",
+        "title": "task1",
+        "difficulty": "Easy",
+        "description": "this is desc for task 1",
+        "due-date": "2025-02-22",
         "members": [
-          {
-            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
-            "label": "Kareem"
-          }
+          "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+          "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+          "f64bc1a1-2317-45a1-9591-407ae86a6945"
         ]
-      },
-      {
-        "id": "3a71d5c1-862a-4128-b8h5-z59ed5460f09",
-        "title": "Designing",
-        "description": "Designing the project",
-        "priority": "easy",
-        "status": "In Progress",
-        "dueDate": "2026-12-05",
-        "members": [
-          {
-            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
-            "label": "Kareem"
-          }
-        ]
-      },
-      {
-        "id": "3a71d5c1-862a-4618-b8h5-z59eh5460f09",
-        "title": "Brainstorming",
-        "description": "Brainstorming the project",
-        "priority": "easy",
-        "status": "Done",
-        "dueDate": "2026-12-05",
-        "members": [
-          {
-            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
-            "label": "Kareem"
-          }
-        ]
-      },
-      {
-        "id": "3a71d5h9-521n-4128-b8h5-z59ed5460f09",
-        "title": "Frontend",
-        "description": "Frontend Work",
-        "priority": "easy",
-        "status": "Done",
-        "dueDate": "2026-12-05",
-        "members": [
-          {
-            "value": "8fc4be4b-2051-4bed-b74d-b585f6f39581",
-            "label": "Kareem"
-          }
-        ]
-      }
-    ],
-    "members": [
-      {
-        "id": "cfb42a25-9547-44b1-a4b7-954df8606fe0",
-        "email": "jameelaabdlruhman@gmail.com"
-      },
-      {
-        "id": "b18ccc24-e12c-4745-82e8-e161cab2adc1",
-        "email": "doaa@gmail.com"
-      },
-      {
-        "id": "a86ad48e-d083-468b-8235-1160ae3bf2e1",
-        "email": "abdelrahmanali58@gmail.com"
       }
     ]
   }

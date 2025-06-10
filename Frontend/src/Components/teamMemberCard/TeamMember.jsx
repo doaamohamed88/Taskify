@@ -8,27 +8,29 @@ import { useDispatch, useSelector } from "react-redux"
 import { updateSelectedBoard } from "../../store/selectedBoard"
 import { updateBoard } from "../../services/boardService"
 import { getUserByEmail, updateUser } from "../../services/userService"
+import useSelectedBoard from "../../hooks/useSelectedBoard"
 
 export default function TeamMember({ name, email }) {
   const { t } = useTranslation()
   const modalRef = useRef()
-  const boardData = useSelector((state) => state.selectedBoard)
+    const { selectedBoard } = useSelectedBoard();
+  
   const dispatch = useDispatch()
 
 
   function deleteMember() {
     modalRef.current.close()
 
-    const updatedMembers = boardData.members.filter(
+    const updatedMembers = selectedBoard.members.filter(
       (member) => member.email !== email
     )
-    const updatedBoard = { ...boardData, members: updatedMembers }
+    const updatedBoard = { ...selectedBoard, members: updatedMembers }
     dispatch(updateSelectedBoard(updatedBoard))
-    updateBoard(boardData.id, updatedBoard)
+    updateBoard(selectedBoard.id, updatedBoard)
 
     const updateUserBoards = async () => {
       const user = await getUserByEmail(email)
-      const updatedUser = { ...user, boards: user.boards.filter((board) => board.id !== boardData.id) }
+      const updatedUser = { ...user, boards: user.boards.filter((board) => board.id !== selectedBoard.id) }
       updateUser(user.id, updatedUser)
     }
 

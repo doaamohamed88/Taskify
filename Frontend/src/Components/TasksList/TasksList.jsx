@@ -6,7 +6,8 @@ import { useTranslation } from "react-i18next";
 import Modal from "../Modal/Modal";
 import { useRef, useState, useEffect } from "react";
 import CreateTask from "../CreateTask/CreateTask";
-import { useSelector } from "react-redux";
+import useSelectedBoard from "../../hooks/useSelectedBoard";
+import { useParams } from "react-router";
 
 const TasksList = ({ title }) => {
   const filter =
@@ -15,20 +16,23 @@ const TasksList = ({ title }) => {
       : title === "In Progress"
       ? "In Progress"
       : "Done";
-  const selectedBoard = useSelector((state) => state.selectedBoard);
-  const boardTasks =
+
+      const {id} = useParams()
+  const { selectedBoard } = useSelectedBoard();
+  const [tasks, setTasks] = useState([]);
+  console.log('task list,,,,',{tasks, selectedBoard});
+
+  useEffect(() => {
+      const boardTasks =
     selectedBoard && Array.isArray(selectedBoard.tasks)
       ? selectedBoard.tasks
       : [];
   console.log(boardTasks);
-  const [tasks, setTasks] = useState(
-    boardTasks.filter((task) => task.status === filter)
-  );
-  console.log({tasks, selectedBoard});
 
-  useEffect(() => {
+  if (boardTasks) {
     setTasks(boardTasks.filter((task) => task.status === filter));
-  }, [selectedBoard, filter]);
+  }
+  }, [selectedBoard]);
 
   const { t } = useTranslation();
   const modalRef = useRef();
@@ -59,7 +63,7 @@ const TasksList = ({ title }) => {
             <Modal ref={modalRef}>
               <CreateTask
                 onClose={handleCloseModal}
-                boardId={selectedBoard.id}
+                boardId={id || selectedBoard?.id}
               />
             </Modal>
           </div>

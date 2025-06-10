@@ -23,7 +23,7 @@ const Members = ({ boardMembers, cardMembers, setCardMembers, closeMember }) => 
   // Filter board members based on search query
   const filteredBoardMembers = boardMembers.filter(
     (member) =>
-      (member?.label || member?.email)?.toLowerCase().includes(searchQuery?.toLowerCase()) &&
+      (member?.name || member?.email)?.toLowerCase().includes(searchQuery?.toLowerCase()) &&
       !cardMembers.some((cm) => cm.id === member.id)
   );
 
@@ -43,9 +43,9 @@ const Members = ({ boardMembers, cardMembers, setCardMembers, closeMember }) => 
         {cardMembers.map((member) => (
           <div key={member.id} className={styles.memberItem}>
             <span className={styles.memberAvatar}>
-              {(member?.label || member?.email)?.slice(0, 2).toUpperCase()}
+              {(member?.name || member?.email)?.slice(0, 2).toUpperCase()}
             </span>
-            <span className={styles.memberName}>{member.label || member.email}</span>
+            <span className={styles.memberName}>{member.name || member.email}</span>
             <FaTimes
               className={styles.removeIcon}
               onClick={() => removeMember(member.id)}
@@ -67,9 +67,9 @@ const Members = ({ boardMembers, cardMembers, setCardMembers, closeMember }) => 
         {filteredBoardMembers.map((member) => (
           <div key={member.id} className={styles.memberItem}>
             <span className={styles.memberAvatar}>
-              {(member?.label || member?.email)?.slice(0, 2).toUpperCase()}
+              {(member?.name || member?.email)?.slice(0, 2).toUpperCase()}
             </span>
-            <span className={styles.memberName}>{member.label || member.email}</span>
+            <span className={styles.memberName}>{member.name || member.email}</span>
             <FaUserPlus
               className={styles.addIcon}
               onClick={() => addMember(member)}
