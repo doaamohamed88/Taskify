@@ -9,9 +9,7 @@ import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 import BoardCard from "../../Components/BoardCard/BoardCard";
 import {
     cardVariants,
-    buttonVariants,
     textVariants,
-    containerVariants,
 } from "../../Components/UI/LandingAnimation";
 import noboard from '../../assets/noboards.png'
 function Boards() {
@@ -46,7 +44,9 @@ function Boards() {
             {location === '/createdboardsPage' && (
                 <div className={styles.container}>
                     {(createdBoards.length === 0) && (
-                        <img src={noboard} className={styles.img} alt="No boards" />
+                        <div className={styles.img_conatiner}>
+                            <img src={noboard} className={styles.img} alt="No boards" />
+                        </div>
                     )}
 
                     {createdBoards.length > 0 && (
@@ -80,7 +80,9 @@ function Boards() {
             {location === '/involvedboardsPage' && (
                 <div className={styles.container}>
                     {(involvedBoards.length === 0) && (
-                        <img src={noboard} className={styles.img} alt="No boards" />
+                        <div className={styles.img_conatiner}>
+                            <img src={noboard} className={styles.img} alt="No boards" />
+                        </div>
                     )}
 
                     {involvedBoards.length > 0 && (
