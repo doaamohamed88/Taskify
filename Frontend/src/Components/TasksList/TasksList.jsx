@@ -20,6 +20,7 @@ const TasksList = ({ title }) => {
     selectedBoard && Array.isArray(selectedBoard.tasks)
       ? selectedBoard.tasks
       : [];
+  console.log(boardTasks);
   const [tasks, setTasks] = useState(
     boardTasks.filter((task) => task.status === filter)
   );
