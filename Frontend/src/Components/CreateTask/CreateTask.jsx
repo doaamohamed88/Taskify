@@ -41,7 +41,8 @@ function CreateTask({ onClose, boardId }) {
       const selected = membersRef.current.getValue() || [];
       formData.members = selected.map((opt) => ({
         id: opt.value,
-        name: opt.label
+        name: opt.label,
+        email: opt.email
       }));
       const response = await createTask(boardId, formData);
       console.log("Task created:", response);

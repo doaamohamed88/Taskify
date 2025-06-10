@@ -5,7 +5,8 @@
     "email": "kareem.mohamed.ayman@gmail.com",
     "password": "aa",
     "boards": [
-      "d428789d-021c-4628-832c-9b866ce8347a"
+      "d428789d-021c-4628-832c-9b866ce8347a",
+      "273260b0-e1d3-43cf-8a95-ecb9b6ae4683"
     ],
     "verified": true
   },
@@ -15,7 +16,8 @@
     "email": "abdelrahmanali58@gmail.com",
     "password": "123456789",
     "boards": [
-      "d428789d-021c-4628-832c-9b866ce8347a"
+      "d428789d-021c-4628-832c-9b866ce8347a",
+      "273260b0-e1d3-43cf-8a95-ecb9b6ae4683"
     ],
     "verified": true
   },
@@ -25,11 +27,13 @@
     "email": "doaatawfik82001@gmail.com",
     "password": "doaa12345",
     "boards": [
-      "d428789d-021c-4628-832c-9b866ce8347a"
+      "d428789d-021c-4628-832c-9b866ce8347a",
+      "0984c619-7a33-40fc-9345-454c7cb56665",
+      "273260b0-e1d3-43cf-8a95-ecb9b6ae4683"
     ],
     "verified": true,
-    "iat": 1749567796,
-    "exp": 1749568696
+    "iat": 1749575981,
+    "exp": 1749576881
   }
 
 ]
