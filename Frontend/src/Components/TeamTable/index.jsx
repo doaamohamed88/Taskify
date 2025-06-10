@@ -7,7 +7,7 @@ function createTableData(members) {
     return {
       rank: index + 1,
       name: member.email,
-      score: member.score,
+      score: member.score || 0, // Default to 0 if score is not defined
     };
   });
 }
