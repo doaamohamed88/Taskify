@@ -5,17 +5,21 @@ import SelectStyle from "../UI/SelectStyle";
 import AsyncSelect from "react-select/async";
 import { authFetch } from "../../helpers/authFetch";
 import { createTask } from "../../services/boardService";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSelectedBoard } from "../../store/selectedBoard";
+
 function CreateTask({ onClose, boardId }) {
-  const titleRef = useRef();
-  const descriptionRef = useRef();
-  const priorityRef = useRef();
-  const statusRef = useRef();
-  const dueDateRef = useRef();
+  // const titleRef = useRef();
+  // const descriptionRef = useRef();
+  // const priorityRef = useRef();
+  // const statusRef = useRef();
+  // const dueDateRef = useRef();
   const membersRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ status: "To Do" });
   const [selectedMembers, setSelectedMembers] = useState([]);
-  console.log(formData);
+  const dispatch = useDispatch();
+  const selectedBoardTasks = useSelector((state) => state.selectedBoard.tasks);
   // Handler to update formData on focus
   const handleFocus = (field, ref) => {
     setFormData((prev) => ({
@@ -24,22 +28,36 @@ function CreateTask({ onClose, boardId }) {
     }));
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
-      title: titleRef.current.value,
-      description: descriptionRef.current.value,
-      priority: priorityRef.current.value,
-      status: statusRef.current.value,
-      dueDate: dueDateRef.current.value,
-      members: selectedMembers,
-    };
+    // const data = {
+    //   title: titleRef.current.value,
+    //   description: descriptionRef.current.value,
+    //   priority: priorityRef.current.value,
+    //   status: statusRef.current.value,
+    //   dueDate: dueDateRef.current.value,
+    //   members: selectedMembers,
+    // };
 
     try {
       setIsSubmitting(true);
-      const response = await createTask(boardId, data);
+      const selected = membersRef.current.getValue() || [];
+      formData.members = selected.map((opt) => opt.value);
+      const response = await createTask(boardId, formData);
       console.log("Task created:", response);
+      dispatch(
+        updateSelectedBoard({ tasks: [...selectedBoardTasks, response] })
+      );
+      onClose();
       // Optionally reset form or show success message here
     } catch (error) {
       console.error("Error creating task:", error);
@@ -59,20 +77,20 @@ function CreateTask({ onClose, boardId }) {
             type="text"
             name="title"
             id="title"
-            ref={titleRef}
-            onFocus={() => handleFocus("title", titleRef)}
-            onChange={(e) => (titleRef.current.value = e.target.value)}
+            // ref={titleRef}
+            // onFocus={() => handleFocus("title", titleRef)}
+            onChange={handleChange}
           />
         </div>
         <div className={styles.input_container}>
-          <label htmlFor="priority">Priority</label>
+          <label htmlFor="difficulty">Difficulty</label>
           <input
             type="text"
-            name="priority"
-            id="priority"
-            ref={priorityRef}
-            onFocus={() => handleFocus("priority", priorityRef)}
-            onChange={(e) => (priorityRef.current.value = e.target.value)}
+            name="difficulty"
+            id="difficulty"
+            // ref={priorityRef}
+            // onFocus={() => handleFocus("priority", priorityRef)}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -83,17 +101,18 @@ function CreateTask({ onClose, boardId }) {
             type="text"
             name="description"
             id="description"
-            ref={descriptionRef}
-            onFocus={() => handleFocus("description", descriptionRef)}
-            onChange={(e) => (descriptionRef.current.value = e.target.value)}
+            // ref={descriptionRef}
+            // onFocus={() => handleFocus("description", descriptionRef)}
+            onChange={handleChange}
           />
         </div>
         <div className={styles.input_container}>
           <label htmlFor="status">Status</label>
           <select
-            ref={statusRef}
-            onFocus={() => handleFocus("status", statusRef)}
-            onChange={(e) => (statusRef.current.value = e.target.value)}
+            // ref={statusRef}
+            // onFocus={() => handleFocus("status", statusRef)}
+            name="status"
+            onChange={handleChange}
           >
             <option>To Do</option>
             <option>In Progress</option>
@@ -108,9 +127,9 @@ function CreateTask({ onClose, boardId }) {
             type="date"
             name="due-date"
             id="due-date"
-            ref={dueDateRef}
-            onFocus={() => handleFocus("dueDate", dueDateRef)}
-            onChange={(e) => (dueDateRef.current.value = e.target.value)}
+            // ref={dueDateRef}
+            // onFocus={() => handleFocus("dueDate", dueDateRef)}
+            onChange={handleChange}
           />
         </div>
         <div className={styles.input_container}>
@@ -123,7 +142,6 @@ function CreateTask({ onClose, boardId }) {
             ref={membersRef}
             placeholder="Search and select members..."
             styles={SelectStyle}
-            onChange={setSelectedMembers}
           />
         </div>
       </div>
