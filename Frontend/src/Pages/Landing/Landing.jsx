@@ -4,10 +4,15 @@ import styles from "./Landing.module.css";
 import * as FaIcons from "react-icons/fa6";
 import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 import { useRef, useEffect } from "react";
-import { cardVariants, buttonVariants, textVariants, containerVariants } from "../../Components/UI/LandingAnimation";
+import {
+  cardVariants,
+  buttonVariants,
+  textVariants,
+  containerVariants,
+} from "../../Components/UI/LandingAnimation";
 import CreateBoardForm from "../../Components/CreateBoardForm/CreateBoardForm";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserBoards } from '../../store/board/BoardActions';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserBoards } from "../../store/board/BoardActions";
 import { jwtDecode } from "jwt-decode";
 
 export default function LandingPage() {
@@ -16,24 +21,30 @@ export default function LandingPage() {
   const user = accessToken ? jwtDecode(accessToken) : null;
   const userId = user?.id;
   const dispatch = useDispatch();
-  const { data: boards, loading, error } = useSelector(state => state.boards);
-
+  const { data: boards, loading, error } = useSelector((state) => state.boards);
 
   function handleShowModal() {
     modalRef.current.open();
   }
 
-  const createdBoards = boards.filter(board => board.owner === userId).slice(0, 2);
-  const involvedBoards = boards.filter(board =>
-    Array.isArray(board.members) && board.members.includes(userId) && board.owner !== userId
-  ).slice(0, 2);
-  console.log(boards)
+  const createdBoards = boards
+    .filter((board) => board.owner === userId)
+    .slice(0, 2);
+  const involvedBoards = boards
+    .filter(
+      (board) =>
+        Array.isArray(board.members) &&
+        board.members.includes(userId) &&
+        board.owner !== userId
+    )
+    .slice(0, 2);
+  console.log(boards);
   useEffect(() => {
     dispatch(fetchUserBoards());
-  }, []);
+  }, [dispatch]);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: 'red' }}>{error}</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <motion.div
@@ -59,9 +70,7 @@ export default function LandingPage() {
               initial="hidden"
               animate="visible"
             >
-              <strong>
-                Transform Chaos into Clarity - Organize Tasks,{" "}
-              </strong>
+              <strong>Transform Chaos into Clarity - Organize Tasks, </strong>
               Boost Productivity, and Achieve More with{" "}
               <span className={styles.logo}>Taskify</span>
             </motion.p>
@@ -91,16 +100,22 @@ export default function LandingPage() {
               Created
             </motion.p>
             <div>
-              {
-                (createdBoards.length === 0 && involvedBoards > 0) && (
-                  <div className={styles.empty_state}>
-                    <h3>No Boards Yet</h3>
-                    <p>Start by creating your first board and invite your team.</p>
-                  </div>
-                )
-              }
-              {createdBoards.map(board => (
-                <motion.div className={styles.card} key={board.id} variants={cardVariants} initial="hidden" animate="visible">
+              {createdBoards.length === 0 && involvedBoards > 0 && (
+                <div className={styles.empty_state}>
+                  <h3>No Boards Yet</h3>
+                  <p>
+                    Start by creating your first board and invite your team.
+                  </p>
+                </div>
+              )}
+              {createdBoards.map((board) => (
+                <motion.div
+                  className={styles.card}
+                  key={board.id}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
                   <BoardCard board={board} boardType="created" />
                 </motion.div>
               ))}
@@ -116,16 +131,23 @@ export default function LandingPage() {
               Involved
             </motion.p>
             <div>
-              {
-                (involvedBoards.length === 0 && createdBoards.length > 0) && (
-                  <div className={styles.empty_state}>
-                    <h3>No Boards Yet</h3>
-                    <p>You haven’t been added to any boards yet. Once someone invites you, they’ll appear here!</p>
-                  </div>
-                )
-              }
-              {involvedBoards.map(board => (
-                <motion.div className={styles.card} key={board.id} variants={cardVariants} initial="hidden" animate="visible">
+              {involvedBoards.length === 0 && createdBoards.length > 0 && (
+                <div className={styles.empty_state}>
+                  <h3>No Boards Yet</h3>
+                  <p>
+                    You haven’t been added to any boards yet. Once someone
+                    invites you, they’ll appear here!
+                  </p>
+                </div>
+              )}
+              {involvedBoards.map((board) => (
+                <motion.div
+                  className={styles.card}
+                  key={board.id}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
                   <BoardCard board={board} boardType="involved" />
                 </motion.div>
               ))}

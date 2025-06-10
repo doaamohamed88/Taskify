@@ -9,12 +9,13 @@ import {
   FaCheckCircle,
   FaUserPlus,
   FaPlus,
+  FaPen,
 } from "react-icons/fa";
 import Members from "./Members";
 
-const TaskDetails = ({ modalRef, taskId }) => {
+const TaskDetails = ({ modalRef, task }) => {
   const [detail, setDetail] = useState({
-    id: taskId,
+    id: task.id,
     title: "",
     description: "",
     status: "todo",
@@ -25,6 +26,8 @@ const TaskDetails = ({ modalRef, taskId }) => {
   const [boardMembers, setBoardMembers] = useState([]);
 
   const [status, setStatus] = useState(detail.status);
+
+  const [isEditing, setIsEditing] = useState(false);
 
   const initialCardMembers = [{ id: 4, name: "Doaa Tawfik" }];
   // set assignee users form task details object as initial card members
@@ -69,20 +72,24 @@ const TaskDetails = ({ modalRef, taskId }) => {
     setStatus(e.target.value);
   };
 
-    const handleUpdateTask = (e) => {
-        e.preventDefault();
-        // send the updated task details to your updateTask() API
-        console.log("Updated Task:", {
-        ...detail,
-        status: status,
-        assignee: cardMembers.map((member) => member.name).join(", "),
-        });
-        modalRef.current.close(); // Close the modal after saving
-    };
+  const handleUpdateTask = (e) => {
+    e.preventDefault();
+    // send the updated task details to your updateTask() API
+    console.log("Updated Task:", {
+      ...detail,
+      status: status,
+      assignee: cardMembers.map((member) => member.name).join(", "),
+    });
+    modalRef.current.close(); // Close the modal after saving
+  };
 
   return (
     <Modal ref={modalRef}>
       <form className={classes.form} onSubmit={handleUpdateTask}>
+        <FaPen
+          className={`${classes.icon} ${classes.edit_icon}`}
+          onClick={() => setIsEditing(true)}
+        />
         <h2 className={classes.title}>Task Details</h2>
 
         {/* Title */}
@@ -91,7 +98,11 @@ const TaskDetails = ({ modalRef, taskId }) => {
             <FaTasks className={classes.icon} />
             <label className={classes.label}>Title</label>
           </div>
-          <div className={classes.value}>{detail.title}</div>
+          <input
+            className={`${classes.value} ${classes.input}`}
+            value={task.title}
+            disabled={!isEditing}
+          />
         </div>
 
         {/* Description */}
@@ -100,7 +111,11 @@ const TaskDetails = ({ modalRef, taskId }) => {
             <FaFlag className={classes.icon} />
             <label className={classes.label}>Description</label>
           </div>
-          <div className={classes.value}>{detail.description}</div>
+          <input
+            className={`${classes.value} ${classes.input}`}
+            value={task.description}
+            disabled={!isEditing}
+          />
         </div>
 
         {/* Priority */}
@@ -109,7 +124,11 @@ const TaskDetails = ({ modalRef, taskId }) => {
             <FaCheckCircle className={classes.icon} />
             <label className={classes.label}>Priority</label>
           </div>
-          <div className={classes.value}>{detail.difficulty}</div>
+          <input
+            className={`${classes.value} ${classes.input}`}
+            value={task.difficulty}
+            disabled={!isEditing}
+          />
         </div>
 
         {/* Status Dropdown */}
@@ -120,9 +139,10 @@ const TaskDetails = ({ modalRef, taskId }) => {
           </div>
           <select
             id="status"
-            value={status}
+            value={task.status}
             onChange={handleStatusChange}
-            className={classes.select}
+            className={`${classes.value} ${classes.input}`}
+            disabled={!isEditing}
           >
             <option value="todo">To Do</option>
             <option value="inprogress">In Progress</option>
@@ -136,7 +156,11 @@ const TaskDetails = ({ modalRef, taskId }) => {
             <FaCalendarAlt className={classes.icon} />
             <label className={classes.label}>Due Date</label>
           </div>
-          <div className={classes.value}>{detail.dueDate}</div>
+          <input
+            className={`${classes.value} ${classes.input}`}
+            value={task.dueDate}
+            disabled={!isEditing}
+          />
         </div>
 
         {/* Assignee */}
@@ -181,8 +205,16 @@ const TaskDetails = ({ modalRef, taskId }) => {
 
         {/* Buttons */}
         <div className={classes.buttons}>
-          <button className={classes.main_button} type="submit">Save</button>
-          <button className={classes.close} type="button" onClick={() => modalRef.current.close()}>Close</button>
+          <button className={classes.main_button} type="submit">
+            Save
+          </button>
+          <button
+            className={classes.close}
+            type="button"
+            onClick={() => modalRef.current.close()}
+          >
+            Close
+          </button>
         </div>
       </form>
     </Modal>

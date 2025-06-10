@@ -4,6 +4,7 @@
   background-color: #1e1e2f;
   border-radius: 8px;
   color: #ffffff;
+  position: relative;
 }
 
 .form .title {
@@ -15,6 +16,19 @@
   color: var(--lilac-color);
   text-align: center;
   font-weight: bold;
+}
+
+.edit_icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  outline: none;
 }
 
 /* Input Container */
@@ -63,10 +77,10 @@
   color: var(--white);
 }
 
-.members_container{
+.members_container {
   display: flex;
   flex-direction: row;
-    flex-wrap: wrap;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 }
@@ -89,14 +103,13 @@
 .addIcon {
   /* font-size: 0.2rem; */
   cursor: pointer;
-    color: var(--white);
+  color: var(--white);
   background-color: var(--lilac-color);
   border-radius: 50%;
   padding: 8px;
   width: 30px;
   height: 30px;
 }
-
 
 .memberAvatar {
   width: 30px;
@@ -111,7 +124,6 @@
   border-radius: 50%;
   margin-right: 10px;
 }
-
 
 /* Buttons */
 /* ???? NEON BUTTON ?????? */
