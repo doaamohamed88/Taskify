@@ -32,7 +32,7 @@ const getBoardById = (id) => {
 const addBoard = (boardData, owner) => {
     const boards = getAllBoards();
     const users = getAllUsers();
-    // Build members array as array of { id, email }
+
     const members = boardData.members.map((memberId) => {
         const member = users.find((user) => user.id === memberId);
         return member ? { id: member.id, email: member.email, name: member.name } : { id: memberId, email: null, name: null };
@@ -78,7 +78,22 @@ const deleteBoard = (id) => {
 const createTask = (boardId, taskData) => {
     const allBoards = getAllBoards();
     const board = allBoards.find((board) => board.id === boardId);
-    const task = { id: uuid(), ...taskData };
+    const users = getAllUsers();
+    const members = (taskData.members || []).map((member) => {
+        if (typeof member === 'object' && member.id && member.name && member.email) {
+            return member;
+        } else if (typeof member === 'string') {
+            const user = users.find((u) => u.id === member);
+            return user ? { id: user.id, email: user.email, name: user.name } : { id: member, email: null, name: null };
+        } else if (typeof member === 'object' && member.id) {
+            // member is an object with id only
+            const user = users.find((u) => u.id === member.id);
+            return user ? { id: user.id, email: user.email, name: user.name } : { id: member.id, email: null, name: null };
+        } else {
+            return { id: member, email: null, name: null };
+        }
+    });
+    const task = { id: uuid(), ...taskData, members };
     board.tasks.push(task);
     fileUtils.write(boardsFilePath, allBoards);
     return task;
