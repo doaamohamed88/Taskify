@@ -39,7 +39,7 @@ export default function LeaderBoard() {
       <div size="large">
         <div className={styles.tableHeaderInfo}>
           <h3 style={{ textAlign: "center" }}>
-            {selectedBoard?.name || "Team Name"}{" "}
+            {selectedBoard?.title || "Team Name"}{" "}
           </h3>
           <span>
             {t("total-score")}: {totalScore}
