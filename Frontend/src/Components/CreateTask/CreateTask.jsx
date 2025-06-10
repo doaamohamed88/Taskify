@@ -3,17 +3,17 @@ import { loadUserOptions } from "../../utils/loadUserOptions";
 import { useRef, useState } from "react";
 import SelectStyle from "../UI/SelectStyle";
 import AsyncSelect from "react-select/async";
-import { authFetch } from "../../helpers/authFetch";
 import { createTask } from "../../services/boardService";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateSelectedBoard } from "../../store/selectedBoard";
+import useSelectedBoard from "../../hooks/useSelectedBoard";
 
 function CreateTask({ onClose, boardId }) {
   const membersRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ status: "To Do" });
   const [selectedMembers, setSelectedMembers] = useState([]);
-  const mySelectedBoard = useSelector((state) => state.selectedBoard);
+  const { selectedBoard } = useSelectedBoard();
   const dispatch = useDispatch();
   console.log(formData);
 
@@ -42,8 +42,8 @@ function CreateTask({ onClose, boardId }) {
       const response = await createTask(boardId, formData);
       console.log("Task created:", response);
       const updatedBoard = {
-        ...mySelectedBoard,
-        tasks: [...(mySelectedBoard.tasks || []), response],
+        ...selectedBoard,
+        tasks: [...(selectedBoard.tasks || []), response],
       };
       onClose();
       dispatch(updateSelectedBoard(updatedBoard));

@@ -4,12 +4,12 @@ import TeamTable from "../../Components/TeamTable";
 import RankCard from "../../Components/RankCard";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import useSelectedBoard from "../../hooks/useSelectedBoard";
 
 export default function LeaderBoard() {
   const { t } = useTranslation();
 
-  const selectedBoard = useSelector((state) => state.selectedBoard);
+  const { selectedBoard } = useSelectedBoard();
 
   const [totalScore, setTotalScore] = useState(0);
 

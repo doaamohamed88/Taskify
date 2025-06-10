@@ -12,13 +12,14 @@ import {
   FaPen,
 } from "react-icons/fa";
 import Members from "./Members";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateSelectedBoard } from "../../store/selectedBoard";
 import { updateBoard } from "../../services/boardService";
 import { useParams } from "react-router";
+import useSelectedBoard from "../../hooks/useSelectedBoard";
 
 const TaskDetails = ({ modalRef, task }) => {
-  const {id} = useParams
+  const { id } = useParams;
   const [detail, setDetail] = useState({
     id: task.id,
     title: task.title || "",
@@ -28,10 +29,10 @@ const TaskDetails = ({ modalRef, task }) => {
     members: task.members || "",
     priority: task.priority || "",
   });
-  const selectedBoard = useSelector((state) => state.selectedBoard);
-  const dispatch = useDispatch()
+  const { selectedBoard } = useSelectedBoard();
+  const dispatch = useDispatch();
 
-    const boardId = id || selectedBoard?.id || null;
+  const boardId = id || selectedBoard?.id || null;
 
   const [boardMembers, setBoardMembers] = useState([]);
   const [status, setStatus] = useState(detail.status);
@@ -42,9 +43,8 @@ const TaskDetails = ({ modalRef, task }) => {
   const [cardMembers, setCardMembers] = useState(task?.members || []);
   const [showMember, setShowMember] = useState(false);
 
-  console.log('cardMembers:', {cardMembers, task, selectedBoard});
+  console.log("cardMembers:", { cardMembers, task, selectedBoard });
 
-  
   useEffect(() => {
     setDetail(task);
   }, [task]);
@@ -53,7 +53,6 @@ const TaskDetails = ({ modalRef, task }) => {
     setBoardMembers(selectedBoard.members || []);
   }, [selectedBoard]);
 
-
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
   };
@@ -61,28 +60,26 @@ const TaskDetails = ({ modalRef, task }) => {
   const handleUpdateTask = async (e) => {
     e.preventDefault();
     // send the updated task details to your updateTask() API
-    const data ={
+    const data = {
       ...detail,
       status: status,
       members: [...cardMembers],
     };
 
     try {
-          setIsSubmitting(true);
-          const response = await updateBoard(boardId, data);
-          console.log("Task updated:", response);
-          // Optionally reset form or show success message here
-        } catch (error) {
-          console.error("Error updating task:", error);
-          // Optionally show error message here
-        } finally {
-          setIsSubmitting(false);
-        }
+      setIsSubmitting(true);
+      const response = await updateBoard(boardId, data);
+      console.log("Task updated:", response);
+      // Optionally reset form or show success message here
+    } catch (error) {
+      console.error("Error updating task:", error);
+      // Optionally show error message here
+    } finally {
+      setIsSubmitting(false);
+    }
     modalRef.current.close(); // Close the modal after saving
     const updatedTasks = selectedBoard.tasks.map((t) =>
-      t.id === detail.id
-        ? { ...t, ...detail, status, members: cardMembers }
-        : t
+      t.id === detail.id ? { ...t, ...detail, status, members: cardMembers } : t
     );
     const updatedBoard = { ...selectedBoard, tasks: updatedTasks };
     dispatch(updateSelectedBoard(updatedBoard));
@@ -210,8 +207,12 @@ const TaskDetails = ({ modalRef, task }) => {
 
         {/* Buttons */}
         <div className={classes.buttons}>
-          <button className={classes.main_button} type="submit" disabled={!isEditing || isSubmitting}>
-            Save {isSubmitting && <span className={classes.loading}>...</span>} 
+          <button
+            className={classes.main_button}
+            type="submit"
+            disabled={!isEditing || isSubmitting}
+          >
+            Save {isSubmitting && <span className={classes.loading}>...</span>}
           </button>
           <button
             className={classes.close}

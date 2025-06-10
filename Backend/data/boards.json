@@ -1,1 +1,33 @@
-[]
+[
+  {
+    "id": "d428789d-021c-4628-832c-9b866ce8347a",
+    "owner": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+    "createdAt": "2025-06-10T15:03:47.993Z",
+    "title": "Doaa's Board",
+    "members": [
+      {
+        "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+        "email": "kareem.mohamed.ayman@gmail.com"
+      },
+      {
+        "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+        "email": "abdelrahmanali58@gmail.com"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "40637760-54f7-4e89-8462-e7b540d48a40",
+        "status": "To Do",
+        "title": "task1",
+        "difficulty": "Easy",
+        "description": "this is desc for task 1",
+        "due-date": "2025-02-22",
+        "members": [
+          "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+          "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+          "f64bc1a1-2317-45a1-9591-407ae86a6945"
+        ]
+      }
+    ]
+  }
+]

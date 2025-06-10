@@ -8,18 +8,18 @@ import { useEffect, useRef, useState } from "react"
 import Modal from "../../Components/Modal/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { setSelectedBoard } from "../../store/selectedBoard"
-import { getBoardById, updateBoard } from "../../services/boardService"
+import { updateBoard } from "../../services/boardService"
 import { getUserByEmail, updateUser } from "../../services/userService"
-import { set } from "react-hook-form"
 import { hasMinLength, isEmail, isNotEmpty } from "../../utils/validation"
+import useSelectedBoard from "../../hooks/useSelectedBoard"
 
 export default function AdminDashboard() {
-  const modalRef = useRef()
-  const { t } = useTranslation()
+  const modalRef = useRef();
+  const { t } = useTranslation();
 
   const dispatch = useDispatch()
   // const userBoardId = useSelector((state) => state.user.boards[0].id)
-  const boardData = useSelector((state) => state.selectedBoard)
+  const { selectedBoard } = useSelectedBoard();
   const adminInfo = useSelector((state) => state.user)
 
   const [totalTasks, setTotalTasks] = useState(0)
@@ -46,43 +46,43 @@ export default function AdminDashboard() {
   // }, [userBoardId])
 
   useEffect(() => {
-    if (boardData) {
+    if (selectedBoard) {
       calculateProgress()
       setMemberInfo([])
       getMemberInfo()
     }
-  }, [boardData])
+  }, [selectedBoard])
 
   function calculateProgress() {
-    setTotalTasks(boardData.tasks.length)
+    setTotalTasks(selectedBoard.tasks.length)
     setCompletedTasks(
-      boardData.tasks.length > 0 &&
+      selectedBoard.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "Done").length /
-          boardData.tasks.length) *
+        (selectedBoard.tasks.filter((task) => task.status === "Done").length /
+          selectedBoard.tasks.length) *
         100
       )
     )
     setInProgressTasks(
-      boardData.tasks.length > 0 &&
+      selectedBoard.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "In Progress").length /
-          boardData.tasks.length) *
+        (selectedBoard.tasks.filter((task) => task.status === "In Progress").length /
+          selectedBoard.tasks.length) *
         100
       )
     )
     setNotStartedTasks(
-      boardData.tasks.length > 0 &&
+      selectedBoard.tasks.length > 0 &&
       Math.round(
-        (boardData.tasks.filter((task) => task.status === "To Do").length /
-          boardData.tasks.length) *
+        (selectedBoard.tasks.filter((task) => task.status === "To Do").length /
+          selectedBoard.tasks.length) *
         100
       )
     )
   }
 
   function getMemberInfo() {
-    boardData.members.forEach((memb) => {
+    selectedBoard.members.forEach((memb) => {
       if (memb.email === adminInfo.email) return
       getUserByEmail(memb.email).then((res) => {
         setMemberInfo((arr) => {
@@ -97,14 +97,14 @@ export default function AdminDashboard() {
     e.preventDefault()
     if (!isEmail(emailInput) || !isNotEmpty(emailInput) || !hasMinLength(emailInput, 5)) {
       setEmailError("Please enter a valid email address")
-    } else if (boardData.members.some((member) => member.email === emailInput)) {
+    } else if (selectedBoard.members.some((member) => member.email === emailInput)) {
       setEmailError("Member already exists")
     } else {
       getUserByEmail(emailInput).then((res) => {
-        const updatedBoard = { ...boardData, members: [...boardData.members, { score: 0, email: res.email }] }
+        const updatedBoard = { ...selectedBoard, members: [...selectedBoard.members, { score: 0, email: res.email }] }
         dispatch(setSelectedBoard(updatedBoard))
-        updateBoard(boardData.id, updatedBoard)
-        updateUser(res.id, { boards: [...res.boards, { id: boardData.id }] })
+        updateBoard(selectedBoard.id, updatedBoard)
+        updateUser(res.id, { boards: [...res.boards, { id: selectedBoard.id }] })
         resetInput()
         modalRef.current.close()
       }).catch((err) => {
