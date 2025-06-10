@@ -27,12 +27,8 @@ function Boards() {
     const involvedBoards = boards
         .filter(
             (board) =>
-                Array.isArray(board.members) &&
-                board.members.includes(userId) &&
-                board.owner !== userId
-        )
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
+                board.members.find((member) => String(member.id) === String(userId)))
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     useEffect(() => {
         dispatch(fetchUserBoards());
     }, [dispatch]);

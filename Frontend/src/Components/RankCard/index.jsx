@@ -7,23 +7,23 @@ const RankCard = () => {
     {
       rank: "2nd",
       name: "Participant 2",
-      img: "./images/second.webp",
+      img: "/public/images/second.webp",
       heightClass: "second",
-      bg: "./images/bg1.png",
+      bg: "/public/images/bg1.png",
     },
     {
       rank: "1st",
       name: "Participant 1",
-      img: "./images/first.webp",
+      img: "/public/images/first.webp",
       heightClass: "first",
-      bg: "./images/bg2.webp",
+      bg: "/public/images/bg2.webp",
     },
     {
       rank: "3rd",
       name: "Participant 3",
-      img: "./images/third.webp",
+      img: "/public/images/third.webp",
       heightClass: "third",
-      bg: "./images/bg3.jpg",
+      bg: "/public/images/bg3.jpg",
     },
   ];
 
