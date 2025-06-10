@@ -9,11 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateSelectedBoard } from "../../store/selectedBoard";
 
 function CreateTask({ onClose, boardId }) {
-  // const titleRef = useRef();
-  // const descriptionRef = useRef();
-  // const priorityRef = useRef();
-  // const statusRef = useRef();
-  // const dueDateRef = useRef();
   const membersRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({ status: "To Do" });
@@ -40,16 +35,6 @@ function CreateTask({ onClose, boardId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const data = {
-    //   title: titleRef.current.value,
-    //   description: descriptionRef.current.value,
-    //   priority: priorityRef.current.value,
-    //   status: statusRef.current.value,
-    //   dueDate: dueDateRef.current.value,
-    //   members: selectedMembers,
-    // };
-
     try {
       setIsSubmitting(true);
       const selected = membersRef.current.getValue() || [];
@@ -60,6 +45,7 @@ function CreateTask({ onClose, boardId }) {
         ...mySelectedBoard,
         tasks: [...(mySelectedBoard.tasks || []), response],
       };
+      onClose();
       dispatch(updateSelectedBoard(updatedBoard));
 
       // Optionally reset form or show success message here
@@ -77,14 +63,7 @@ function CreateTask({ onClose, boardId }) {
       <div className={styles.container}>
         <div className={styles.input_container}>
           <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            // ref={titleRef}
-            // onFocus={() => handleFocus("title", titleRef)}
-            onChange={handleChange}
-          />
+          <input type="text" name="title" id="title" onChange={handleChange} />
         </div>
         <div className={styles.input_container}>
           <label htmlFor="difficulty">Difficulty</label>
@@ -92,8 +71,6 @@ function CreateTask({ onClose, boardId }) {
             type="text"
             name="difficulty"
             id="difficulty"
-            // ref={priorityRef}
-            // onFocus={() => handleFocus("priority", priorityRef)}
             onChange={handleChange}
           />
         </div>
@@ -105,19 +82,12 @@ function CreateTask({ onClose, boardId }) {
             type="text"
             name="description"
             id="description"
-            // ref={descriptionRef}
-            // onFocus={() => handleFocus("description", descriptionRef)}
             onChange={handleChange}
           />
         </div>
         <div className={styles.input_container}>
           <label htmlFor="status">Status</label>
-          <select
-            // ref={statusRef}
-            // onFocus={() => handleFocus("status", statusRef)}
-            name="status"
-            onChange={handleChange}
-          >
+          <select name="status" onChange={handleChange}>
             <option>To Do</option>
             <option>In Progress</option>
             <option>Done</option>
@@ -131,8 +101,6 @@ function CreateTask({ onClose, boardId }) {
             type="date"
             name="due-date"
             id="due-date"
-            // ref={dueDateRef}
-            // onFocus={() => handleFocus("dueDate", dueDateRef)}
             onChange={handleChange}
           />
         </div>
