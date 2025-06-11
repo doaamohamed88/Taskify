@@ -31,7 +31,7 @@
   --table-bg: 0e1218;
   scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
 }
-:root {
+/* :root {
   --main-color: #0e1218;
   --secondary-color: rgb(29 34 46);
   --text-color: #ffffff;
@@ -55,11 +55,11 @@
 
   --glass-bg: rgba(14, 18, 24, 0.8);
   --glass-border: rgba(29, 34, 46, 0.4);
-}
+} */
 
 .light {
   --main-color: rgb(148, 118, 214);
-  --secondary-color: #8251a1b5;
+  --secondary-color: #8251a1;
   --text-color: #4c3f68;
   --text-secondary: #756a8d;
   --table-bg: var(--main-color);

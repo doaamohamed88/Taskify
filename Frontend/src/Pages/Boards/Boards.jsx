@@ -29,6 +29,11 @@ function Boards() {
             (board) =>
                 board.members.find((member) => String(member.id) === String(userId)))
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+    // Remove boards from involvedBoards that are already in createdBoards or where the user is both owner and member
+    const createdBoardIds = new Set(createdBoards.map(b => b.id));
+    const filteredInvolvedBoards = involvedBoards.filter(b => !createdBoardIds.has(b.id) && b.owner !== userId);
+
     useEffect(() => {
         dispatch(fetchUserBoards());
     }, [dispatch]);
@@ -75,13 +80,13 @@ function Boards() {
             )}
             {location === '/involvedboardsPage' && (
                 <div className={styles.container}>
-                    {(involvedBoards.length === 0) && (
+                    {(filteredInvolvedBoards.length === 0) && (
                         <div className={styles.img_conatiner}>
                             <img src={noboard} className={styles.img} alt="No boards" />
                         </div>
                     )}
 
-                    {involvedBoards.length > 0 && (
+                    {filteredInvolvedBoards.length > 0 && (
                         <div className={styles.cards_section}>
                             <motion.p
                                 className={styles.boardName}
@@ -93,7 +98,7 @@ function Boards() {
                             </motion.p>
 
                             <div className={styles.cards}>
-                                {involvedBoards.map((board) => (
+                                {filteredInvolvedBoards.map((board) => (
                                     <motion.div
                                         className={styles.card}
                                         key={board.id}
