@@ -228,9 +228,8 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
           <br />
           <div
-            className={`${showMember ? classes.showMember : classes.hidden} ${
-              classes.members_container
-            }`}
+            className={`${showMember ? classes.showMember : classes.hidden} ${classes.members_container
+              }`}
             onBlur={() => setShowMember(false)}
           >
             <Members
@@ -246,19 +245,19 @@ const TaskDetails = ({ modalRef, task }) => {
         {/* Buttons */}
         <div className={classes.buttons}>
           <button
+            className={classes.close}
+            type="button"
+            onClick={() => modalRef.current.close()}
+          >
+            {t("Close")}
+          </button>
+          <button
             className={classes.main_button}
             type="submit"
             disabled={!isEditing || isSubmitting}
           >
             {t("Save")}{" "}
             {isSubmitting && <span className={classes.loading}>...</span>}
-          </button>
-          <button
-            className={classes.close}
-            type="button"
-            onClick={() => modalRef.current.close()}
-          >
-            {t("Close")}
           </button>
         </div>
       </form>
