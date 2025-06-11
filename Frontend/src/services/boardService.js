@@ -22,3 +22,9 @@ export const createTask = async (boardId, taskData) => {
     body: JSON.stringify(taskData),
   })
 }
+
+export const deleteBoard = async (id) => {
+  return await authFetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+};

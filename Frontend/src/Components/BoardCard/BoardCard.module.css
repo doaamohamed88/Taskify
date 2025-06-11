@@ -93,3 +93,25 @@
 [dir="rtl"] .member_circle:first-child {
   margin-right: 0;
 }
+
+.editIcon {
+  color: var(--lilac-color);
+  transition: color 0.2s;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+.editIcon:hover {
+  color: var(--main-color);
+}
+
+.deleteIcon {
+  color: orangered;
+  transition: color 0.2s, transform 0.2s;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-left: 8px;
+}
+.deleteIcon:hover {
+  color: rgb(255, 155, 119);
+  transform: scale(1.2);
+}

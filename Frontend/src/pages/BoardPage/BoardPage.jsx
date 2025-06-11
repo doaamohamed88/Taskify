@@ -85,18 +85,21 @@ const BoardPage = () => {
   };
 
   return (
-    <DndContext onDragEnd={handleDragEnd}>
-      <div className={styles.boardContainer}>
-        {STATUSES.map((status) => (
-          <TasksList
-            key={status}
-            title={status}
-            status={status}
-            tasks={tasks.filter((task) => task.status === status)}
-          />
-        ))}
-      </div>
-    </DndContext>
+    <div className={styles.main_container}>
+      <h2 style={{ textAlign: 'start', margin: '0px 40px 20px', color: 'var(--lilac-color)' }}>{selectedBoard?.title && `Board: ${selectedBoard.title}`}</h2>
+      <DndContext onDragEnd={handleDragEnd}>
+        <div className={styles.boardContainer}>
+          {STATUSES.map((status) => (
+            <TasksList
+              key={status}
+              title={status}
+              status={status}
+              tasks={tasks.filter((task) => task.status === status)}
+            />
+          ))}
+        </div>
+      </DndContext>
+    </div>
   );
 };
 
