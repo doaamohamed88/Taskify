@@ -6,6 +6,9 @@ import { createTask } from "../../services/boardService";
 import { useDispatch } from "react-redux";
 import { updateSelectedBoard } from "../../store/selectedBoard";
 import useSelectedBoard from "../../hooks/useSelectedBoard";
+
+import { useTranslation } from "react-i18next";
+
 import { toast } from "react-toastify";
 
 const INITIAL_FORM_DATA = {
@@ -17,6 +20,7 @@ function CreateTask({ onClose, boardId }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const { selectedBoard } = useSelectedBoard();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -78,10 +82,10 @@ function CreateTask({ onClose, boardId }) {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <p className={styles.title}>Create Task</p>
+      <p className={styles.title}>{t("Create Task")}</p>
       <div className={styles.container}>
         <div className={styles.input_container}>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">{t("Title")}</label>
           <input
             type="text"
             name="title"
@@ -92,7 +96,7 @@ function CreateTask({ onClose, boardId }) {
           />
         </div>
         <div className={styles.input_container}>
-          <label htmlFor="difficulty">Difficulty</label>
+          <label htmlFor="difficulty">{t("Difficulty")}</label>
 
           <select
             name="difficulty"
@@ -101,15 +105,15 @@ function CreateTask({ onClose, boardId }) {
             onChange={handleChange}
             required
           >
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
+            <option value="Easy">{t("Easy")}</option>
+            <option value="Medium">{t("Medium")}</option>
+            <option value="Hard">{t("Hard")}</option>
           </select>
         </div>
       </div>
       <div className={styles.conatiner}>
         <div className={styles.input_container}>
-          <label htmlFor="description">Description</label>
+          <label htmlFor="description">{t("Description")}</label>
           <textarea
             type="text"
             name="description"
@@ -122,7 +126,7 @@ function CreateTask({ onClose, boardId }) {
       </div>
       <div className={styles.conatiner}>
         <div className={styles.input_container}>
-          <label htmlFor="due-date">Due Date</label>
+          <label htmlFor="due-date">{t("Due Date")}</label>
           <input
             type="date"
             name="due-date"
@@ -133,24 +137,26 @@ function CreateTask({ onClose, boardId }) {
           />
         </div>
         <div className={styles.input_container}>
-          <label htmlFor="members">Members</label>
+          <label htmlFor="members">{t("Members")}</label>
           <AsyncSelect
             isMulti
             cacheOptions
             defaultOptions={memberOptions}
             loadOptions={loadBoardMembers}
             ref={membersRef}
-            placeholder="Search and select members..."
+            placeholder={t("Search and select members...")}
             styles={SelectStyle}
           />
         </div>
       </div>
       <div className={styles.buttons}>
         <button className={styles.close} type="button" onClick={onClose}>
-          Close
+          {t("Close")}
         </button>
         <button type="submit" className={styles.main_button}>
-          {isSubmitting ? "Creating" : "Create Task"}
+
+          {isSubmitting ? "Creating" :  {t("Create Task")}}
+
         </button>
       </div>
     </form>
