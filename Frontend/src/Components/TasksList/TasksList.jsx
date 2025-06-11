@@ -18,7 +18,9 @@ const TasksList = ({ title, status, tasks }) => {
     id: status,
     data: { accepts: ["task"] },
   });
-  const taskListClass = `${styles.taskList} ${isOver ? styles.draggingOver : ""}`;
+  const taskListClass = `${styles.taskList} ${
+    isOver ? styles.draggingOver : ""
+  }`;
 
   const { t } = useTranslation();
   const modalRef = useRef();
@@ -34,26 +36,30 @@ const TasksList = ({ title, status, tasks }) => {
   return (
     <div className={`${styles.listContainer}`}>
       <div
-        className={`${styles.titleContainer} ${title === "To Do"
-          ? styles.todo
-          : title === "In Progress"
+        className={`${styles.titleContainer} ${
+          title === "To Do"
+            ? styles.todo
+            : title === "In Progress"
             ? styles.inProgress
             : styles.done
-          }`}
+        }`}
       >
         <h1 className={`${styles.title}`}>{t(title)}</h1>
         {title === "To Do" && (
           <div className={`${styles.iconContainer}`}>
             <FontAwesomeIcon icon={faPlus} size="lg" onClick={showModal} />
             <Modal ref={modalRef}>
-              <CreateTask onClose={handleCloseModal} boardId={id || selectedBoard?.id} />
+              <CreateTask
+                onClose={handleCloseModal}
+                boardId={id || selectedBoard?.id}
+              />
             </Modal>
           </div>
         )}
       </div>
       <div ref={setNodeRef} className={taskListClass}>
         {tasks.length === 0 ? (
-          <div>No tasks available.</div>
+          <div>{t("No tasks available.")}</div>
         ) : (
           tasks.map((task) => <TaskCard key={task.id} task={task} />)
         )}

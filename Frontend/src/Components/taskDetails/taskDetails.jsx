@@ -1,6 +1,6 @@
-import classes from "./taskDetails.module.css"
-import Modal from "../Modal/Modal"
-import { useEffect, useState } from "react"
+import classes from "./taskDetails.module.css";
+import Modal from "../Modal/Modal";
+import { useEffect, useState } from "react";
 import {
   FaUser,
   FaCalendarAlt,
@@ -10,16 +10,17 @@ import {
   FaUserPlus,
   FaPlus,
   FaPen,
-} from "react-icons/fa"
-import Members from "./Members"
-import { useDispatch } from "react-redux"
-import { updateSelectedBoard } from "../../store/selectedBoard"
-import { updateBoard } from "../../services/boardService"
-import { useParams } from "react-router"
-import useSelectedBoard from "../../hooks/useSelectedBoard"
+} from "react-icons/fa";
+import Members from "./Members";
+import { useDispatch } from "react-redux";
+import { updateSelectedBoard } from "../../store/selectedBoard";
+import { updateBoard } from "../../services/boardService";
+import { useParams } from "react-router";
+import useSelectedBoard from "../../hooks/useSelectedBoard";
+import { useTranslation } from "react-i18next";
 
 const TaskDetails = ({ modalRef, task }) => {
-  const { id } = useParams
+  const { id } = useParams;
   const [detail, setDetail] = useState({
     id: task.id,
     title: task.title || "",
@@ -28,22 +29,23 @@ const TaskDetails = ({ modalRef, task }) => {
     dueDate: task.dueDate || task["due-date"],
     members: task.members || "",
     difficulty: task.difficulty || "",
-  })
-  const { selectedBoard } = useSelectedBoard()
-  const dispatch = useDispatch()
+  });
+  const { selectedBoard } = useSelectedBoard();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
 
-  const boardId = id || selectedBoard?.id || null
+  const boardId = id || selectedBoard?.id || null;
 
-  const [boardMembers, setBoardMembers] = useState([])
-  const [status, setStatus] = useState(detail.status)
-  const [isEditing, setIsEditing] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [boardMembers, setBoardMembers] = useState([]);
+  const [status, setStatus] = useState(detail.status);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // set members users form task details object as initial card members
-  const [cardMembers, setCardMembers] = useState(task?.members || [])
-  const [showMember, setShowMember] = useState(false)
+  const [cardMembers, setCardMembers] = useState(task?.members || []);
+  const [showMember, setShowMember] = useState(false);
 
-  console.log("cardMembers:", { cardMembers, task, selectedBoard })
+  console.log("cardMembers:", { cardMembers, task, selectedBoard });
 
   useEffect(() => {
     setDetail({
@@ -54,51 +56,53 @@ const TaskDetails = ({ modalRef, task }) => {
       dueDate: task.dueDate || task["due-date"] || "",
       members: task.members || "",
       difficulty: task.priority || task.difficulty || "",
-    })
-  }, [task])
+    });
+  }, [task]);
 
   useEffect(() => {
-    setBoardMembers(selectedBoard.members || [])
-  }, [selectedBoard])
+    setBoardMembers(selectedBoard.members || []);
+  }, [selectedBoard]);
 
   useEffect(() => {
-    console.log(isEditing)
-  }, [isEditing])
+    console.log(isEditing);
+  }, [isEditing]);
 
   const handleStatusChange = (e) => {
-    setStatus(e.target.value)
-  }
+    setStatus(e.target.value);
+  };
 
   const handleUpdateTask = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Prepare updated task data
     const updatedTask = {
       ...detail,
       status,
       members: [...cardMembers],
-    }
+    };
 
     // Update tasks array
-    const updatedTasks = selectedBoard.tasks.map((t) => (t.id === detail.id ? updatedTask : t))
-    const updatedBoard = { ...selectedBoard, tasks: updatedTasks }
+    const updatedTasks = selectedBoard.tasks.map((t) =>
+      t.id === detail.id ? updatedTask : t
+    );
+    const updatedBoard = { ...selectedBoard, tasks: updatedTasks };
 
     try {
-      setIsSubmitting(true)
+      setIsSubmitting(true);
       // Update backend (send the whole board or just the task, depending on your API)
-      await updateBoard(boardId, updatedBoard)
+      await updateBoard(boardId, updatedBoard);
       // Or, if you have updateTask: await updateTask(boardId, detail.id, updatedTask);
 
       // Update Redux store
-      dispatch(updateSelectedBoard(updatedBoard))
+      dispatch(updateSelectedBoard(updatedBoard));
     } catch (error) {
-      console.error("Error updating task:", error)
+      console.error("Error updating task:", error);
     } finally {
-      setIsSubmitting(false)
-      setIsEditing(false)
-      modalRef.current.close()
+      setIsSubmitting(false);
+      setIsEditing(false);
+      modalRef.current.close();
     }
-  }
+  };
 
   return (
     <Modal ref={modalRef}>
@@ -107,18 +111,20 @@ const TaskDetails = ({ modalRef, task }) => {
           className={`${classes.icon} ${classes.edit_icon}`}
           onClick={() => setIsEditing(true)}
         />
-        <h2 className={classes.title}>Task Details</h2>
+        <h2 className={classes.title}>{t("Task Details")}</h2>
 
         {/* Title */}
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaTasks className={classes.icon} />
-            <label className={classes.label}>Title</label>
+            <label className={classes.label}>{t("Title")}</label>
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
             value={detail.title}
-            onChange={(e) => isEditing && setDetail({ ...detail, title: e.target.value })}
+            onChange={(e) =>
+              isEditing && setDetail({ ...detail, title: e.target.value })
+            }
             disabled={!isEditing}
           />
         </div>
@@ -127,12 +133,14 @@ const TaskDetails = ({ modalRef, task }) => {
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaFlag className={classes.icon} />
-            <label className={classes.label}>Description</label>
+            <label className={classes.label}>{t("Description")}</label>
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
             value={detail.description}
-            onChange={(e) => isEditing && setDetail({ ...detail, description: e.target.value })}
+            onChange={(e) =>
+              isEditing && setDetail({ ...detail, description: e.target.value })
+            }
             disabled={!isEditing}
           />
         </div>
@@ -141,20 +149,22 @@ const TaskDetails = ({ modalRef, task }) => {
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaCheckCircle className={classes.icon} />
-            <label className={classes.label}>Priority</label>
+            <label className={classes.label}>{t("Priority")}</label>
           </div>
           <select
             name="difficulty"
             id="difficulty"
             className={`${classes.value} ${classes.input}`}
             value={detail.difficulty}
-            onChange={(e) => isEditing && setDetail({ ...detail, difficulty: e.target.value })}
+            onChange={(e) =>
+              isEditing && setDetail({ ...detail, difficulty: e.target.value })
+            }
             required
             disabled={!isEditing}
           >
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
+            <option value="Easy">{t("Easy")}</option>
+            <option value="Medium">{t("Medium")}</option>
+            <option value="Hard">{t("Hard")}</option>
           </select>
         </div>
 
@@ -162,7 +172,7 @@ const TaskDetails = ({ modalRef, task }) => {
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaCheckCircle className={classes.icon} />
-            <label className={classes.label}>Status</label>
+            <label className={classes.label}>{t("Status")}</label>
           </div>
           <select
             id="status"
@@ -171,9 +181,9 @@ const TaskDetails = ({ modalRef, task }) => {
             className={`${classes.value} ${classes.input}`}
             disabled={!isEditing}
           >
-            <option value="To Do">To Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
+            <option value="To Do">{t("To Do")}</option>
+            <option value="In Progress">{t("In Progress")}</option>
+            <option value="Done">{t("Done")}</option>
           </select>
         </div>
 
@@ -181,12 +191,14 @@ const TaskDetails = ({ modalRef, task }) => {
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaCalendarAlt className={classes.icon} />
-            <label className={classes.label}>Due Date</label>
+            <label className={classes.label}>{t("Due Date")}</label>
           </div>
           <input
             className={`${classes.value} ${classes.input}`}
             value={detail.dueDate}
-            onChange={(e) => isEditing && setDetail({ ...detail, dueDate: e.target.value })}
+            onChange={(e) =>
+              isEditing && setDetail({ ...detail, dueDate: e.target.value })
+            }
             disabled={!isEditing}
           />
         </div>
@@ -195,18 +207,24 @@ const TaskDetails = ({ modalRef, task }) => {
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaUser className={classes.icon} />
-            <label className={classes.label}>members</label>
+            <label className={classes.label}>{t("Members")}</label>
           </div>
           {/* <div className={classes.value}>{detail.members}</div> */}
           <div className={`${classes.value} ${classes.members_container}`}>
             {cardMembers.map((member) => (
-              <div key={member.id} className={`${classes.member} ${classes.truncate}`}>
+              <div
+                key={member.id}
+                className={`${classes.member} ${classes.truncate}`}
+              >
                 <span className={classes.memberAvatar}>
                   {(member.name || member.email)?.slice(0, 2).toUpperCase()}
                 </span>
               </div>
             ))}
-            <FaPlus className={classes.addIcon} onClick={() => isEditing && setShowMember(true)} />
+            <FaPlus
+              className={classes.addIcon}
+              onClick={() => isEditing && setShowMember(true)}
+            />
           </div>
           <br />
           <div
@@ -232,15 +250,20 @@ const TaskDetails = ({ modalRef, task }) => {
             type="submit"
             disabled={!isEditing || isSubmitting}
           >
-            Save {isSubmitting && <span className={classes.loading}>...</span>}
+            {t("Save")}{" "}
+            {isSubmitting && <span className={classes.loading}>...</span>}
           </button>
-          <button className={classes.close} type="button" onClick={() => modalRef.current.close()}>
-            Close
+          <button
+            className={classes.close}
+            type="button"
+            onClick={() => modalRef.current.close()}
+          >
+            {t("Close")}
           </button>
         </div>
       </form>
     </Modal>
-  )
-}
+  );
+};
 
-export default TaskDetails
+export default TaskDetails;
