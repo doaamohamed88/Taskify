@@ -8,27 +8,29 @@
       {
         "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
         "name": "Kareem",
-        "email": "kareem.mohamed.ayman@gmail.com"
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 55
       },
       {
         "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
         "name": "Abdelrahman",
-        "email": "abdelrahmanali58@gmail.com"
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 25
       },
       {
         "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
         "email": "doaatawfik82001@gmail.com",
-        "name": "Doaa Tawik"
+        "name": "Doaa Tawik",
+        "score": 10
       }
     ],
     "tasks": [
       {
         "id": "e3667def-e940-4ee5-8165-2eafcaf82ac7",
-        "status": "To Do",
         "title": "Task 1",
-        "difficulty": "Easy",
         "description": "desc 1",
-        "due-date": "2025-02-22",
+        "status": "Done",
+        "dueDate": "2025-02-22",
         "members": [
           {
             "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
@@ -40,7 +42,8 @@
             "name": "Abdelrahman",
             "email": "abdelrahmanali58@gmail.com"
           }
-        ]
+        ],
+        "priority": "Hard"
       },
       {
         "id": "61635f65-fae6-48f3-bec5-800a896ac6e1",
@@ -60,13 +63,13 @@
             "email": "doaatawfik82001@gmail.com"
           }
         ],
-        "priority": "Easy"
+        "priority": "Medium"
       },
       {
         "id": "f7afcd23-a08a-4f24-88cf-791cb642ca2a",
         "title": "Task 33",
         "description": "medium task 33",
-        "status": "In Progress",
+        "status": "Done",
         "dueDate": "2025-02-22",
         "members": [
           {
@@ -80,7 +83,22 @@
             "email": "abdelrahmanali58@gmail.com"
           }
         ],
-        "priority": "Medium"
+        "priority": "Easy"
+      },
+      {
+        "id": "17f341eb-1f6d-42e0-b5b7-513424daccd3",
+        "status": "Done",
+        "title": "Task 4",
+        "difficulty": "Hard",
+        "description": "hard task",
+        "due-date": "2025-02-03",
+        "members": [
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ]
       }
     ],
     "status": "To Do",

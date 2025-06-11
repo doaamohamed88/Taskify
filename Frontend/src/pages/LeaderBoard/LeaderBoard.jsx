@@ -15,15 +15,16 @@ export default function LeaderBoard() {
 
   useEffect(() => {
       if (selectedBoard) {
-          const total = selectedBoard?.members?.reduce(
-            (acc, member) => acc + member.score,
-            0
-          );
+        const total = selectedBoard?.members?.reduce(
+          (acc, member) => acc + (member.score || 0),
+          0
+        );
           setTotalScore(total);
+        } else {
+          setTotalScore(0);
         }
 
-    setTotalScore(0);
-  }, [selectedBoard]);
+  }, [selectedBoard, setTotalScore]);
 
   return (
     <div className={styles.leaderBoardContainer}>

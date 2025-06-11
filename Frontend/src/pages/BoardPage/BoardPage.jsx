@@ -20,6 +20,15 @@ const BoardPage = () => {
     }
   }, [selectedBoard]);
 
+  const getScoreBasedOnDifficulty = (difficulty) => {
+    console.log('difficulty,,,,gggg', difficulty);
+    if (difficulty === "Easy") return 5;
+    if (difficulty === "Medium") return 10;
+    if (difficulty === "Hard") return 20;
+
+    return 0;
+  }
+
   const handleDragEnd = async (event) => {
     const { active, over } = event;
     if (!over || !active) return;
@@ -33,8 +42,30 @@ const BoardPage = () => {
       const updatedTasks = tasks.map((task) =>
         task.id === active.id ? { ...task, status: newStatus } : task
       );
+
+      let boardMembers = selectedBoard.members;
+      if (newStatus === 'Done') {
+        // calculate score for each members...
+        const selectedTask = tasks.find((task) => task.id === active.id);
+        const asigneeMembers = selectedTask.members;
+
+       boardMembers =  boardMembers.map(member => {
+          const selected = asigneeMembers?.find(el => el.id === member.id);
+          if(selected) {
+            // calculate score.....
+            return {
+              ...member,
+              score: (member.score || 0) + (getScoreBasedOnDifficulty(selectedTask.priority || selectedTask.difficulty))
+            }
+          }
+          else {
+            return member;
+          }
+        });
+      };
+
       setTasks(updatedTasks);
-      const updatedBoard = { ...selectedBoard, tasks: updatedTasks };
+      const updatedBoard = { ...selectedBoard, tasks: updatedTasks, members: boardMembers };
       dispatch(setSelectedBoard(updatedBoard));
       await updateBoard(selectedBoard.id, updatedBoard);
       return;
