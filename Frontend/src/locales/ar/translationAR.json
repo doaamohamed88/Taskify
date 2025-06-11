@@ -44,12 +44,9 @@
   "Easy": "سهل",
   "Medium": "متوسط",
   "Hard": "صعب",
-  "Created Boards": "اللوحات المنشأة",
-  "Involved Boards": "اللوحات المشاركة",
   "Task Details": "تفاصيل المهمة",
   "Save": "حفظ",
-  "Priority": "الصعوبة"
-
+  "Priority": "الصعوبة",
   "Created Boards": "اللوحات التي أنشأتها",
   "Involved Boards": "اللوحات التي شاركت فيها"
 }

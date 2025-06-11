@@ -155,7 +155,7 @@ function CreateTask({ onClose, boardId }) {
         </button>
         <button type="submit" className={styles.main_button}>
 
-          {isSubmitting ? "Creating" :  {t("Create Task")}}
+          {isSubmitting ? "Creating" : t("Create Task")}
 
         </button>
       </div>
