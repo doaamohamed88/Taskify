@@ -83,7 +83,7 @@ export default function AdminDashboard() {
 
   function getMemberInfo() {
     selectedBoard.members.forEach((memb) => {
-      if (memb.email === adminInfo.email) return
+      // if (memb.email === adminInfo.email) return
       getUserByEmail(memb.email).then((res) => {
         setMemberInfo((arr) => {
           if (arr.some((member) => member.email === res.email)) return arr
