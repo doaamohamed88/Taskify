@@ -12,7 +12,7 @@ import { updateBoard } from "../../services/boardService"
 import { getUserByEmail, updateUser } from "../../services/userService"
 import { hasMinLength, isEmail, isNotEmpty } from "../../utils/validation"
 import useSelectedBoard from "../../hooks/useSelectedBoard"
-
+import { toast } from "react-toastify"
 export default function AdminDashboard() {
   const modalRef = useRef();
   const { t } = useTranslation();
@@ -83,7 +83,7 @@ export default function AdminDashboard() {
 
   function getMemberInfo() {
     selectedBoard.members.forEach((memb) => {
-      if (memb.email === adminInfo.email) return
+      // if (memb.email === adminInfo.email) return
       getUserByEmail(memb.email).then((res) => {
         setMemberInfo((arr) => {
           if (arr.some((member) => member.email === res.email)) return arr
@@ -106,6 +106,15 @@ export default function AdminDashboard() {
         updateBoard(selectedBoard.id, updatedBoard)
         updateUser(res.id, { boards: [...res.boards, { id: selectedBoard.id }] })
         resetInput()
+        toast.success("Board created successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
         modalRef.current.close()
       }).catch((err) => {
         setEmailError("User does not exist")
@@ -125,6 +134,7 @@ export default function AdminDashboard() {
           {t("Welcome back, ")}
           {adminInfo.name} 👋
         </h1>
+        <h2 className={styles.boardTitle}>{selectedBoard?.title && `Board: ${selectedBoard.title}`}</h2>
         <div className={styles.projectProgress}>
           <ProgressCard
             title="Completed"

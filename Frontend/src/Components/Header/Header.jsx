@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import styles from "./Header.module.css"
 import i18n from "../../i18n"
@@ -10,12 +9,15 @@ import { faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import MobileMenu from "../MobileMenu/MobileMenu"
 import { logout } from "../../services/userService"
 import { useTranslation } from "react-i18next"
+
 function Header() {
   const [currentLang, setCurrentLang] = useState(i18n.language)
   const [themeIcon, setThemeIcon] = useState("light")
   const [toggleMobileMenu, setToggleMobileMenu] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { toggleTheme } = useTheme()
-  const { t } = useTranslation();
+  const { t } = useTranslation()
+
   const handleLanguageChange = (lang) => {
     i18n
       .changeLanguage(lang)
@@ -27,10 +29,30 @@ function Header() {
     document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr"
   }, [currentLang])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <>
-      <div className={styles.header}>
-        <div>
+      <div className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+        <div className={styles.links}>
+          <Link to="/">
+            <p className={styles.logo}>Taskify</p>
+          </Link>
+          <Link to="/createdboardsPage">
+            <p className={styles.header_link}>{t("Created Boards")}</p>
+          </Link>
+          <Link to="/involvedboardsPage">
+            <p className={styles.header_link}>{t("Involved Boards")}</p>
+          </Link>
+        </div>
+
+        <div className={styles.buttons}>
           <button
             onClick={() => {
               toggleTheme()
@@ -49,37 +71,18 @@ function Header() {
           >
             {currentLang === "ar" ? "en" : "ar"}
           </button>
-        </div>
-
-        <div>
-          <Link to="/createdboardsPage">
-            <p className={styles.header_link}>{t("Created Boards")}</p>
-          </Link>
-        </div>
-
-        <Link to="/">
-          <p className={styles.logo}>Taskify</p>
-        </Link>
-
-        <div>
-          <Link to="/involvedboardsPage">
-            <p className={styles.header_link}>{t("Involved Boards")}</p>
-          </Link>
-        </div>
-
-        <div>
           <button className={styles.signOut} onClick={logout}>
             <FaIcons.FaUser />
             {t('Sign Out')}
           </button>
         </div>
-
-        <FontAwesomeIcon
-          icon={faBars}
-          className={`${styles.bars} ${toggleMobileMenu ? styles.rotateIcon : ""}`}
-          onClick={() => setToggleMobileMenu(!toggleMobileMenu)}
-        ></FontAwesomeIcon>
       </div>
+
+      <FontAwesomeIcon
+        icon={faBars}
+        className={`${styles.bars} ${toggleMobileMenu ? styles.rotateIcon : ""}`}
+        onClick={() => setToggleMobileMenu(!toggleMobileMenu)}
+      ></FontAwesomeIcon>
 
       <MobileMenu
         toggleTheme={toggleTheme}

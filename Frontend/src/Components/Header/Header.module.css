@@ -17,6 +17,13 @@
     }
   }
 }
+
+.header.scrolled {
+  background: var(--secondary-color);
+  box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
 .header button {
   background-color: var(--main-color);
   color: white;
@@ -39,15 +46,14 @@
 
 .logo {
   font-family: "Caveat", sans-serif;
-  font-size: 50px;
+  font-size: 38px;
   color: var(--lilac-color);
   font-weight: bold;
 }
 
 .header_link {
-  font-size: 20px;
-  color: var(--lilac-color);
-  font-weight: bold;
+  font-size: 17px;
+  color: var(--white);
 }
 
 .lang {
@@ -73,4 +79,19 @@
   &.rotateIcon {
     transform: rotate(180deg);
   }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.header a:nth-child(2),
+.header a:last-child {
+  margin: 0 15px;
 }

@@ -1,102 +1,170 @@
 [
   {
-    "id": "e3667def-e940-4ee5-8165-2eafcaf82ac7",
-    "owner": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
-    "createdAt": "2025-06-10T17:28:39.451Z",
-    "title": "Task 1",
+    "id": "d3a3d9a4-6b1d-40a4-a9c2-a557a4c9a240",
+    "owner": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+    "createdAt": "2025-06-11T09:07:55.027Z",
+    "title": "Frontend Development",
     "members": [
       {
-        "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-        "name": "Kareem",
-        "email": "kareem.mohamed.ayman@gmail.com",
-        "score": 55
+        "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+        "name": "jameela13",
+        "email": "jameelaabdlruhman@gmail.com"
       },
       {
-        "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+        "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+        "name": "kareem",
+        "email": "kareem.mohamed.ayman@gmail.com"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "256a2e51-6a90-4611-88e9-52a35f583474",
+        "status": "To Do",
+        "title": "Create Login Page",
+        "description": "Design and implement a responsive login page using React with email/password validation.",
+        "due-date": "2025-06-24",
+        "members": [
+          {
+            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+            "name": "jameela13",
+            "email": "jameelaabdlruhman@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "bb01e1a2-0461-4d16-925f-f7854853b231",
+        "status": "To Do",
+        "title": "Implement Navbar Component",
+        "description": "Develop a reusable navbar with links to Home, Dashboard, and Profile using React Router.",
+        "due-date": "2025-06-19",
+        "members": [
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "0cbf4403-d36d-4550-8152-9a253a16960a",
+        "status": "To Do",
+        "title": "Build User Profile Page",
+        "description": "Create a profile page that displays user's personal information and allows editing.",
+        "due-date": "2025-06-26",
+        "members": [
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
+          {
+            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+            "name": "jameela13",
+            "email": "jameelaabdlruhman@gmail.com"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "56757fa2-718d-4a43-b143-482cf202e850",
+    "owner": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+    "createdAt": "2025-06-11T09:08:35.264Z",
+    "title": "Backend API Development",
+    "members": [
+      {
+        "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+        "name": "kareem",
+        "email": "kareem.mohamed.ayman@gmail.com"
+      },
+      {
+        "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+        "name": "Abdelrahman",
+        "email": "abdelrahmanali58@gmail.com"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "9e120f20-9cc1-482b-96a6-7c0dd6c40a31",
+        "status": "To Do",
+        "title": "Create User Authentication API",
+        "description": "Develop login, register, and logout endpoints with JWT-based authentication using Django REST Framework.",
+        "due-date": "2025-06-18",
+        "members": [
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "416bec14-939d-44dd-bd27-0e70086cd5e8",
+        "status": "To Do",
+        "title": "Implement CRUD for Posts",
+        "description": "Set up endpoints for creating, reading, updating, and deleting user posts.",
+        "due-date": "2025-06-26",
+        "members": [
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
+          {
+            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "9b936a25-e025-4108-a0f1-c65d349fdef6",
+    "owner": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+    "createdAt": "2025-06-11T09:09:58.642Z",
+    "title": "Bug Fixes & Testing",
+    "members": [
+      {
+        "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+        "name": "jameela13",
+        "email": "jameelaabdlruhman@gmail.com",
+        "score": 0
+      },
+      {
+        "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
         "name": "Abdelrahman",
         "email": "abdelrahmanali58@gmail.com",
-        "score": 25
-      },
-      {
-        "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
-        "email": "doaatawfik82001@gmail.com",
-        "name": "Doaa Tawik",
         "score": 10
       }
     ],
     "tasks": [
       {
-        "id": "e3667def-e940-4ee5-8165-2eafcaf82ac7",
-        "title": "Task 1",
-        "description": "desc 1",
-        "status": "Done",
-        "dueDate": "2025-02-22",
+        "id": "d356eaa8-f697-4b2c-aca6-ee4eb7579d48",
+        "status": "To Do",
+        "title": "Fix Navbar Responsiveness Bug",
+        "description": "Resolve issue where navbar overlaps content on smaller screen sizes.",
+        "due-date": "2025-06-25",
         "members": [
           {
-            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-            "name": "Kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          },
+            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+            "name": "jameela13",
+            "email": "jameelaabdlruhman@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "390b00d9-7c2e-423d-b092-20af67ac6673",
+        "status": "To Do",
+        "title": "Write Unit Tests for Post API",
+        "difficulty": "Medium",
+        "description": "Write and run Django unit tests for all post API endpoints using the built-in testing framework.",
+        "due-date": "2025-06-30",
+        "members": [
           {
-            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
             "name": "Abdelrahman",
             "email": "abdelrahmanali58@gmail.com"
-          }
-        ],
-        "priority": "Hard"
-      },
-      {
-        "id": "61635f65-fae6-48f3-bec5-800a896ac6e1",
-        "title": "task2",
-        "description": "desc 2",
-        "status": "Done",
-        "dueDate": "2025-02-22",
-        "members": [
-          {
-            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-            "name": "Kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          },
-          {
-            "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
-            "name": "Doaa Tawik",
-            "email": "doaatawfik82001@gmail.com"
-          }
-        ],
-        "priority": "Medium"
-      },
-      {
-        "id": "f7afcd23-a08a-4f24-88cf-791cb642ca2a",
-        "title": "Task 33",
-        "description": "medium task 33",
-        "status": "Done",
-        "dueDate": "2025-02-22",
-        "members": [
-          {
-            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-            "name": "Kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          },
-          {
-            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
-          }
-        ],
-        "priority": "Easy"
-      },
-      {
-        "id": "17f341eb-1f6d-42e0-b5b7-513424daccd3",
-        "status": "Done",
-        "title": "Task 4",
-        "difficulty": "Hard",
-        "description": "hard task",
-        "due-date": "2025-02-03",
-        "members": [
-          {
-            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-            "name": "Kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
           }
         ]
       },
@@ -159,10 +227,6 @@
           }
         ]
       }
-    ],
-    "status": "To Do",
-    "difficulty": "Easy",
-    "description": "desc 1",
-    "due-date": "2025-02-22"
+    ]
   }
 ]

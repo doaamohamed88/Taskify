@@ -14,22 +14,21 @@ export default function LeaderBoard() {
   const [totalScore, setTotalScore] = useState(0);
 
   useEffect(() => {
-      if (selectedBoard) {
-        const total = selectedBoard?.members?.reduce(
-          (acc, member) => acc + (member.score || 0),
-          0
-        );
-          setTotalScore(total);
-        } else {
-          setTotalScore(0);
-        }
 
+    if (selectedBoard) {
+      const total = selectedBoard?.members?.reduce(
+        (acc, member) => acc + member.score,
+        0
+      );
+      setTotalScore(total);
+    }
   }, [selectedBoard, setTotalScore]);
 
   return (
     <div className={styles.leaderBoardContainer}>
       <div>
         <h1 style={{ marginBottom: 15 }}>{t("Leaderboard")}</h1>
+        <h2 style={{ marginBottom: 10, color: 'var(--lilac-color)' }}>{selectedBoard?.title && `Board: ${selectedBoard.title}`}</h2>
         <p>{t("leader-board-description")}</p>
       </div>
 

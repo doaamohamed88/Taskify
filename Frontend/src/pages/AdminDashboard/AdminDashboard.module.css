@@ -16,6 +16,10 @@
     letter-spacing: 1px;
   }
 
+  .boardTitle {
+    color: var(--lilac-color);
+  }
+
   .projectProgress {
     grid-column: 1 / -1;
     /* grid-row: 2 / 3; */

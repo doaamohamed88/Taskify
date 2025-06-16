@@ -1,15 +1,14 @@
 .taskContainer {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   width: 100%;
   align-items: flex-start;
   box-shadow: var(--shadow);
   background-color: var(--transperant);
-  padding: 20px;
   border-radius: var(--border-radius-main);
   border: var(--lilac-border);
   /* cursor: pointer !important; */
+  margin: 10px 0;
   cursor: grab;
   transition: box-shadow 0.2s, background-color 0.2s, transform 0.2s;
 }
@@ -24,6 +23,8 @@
   gap: 10px;
   width: 100%;
   justify-content: space-between;
+  padding: 20px;
+  padding-top: 0;
 }
 
 .avatar {
@@ -40,4 +41,28 @@
   /* Add a slight scale for feedback */
   transform: scale(1.03);
   transition: box-shadow 0.2s, background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.deleteIcon {
+  cursor: pointer;
+  transition: var(--main-trans);
+
+  &:hover {
+    color: rgb(255, 155, 119);
+    transform: scale(1.2);
+  }
+}
+
+.iconContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  padding-bottom: 15px;
+}
+
+h3 {
+  width: 100%;
+  padding-inline: 20px;
+  padding-bottom: 15px;
 }
