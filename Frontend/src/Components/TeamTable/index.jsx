@@ -58,7 +58,7 @@ export default function TeamTable({ boardMembers }) {
                 </div>
               </td>
               <td className={styles.tableBodyCell} align="center">
-                {row.score}
+                {row.score || 0}
               </td>
             </tr>
           ))}

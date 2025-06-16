@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 
 const INITIAL_FORM_DATA = {
   status: "To Do",
+  difficulty: "Easy"
 };
 
 function CreateTask({ onClose, boardId }) {
