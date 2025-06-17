@@ -145,11 +145,11 @@ const TaskDetails = ({ modalRef, task }) => {
           />
         </div>
 
-        {/* Priority */}
+        {/* difficulty */}
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaCheckCircle className={classes.icon} />
-            <label className={classes.label}>{t("Priority")}</label>
+            <label className={classes.label}>{t("difficulty")}</label>
           </div>
           <select
             name="difficulty"

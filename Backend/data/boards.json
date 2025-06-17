@@ -5,16 +5,9 @@
     "createdAt": "2025-06-11T09:07:55.027Z",
     "title": "Frontend Development",
     "members": [
-      {
-        "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-        "name": "jameela13",
-        "email": "jameelaabdlruhman@gmail.com"
-      },
-      {
-        "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-        "name": "kareem",
-        "email": "kareem.mohamed.ayman@gmail.com"
-      }
+      "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+      "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+      "e73a8dc0-e890-4a02-a9fd-03e4853c0908"
     ],
     "tasks": [
       {
@@ -29,7 +22,8 @@
             "name": "jameela13",
             "email": "jameelaabdlruhman@gmail.com"
           }
-        ]
+        ],
+        "difficulty": "Easy"
       },
       {
         "id": "bb01e1a2-0461-4d16-925f-f7854853b231",
@@ -43,7 +37,8 @@
             "name": "kareem",
             "email": "kareem.mohamed.ayman@gmail.com"
           }
-        ]
+        ],
+        "difficulty": "Easy"
       },
       {
         "id": "0cbf4403-d36d-4550-8152-9a253a16960a",
@@ -62,7 +57,8 @@
             "name": "jameela13",
             "email": "jameelaabdlruhman@gmail.com"
           }
-        ]
+        ],
+        "difficulty": "Easy"
       }
     ]
   },
@@ -75,35 +71,23 @@
       {
         "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
         "name": "kareem",
-        "email": "kareem.mohamed.ayman@gmail.com"
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 10
       },
       {
         "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
         "name": "Abdelrahman",
-        "email": "abdelrahmanali58@gmail.com"
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 5
       }
     ],
     "tasks": [
       {
         "id": "9e120f20-9cc1-482b-96a6-7c0dd6c40a31",
-        "status": "To Do",
         "title": "Create User Authentication API",
         "description": "Develop login, register, and logout endpoints with JWT-based authentication using Django REST Framework.",
-        "due-date": "2025-06-18",
-        "members": [
-          {
-            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-            "name": "kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          }
-        ]
-      },
-      {
-        "id": "416bec14-939d-44dd-bd27-0e70086cd5e8",
-        "status": "To Do",
-        "title": "Implement CRUD for Posts",
-        "description": "Set up endpoints for creating, reading, updating, and deleting user posts.",
-        "due-date": "2025-06-26",
+        "status": "Done",
+        "dueDate": "2025-06-18",
         "members": [
           {
             "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
@@ -115,7 +99,23 @@
             "name": "Abdelrahman",
             "email": "abdelrahmanali58@gmail.com"
           }
-        ]
+        ],
+        "difficulty": "Easy"
+      },
+      {
+        "id": "416bec14-939d-44dd-bd27-0e70086cd5e8",
+        "title": "Implement CRUD for Posts",
+        "description": "Set up endpoints for creating, reading, updating, and deleting user posts.",
+        "status": "Done",
+        "dueDate": "2025-06-26",
+        "members": [
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ],
+        "difficulty": "Easy"
       }
     ]
   },
@@ -151,7 +151,8 @@
             "name": "jameela13",
             "email": "jameelaabdlruhman@gmail.com"
           }
-        ]
+        ],
+        "difficulty": "Easy"
       },
       {
         "id": "390b00d9-7c2e-423d-b092-20af67ac6673",
@@ -161,6 +162,189 @@
         "description": "Write and run Django unit tests for all post API endpoints using the built-in testing framework.",
         "due-date": "2025-06-30",
         "members": [
+          {
+            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "c1f830af-604e-47b3-9320-5b29a991f593",
+        "title": "hard- do & ka",
+        "description": "Hard",
+        "status": "To Do",
+        "dueDate": "5555-05-05",
+        "members": [
+          {
+            "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+            "name": "Doaa Tawik",
+            "email": "doaatawfik82001@gmail.com"
+          },
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ],
+        "difficulty": "Hard"
+      },
+      {
+        "id": "3b1b5fa5-79d5-44de-9e4d-3ab5ac4e6eea",
+        "title": "Md-ka&Abd",
+        "description": "Medium",
+        "status": "To Do",
+        "dueDate": "3322-03-31",
+        "members": [
+          {
+            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
+            "name": "Kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
+          {
+            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
+        ],
+        "difficulty": "Medium"
+      },
+      {
+        "id": "1a9f7e53-f150-4032-9c8a-9e1813e6ad07",
+        "status": "To Do",
+        "title": "easy- abd&do",
+        "description": "ghjkl;",
+        "due-date": "8888-08-08",
+        "members": [
+          {
+            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          },
+          {
+            "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
+            "name": "Doaa Tawik",
+            "email": "doaatawfik82001@gmail.com"
+          }
+        ],
+        "difficulty": "Easy"
+      }
+    ]
+  },
+  {
+    "id": "590abe7d-ee07-4550-ae6d-7fb73da97a28",
+    "owner": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+    "createdAt": "2025-06-16T19:30:56.821Z",
+    "title": "newboard",
+    "members": [
+      {
+        "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+        "name": "jameela13",
+        "email": "jameelaabdlruhman@gmail.com",
+        "score": 35
+      },
+      {
+        "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+        "name": "kareem",
+        "email": "kareem.mohamed.ayman@gmail.com",
+        "score": 10
+      },
+      {
+        "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+        "name": "Abdelrahman",
+        "email": "abdelrahmanali58@gmail.com",
+        "score": 30
+      }
+    ],
+    "tasks": [
+      {
+        "id": "8966aefa-148f-410e-8636-c43d72ff702c",
+        "status": "Done",
+        "difficulty": "Easy",
+        "title": "easy jam,kar",
+        "description": "eaaasy",
+        "due-date": "2001-11-11",
+        "members": [
+          {
+            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+            "name": "jameela13",
+            "email": "jameelaabdlruhman@gmail.com"
+          },
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "53b38925-475d-4f1f-8db0-cdb4abf73d87",
+        "status": "Done",
+        "difficulty": "Medium",
+        "title": "med jam,abd",
+        "description": "medium",
+        "due-date": "2001-11-11",
+        "members": [
+          {
+            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+            "name": "jameela13",
+            "email": "jameelaabdlruhman@gmail.com"
+          },
+          {
+            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "1daa8590-74b8-4bb5-9ac2-e7cf08933f2d",
+        "title": "hard abd,Jam",
+        "description": "hard",
+        "status": "Done",
+        "dueDate": "1200-11-12",
+        "members": [
+          {
+            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+            "name": "jameela13",
+            "email": "jameelaabdlruhman@gmail.com"
+          },
+          {
+            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+            "name": "Abdelrahman",
+            "email": "abdelrahmanali58@gmail.com"
+          }
+        ],
+        "difficulty": "Hard"
+      },
+      {
+        "id": "f683d69d-d56d-41ef-a085-f2905e26d45f",
+        "status": "Done",
+        "difficulty": "Easy",
+        "title": "easy kar ",
+        "description": "jk,hjkm",
+        "due-date": "5555-08-08",
+        "members": [
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          }
+        ]
+      },
+      {
+        "id": "b5fd921c-c4a5-4523-911d-26e4ab93cd0e",
+        "status": "To Do",
+        "difficulty": "Easy",
+        "title": "rasy abd & kar",
+        "description": "uhjikl;",
+        "due-date": "2025-11-11",
+        "members": [
+          {
+            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+            "name": "kareem",
+            "email": "kareem.mohamed.ayman@gmail.com"
+          },
           {
             "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
             "name": "Abdelrahman",
