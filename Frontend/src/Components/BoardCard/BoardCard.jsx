@@ -96,8 +96,8 @@ function BoardCard({ board, boardType }) {
                 <FontAwesomeIcon
                   icon={faTriangleExclamation}
                   className={styles.icon} />
-                <p>Are you sure?</p>
-                <span>This action can't be undone, all data associated with this field will be lost</span>
+                <p>{t("Are you sure?")}</p>
+                <span>{t("This action can't be undone, all data associated with this field will be lost")}</span>
                 <div className={styles.buttons}>
                   <button type="button" className={styles.close} onClick={handleEditClose} >
                     {t("Close")}

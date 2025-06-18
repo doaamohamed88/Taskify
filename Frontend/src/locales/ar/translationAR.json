@@ -51,5 +51,8 @@
   "Involved Boards": "اللوحات التي شاركت فيها",
   "Active Board": "اللوحة النشطة",
   "Start Date": "تاريخ البدء",
-  "Welcome": "مرحباً بك"
+  "Welcome": "مرحباً بك",
+  "Are you sure?": "هل أنت متأكد؟",
+  "This action can't be undone, all data associated with this field will be lost": "لا يمكن التراجع عن هذا الإجراء، وسيتم فقدان جميع البيانات المرتبطة بهذا الحقل.",
+  "Delete": "حذف"
 }

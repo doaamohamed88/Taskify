@@ -1,94 +1,74 @@
-const { request } = require('express');
-const fileUtils = require('../utils/fileUtils');
-process.loadEnvFile('./env/.env');
-const usersFilePath = process.env.usersFilePath;
 const { v4: uuid } = require('uuid');
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
-const getAllUsers = (query = null) => {
-    try {
-        const users = fileUtils.read(usersFilePath);
-        if (query) {
-            const pattern = new RegExp(query, 'i');
-            return users.filter(user => pattern.test(user.email) || pattern.test(user.name));
-        }
-        return users;
-    } catch (error) {
-        console.error('Error reading users file:', error);
-        return [];
+const getAllUsers = async (query = null) => {
+    if (query) {
+        const regex = new RegExp(query, 'i');
+        return await User.find({
+            $or: [{ name: regex }, { email: regex }]
+        });
     }
-}
+    return await User.find();
+};
 
-const getUserById = (id) => {
-    const users = getAllUsers();
-    const user = users.find(user => user.id === id);
-    if (!user) {
-        throw new Error('User not found');
-    }
+const getUserById = async (id) => {
+    const user = await User.findOne({ id });
+    if (!user) throw new Error('User not found');
     return user;
-}
+};
 
-const getUserByEmail = (email) => {
-    const users = getAllUsers();
-    const user = users.find(user => user.email === email);
-    if (!user) {
-        return null;
-    }
+// Get user by email
+const getUserByEmail = async (email) => {
+    return await User.findOne({ email });
+};
+
+// Add new user
+const addUser = async (userData) => {
+    const existing = await getUserByEmail(userData.email);
+    if (existing) throw new Error('User already exists');
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+
+    const newUser = new User({
+        id: uuid(),
+        ...userData,
+        password: hashedPassword,
+        boards: [],
+        verified: false
+    });
+
+    return await newUser.save();
+};
+
+// Update user
+const updateUser = async (id, updates) => {
+    const user = await User.findOneAndUpdate(
+        { id },
+        updates,
+        { new: true }
+    );
+    if (!user) throw new Error('User not found');
     return user;
-}
+};
 
-const login = (email, password) => {
-    const users = getAllUsers();
-    const user = users.find(user => user.email === email);
+// Reset password
+const resetPassword = async (id, newPassword) => {
+    return await updateUser(id, { password: newPassword });
+};
+
+// Verify user
+const verifyUser = async (id) => {
+    return await updateUser(id, { verified: true });
+};
+
+// Login (simple email/password check)
+const login = async (email, password) => {
+    const user = await getUserByEmail(email);
     if (!user) throw new Error('User not found');
     if (!user.verified) throw new Error('User not verified');
-    if (user.password !== password) throw new Error('Invalid Credentials');
+    if (user.password !== password) throw new Error('Invalid credentials');
     return user;
-}
-
-const addUser = (userData) => {
-    const users = getAllUsers();
-    const existingUser = users.find(user => user.email === userData.email);
-    if (existingUser) {
-        throw new Error('User already exists');
-    }
-    const newUser = { id: uuid(), ...userData, boards: [], verified: false };
-    users.push(newUser);
-    fileUtils.write(usersFilePath, users);
-    return newUser;
-}
-
-const updateUser = (id, userData) => {
-    const users = getAllUsers();
-    const userIndex = users.findIndex(user => user.id === id);
-    if (userIndex === -1) {
-        throw new Error('User not found');
-    }
-    users[userIndex] = { ...users[userIndex], ...userData };
-    fileUtils.write(usersFilePath, users);
-    return users[userIndex];
-}
-
-const resetPassword = (id, newPassword) => {
-    const users = getAllUsers();
-    const user = users.find(user => user.id === id);
-    if (!user) {
-        throw new Error('User not found');
-    }
-    user.password = newPassword;
-    fileUtils.write(usersFilePath, users);
-    return user;
-}
-
-const verifyUser = (id) => {
-    const users = getAllUsers();
-    const user = users.find(user => user.id === id);
-    if (!user) {
-        throw new Error('User not found');
-    }
-    user.verified = true;
-    fileUtils.write(usersFilePath, users);
-    return user;
-}
+};
 
 module.exports = {
     getAllUsers,
