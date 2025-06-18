@@ -36,7 +36,7 @@ const TaskDetails = ({ modalRef, task }) => {
   const boardId = id || selectedBoard?.id || null;
 
   const [boardMembers, setBoardMembers] = useState([]);
-  const [status, setStatus] = useState(detail.status);
+  // const [status, setStatus] = useState(detail.status);
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -65,16 +65,16 @@ const TaskDetails = ({ modalRef, task }) => {
     console.log(isEditing);
   }, [isEditing]);
 
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
-  };
+  // const handleStatusChange = (e) => {
+  //   setStatus(e.target.value);
+  // };
 
   const handleUpdateTask = async (e) => {
     e.preventDefault();
 
     const updatedTask = {
       ...detail,
-      status,
+      status: status || detail.status || "To Do",
       members: [...cardMembers],
     };
 
@@ -122,7 +122,6 @@ const TaskDetails = ({ modalRef, task }) => {
           />
         </div>
 
-        {/* Description */}
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaFlag className={classes.icon} />
@@ -138,7 +137,6 @@ const TaskDetails = ({ modalRef, task }) => {
           />
         </div>
 
-        {/* difficulty */}
         <div className={classes.input_container}>
           <div className={classes.label_container}>
             <FaCheckCircle className={classes.icon} />
@@ -168,6 +166,7 @@ const TaskDetails = ({ modalRef, task }) => {
             <label className={classes.label}>{t("Due Date")}</label>
           </div>
           <input
+            type="date"
             className={`${classes.value} ${classes.input}`}
             value={detail.dueDate}
             onChange={(e) =>
