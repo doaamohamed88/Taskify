@@ -41,17 +41,12 @@
     "id": "faee88d2-6d4f-4c5e-a59e-ffac43a71da2",
     "owner": "c4534e86-4d68-4948-8f47-175e5faa0532",
     "createdAt": "2025-06-18T01:28:49.482Z",
-    "title": "Create DashBoard",
+    "title": "Create Dash",
     "members": [
       {
         "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
         "name": "kareem",
-        "email": "kareem.mohamed.ayman@gmail.com",
-        "score": 10
-      },
-      {
-        "score": 5,
-        "email": "jameelaabdlruhman@gmail.com"
+        "email": "kareem.mohamed.ayman@gmail.com"
       }
     ],
     "tasks": [
@@ -87,5 +82,24 @@
         ]
       }
     ]
+  },
+  {
+    "id": "32fb3881-9940-473c-9020-755a73445bc1",
+    "owner": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+    "createdAt": "2025-06-18T12:18:55.610Z",
+    "title": "Boards CRUD operations",
+    "members": [
+      {
+        "id": "c4534e86-4d68-4948-8f47-175e5faa0532",
+        "name": "jameela13",
+        "email": "jameelaabdlruhman@gmail.com"
+      },
+      {
+        "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
+        "name": "Abdelrahman",
+        "email": "abdelrahmanali58@gmail.com"
+      }
+    ],
+    "tasks": []
   }
 ]

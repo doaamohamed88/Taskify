@@ -72,11 +72,24 @@ const addBoard = (boardData, owner) => {
 
 const updateBoard = (id, boardData) => {
     const boards = getAllBoards();
+    const users = getAllUsers();
     const boardIndex = boards.findIndex(board => board.id === id);
     if (boardIndex === -1) {
         throw new Error('Board not found');
     }
-    boards[boardIndex] = { ...boards[boardIndex], ...boardData };
+    // If members are just IDs, map them to full objects
+    let updatedMembers = boardData.members;
+    if (Array.isArray(boardData.members) && typeof boardData.members[0] === 'string') {
+        updatedMembers = boardData.members.map((memberId) => {
+            const user = users.find((user) => user.id === memberId);
+            return {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+            };
+        });
+    }
+    boards[boardIndex] = { ...boards[boardIndex], ...boardData, members: updatedMembers };
     fileUtils.write(boardsFilePath, boards);
     return boards[boardIndex];
 }
