@@ -43,23 +43,37 @@ const BoardPage = () => {
       );
 
       let boardMembers = selectedBoard.members;
-      if (newStatus === 'Done') {
-        const selectedTask = tasks.find((task) => task.id === active.id);
-        const asigneeMembers = selectedTask.members;
+      const selectedTask = tasks.find((task) => task.id === active.id);
+      const asigneeMembers = selectedTask.members;
+      const scoreDelta = getScoreBasedOnDifficulty(selectedTask.priority || selectedTask.difficulty);
 
+      if (newStatus === 'Done') {
+        // Increment score when moved to Done
         boardMembers = boardMembers.map(member => {
           const selected = asigneeMembers?.find(el => el.id === member.id);
           if (selected) {
             return {
               ...member,
-              score: (member.score || 0) + (getScoreBasedOnDifficulty(selectedTask.priority || selectedTask.difficulty))
+              score: (member.score || 0) + scoreDelta
             }
-          }
-          else {
+          } else {
             return member;
           }
         });
-      };
+      } else if (draggedTask.status === 'Done' && newStatus !== 'Done') {
+        // Decrement score when moved out of Done
+        boardMembers = boardMembers.map(member => {
+          const selected = asigneeMembers?.find(el => el.id === member.id);
+          if (selected) {
+            return {
+              ...member,
+              score: Math.max(0, (member.score || 0) - scoreDelta)
+            }
+          } else {
+            return member;
+          }
+        });
+      }
 
       setTasks(updatedTasks);
       const updatedBoard = { ...selectedBoard, tasks: updatedTasks, members: boardMembers };

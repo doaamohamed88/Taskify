@@ -38,5 +38,8 @@
   "Active Board": "Active Boards",
   "Start Date": "Start Date",
   "No tasks available.": "No tasks available.",
-  "Welcome": "Welcome"
+  "Welcome": "Welcome",
+  "Are you sure?": "Are you sure?",
+  "This action can't be undone, all data associated with this field will be lost": "This action can't be undone, all data associated with this field will be lost.",
+  "Delete": "Delete"
 }

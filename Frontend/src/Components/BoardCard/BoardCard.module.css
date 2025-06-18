@@ -101,7 +101,7 @@
   font-size: 1.2em;
 }
 .editIcon:hover {
-  color: var(--main-color);
+  color: var(--todo-color);
 }
 
 .deleteIcon {

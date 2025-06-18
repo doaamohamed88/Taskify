@@ -20,12 +20,6 @@
   --done-color: #a0ffe6;
   --lilac-border: 5px solid rgb(148, 118, 214);
   --text-color: #ffffff;
-  /* --background-gradient: radial-gradient(
-    ellipse at bottom,
-    #5f4bb6 0%,
-    #1b1537 40%,
-    #0a0a0a 100%
-  ); */
   --background-gradient: radial-gradient(
     circle at center,
     rgb(36 25 73) 0%,

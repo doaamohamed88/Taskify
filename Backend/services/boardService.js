@@ -1,137 +1,142 @@
-const { updateUser, getAllUsers } = require('./userService')
-const fileUtils = require('../utils/fileUtils');
-process.loadEnvFile('./env/.env');
-const boardsFilePath = process.env.boardsFilePath;
 const { v4: uuid } = require('uuid');
+const Board = require('../models/Board');
+const User = require('../models/User');
 
-const getAllBoards = () => {
-    try {
-        return fileUtils.read(boardsFilePath);
-    } catch (error) {
-        console.error('Error reading boards file:', error);
-        return [];
-    }
-}
-
-const getBoardsByUser = (userId) => {
-    const boards = getAllBoards();
-    let ownerBoards = boards.filter(board => board.owner === userId);
-    let memberBoards = boards.filter(board => board.members.some(member => member.id === userId));
-    const allBoards = [...ownerBoards, ...memberBoards];
-    const uniqueBoards = allBoards.filter(
-        (board, index, self) => index === self.findIndex(b => b.id === board.id)
-    );
-    return uniqueBoards;
+const getAllBoards = async () => {
+    return await Board.find();
 };
-const getBoardById = (id) => {
-    const boards = getAllBoards();
-    const board = boards.find(board => board.id === id);
-    if (!board) {
-        throw new Error('Board not found');
-    }
-    return board;
-}
 
-const addBoard = (boardData, owner) => {
-    const boards = getAllBoards();
-    const users = getAllUsers();
-    // const newBoard = { id: uuid(), owner: owner.id, createdAt: new Date().toISOString(), ...boardData };
-    const members = boardData.members.map((memberId) => {
-        const user = users.find((user) => user.id === memberId);
+const getBoardsByUser = async (userId) => {
+    const boards = await Board.find({
+        $or: [
+            { owner: userId },
+            { 'members.id': userId }
+        ]
+    });
+
+    const unique = Array.from(new Map(boards.map(b => [b.id, b])).values());
+    return unique;
+};
+
+const getBoardById = async (id) => {
+    const board = await Board.findOne({ id });
+    if (!board) throw new Error('Board not found');
+    return board;
+};
+
+const addBoard = async (boardData, owner) => {
+    const users = await User.find();
+    const members = boardData.members.map(memberId => {
+        const user = users.find(u => u.id === memberId);
         return {
             id: user.id,
-            name: user.name, // or whatever fields you need
-            email: user.email,
+            name: user.name,
+            email: user.email
         };
     });
 
-    const newBoard = {
+    const newBoard = new Board({
         id: uuid(),
         owner: owner.id,
         createdAt: new Date().toISOString(),
         title: boardData.title,
         description: boardData.description,
         members,
-        tasks: [],
-    };
-    console.log("New board created:", newBoard);
-
-    updateUser(owner.id, {
-        ...owner,
-        boards: Array.from(new Set([...(owner.boards || []), newBoard.id]))
-    });
-    boardData.members.forEach((memberId) => {
-        let member = users.find((user) => user.id === memberId);
-        updateUser(memberId, { ...member, boards: [...member.boards, newBoard.id] })
+        tasks: []
     });
 
-    boards.push(newBoard);
-    fileUtils.write(boardsFilePath, boards);
+    await newBoard.save();
+
+    await User.findOneAndUpdate(
+        { id: owner.id },
+        { $addToSet: { boards: newBoard.id } }
+    );
+
+    await Promise.all(
+        boardData.members.map(async memberId => {
+            await User.findOneAndUpdate(
+                { id: memberId },
+                { $addToSet: { boards: newBoard.id } }
+            );
+        })
+    );
+
     return newBoard;
-}
-
-const updateBoard = (id, boardData) => {
-    const boards = getAllBoards();
-    const boardIndex = boards.findIndex(board => board.id === id);
-    if (boardIndex === -1) {
-        throw new Error('Board not found');
-    }
-    boards[boardIndex] = { ...boards[boardIndex], ...boardData };
-    fileUtils.write(boardsFilePath, boards);
-    return boards[boardIndex];
-}
-
-const deleteBoard = (id) => {
-    const boards = getAllBoards();
-    const boardIndex = boards.findIndex(board => board.id === id);
-    if (boardIndex === -1) {
-        throw new Error('Board not found');
-    }
-    const deletedBoard = boards.splice(boardIndex, 1);
-    fileUtils.write(boardsFilePath, boards);
-    return deletedBoard[0];
-}
-
-const createTask = (boardId, taskData) => {
-    const allBoards = getAllBoards();
-    const board = allBoards.find((board) => board.id === boardId);
-    const task = { id: uuid(), ...taskData };
-    board.tasks.push(task);
-    fileUtils.write(boardsFilePath, allBoards);
-    return task;
 };
 
-const updateTask = (boardId, taskId, taskData) => {
-    const allBoards = getAllBoards();
-    const board = allBoards.find((board) => board.id === boardId);
-    const taskIndex = board.tasks.findIndex((task) => task.id === taskId);
-    if (taskIndex === -1) {
-        throw new Error("Task not found");
+const updateBoard = async (id, boardData) => {
+    const users = await User.find();
+    let updatedMembers = boardData.members;
+
+    if (typeof boardData.members[0] === 'string') {
+        updatedMembers = boardData.members.map(memberId => {
+            const user = users.find(u => u.id === memberId);
+            return {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            };
+        });
     }
+
+    const board = await Board.findOneAndUpdate(
+        { id },
+        { ...boardData, members: updatedMembers },
+        { new: true }
+    );
+
+    if (!board) throw new Error('Board not found');
+    return board;
+};
+
+const deleteBoard = async (id) => {
+    const board = await Board.findOneAndDelete({ id });
+    if (!board) throw new Error('Board not found');
+    return board;
+};
+
+const createTask = async (boardId, taskData) => {
+    const board = await Board.findOne({ id: boardId });
+    if (!board) throw new Error('Board not found');
+
+    const newTask = { id: uuid(), ...taskData };
+    board.tasks.push(newTask);
+    await board.save();
+    return newTask;
+};
+
+const updateTask = async (boardId, taskId, taskData) => {
+    const board = await Board.findOne({ id: boardId });
+    if (!board) throw new Error('Board not found');
+
+    const taskIndex = board.tasks.findIndex(task => task.id === taskId);
+    if (taskIndex === -1) throw new Error('Task not found');
+
     board.tasks[taskIndex] = { ...board.tasks[taskIndex], ...taskData };
-    fileUtils.write(boardsFilePath, allBoards);
+    await board.save();
     return board.tasks[taskIndex];
 };
 
-const deleteTask = (boardId, taskId) => {
-    const allBoards = getAllBoards();
-    const board = allBoards.find((board) => board.id === boardId);
-    const taskIndex = board.tasks.findIndex((task) => task.id === taskId);
-    if (taskIndex === -1) {
-        throw new Error("Task not found");
-    }
-    const deletedTask = board.tasks.splice(taskIndex, 1);
-    fileUtils.write(boardsFilePath, allBoards);
-    return deletedTask[0];
+const deleteTask = async (boardId, taskId) => {
+    const board = await Board.findOne({ id: boardId });
+    if (!board) throw new Error('Board not found');
+
+    const taskIndex = board.tasks.findIndex(task => task.id === taskId);
+    if (taskIndex === -1) throw new Error('Task not found');
+
+    const [deleted] = board.tasks.splice(taskIndex, 1);
+    await board.save();
+    return deleted;
 };
+
 module.exports = {
     getAllBoards,
+    getBoardsByUser,
     getBoardById,
     addBoard,
     updateBoard,
     deleteBoard,
-    getBoardsByUser,
     createTask,
     updateTask,
-    deleteTask,
+    deleteTask
 };

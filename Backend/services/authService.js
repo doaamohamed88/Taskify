@@ -1,45 +1,52 @@
 const jwt = require('jsonwebtoken');
-const fileUtils = require('../utils/fileUtils');
-process.loadEnvFile('./env/.env');
+const Token = require('../models/Token');
 
-const tokensFilePath = process.env.tokensFilePath;
 const JWT_SECRET = process.env.JWT_SECRET_KEY;
 const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
-const getAllTokens = () => {
-    const tokens = fileUtils.read(tokensFilePath);
-    return tokens || [];
-}
-
-const saveTokens = (tokens) => {
-    fileUtils.write(tokensFilePath, tokens);
-}
-
 const generateAccessToken = (user) => {
-    return jwt.sign({ id: user.id, email: user.email, boards: user.boards, name: user.name, verified: user.verified }, JWT_SECRET, { expiresIn: '15m' });
-}
+    return jwt.sign(
+        {
+            id: user.id,
+            email: user.email,
+            boards: user.boards,
+            name: user.name,
+            verified: user.verified,
+        },
+        JWT_SECRET,
+        { expiresIn: '15m' }
+    );
+};
 
-const generateRefreshToken = (user) => {
-    const token = jwt.sign({ id: user.id, email: user.email, boards: user.boards, name: user.name, verified: user.verified }, REFRESH_SECRET, { expiresIn: '7d' });
-    const tokens = getAllTokens();
-    tokens.push(token);
-    saveTokens(tokens);
+const generateRefreshToken = async (user) => {
+    const token = jwt.sign(
+        {
+            id: user.id,
+            email: user.email,
+            boards: user.boards,
+            name: user.name,
+            verified: user.verified,
+        },
+        REFRESH_SECRET,
+        { expiresIn: '7d' }
+    );
+
+    await Token.create({ token });
     return token;
-}
+};
 
-const isTokenValid = (token) => {
-    const tokens = getAllTokens();
-    return tokens.includes(token);
-}
+const isTokenValid = async (token) => {
+    const found = await Token.findOne({ token });
+    return !!found;
+};
 
-const removeToken = (token) => {
-    const tokens = getAllTokens().filter(t => t !== token);
-    saveTokens(tokens);
-}
+const removeToken = async (token) => {
+    await Token.deleteOne({ token });
+};
 
 module.exports = {
     generateAccessToken,
     generateRefreshToken,
     isTokenValid,
-    removeToken
+    removeToken,
 };
