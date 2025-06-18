@@ -34,15 +34,16 @@ export default function LandingPage() {
     .filter((board) => String(board.owner) === String(userId))
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 2);
+  console.log(boards);
 
   const involvedBoards = boards
     .filter(
       (board) =>
         board.members.find((member) => String(member.id) === String(userId)) &&
-        String(board.owner) !== String(userId) // Exclude boards where user is owner
+        String(board.owner) !== String(userId)
     )
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .slice(0, 2);
+    .slice(0, 2)
   function handleShowModal() {
     modalRef.current.open();
   }
@@ -50,7 +51,6 @@ export default function LandingPage() {
     const direction = document.documentElement.getAttribute("dir") || "ltr";
     setDir(direction);
   }, []);
-
 
   useEffect(() => {
     dispatch(fetchUserBoards());
@@ -66,8 +66,16 @@ export default function LandingPage() {
       initial="hidden"
       animate="visible"
     >
-      <div className={styles.background_mesh}></div>
-      <div className={styles.geometric_grid}></div>
+      {(user?.name || user?.username) && (
+        <motion.p
+          className={styles.welcomeText}
+          variants={textVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {t("Welcome")}, <strong>{user.name || user.username}</strong>!
+        </motion.p>
+      )}
       <div className={styles.landing_content}>
         <div className={styles.section}>
           <div>

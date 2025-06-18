@@ -30,7 +30,6 @@ function Boards() {
                 board.members.find((member) => String(member.id) === String(userId)))
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
-    // Remove boards from involvedBoards that are already in createdBoards or where the user is both owner and member
     const createdBoardIds = new Set(createdBoards.map(b => b.id));
     const filteredInvolvedBoards = involvedBoards.filter(b => !createdBoardIds.has(b.id) && b.owner !== userId);
 

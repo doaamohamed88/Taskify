@@ -1,19 +1,18 @@
 import TasksList from "../../components/TasksList/TasksList";
 import styles from "./BoardPage.module.css";
 import { DndContext } from "@dnd-kit/core";
-import useSelectedBoard from "../../hooks/useSelectedBoard";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedBoard } from "../../store/selectedBoard";
 import { updateBoard } from "../../services/boardService";
 import { useState, useEffect } from "react";
-
+import * as FaIcons from 'react-icons/fa6'
 const STATUSES = ["To Do", "In Progress", "Done"];
-
+import { useTranslation } from "react-i18next";
 const BoardPage = () => {
   const dispatch = useDispatch();
   const selectedBoard = useSelector((state) => state.selectedBoard);
   const [tasks, setTasks] = useState([]);
-
+  const { t } = useTranslation()
   useEffect(() => {
     if (selectedBoard && Array.isArray(selectedBoard.tasks)) {
       setTasks(selectedBoard.tasks);
@@ -45,14 +44,12 @@ const BoardPage = () => {
 
       let boardMembers = selectedBoard.members;
       if (newStatus === 'Done') {
-        // calculate score for each members...
         const selectedTask = tasks.find((task) => task.id === active.id);
         const asigneeMembers = selectedTask.members;
 
-       boardMembers =  boardMembers.map(member => {
+        boardMembers = boardMembers.map(member => {
           const selected = asigneeMembers?.find(el => el.id === member.id);
-          if(selected) {
-            // calculate score.....
+          if (selected) {
             return {
               ...member,
               score: (member.score || 0) + (getScoreBasedOnDifficulty(selectedTask.priority || selectedTask.difficulty))
@@ -86,7 +83,24 @@ const BoardPage = () => {
 
   return (
     <div className={styles.main_container}>
-      <h2 style={{ textAlign: 'start', margin: '0px 40px 20px', color: 'var(--lilac-color)' }}>{selectedBoard?.title && `Board: ${selectedBoard.title}`}</h2>
+      <div className={styles.boardHeaderCard}>
+        <div className={styles.boardMeta}>
+          <span className={styles.boardLabel}>{t("Active Board")}</span>
+          <FaIcons.FaClipboardList className={styles.boardIcon} />
+        </div>
+        <h1 className={styles.boardName}>{selectedBoard?.title && ` ${selectedBoard.title}`}</h1>
+        <div className={styles.boardStats}>
+          <span>
+            {selectedBoard?.tasks && selectedBoard.tasks.length}{" "}
+            {selectedBoard?.tasks && selectedBoard.tasks.length === 1 ? t("Task") : t("Tasks")}
+          </span>
+          <span>•</span>
+          <span>
+            {selectedBoard?.members && selectedBoard.members.length}{" "}
+            {selectedBoard?.members && selectedBoard.members.length === 1 ? t("Member") : t("Members")}
+          </span>
+        </div>
+      </div>
       <DndContext onDragEnd={handleDragEnd}>
         <div className={styles.boardContainer}>
           {STATUSES.map((status) => (

@@ -1,248 +1,48 @@
 [
   {
-    "id": "d3a3d9a4-6b1d-40a4-a9c2-a557a4c9a240",
-    "owner": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-    "createdAt": "2025-06-11T09:07:55.027Z",
-    "title": "Frontend Development",
+    "id": "b04d5f27-63fe-41f5-b50f-dab026e54c55",
+    "owner": "f7e58b80-1dd4-4ee3-bd71-e165368009c7",
+    "createdAt": "2025-06-18T01:20:33.133Z",
+    "title": "Create Dash",
     "members": [
-      "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-      "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
       "e73a8dc0-e890-4a02-a9fd-03e4853c0908"
     ],
-    "tasks": [
-      {
-        "id": "256a2e51-6a90-4611-88e9-52a35f583474",
-        "status": "To Do",
-        "title": "Create Login Page",
-        "description": "Design and implement a responsive login page using React with email/password validation.",
-        "due-date": "2025-06-24",
-        "members": [
-          {
-            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-            "name": "jameela13",
-            "email": "jameelaabdlruhman@gmail.com"
-          }
-        ],
-        "difficulty": "Easy"
-      },
-      {
-        "id": "bb01e1a2-0461-4d16-925f-f7854853b231",
-        "status": "To Do",
-        "title": "Implement Navbar Component",
-        "description": "Develop a reusable navbar with links to Home, Dashboard, and Profile using React Router.",
-        "due-date": "2025-06-19",
-        "members": [
-          {
-            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-            "name": "kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          }
-        ],
-        "difficulty": "Easy"
-      },
-      {
-        "id": "0cbf4403-d36d-4550-8152-9a253a16960a",
-        "status": "To Do",
-        "title": "Build User Profile Page",
-        "description": "Create a profile page that displays user's personal information and allows editing.",
-        "due-date": "2025-06-26",
-        "members": [
-          {
-            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-            "name": "kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          },
-          {
-            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-            "name": "jameela13",
-            "email": "jameelaabdlruhman@gmail.com"
-          }
-        ],
-        "difficulty": "Easy"
-      }
-    ]
+    "tasks": []
   },
   {
-    "id": "56757fa2-718d-4a43-b143-482cf202e850",
-    "owner": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-    "createdAt": "2025-06-11T09:08:35.264Z",
-    "title": "Backend API Development",
-    "members": [
-      {
-        "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-        "name": "kareem",
-        "email": "kareem.mohamed.ayman@gmail.com",
-        "score": 10
-      },
-      {
-        "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-        "name": "Abdelrahman",
-        "email": "abdelrahmanali58@gmail.com",
-        "score": 5
-      }
-    ],
-    "tasks": [
-      {
-        "id": "9e120f20-9cc1-482b-96a6-7c0dd6c40a31",
-        "title": "Create User Authentication API",
-        "description": "Develop login, register, and logout endpoints with JWT-based authentication using Django REST Framework.",
-        "status": "Done",
-        "dueDate": "2025-06-18",
-        "members": [
-          {
-            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-            "name": "kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          },
-          {
-            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
-          }
-        ],
-        "difficulty": "Easy"
-      },
-      {
-        "id": "416bec14-939d-44dd-bd27-0e70086cd5e8",
-        "title": "Implement CRUD for Posts",
-        "description": "Set up endpoints for creating, reading, updating, and deleting user posts.",
-        "status": "Done",
-        "dueDate": "2025-06-26",
-        "members": [
-          {
-            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-            "name": "kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          }
-        ],
-        "difficulty": "Easy"
-      }
-    ]
-  },
-  {
-    "id": "9b936a25-e025-4108-a0f1-c65d349fdef6",
+    "id": "74789d14-b686-4cb1-b73c-dea9def322ea",
     "owner": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-    "createdAt": "2025-06-11T09:09:58.642Z",
-    "title": "Bug Fixes & Testing",
+    "createdAt": "2025-06-18T01:20:58.598Z",
+    "title": "Create Boards page",
     "members": [
       {
-        "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+        "id": "f7e58b80-1dd4-4ee3-bd71-e165368009c7",
         "name": "jameela13",
-        "email": "jameelaabdlruhman@gmail.com",
-        "score": 0
-      },
-      {
-        "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-        "name": "Abdelrahman",
-        "email": "abdelrahmanali58@gmail.com",
-        "score": 10
+        "email": "jameelaabdlruhman@gmail.com"
       }
     ],
-    "tasks": [
-      {
-        "id": "d356eaa8-f697-4b2c-aca6-ee4eb7579d48",
-        "status": "To Do",
-        "title": "Fix Navbar Responsiveness Bug",
-        "description": "Resolve issue where navbar overlaps content on smaller screen sizes.",
-        "due-date": "2025-06-25",
-        "members": [
-          {
-            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-            "name": "jameela13",
-            "email": "jameelaabdlruhman@gmail.com"
-          }
-        ],
-        "difficulty": "Easy"
-      },
-      {
-        "id": "390b00d9-7c2e-423d-b092-20af67ac6673",
-        "status": "To Do",
-        "title": "Write Unit Tests for Post API",
-        "difficulty": "Medium",
-        "description": "Write and run Django unit tests for all post API endpoints using the built-in testing framework.",
-        "due-date": "2025-06-30",
-        "members": [
-          {
-            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
-          }
-        ]
-      },
-      {
-        "id": "c1f830af-604e-47b3-9320-5b29a991f593",
-        "title": "hard- do & ka",
-        "description": "Hard",
-        "status": "To Do",
-        "dueDate": "5555-05-05",
-        "members": [
-          {
-            "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
-            "name": "Doaa Tawik",
-            "email": "doaatawfik82001@gmail.com"
-          },
-          {
-            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-            "name": "Kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          }
-        ],
-        "difficulty": "Hard"
-      },
-      {
-        "id": "3b1b5fa5-79d5-44de-9e4d-3ab5ac4e6eea",
-        "title": "Md-ka&Abd",
-        "description": "Medium",
-        "status": "To Do",
-        "dueDate": "3322-03-31",
-        "members": [
-          {
-            "id": "698dd082-9d62-4930-9e5c-48cfe00acbf7",
-            "name": "Kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          },
-          {
-            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
-          }
-        ],
-        "difficulty": "Medium"
-      },
-      {
-        "id": "1a9f7e53-f150-4032-9c8a-9e1813e6ad07",
-        "status": "To Do",
-        "title": "easy- abd&do",
-        "description": "ghjkl;",
-        "due-date": "8888-08-08",
-        "members": [
-          {
-            "id": "f64bc1a1-2317-45a1-9591-407ae86a6945",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
-          },
-          {
-            "id": "e77bc2aa-46db-46e6-9f69-a49cb912e8fe",
-            "name": "Doaa Tawik",
-            "email": "doaatawfik82001@gmail.com"
-          }
-        ],
-        "difficulty": "Easy"
-      }
-    ]
+    "tasks": []
   },
   {
-    "id": "590abe7d-ee07-4550-ae6d-7fb73da97a28",
-    "owner": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-    "createdAt": "2025-06-16T19:30:56.821Z",
-    "title": "newboard",
+    "id": "3f1ee8e5-071f-48c8-80c9-68f2da6c5daa",
+    "owner": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
+    "createdAt": "2025-06-18T01:28:02.642Z",
+    "title": "Create Tasks Page",
     "members": [
       {
-        "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
+        "id": "c4534e86-4d68-4948-8f47-175e5faa0532",
         "name": "jameela13",
-        "email": "jameelaabdlruhman@gmail.com",
-        "score": 35
-      },
+        "email": "jameelaabdlruhman@gmail.com"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "id": "faee88d2-6d4f-4c5e-a59e-ffac43a71da2",
+    "owner": "c4534e86-4d68-4948-8f47-175e5faa0532",
+    "createdAt": "2025-06-18T01:28:49.482Z",
+    "title": "Create DashBoard",
+    "members": [
       {
         "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
         "name": "kareem",
@@ -250,80 +50,19 @@
         "score": 10
       },
       {
-        "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-        "name": "Abdelrahman",
-        "email": "abdelrahmanali58@gmail.com",
-        "score": 30
+        "score": 5,
+        "email": "jameelaabdlruhman@gmail.com"
       }
     ],
     "tasks": [
       {
-        "id": "8966aefa-148f-410e-8636-c43d72ff702c",
-        "status": "Done",
-        "difficulty": "Easy",
-        "title": "easy jam,kar",
-        "description": "eaaasy",
-        "due-date": "2001-11-11",
-        "members": [
-          {
-            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-            "name": "jameela13",
-            "email": "jameelaabdlruhman@gmail.com"
-          },
-          {
-            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-            "name": "kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          }
-        ]
-      },
-      {
-        "id": "53b38925-475d-4f1f-8db0-cdb4abf73d87",
+        "id": "4e1041cc-92d4-4d6f-9303-e75540a398e1",
         "status": "Done",
         "difficulty": "Medium",
-        "title": "med jam,abd",
-        "description": "medium",
-        "due-date": "2001-11-11",
-        "members": [
-          {
-            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-            "name": "jameela13",
-            "email": "jameelaabdlruhman@gmail.com"
-          },
-          {
-            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
-          }
-        ]
-      },
-      {
-        "id": "1daa8590-74b8-4bb5-9ac2-e7cf08933f2d",
-        "title": "hard abd,Jam",
-        "description": "hard",
-        "status": "Done",
-        "dueDate": "1200-11-12",
-        "members": [
-          {
-            "id": "1e1a67be-ca98-4521-bcc1-c6a711b8ef95",
-            "name": "jameela13",
-            "email": "jameelaabdlruhman@gmail.com"
-          },
-          {
-            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
-          }
-        ],
-        "difficulty": "Hard"
-      },
-      {
-        "id": "f683d69d-d56d-41ef-a085-f2905e26d45f",
-        "status": "Done",
-        "difficulty": "Easy",
-        "title": "easy kar ",
-        "description": "jk,hjkm",
-        "due-date": "5555-08-08",
+        "title": "Create sidebar",
+        "description": "hhhhhhhhhhhhhhhhhhhh",
+        "startDate": "2025-06-22",
+        "dueDate": "2025-06-30",
         "members": [
           {
             "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
@@ -333,22 +72,17 @@
         ]
       },
       {
-        "id": "b5fd921c-c4a5-4523-911d-26e4ab93cd0e",
-        "status": "To Do",
+        "id": "e62709ed-3be0-4b89-83b5-c2962f6d1e1b",
+        "status": "Done",
         "difficulty": "Easy",
-        "title": "rasy abd & kar",
-        "description": "uhjikl;",
-        "due-date": "2025-11-11",
+        "title": "Create tasks",
+        "description": "hhhhhhhhhh",
+        "startDate": "2025-06-16",
+        "dueDate": "2025-06-30",
         "members": [
           {
-            "id": "4f268c2e-73cc-4ddb-b4e9-2f76ed3c30a2",
-            "name": "kareem",
-            "email": "kareem.mohamed.ayman@gmail.com"
-          },
-          {
-            "id": "e73a8dc0-e890-4a02-a9fd-03e4853c0908",
-            "name": "Abdelrahman",
-            "email": "abdelrahmanali58@gmail.com"
+            "name": "jameelaabdlruhman@gmail.com",
+            "email": "jameelaabdlruhman@gmail.com"
           }
         ]
       }

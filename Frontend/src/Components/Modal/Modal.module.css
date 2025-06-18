@@ -11,6 +11,10 @@
   box-shadow: var(--shadow);
   animation: fade-slide-in-from-top 0.5s ease-in-out;
 }
+
+.widthGrow {
+  width: 40%;
+}
 .modal::backdrop {
   background: rgba(0, 0, 0, 0.532);
 }
@@ -24,5 +28,16 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .widthGrow {
+    width: 58%;
+  }
+}
+@media (max-width: 991px) {
+  .widthGrow {
+    width: 80%;
   }
 }

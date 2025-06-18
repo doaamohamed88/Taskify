@@ -4,7 +4,7 @@
   border: 1px solid var(--lilac-color);
   padding: 20px;
   width: 100%;
-  .container{
+  .container {
     width: 100%;
     position: relative;
     background-color: var(--main-color);
@@ -12,11 +12,11 @@
     justify-content: center;
     align-items: flex-start;
     justify-content: space-between;
-    padding:25px;
+    padding: 25px;
     border-radius: var(--border-radius-main);
-    
+
     @media (max-width: 600px) {
-      flex-direction: column;
+      /* flex-direction: column; */
       align-items: center;
       gap: 20px;
       padding: 10px;
@@ -46,6 +46,7 @@
 
       @media (max-width: 600px) {
         order: 1;
+        height: 100px;
       }
     }
 
@@ -55,6 +56,7 @@
 
       @media (max-width: 600px) {
         order: 2;
+        height: 150px;
       }
     }
 
@@ -64,6 +66,7 @@
 
       @media (max-width: 600px) {
         order: 3;
+        height: 100px;
       }
     }
 

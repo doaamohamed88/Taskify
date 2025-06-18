@@ -58,7 +58,7 @@
     width: 100%;
     padding: 15px;
     padding-left: 40px;
-    color: #bebebe;
+    color: var(--lilac-color);
     display: flex;
     align-items: flex-start;
     gap: 15px;

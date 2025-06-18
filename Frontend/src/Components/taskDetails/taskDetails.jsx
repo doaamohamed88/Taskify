@@ -25,7 +25,6 @@ const TaskDetails = ({ modalRef, task }) => {
     id: task.id,
     title: task.title || "",
     description: task.description || "",
-    status: task.status || "todo",
     dueDate: task.dueDate || task["due-date"],
     members: task.members || "",
     difficulty: task.difficulty || "",
@@ -41,7 +40,6 @@ const TaskDetails = ({ modalRef, task }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // set members users form task details object as initial card members
   const [cardMembers, setCardMembers] = useState(task?.members || []);
   const [showMember, setShowMember] = useState(false);
 
@@ -74,14 +72,12 @@ const TaskDetails = ({ modalRef, task }) => {
   const handleUpdateTask = async (e) => {
     e.preventDefault();
 
-    // Prepare updated task data
     const updatedTask = {
       ...detail,
       status,
       members: [...cardMembers],
     };
 
-    // Update tasks array
     const updatedTasks = selectedBoard.tasks.map((t) =>
       t.id === detail.id ? updatedTask : t
     );
@@ -89,11 +85,8 @@ const TaskDetails = ({ modalRef, task }) => {
 
     try {
       setIsSubmitting(true);
-      // Update backend (send the whole board or just the task, depending on your API)
       await updateBoard(boardId, updatedBoard);
-      // Or, if you have updateTask: await updateTask(boardId, detail.id, updatedTask);
 
-      // Update Redux store
       dispatch(updateSelectedBoard(updatedBoard));
     } catch (error) {
       console.error("Error updating task:", error);
@@ -165,25 +158,6 @@ const TaskDetails = ({ modalRef, task }) => {
             <option value="Easy">{t("Easy")}</option>
             <option value="Medium">{t("Medium")}</option>
             <option value="Hard">{t("Hard")}</option>
-          </select>
-        </div>
-
-        {/* Status Dropdown */}
-        <div className={classes.input_container}>
-          <div className={classes.label_container}>
-            <FaCheckCircle className={classes.icon} />
-            <label className={classes.label}>{t("Status")}</label>
-          </div>
-          <select
-            id="status"
-            value={status}
-            onChange={handleStatusChange}
-            className={`${classes.value} ${classes.input}`}
-            disabled={!isEditing}
-          >
-            <option value="To Do">{t("To Do")}</option>
-            <option value="In Progress">{t("In Progress")}</option>
-            <option value="Done">{t("Done")}</option>
           </select>
         </div>
 

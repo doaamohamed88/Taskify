@@ -30,7 +30,7 @@ const TaskCard = ({ task }) => {
   }
 
   const handleDeleteTask = async (e) => {
-    e.stopPropagation() // Prevent modal from opening
+    e.stopPropagation()
     if (!selectedBoard) return
     const updatedTasks = selectedBoard.tasks.filter((t) => t.id !== task.id)
     const updatedBoard = { ...selectedBoard, tasks: updatedTasks }
@@ -50,8 +50,8 @@ const TaskCard = ({ task }) => {
         className={`${styles.taskContainer} ${isDragging ? styles.dragging : ""}`}
         onDoubleClick={handleShowModal}
       >
-        <div className={styles.iconContainer} {...attributes} {...listeners}>
-          <FontAwesomeIcon className={styles.icon} icon={faEllipsis} size="lg" />
+        <div className={styles.iconContainer}>
+          <FontAwesomeIcon icon={faTrash} onClick={handleDeleteTask}></FontAwesomeIcon>
         </div>
         <h3 {...attributes} {...listeners}>
           {task.title}
@@ -62,9 +62,6 @@ const TaskCard = ({ task }) => {
             <FontAwesomeIcon icon={faUserTie} size="lg" />
           </div>
           <span>{task.dueDate}</span>
-          <div className={styles.deleteIcon} onClick={handleDeleteTask}>
-            <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
-          </div>
         </div>
       </div>
 

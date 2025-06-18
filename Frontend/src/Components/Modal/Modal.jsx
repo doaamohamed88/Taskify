@@ -13,7 +13,7 @@ const Modal = forwardRef(function Modal(props, ref) {
         }
     }))
     return createPortal(
-        <dialog ref={modalRef} className={styles.modal}>
+        <dialog ref={modalRef} className={`${styles.modal} ${props.widthGrow && styles.widthGrow}`}>
             {props.children}
         </dialog>, document.getElementById('root')
     )

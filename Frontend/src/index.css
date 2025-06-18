@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 :root {
   /* Dark Theme (Default) */
   --main-color: #0e1218;
-  --secondary-color: rgb(29 34 46);
+  --secondary-color: rgb(148, 118, 214);
   --lilac-color: rgb(148, 118, 214);
   --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
   --transperant: rgba(255, 255, 255, 0);
@@ -20,42 +20,30 @@
   --done-color: #a0ffe6;
   --lilac-border: 5px solid rgb(148, 118, 214);
   --text-color: #ffffff;
-  --background-gradient: radial-gradient(
+  /* --background-gradient: radial-gradient(
     ellipse at bottom,
     #5f4bb6 0%,
     #1b1537 40%,
     #0a0a0a 100%
+  ); */
+  --background-gradient: radial-gradient(
+    circle at center,
+    rgb(36 25 73) 0%,
+    rgb(25 18 54) 30%,
+    oklab(0.17 0.01 -0.04) 100%
   );
+  /* --background-gradient: radial-gradient(
+    circle at center,
+    rgb(36, 25, 73) 0%,
+    rgb(25, 18, 54) 30%,
+    rgb(12, 9, 24) 100%
+  ); */
+
+  --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
   --label-color: #c0c0c0;
   --input-color: #2d2d42;
   --table-bg: 0e1218;
-  scrollbar-color: rgb(148, 118, 214) var(--secondary-color) !important;
 }
-/* :root {
-  --main-color: #0e1218;
-  --secondary-color: rgb(29 34 46);
-  --text-color: #ffffff;
-  --text-secondary: #c0c0c0;
-  --table-bg: var(--main-color);
-  --primary-color: #5f4bb6;
-  --button-hover-color: #3f3b4d;
-  --lilac-border: 5px solid rgb(148, 118, 214);
-  --todo-color: #c3a0ff;
-  --doing-color: #ffb6e6;
-  --done-color: #a0ffe6;
-  --base-color: white;
-  --background-gradient: radial-gradient(
-    ellipse at bottom,
-    #5f4bb6 0%,
-    #1b1537 40%,
-    #0a0a0a 100%
-  );
-
-  --shadow: rgba(0, 0, 0, 0.548) 0px 7px 29px 0px;
-
-  --glass-bg: rgba(14, 18, 24, 0.8);
-  --glass-border: rgba(29, 34, 46, 0.4);
-} */
 
 .light {
   --main-color: rgb(148, 118, 214);
@@ -77,12 +65,11 @@
     #f6f5f9 100%
   );
 
+  --hover-shadow: 0 4px 8px rgba(227, 224, 224, 0.8);
   --shadow: 0 6px 15px rgba(158, 139, 197, 0.627);
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: 1px solid rgba(214, 203, 235, 0.4);
   --glass-shadow: 0 10px 35px rgba(156, 139, 197, 0.15);
-
-  scrollbar-color: #c6b8e9 var(--secondary-color) !important;
 }
 
 *,
@@ -99,22 +86,33 @@
 }
 
 body {
-  background: var(--background-gradient);
-
   color: var(--text-color);
-  /* background-color: #f1e4c4; */
-
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
-  min-height: 100vh;
   transition: background 0.3s ease, color 0.3s ease;
+  /* Add position relative for pseudo-elements */
+  position: relative;
+  /* Ensure body takes full height */
+  min-height: 100vh;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background-gradient);
+  background-size: cover;
+  z-index: -1; /* Place behind content */
 }
 
 html {
+  width: 100%;
+  min-height: 100vh;
   background-color: var(--main-color);
-  scrollbar-width: thin !important;
-  scrollbar-color: var(--lilac-color) var(--secondary-color) !important;
 }
 
 a {
@@ -124,8 +122,8 @@ a {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px !important;
-  height: 12px !important;
+  width: 3px !important;
+  height: 3px !important;
 }
 ::-webkit-scrollbar-track {
   background: var(--secondary-color) !important;
@@ -250,4 +248,8 @@ a {
   .container {
     width: 1170px;
   }
+}
+
+::-ms-reveal {
+  filter: invert(100%);
 }

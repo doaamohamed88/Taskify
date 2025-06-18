@@ -9,6 +9,8 @@ export const fetchUserBoards = createAsyncThunk(
             const response = await authFetch('/boards', {
                 method: 'GET',
             });
+            console.log(response);
+
             return response;
         } catch (error) {
             return rejectWithValue(

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrash, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import styles from "./BoardCard.module.css";
 import { setSelectedBoard } from "../../store/selectedBoard";
 import { useNavigate } from "react-router-dom";
@@ -11,15 +11,16 @@ import { updateBoard } from "../../services/boardService";
 import { updateSelectedBoard } from "../../store/selectedBoard";
 import { fetchUserBoards } from "../../store/board/BoardActions";
 import { deleteBoard } from "../../services/boardService";
-
+import { FaIcons } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 function BoardCard({ board, boardType }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalRef = useRef();
+  const deleteModalRef = useRef()
   const [isEditing, setIsEditing] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
   function getRandomColor(index) {
     const colors = ["#FFC107", "#03A9F4", "#E91E63", "#4CAF50", "#9C27B0"];
     return colors[index % colors.length];
@@ -27,11 +28,16 @@ function BoardCard({ board, boardType }) {
 
   const handleNavigate = () => {
     dispatch(setSelectedBoard(board));
-    navigate(`/${board.id}/leader-board`);
+    navigate(`/${board.id}/tasks`);
   };
 
+  function handleShowDeleteModal(e) {
+    e.stopPropagation();
+    deleteModalRef.current.open();
+  }
+
   const handleEditClick = (e) => {
-    e.stopPropagation(); // Prevent navigation
+    e.stopPropagation();
     setIsEditing(true);
     modalRef.current.open();
   };
@@ -41,35 +47,25 @@ function BoardCard({ board, boardType }) {
     modalRef.current.close();
   };
 
-  // Called after successful edit
   const handleBoardUpdate = async (updatedData) => {
     await updateBoard(board.id, updatedData);
     dispatch(updateSelectedBoard({ ...board, ...updatedData }));
-    dispatch(fetchUserBoards()); // Refresh board list
+    dispatch(fetchUserBoards());
     handleEditClose();
   };
 
-  const handleDeleteClick = (e) => {
-    e.stopPropagation();
-    setShowDeleteModal(true);
-  };
 
-  const handleDeleteConfirm = async () => {
+  const handleDeleteConfirm = async (e) => {
+    e.stopPropagation;
     setIsDeleting(true);
     try {
       await deleteBoard(board.id);
       dispatch(fetchUserBoards());
-      setShowDeleteModal(false);
     } catch {
-      // Optionally show error message
-      setShowDeleteModal(false);
+      deleteModalRef.current.close()
     } finally {
       setIsDeleting(false);
     }
-  };
-
-  const handleDeleteCancel = () => {
-    setShowDeleteModal(false);
   };
 
   return (
@@ -91,10 +87,27 @@ function BoardCard({ board, boardType }) {
             <FontAwesomeIcon
               icon={faTrash}
               className={styles.deleteIcon}
-              onClick={handleDeleteClick}
+              onClick={e => handleShowDeleteModal(e)}
               title="Delete Board"
               style={{ cursor: "pointer" }}
             />
+            <Modal ref={deleteModalRef}>
+              <div onClick={e => e.stopPropagation()} className={styles.deleteModal}>
+                <FontAwesomeIcon
+                  icon={faTriangleExclamation}
+                  className={styles.icon} />
+                <p>Are you sure?</p>
+                <span>This action can't be undone, all data associated with this field will be lost</span>
+                <div className={styles.buttons}>
+                  <button type="button" className={styles.close} onClick={handleEditClose} >
+                    {t("Close")}
+                  </button>
+                  <button type="submit" className={styles.main_button} onClick={(e) => handleDeleteConfirm(e)}>
+                    {t("Delete")}
+                  </button>
+                </div>
+              </div>
+            </Modal>
           </span>
         )}
       </div>
@@ -121,21 +134,6 @@ function BoardCard({ board, boardType }) {
           )}
         </div>
       </Modal>
-      {showDeleteModal && (
-        <Modal ref={{ current: { close: handleDeleteCancel } }}>
-          <div onClick={e => e.stopPropagation()} style={{ padding: 30, color: "var(--white)" }}>
-            <p>Are you sure you want to delete this board?</p>
-            <div style={{ display: "flex", gap: 16, marginTop: 20 }}>
-              <button className={styles.close} onClick={handleDeleteCancel} disabled={isDeleting}>
-                Cancel
-              </button>
-              <button className={styles.deleteIcon} onClick={handleDeleteConfirm} disabled={isDeleting}>
-                {isDeleting ? "Deleting..." : "Delete"}
-              </button>
-            </div>
-          </div>
-        </Modal>
-      )}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 .leaderBoardContainer {
   padding: var(--section-padding);
-  margin-inline: auto;
-  width: 90%;
+  width: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -33,4 +32,55 @@
     justify-content: space-between;
     align-items: center;
   }
+}
+
+.boardHeaderCard {
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: var(--border-radius-sm);
+  grid-area: 1 / 5 / 1 / 1;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boardHeaderCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--hover-shadow);
+}
+
+.boardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.boardLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--label-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.boardIcon {
+  color: var(--lilac-color);
+  font-size: 1.2rem;
+}
+
+.boardName {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--base-color);
+}
+
+.boardStats {
+  display: flex;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--label-color);
 }

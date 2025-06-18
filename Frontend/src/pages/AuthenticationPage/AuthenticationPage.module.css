@@ -66,14 +66,14 @@
 }
 
 .formInput[type="submit"] {
-  background-color: var(--lilac-color);
+  background-color: var(--main-color);
   color: #fff;
   cursor: pointer;
   border: none;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: var(--button-hover-color);
+    background-color: var(--lilac-color);
   }
 }
 

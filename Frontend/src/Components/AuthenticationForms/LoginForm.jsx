@@ -48,9 +48,8 @@ const LoginForm = () => {
             <p className={`${styles.errorMsg}`}>{errors.root.message}</p>
           )}
           <input
-            className={`${styles.formInput} ${
-              errors.email ? styles.error : ""
-            }`}
+            className={`${styles.formInput} ${errors.email ? styles.error : ""
+              }`}
             type="text"
             placeholder="Email"
             name="email"
@@ -66,9 +65,8 @@ const LoginForm = () => {
             <p className={`${styles.errorMsg}`}>{errors.email.message}</p>
           )}
           <input
-            className={`${styles.formInput} ${
-              errors.password ? styles.error : ""
-            }`}
+            className={`${styles.formInput} ${errors.password ? styles.error : ""
+              }`}
             type="password"
             placeholder="Password"
             name="password"

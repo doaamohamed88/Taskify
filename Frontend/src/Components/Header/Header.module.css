@@ -19,7 +19,7 @@
 }
 
 .header.scrolled {
-  background: var(--secondary-color);
+  background: var(--main-color);
   box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.15);
   transition: background 0.3s, box-shadow 0.3s;
 }
@@ -71,7 +71,7 @@
   cursor: pointer;
   padding: 15px;
   transition: var(--main-trans);
-
+  z-index: 10000000000;
   @media (min-width: 769px) {
     display: none;
   }
