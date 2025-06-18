@@ -28,6 +28,9 @@ export default function CreateBoardForm({ onClose, initialData = {}, isEdit = fa
         }
     }, [isEdit, initialData]);
 
+    console.log(fetchUserBoards);
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -38,15 +41,15 @@ export default function CreateBoardForm({ onClose, initialData = {}, isEdit = fa
         const selectedMembers = selectInstance?.getValue() || [];
         const selectedMemberIds = selectedMembers.map((opt) => opt.value);
 
-    const validationErrors = [];
-    if (!isNotEmpty(title)) validationErrors.push("Board title is required");
-    if (selectedMemberIds.length === 0)
-      validationErrors.push("At least one member is required");
-    if (validationErrors.length > 0) {
-      setErrors(validationErrors);
-      setIsSubmitting(false);
-      return;
-    }
+        const validationErrors = [];
+        if (!isNotEmpty(title)) validationErrors.push("Board title is required");
+        if (selectedMemberIds.length === 0)
+            validationErrors.push("At least one member is required");
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            setIsSubmitting(false);
+            return;
+        }
 
         try {
             if (isEdit && onSubmit) {

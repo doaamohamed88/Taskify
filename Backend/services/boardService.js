@@ -17,9 +17,12 @@ const getBoardsByUser = (userId) => {
     const boards = getAllBoards();
     let ownerBoards = boards.filter(board => board.owner === userId);
     let memberBoards = boards.filter(board => board.members.some(member => member.id === userId));
-    return [...ownerBoards, ...memberBoards];
+    const allBoards = [...ownerBoards, ...memberBoards];
+    const uniqueBoards = allBoards.filter(
+        (board, index, self) => index === self.findIndex(b => b.id === board.id)
+    );
+    return uniqueBoards;
 };
-
 const getBoardById = (id) => {
     const boards = getAllBoards();
     const board = boards.find(board => board.id === id);

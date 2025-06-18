@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./leaderboard.module.css";
 import TeamTable from "../../Components/TeamTable";
 import RankCard from "../../Components/RankCard";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import useSelectedBoard from "../../hooks/useSelectedBoard";
-
+import * as FaIcons from 'react-icons/fa6'
 export default function LeaderBoard() {
   const { t } = useTranslation();
 
@@ -26,9 +26,25 @@ export default function LeaderBoard() {
 
   return (
     <div className={styles.leaderBoardContainer}>
+      <div className={styles.boardHeaderCard}>
+        <div className={styles.boardMeta}>
+          <span className={styles.boardLabel}>{t("Active Board")}</span>
+          <FaIcons.FaClipboardList className={styles.boardIcon} />
+        </div>
+        <h1 className={styles.boardName}>{selectedBoard?.title && ` ${selectedBoard.title}`}</h1>
+        <div className={styles.boardStats}>
+          <span>
+            {selectedBoard?.tasks && selectedBoard.tasks.length}{" "}
+            {selectedBoard?.tasks && selectedBoard.tasks.length === 1 ? t("Task") : t("Tasks")}
+          </span>
+          <span>•</span>
+          <span>
+            {selectedBoard?.members && selectedBoard.members.length}{" "}
+            {selectedBoard?.members && selectedBoard.members.length === 1 ? t("Member") : t("Members")}
+          </span>
+        </div>
+      </div>
       <div>
-        <h1 style={{ marginBottom: 15 }}>{t("Leaderboard")}</h1>
-        <h2 style={{ marginBottom: 10, color: 'var(--lilac-color)' }}>{selectedBoard?.title && `Board: ${selectedBoard.title}`}</h2>
         <p>{t("leader-board-description")}</p>
       </div>
 
@@ -38,11 +54,8 @@ export default function LeaderBoard() {
 
       <div size="large">
         <div className={styles.tableHeaderInfo}>
-          <h3 style={{ textAlign: "center" }}>
-            {selectedBoard?.title || "Team Name"}{" "}
-          </h3>
           <span>
-            {t("total-score")}: {totalScore}
+            {t("total-score")}{`  `}: {totalScore}
           </span>
         </div>
 

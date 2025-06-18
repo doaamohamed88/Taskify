@@ -1,5 +1,5 @@
 .listContainer {
-  flex-grow: 1;
+  width: calc(100% / 3);
   display: flex;
   flex-direction: column;
   gap: 17px;
@@ -17,27 +17,35 @@
 .iconContainer {
   padding: 5px;
   border-radius: 50%;
-  border: 2px solid #fff;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
 }
-ئ .titleContainer {
-  background-color: var(--main-color);
+.titleContainer {
+  background-color: var(--transperant);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .todo {
-  border: 5px solid var(--todo-color);
+  border: 2px solid var(--todo-color);
 }
 
 .inProgress {
-  border: 5px solid var(--doing-color);
+  border: 2px solid var(--doing-color);
 }
 
 .done {
-  border: 5px solid var(--done-color);
+  border: 2px solid var(--done-color);
 }
 
 .taskList {
-  min-height: 120px;
+  height: fit-content;
   padding: 10px;
   border-radius: 4px;
   transition: background-color 0.2s, border 0.2s;
@@ -59,4 +67,10 @@
   color: #fff;
   transform: scale(1.03);
   transition: box-shadow 0.2s, background-color 0.2s, color 0.2s, transform 0.2s;
+}
+@media (max-width: 769px) {
+  .listContainer {
+    flex-direction: column;
+    width: 100%;
+  }
 }

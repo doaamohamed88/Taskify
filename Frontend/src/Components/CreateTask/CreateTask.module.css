@@ -30,7 +30,7 @@
   margin-bottom: 8px;
   font-weight: 200;
 }
-select{
+select {
   margin: 8px 0 10px;
 }
 .form input,
@@ -162,3 +162,13 @@ select {
 }
 
 /* ??? CLOSE BUTTON */
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+@media (max-width: 514px) {
+  .container {
+    flex-direction: column;
+  }
+}

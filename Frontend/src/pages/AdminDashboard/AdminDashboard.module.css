@@ -1,16 +1,20 @@
-.grid {
+.mainContainer {
   padding: var(--section-padding);
+  padding-top: 100px;
   margin-inline: auto;
+}
+
+@media (max-width: 512px) {
+  .mainContainer {
+    padding: 0;
+  }
+}
+
+.grid {
   display: grid;
   grid-template-columns: 300px repeat(3, 1fr);
   grid-template-rows: auto auto 1fr;
   gap: 30px;
-  /* margin-top: 100px; */
-  padding-top: 100px;
-  /* min-height: 100dvh; */
-  /* max-height: 100dvh; */
-  /* overflow: hidden; */
-
   h1 {
     grid-column: 1 / -1;
     letter-spacing: 1px;
@@ -22,7 +26,6 @@
 
   .projectProgress {
     grid-column: 1 / -1;
-    /* grid-row: 2 / 3; */
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
@@ -31,7 +34,6 @@
 
   .teamMembers {
     grid-column: 1 / -1;
-    /* grid-row: 3 / 4; */
     border-radius: var(--border-radius-main);
     background-image: var(--transperant);
     box-shadow: var(--shadow);
@@ -62,12 +64,10 @@
   }
 
   @media (max-width: 992px) {
-    /* grid-template-columns: 100px repeat(3, 1fr); */
     padding-inline: 30px;
   }
 
   @media (max-width: 768px) {
-    /* padding: 30px; */
     h1 {
       font-size: 1.6em;
       text-align: center;
@@ -156,4 +156,55 @@ form {
   color: orangered;
   font-size: 0.8em;
   display: block;
+}
+
+.boardHeaderCard {
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: var(--border-radius-sm);
+  grid-area: 1 / 5 / 1 / 1;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boardHeaderCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--hover-shadow);
+}
+
+.boardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.boardLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--label-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.boardIcon {
+  color: var(--lilac-color);
+  font-size: 1.2rem;
+}
+
+.boardName {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--base-color);
+}
+
+.boardStats {
+  display: flex;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--label-color);
 }

@@ -13,6 +13,7 @@ import { getUserByEmail, updateUser } from "../../services/userService"
 import { hasMinLength, isEmail, isNotEmpty } from "../../utils/validation"
 import useSelectedBoard from "../../hooks/useSelectedBoard"
 import { toast } from "react-toastify"
+import * as FaIcons from 'react-icons/fa6'
 export default function AdminDashboard() {
   const modalRef = useRef();
   const { t } = useTranslation();
@@ -83,7 +84,6 @@ export default function AdminDashboard() {
 
   function getMemberInfo() {
     selectedBoard.members.forEach((memb) => {
-      // if (memb.email === adminInfo.email) return
       getUserByEmail(memb.email).then((res) => {
         setMemberInfo((arr) => {
           if (arr.some((member) => member.email === res.email)) return arr
@@ -127,31 +127,45 @@ export default function AdminDashboard() {
     setEmailError("")
   }
 
+
   return (
-    <>
+    <div className={styles.mainContainer}>
+      <div className={styles.boardHeaderCard}>
+        <div className={styles.boardMeta}>
+          <span className={styles.boardLabel}>{t("Active Board")}</span>
+          <FaIcons.FaClipboardList className={styles.boardIcon} />
+        </div>
+        <h1 className={styles.boardName}>{selectedBoard?.title && ` ${selectedBoard.title}`}</h1>
+        <div className={styles.boardStats}>
+          <span>
+            {selectedBoard?.tasks && selectedBoard.tasks.length}{" "}
+            {selectedBoard?.tasks && selectedBoard.tasks.length === 1 ? t("Task") : t("Tasks")}
+          </span>
+          <span>•</span>
+          <span>
+            {selectedBoard?.members && selectedBoard.members.length}{" "}
+            {selectedBoard?.members && selectedBoard.members.length === 1 ? t("Member") : t("Members")}
+          </span>
+        </div>
+      </div>
       <div className={styles.grid}>
-        <h1>
-          {t("Welcome back, ")}
-          {adminInfo.name} 👋
-        </h1>
-        <h2 className={styles.boardTitle}>{selectedBoard?.title && `Board: ${selectedBoard.title}`}</h2>
         <div className={styles.projectProgress}>
           <ProgressCard
-            title="Completed"
-            colorScheme="green"
-            score={parseFloat(completedTasks || 0)}
+            title="Not Started"
+            colorScheme="red"
+            score={parseFloat(notStartedTasks || 0)}
           ></ProgressCard>
           <ProgressCard
             title="In Progress"
             colorScheme="blue"
             score={parseFloat(inProgressTasks || 0)}
           ></ProgressCard>
-          <ProgressCard
-            title="Not Started"
-            colorScheme="red"
-            score={parseFloat(notStartedTasks || 0)}
-          ></ProgressCard>
 
+          <ProgressCard
+            title="Completed"
+            colorScheme="green"
+            score={parseFloat(completedTasks || 0)}
+          ></ProgressCard>
         </div>
 
         <div className={styles.teamMembers}>
@@ -199,6 +213,6 @@ export default function AdminDashboard() {
         </form>
       </Modal>
 
-    </>
+    </div>
   )
 }

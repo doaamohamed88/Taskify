@@ -1,22 +1,76 @@
 .main_container {
   margin-top: 100px;
+  padding: var(--section-padding);
 }
 .boardContainer {
-  /* min-height: 100vh; */
   display: flex;
-  flex-direction: column;
   gap: 25px;
   justify-content: center;
-  padding: 0 2%;
-  padding-left: calc(2% + 50px);
 
   @media (max-width: 992px) {
     padding-left: 2%;
   }
 }
 
-@media (min-width: 769px) {
+@media (max-width: 769px) {
   .boardContainer {
-    flex-direction: row;
+    flex-direction: column;
   }
+}
+
+@media (max-width: 512px) {
+  .main_container {
+    padding: 0;
+  }
+}
+
+.boardHeaderCard {
+  width: 100%;
+  background: var(--card-bg);
+  border-radius: var(--border-radius-sm);
+  grid-area: 1 / 5 / 1 / 1;
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--secondary-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boardHeaderCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--hover-shadow);
+}
+
+.boardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.boardLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--label-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.boardIcon {
+  color: var(--lilac-color);
+  font-size: 1.2rem;
+}
+
+.boardName {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--base-color);
+}
+
+.boardStats {
+  display: flex;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--label-color);
 }

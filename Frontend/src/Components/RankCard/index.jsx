@@ -32,7 +32,7 @@ const RankCard = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3, 
+        staggerChildren: 0.3,
       },
     },
   };
@@ -61,10 +61,10 @@ const RankCard = () => {
               backgroundPosition: "center",
             }}
             variants={itemVariants}
-            whileHover="hover" 
+            whileHover="hover"
           >
             <div className={styles.rank}>{participant.rank}</div>
-            <img src={participant.img} alt={participant.name} />
+            <img src={participant.img} alt={participant.name} className={styles.img} />
           </motion.div>
         ))}
       </div>

@@ -112,7 +112,7 @@ function CreateTask({ onClose, boardId }) {
           </select>
         </div>
       </div>
-      <div className={styles.conatiner}>
+      <div className={styles.container}>
         <div className={styles.input_container}>
           <label htmlFor="description">{t("Description")}</label>
           <textarea
@@ -125,18 +125,31 @@ function CreateTask({ onClose, boardId }) {
           />
         </div>
       </div>
-      <div className={styles.conatiner}>
+      <div className={styles.container}>
         <div className={styles.input_container}>
-          <label htmlFor="due-date">{t("Due Date")}</label>
+          <label htmlFor="startDate">{t("Start Date")}</label>
           <input
             type="date"
-            name="due-date"
-            id="due-date"
-            value={formData["due-date"] || ""}
+            name="startDate"
+            id="startDate"
+            value={formData["startDate"] || ""}
             onChange={handleChange}
             required
           />
         </div>
+        <div className={styles.input_container}>
+          <label htmlFor="dueDate">{t("Due Date")}</label>
+          <input
+            type="date"
+            name="dueDate"
+            id="dueDate"
+            value={formData["dueDate"] || ""}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div>
+      <div className={styles.container}>
         <div className={styles.input_container}>
           <label htmlFor="members">{t("Members")}</label>
           <AsyncSelect

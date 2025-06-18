@@ -10,7 +10,18 @@
   }
 
   @media (max-width: 992px) {
-    margin-left: 100px;
+    margin-left: 80px;
+    margin-right: 20px;
+  }
+  @media (max-width: 992px) {
+    [dir="ltr"] {
+      margin-left: 80px;
+      margin-right: 20px;
+    }
+    [dir="rtl"] {
+      margin-left: 20px;
+      margin-right: 80px;
+    }
   }
 }
 
@@ -28,8 +39,6 @@
 }
 
 .sidebar {
-  /* grid-area: 1 / 1 / -1 / 2; */
-  /* background-color: green; */
   border-radius: var(--border-radius-main);
   width: fit-content;
   margin-top: 100px;

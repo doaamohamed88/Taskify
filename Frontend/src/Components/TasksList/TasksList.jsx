@@ -9,7 +9,7 @@ import CreateTask from "../CreateTask/CreateTask";
 import useSelectedBoard from "../../hooks/useSelectedBoard";
 import { useParams } from "react-router";
 import { useDroppable } from "@dnd-kit/core";
-
+import * as FaIcons from 'react-icons/fa6'
 const TasksList = ({ title, status, tasks }) => {
   const { id } = useParams();
   const { selectedBoard } = useSelectedBoard();
@@ -18,9 +18,8 @@ const TasksList = ({ title, status, tasks }) => {
     id: status,
     data: { accepts: ["task"] },
   });
-  const taskListClass = `${styles.taskList} ${
-    isOver ? styles.draggingOver : ""
-  }`;
+  const taskListClass = `${styles.taskList} ${isOver ? styles.draggingOver : ""
+    }`;
 
   const { t } = useTranslation();
   const modalRef = useRef();
@@ -36,19 +35,19 @@ const TasksList = ({ title, status, tasks }) => {
   return (
     <div className={`${styles.listContainer}`}>
       <div
-        className={`${styles.titleContainer} ${
-          title === "To Do"
-            ? styles.todo
-            : title === "In Progress"
+        className={`${styles.titleContainer} ${title === "To Do"
+          ? styles.todo
+          : title === "In Progress"
             ? styles.inProgress
             : styles.done
-        }`}
+          }`}
       >
-        <h1 className={`${styles.title}`}>{t(title)}</h1>
+        <p className={`${styles.title}`}>{t(title)}</p>
         {title === "To Do" && (
           <div className={`${styles.iconContainer}`}>
-            <FontAwesomeIcon icon={faPlus} size="lg" onClick={showModal} />
-            <Modal ref={modalRef}>
+            {/* <FontAwesomeIcon icon={faPlus} size="lg" onClick={showModal} /> */}
+            <FaIcons.FaPlus onClick={showModal} />
+            <Modal ref={modalRef} widthGrow>
               <CreateTask
                 onClose={handleCloseModal}
                 boardId={id || selectedBoard?.id}

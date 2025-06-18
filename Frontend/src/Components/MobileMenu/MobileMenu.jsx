@@ -15,6 +15,7 @@ export default function MobileMenu({
   toggleMobileMenu,
   setToggleMobileMenu,
 }) {
+
   return (
     <div className={`${classes.mobileMenu} ${toggleMobileMenu ? classes.showMenu : ""}`}>
       <Link to="/" onClick={() => setToggleMobileMenu(false)}>
@@ -27,7 +28,7 @@ export default function MobileMenu({
             <p>{t("Created Boards")}</p>
           </Link>
         </button>
-        
+
         <button onClick={() => setToggleMobileMenu(false)}>
           <Link to="/involvedboardsPage">
             <p>{t("Involved Boards")}</p>

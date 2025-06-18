@@ -6,6 +6,24 @@
   overflow: hidden;
   height: 100%;
 }
+
+.welcomeText {
+  width: 100%;
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--base-color);
+  margin-bottom: 10px;
+  text-align: center;
+  top: 100px;
+  /* left: 50%;
+  transform: translateX(-40%); */
+  text-align: center;
+  position: absolute;
+  font-family: "Caveat", sans-serif;
+  color: var(--lilac-color);
+  font-weight: bold;
+}
+
 .landing_content {
   display: flex;
   min-height: 100vh;
@@ -27,7 +45,11 @@
 }
 
 .landing_content .typingText strong:first-child {
-  color: rgb(80, 62, 118);
+  /* color: rgb(80, 62, 118); */
+  /* color:#36D1DCz; */
+  /* color: #3c9ee7; */
+  color: #c4b5fd;
+  /* color: #fdcb6e; */
 }
 
 .landing_content .typingText strong:last-child {
@@ -45,7 +67,7 @@
 
 .cards_section > p {
   width: fit-content;
-  color: rgb(80, 62, 118);
+  color: #c4b5fd;
 }
 
 .landing_page button {
@@ -120,7 +142,7 @@
   }
 
   .landing_page .typingText {
-    font-size: 32px;
+    font-size: 28px;
     width: auto;
     text-align: center;
   }
@@ -142,6 +164,9 @@
 
   .img {
     width: 300px;
+  }
+  .welcomeText {
+    top: 50px;
   }
 }
 
@@ -172,5 +197,8 @@
 
   .img {
     width: 250px;
+  }
+  .welcomeText {
+    top: 0px;
   }
 }
