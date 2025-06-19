@@ -19,3 +19,19 @@ export const fetchUserBoards = createAsyncThunk(
         }
     }
 );
+
+export const fetchBoardById = createAsyncThunk(
+    'boards/fetchBoardById',
+    async (boardId, { rejectWithValue }) => {
+        try {
+            const response = await authFetch(`/boards/${boardId}`, {
+                method: 'GET',
+            });
+            return response;
+        } catch (error) {
+            return rejectWithValue(
+                error.response?.data?.message || error.message
+            );
+        }
+    }
+);

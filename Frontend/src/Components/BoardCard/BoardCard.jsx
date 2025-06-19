@@ -11,7 +11,6 @@ import { updateBoard } from "../../services/boardService";
 import { updateSelectedBoard } from "../../store/selectedBoard";
 import { fetchUserBoards } from "../../store/board/BoardActions";
 import { deleteBoard } from "../../services/boardService";
-import { FaIcons } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 function BoardCard({ board, boardType }) {
   const { t } = useTranslation();

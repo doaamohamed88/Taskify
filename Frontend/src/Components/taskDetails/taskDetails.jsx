@@ -12,12 +12,12 @@ import {
   FaPen,
 } from "react-icons/fa";
 import Members from "./Members";
-import { useDispatch } from "react-redux";
-import { updateSelectedBoard } from "../../store/selectedBoard";
-import { updateBoard } from "../../services/boardService";
 import { useParams } from "react-router";
 import useSelectedBoard from "../../hooks/useSelectedBoard";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { updateTask } from "../../services/boardService";
+import { fetchBoardById } from "../../store/board/BoardActions";
 
 const TaskDetails = ({ modalRef, task }) => {
   const { id } = useParams;
@@ -25,35 +25,35 @@ const TaskDetails = ({ modalRef, task }) => {
     id: task.id,
     title: task.title || "",
     description: task.description || "",
-    dueDate: task.dueDate || task["due-date"],
+    dueDate: task.dueDate,
     members: task.members || "",
     difficulty: task.difficulty || "",
   });
   const { selectedBoard } = useSelectedBoard();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const boardId = id || selectedBoard?.id || null;
 
   const [boardMembers, setBoardMembers] = useState([]);
-  // const [status, setStatus] = useState(detail.status);
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [cardMembers, setCardMembers] = useState(task?.members || []);
   const [showMember, setShowMember] = useState(false);
 
-  console.log("cardMembers:", { cardMembers, task, selectedBoard });
-
   useEffect(() => {
+    const formattedDate = task.dueDate
+      ? new Date(task.dueDate).toISOString().split("T")[0]
+      : "";
     setDetail({
       id: task.id,
       title: task.title || "",
       description: task.description || "",
       status: task.status || "todo",
-      dueDate: task.dueDate || task["due-date"] || "",
+      dueDate: formattedDate,
       members: task.members || "",
-      difficulty: task.priority || task.difficulty || "",
+      difficulty: task.difficulty || "",
     });
   }, [task]);
 
@@ -62,32 +62,20 @@ const TaskDetails = ({ modalRef, task }) => {
   }, [selectedBoard]);
 
   useEffect(() => {
-    console.log(isEditing);
   }, [isEditing]);
-
-  // const handleStatusChange = (e) => {
-  //   setStatus(e.target.value);
-  // };
 
   const handleUpdateTask = async (e) => {
     e.preventDefault();
-
-    const updatedTask = {
-      ...detail,
-      status: status || detail.status || "To Do",
-      members: [...cardMembers],
-    };
-
-    const updatedTasks = selectedBoard.tasks.map((t) =>
-      t.id === detail.id ? updatedTask : t
-    );
-    const updatedBoard = { ...selectedBoard, tasks: updatedTasks };
-
+    setIsSubmitting(true);
     try {
-      setIsSubmitting(true);
-      await updateBoard(boardId, updatedBoard);
-
-      dispatch(updateSelectedBoard(updatedBoard));
+      const updatedTask = {
+        ...detail,
+        status: detail.status || "To Do",
+        dueDate: detail.dueDate ? new Date(detail.dueDate) : null,
+        members: [...cardMembers],
+      };
+      await updateTask(boardId, detail.id, updatedTask);
+      dispatch(fetchBoardById(boardId));
     } catch (error) {
       console.error("Error updating task:", error);
     } finally {
@@ -182,7 +170,6 @@ const TaskDetails = ({ modalRef, task }) => {
             <FaUser className={classes.icon} />
             <label className={classes.label}>{t("Members")}</label>
           </div>
-          {/* <div className={classes.value}>{detail.members}</div> */}
           <div className={`${classes.value} ${classes.members_container}`}>
             {cardMembers.map((member) => (
               <div

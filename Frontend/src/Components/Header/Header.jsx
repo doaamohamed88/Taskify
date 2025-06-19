@@ -83,7 +83,6 @@ function Header() {
         className={`${styles.bars} ${toggleMobileMenu ? styles.rotateIcon : ""}`}
         onClick={() => setToggleMobileMenu(!toggleMobileMenu)}
       ></FontAwesomeIcon>
-      {console.log(toggleMobileMenu)}
 
       <MobileMenu
         toggleTheme={toggleTheme}

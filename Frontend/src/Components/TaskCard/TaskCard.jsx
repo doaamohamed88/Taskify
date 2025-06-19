@@ -61,7 +61,15 @@ const TaskCard = ({ task }) => {
           <div className={styles.avatar}>
             <FontAwesomeIcon icon={faUserTie} size="lg" />
           </div>
-          <span>{task.dueDate}</span>
+          <span>
+            {task.dueDate
+              ? new Date(task.dueDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+              : "No due date"}
+          </span>
         </div>
       </div>
 

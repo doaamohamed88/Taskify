@@ -5,7 +5,6 @@ const { authenticate } = require('../middleware/authMiddleware');
 const boardRouter = Router();
 boardRouter.use(authenticate);
 
-// GET all boards for current user
 boardRouter.get('/', async (req, res) => {
     try {
         const userId = req.user.id;
@@ -16,7 +15,6 @@ boardRouter.get('/', async (req, res) => {
     }
 });
 
-// GET specific board by ID
 boardRouter.get('/:id', async (req, res) => {
     try {
         const board = await boardService.getBoardById(req.params.id);
@@ -26,7 +24,6 @@ boardRouter.get('/:id', async (req, res) => {
     }
 });
 
-// POST new board
 boardRouter.post('/', async (req, res) => {
     try {
         const boardData = req.body;
@@ -38,7 +35,6 @@ boardRouter.post('/', async (req, res) => {
     }
 });
 
-// PUT update board
 boardRouter.put('/:id', async (req, res) => {
     try {
         const boardId = req.params.id;
@@ -50,7 +46,6 @@ boardRouter.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE board
 boardRouter.delete('/:id', async (req, res) => {
     try {
         const boardId = req.params.id;
@@ -61,7 +56,6 @@ boardRouter.delete('/:id', async (req, res) => {
     }
 });
 
-// POST create task
 boardRouter.post('/:id/tasks', async (req, res) => {
     try {
         const task = await boardService.createTask(req.params.id, req.body);
@@ -71,7 +65,7 @@ boardRouter.post('/:id/tasks', async (req, res) => {
     }
 });
 
-// PUT update task
+
 boardRouter.put('/:id/tasks/:taskId', async (req, res) => {
     try {
         const updatedTask = await boardService.updateTask(req.params.id, req.params.taskId, req.body);
