@@ -3,11 +3,12 @@ import styles from "./BoardPage.module.css";
 import { DndContext } from "@dnd-kit/core";
 import { useSelector, useDispatch } from "react-redux";
 import { setSelectedBoard } from "../../store/selectedBoard";
-import { updateBoard } from "../../services/boardService";
+import { updateBoard, updateTask } from "../../services/boardService";
 import { useState, useEffect } from "react";
 import * as FaIcons from 'react-icons/fa6'
 const STATUSES = ["To Do", "In Progress", "Done"];
 import { useTranslation } from "react-i18next";
+import { fetchBoardById } from "../../store/board/BoardActions";
 const BoardPage = () => {
   const dispatch = useDispatch();
   const selectedBoard = useSelector((state) => state.selectedBoard);
@@ -20,7 +21,6 @@ const BoardPage = () => {
   }, [selectedBoard]);
 
   const getScoreBasedOnDifficulty = (difficulty) => {
-    console.log('difficulty,,,,gggg', difficulty);
     if (difficulty === "Easy") return 5;
     if (difficulty === "Medium") return 10;
     if (difficulty === "Hard") return 20;
@@ -38,47 +38,41 @@ const BoardPage = () => {
 
     const newStatus = over.id;
     if (STATUSES.includes(newStatus) && draggedTask.status !== newStatus) {
-      const updatedTasks = tasks.map((task) =>
-        task.id === active.id ? { ...task, status: newStatus } : task
-      );
-
       let boardMembers = selectedBoard.members;
       const selectedTask = tasks.find((task) => task.id === active.id);
       const asigneeMembers = selectedTask.members;
-      const scoreDelta = getScoreBasedOnDifficulty(selectedTask.priority || selectedTask.difficulty);
+      const scoreDelta = getScoreBasedOnDifficulty(selectedTask.difficulty);
 
-      if (newStatus === 'Done') {
-        // Increment score when moved to Done
-        boardMembers = boardMembers.map(member => {
-          const selected = asigneeMembers?.find(el => el.id === member.id);
-          if (selected) {
+      let updatedBoardMembers = boardMembers.map(member => {
+        if (newStatus === 'Done') {
+          const isAssigned = draggedTask.members.find(m => m.id === member.id);
+          if (isAssigned) {
             return {
               ...member,
-              score: (member.score || 0) + scoreDelta
-            }
-          } else {
-            return member;
+              score: (member.score || 0) + getScoreBasedOnDifficulty(draggedTask.difficulty)
+            };
           }
-        });
-      } else if (draggedTask.status === 'Done' && newStatus !== 'Done') {
-        // Decrement score when moved out of Done
-        boardMembers = boardMembers.map(member => {
-          const selected = asigneeMembers?.find(el => el.id === member.id);
-          if (selected) {
+        } else if (draggedTask.status === 'Done' && newStatus !== 'Done') {
+          const isAssigned = draggedTask.members.find(m => m.id === member.id);
+          if (isAssigned) {
             return {
               ...member,
-              score: Math.max(0, (member.score || 0) - scoreDelta)
-            }
-          } else {
-            return member;
+              score: Math.max(0, (member.score || 0) - getScoreBasedOnDifficulty(draggedTask.difficulty))
+            };
           }
-        });
-      }
-
+        }
+        return member;
+      });
+      const updatedTasks = tasks.map((task) =>
+        task.id === active.id ? { ...draggedTask, status: newStatus } : task
+      );
       setTasks(updatedTasks);
-      const updatedBoard = { ...selectedBoard, tasks: updatedTasks, members: boardMembers };
+      const updatedBoard = { ...selectedBoard, tasks: updatedTasks, members: updatedBoardMembers };
       dispatch(setSelectedBoard(updatedBoard));
+      // Persist the updated board (with updated member scores) to the backend
       await updateBoard(selectedBoard.id, updatedBoard);
+      // Refresh the board from backend
+      dispatch(fetchBoardById(selectedBoard.id));
       return;
     }
 

@@ -17,11 +17,19 @@ export const updateBoard = async (id, data) => {
 
 export const createTask = async (boardId, taskData) => {
   console.log("Creating task with data:", taskData);
+
   return await authFetch(`${BASE_URL}/${boardId}/tasks`, {
     method: "POST",
     body: JSON.stringify(taskData),
   })
 }
+
+export const updateTask = async (boardId, taskId, taskData) => {
+  return await authFetch(`${BASE_URL}/${boardId}/tasks/${taskId}`, {
+    method: "PUT",
+    body: JSON.stringify(taskData),
+  });
+};
 
 export const deleteBoard = async (id) => {
   return await authFetch(`${BASE_URL}/${id}`, {

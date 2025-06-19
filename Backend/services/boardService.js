@@ -84,6 +84,7 @@ const updateBoard = async (id, boardData) => {
         { ...boardData, members: updatedMembers },
         { new: true }
     );
+    console.log(board);
 
     if (!board) throw new Error('Board not found');
     return board;
@@ -112,7 +113,23 @@ const updateTask = async (boardId, taskId, taskData) => {
     const taskIndex = board.tasks.findIndex(task => task.id === taskId);
     if (taskIndex === -1) throw new Error('Task not found');
 
+    // Update the task fields
     board.tasks[taskIndex] = { ...board.tasks[taskIndex], ...taskData };
+
+    // If the frontend sends updated member scores, update them in the task
+    if (taskData.members && Array.isArray(taskData.members)) {
+        board.tasks[taskIndex].members = taskData.members;
+        // Sync scores to board.members
+        board.members = board.members.map(member => {
+            const taskMember = taskData.members.find(m => m.id === member.id);
+            if (taskMember && typeof taskMember.score === 'number') {
+
+                return { ...member, score: taskMember.score };
+            }
+            return member;
+        });
+    }
+    board.markModified('tasks'); // Ensure Mongoose saves nested changes
     await board.save();
     return board.tasks[taskIndex];
 };

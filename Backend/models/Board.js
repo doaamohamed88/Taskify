@@ -8,15 +8,23 @@ const boardSchema = new mongoose.Schema({
     members: [{
         id: String,
         name: String,
-        email: String
+        email: String,
+        score: String
     }],
     tasks: [{
         id: String,
         title: String,
         description: String,
-        status: String
-    }],
-    createdAt: { type: Date, default: Date.now }
+        status: String,
+        createdAt: { type: Date, default: Date.now },
+        dueDate: Date,
+        difficulty: String,
+        members: [{
+            id: String,
+            name: String,
+            email: String,
+        }]
+    }]
 });
 
 module.exports = mongoose.model('Board', boardSchema);

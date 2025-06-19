@@ -6,7 +6,6 @@ import { createTask } from "../../services/boardService";
 import { useDispatch } from "react-redux";
 import { updateSelectedBoard } from "../../store/selectedBoard";
 import useSelectedBoard from "../../hooks/useSelectedBoard";
-
 import { useTranslation } from "react-i18next";
 
 import { toast } from "react-toastify";
