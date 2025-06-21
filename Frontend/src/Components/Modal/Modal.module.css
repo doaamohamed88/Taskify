@@ -1,6 +1,6 @@
 .modal {
   margin: auto;
-  width: 450px;
+  min-width: 450px;
   height: fit-content;
   border-radius: var(--border-radius-main);
   background-color: var(--main-color);

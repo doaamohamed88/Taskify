@@ -1,21 +1,33 @@
-.taskContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-start;
+.mainContainer {
+  position: relative;
   box-shadow: var(--shadow);
   background-color: var(--transperant);
   border-radius: var(--border-radius-main);
   border: var(--lilac-border);
-  /* cursor: pointer !important; */
-  padding: 20px;
-  margin: 10px 0;
-  cursor: grab;
-  transition: box-shadow 0.2s, background-color 0.2s, transform 0.2s;
+}
+.icon {
+  position: absolute;
+  top: 30px;
+  cursor: pointer;
 }
 
-.icon {
-  align-self: flex-end;
+[dir="rtl"] .icon {
+  left: 20px;
+}
+
+[dir="ltr"] .icon {
+  right: 20px;
+}
+
+.taskContainer {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  /* cursor: pointer !important; */
+  cursor: grab;
+  transition: box-shadow 0.2s, background-color 0.2s, transform 0.2s;
 }
 
 .cardFooter {

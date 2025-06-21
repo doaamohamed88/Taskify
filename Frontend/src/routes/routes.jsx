@@ -1,71 +1,76 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import AuthenticationPage from "../pages/AuthenticationPage/AuthenticationPage";
-import LeaderBoard from "../pages/leaderboard/leaderboard";
-import BoardPage from "../pages/BoardPage/BoardPage";
-import MainLayout from "../layouts/MainLayout";
-import LandingPage from "../Pages/Landing/Landing";
-import BoardLayout from "../layouts/BoardLayout";
-import AdminDashboard from "../Pages/AdminDashboard/AdminDashboard";
-import ProtectedRoute from "../layouts/ProtectedRoute";
-import GuestRoute from "../layouts/GuestRoute";
-import Boards from "../Pages/Boards/Boards";
+import React, { Suspense, lazy } from "react";
+// Lazy load all main pages with correct casing
+const AuthenticationPage = lazy(() => import("../Pages/AuthenticationPage/AuthenticationPage"));
+const LeaderBoard = lazy(() => import("../Pages/LeaderBoard/LeaderBoard"));
+const BoardPage = lazy(() => import("../Pages/BoardPage/BoardPage"));
+const MainLayout = lazy(() => import("../layouts/MainLayout"));
+const LandingPage = lazy(() => import("../Pages/Landing/Landing"));
+const BoardLayout = lazy(() => import("../layouts/BoardLayout"));
+const AdminDashboard = lazy(() => import("../Pages/AdminDashboard/AdminDashboard"));
+const ProtectedRoute = lazy(() => import("../layouts/ProtectedRoute"));
+const GuestRoute = lazy(() => import("../layouts/GuestRoute"));
+const Boards = lazy(() => import("../Pages/Boards/Boards"));
+
 const AppRoutes = () => {
   const routes = createBrowserRouter([
     {
       path: "/",
       element: (
-        <ProtectedRoute>
-          <MainLayout />
-        </ProtectedRoute>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProtectedRoute>
+            <MainLayout />
+          </ProtectedRoute>
+        </Suspense>
       ),
       children: [
         {
           index: true,
-          element: <LandingPage />,
+          element: <Suspense fallback={<div>Loading...</div>}><LandingPage /></Suspense>,
         },
         {
           path: 'createdboardsPage',
-          element: <Boards />
+          element: <Suspense fallback={<div>Loading...</div>}><Boards /></Suspense>
         },
         {
           path: 'involvedboardsPage',
-          element: <Boards />
+          element: <Suspense fallback={<div>Loading...</div>}><Boards /></Suspense>
         },
         {
-          element: <BoardLayout />,
+          element: <Suspense fallback={<div>Loading...</div>}><BoardLayout /></Suspense>,
           path: ":id",
           children: [
             {
               path: "tasks",
-              element: <BoardPage />,
+              element: <Suspense fallback={<div>Loading...</div>}><BoardPage /></Suspense>,
             },
             {
               path: "leader-board",
-              element: <LeaderBoard />,
+              element: <Suspense fallback={<div>Loading...</div>}><LeaderBoard /></Suspense>,
             },
             {
               path: "dashboard",
-              element: <AdminDashboard />,
+              element: <Suspense fallback={<div>Loading...</div>}><AdminDashboard /></Suspense>,
             },
           ],
         },
       ],
     },
     {
-      element: <GuestRoute />,
+      element: <Suspense fallback={<div>Loading...</div>}><GuestRoute /></Suspense>,
       children: [
         {
           index: true,
           path: "/login",
-          element: <AuthenticationPage type="login" />,
+          element: <Suspense fallback={<div>Loading...</div>}><AuthenticationPage type="login" /></Suspense>,
         },
         {
           path: "/register",
-          element: <AuthenticationPage type="register" />,
+          element: <Suspense fallback={<div>Loading...</div>}><AuthenticationPage type="register" /></Suspense>,
         },
         {
           path: "/forget-password",
-          element: <AuthenticationPage type="forgetPassword" />,
+          element: <Suspense fallback={<div>Loading...</div>}><AuthenticationPage type="forgetPassword" /></Suspense>,
         },
       ],
     },

@@ -28,7 +28,8 @@ const TaskCard = ({ task }) => {
 
   const modalRef = useRef()
 
-  function handleShowModal() {
+  function handleShowModal(e) {
+    e.stopPropagation()
     modalRef.current.open()
   }
 
@@ -51,42 +52,41 @@ const TaskCard = ({ task }) => {
     }
   };
 
-  function handleOpenDeleteModal() {
+  function handleOpenDeleteModal(e) {
+    e.stopPropagation();
     deleteModalRef.current.open();
   }
 
   return (
-    <>
+    <div className={styles.mainContainer}>
+      <FontAwesomeIcon icon={faTrash} onClick={(e) => handleOpenDeleteModal(e)} className={styles.icon} />
+      <Modal ref={deleteModalRef}>
+        <div onClick={e => e.stopPropagation()} className={styles.deleteModal}>
+          <FontAwesomeIcon icon={faTriangleExclamation} className={styles.delete_icon} />
+          <p>{t("Are you sure?")}</p>
+          <span>{t("This action can't be undone, all data associated with this field will be lost")}</span>
+          <div className={styles.buttons}>
+            <button type="button" className={styles.close} onClick={(e) => deleteModalRef.current.close(e)}>
+              {t("Close")}
+            </button>
+            <button type="submit" className={styles.main_button} onClick={(e) => handleDeleteTask(e)}>
+              {t("Delete")}
+            </button>
+          </div>
+        </div>
+      </Modal>
       <div
         ref={setNodeRef}
         style={style}
         {...attributes}
-        {...listeners} // <-- Moved here
+        {...listeners}
         className={`${styles.taskContainer} ${isDragging ? styles.dragging : ""}`}
-        onDoubleClick={handleShowModal}
+        onDoubleClick={(e) => handleShowModal(e)}
       >
         <div className={styles.iconContainer}>
-          <Modal ref={deleteModalRef}>
-            <div onClick={e => e.stopPropagation()} className={styles.deleteModal}>
-              <FontAwesomeIcon icon={faTriangleExclamation} className={styles.delete_icon} />
-              <p>{t("Are you sure?")}</p>
-              <span>{t("This action can't be undone, all data associated with this field will be lost")}</span>
-              <div className={styles.buttons}>
-                <button type="button" className={styles.close} onClick={(e) => deleteModalRef.current.close(e)}>
-                  {t("Close")}
-                </button>
-                <button type="submit" className={styles.main_button} onClick={(e) => handleDeleteTask(e)}>
-                  {t("Delete")}
-                </button>
-              </div>
-            </div>
-          </Modal>
-
           <p className={styles.title}>
             {task.title}
           </p>
-
-          <FontAwesomeIcon icon={faTrash} onClick={handleOpenDeleteModal} />
         </div>
 
         <div className={styles.cardFooter}>
@@ -113,7 +113,7 @@ const TaskCard = ({ task }) => {
         </div>
       </div>
       <TaskDetails modalRef={modalRef} task={task} />
-    </>
+    </div>
   )
 }
 
