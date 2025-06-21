@@ -4,7 +4,7 @@ const { authenticate } = require('../middleware/authMiddleware');
 const userService = require('../services/userService');
 const authService = require('../services/authService');
 
-process.loadEnvFile('./env/.env');
+require('dotenv').config({ path: './.env' });
 const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
 const userRouter = Router();

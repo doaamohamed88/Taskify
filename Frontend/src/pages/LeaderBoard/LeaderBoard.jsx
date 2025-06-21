@@ -17,9 +17,9 @@ export default function LeaderBoard() {
 
     if (selectedBoard) {
       const total = selectedBoard?.members?.reduce(
-        (acc, member) => acc + (member.score || 0),
-        0
+        (acc, member) => acc + (member.score || 0)
       );
+      console.log(total)
       setTotalScore(total);
     }
   }, [selectedBoard, setTotalScore]);

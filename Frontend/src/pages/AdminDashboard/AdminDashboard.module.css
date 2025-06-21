@@ -82,18 +82,25 @@
   }
 }
 
-form {
+.form {
   color: var(--lilac-color);
   padding: 30px;
 
-  h3 {
-    border-bottom: 0;
-    padding-bottom: 0;
+  p {
+    font-family: "Caveat", sans-serif;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+    @media (max-width: 512px) {
+      font-size: 1.2rem;
+    }
   }
 
   label {
     font-weight: 200;
-    color: white;
+    color: var(--lilac-color);
+    font-weight: bold;
   }
 
   input {
@@ -107,6 +114,16 @@ form {
     color: var(--lilac-color);
     width: 100%;
     margin: 8px 0 10px;
+  }
+
+  input::placeholder {
+    color: var(--lilac-color);
+    opacity: 1;
+    transition: 0.4s;
+  }
+  input:focus::placeholder {
+    color: var(--lilac-color);
+    opacity: 0;
   }
 
   .buttons {
@@ -207,4 +224,14 @@ form {
   gap: 12px;
   font-size: 0.95rem;
   color: var(--label-color);
+}
+
+@media (max-width: 512px) {
+  .boardName {
+    font-size: 1.2rem;
+  }
+
+  .teamMembersHeader p {
+    font-size: 1.2rem;
+  }
 }

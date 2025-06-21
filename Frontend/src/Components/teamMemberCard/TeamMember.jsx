@@ -4,17 +4,18 @@ import { faTrash, faUser } from "@fortawesome/free-solid-svg-icons"
 import { useTranslation } from "react-i18next"
 import Modal from "../Modal/Modal"
 import { useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { updateSelectedBoard } from "../../store/selectedBoard"
+import { useDispatch } from "react-redux"
+import { updateSelectedBoard } from "../../store/selectedBoardSlice"
 import { updateBoard } from "../../services/boardService"
 import { getUserByEmail, updateUser } from "../../services/userService"
 import useSelectedBoard from "../../hooks/useSelectedBoard"
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 export default function TeamMember({ name, email }) {
   const { t } = useTranslation()
   const modalRef = useRef()
-    const { selectedBoard } = useSelectedBoard();
-  
+  const { selectedBoard } = useSelectedBoard();
+
   const dispatch = useDispatch()
 
 
@@ -55,10 +56,20 @@ export default function TeamMember({ name, email }) {
 
       <Modal ref={modalRef}>
         <div className={styles.modal}>
-          <p>{t("deleteMemberConfirm", { name })}</p>
-          <div className="buttons">
-            <button onClick={() => modalRef.current.close()}>{t("Cancel")}</button>
-            <button onClick={deleteMember}>{t("Yes, Delete")}</button>
+          <div onClick={e => e.stopPropagation()} className={styles.deleteModal}>
+            <FontAwesomeIcon
+              icon={faTriangleExclamation}
+              className={styles.icon} />
+            <p>{t("Are you sure?")}</p>
+            <span>{t("This action can't be undone, all data associated with this field will be lost")}</span>
+            <div className={styles.buttons}>
+              <button type="button" className={styles.close} onClick={() => modalRef.current.close()} >
+                {t("Close")}
+              </button>
+              <button type="submit" className={styles.main_button} onClick={deleteMember}>
+                {t("Delete")}
+              </button>
+            </div>
           </div>
         </div>
       </Modal>

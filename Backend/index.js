@@ -18,13 +18,9 @@ app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 app.use('/otp', otpRouter);
 
-// MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI;
 
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(MONGO_URI)
     .then(() => {
         console.log('✅ MongoDB Connected');
         app.listen(3000, () => {

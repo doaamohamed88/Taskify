@@ -1,7 +1,6 @@
 const { v4: uuid } = require('uuid');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const { use } = require('react');
 
 const getAllUsers = async (query = null) => {
     if (query) {
@@ -65,15 +64,9 @@ const verifyUser = async (id) => {
 // Login (simple email/password check)
 const login = async (email, password) => {
     const user = await getUserByEmail(email);
-    const hashedPassword = await bcrypt.hash(password, 10);
-    user.password = hashedPassword;
-    const isMatch = await bcrypt.compare(password, user.password);
     if (!user) throw new Error('User not found');
-    if (!user.verified) throw new Error('User not verified');
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) throw new Error('Invalid credentials');
-
-
-
     return user;
 };
 

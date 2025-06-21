@@ -34,7 +34,6 @@ export default function LandingPage() {
     .filter((board) => String(board.owner) === String(userId))
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 2);
-  console.log(boards);
 
   const involvedBoards = boards
     .filter(

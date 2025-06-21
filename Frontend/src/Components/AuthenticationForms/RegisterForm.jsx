@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useForm } from "react-hook-form";
-import { registerUser } from "../../services/userService";
 import { sendOTP } from "../../services/otpService";
 import OTPForm from "./OTPForm";
 import styles from "../../pages/AuthenticationPage/AuthenticationPage.module.css";
 
-let user = null;
-
 const RegisterForm = () => {
   const [registered, setRegistered] = useState(false);
+  const [pendingUser, setPendingUser] = useState(null);
 
   const {
     register,
@@ -21,8 +19,8 @@ const RegisterForm = () => {
 
   const handleSubmit = async ({ name, email, password }) => {
     try {
-      user = await registerUser(name, email, password);
       await sendOTP(email);
+      setPendingUser({ name, email, password });
       setRegistered(true);
     } catch (error) {
       setError("root", {
@@ -34,7 +32,7 @@ const RegisterForm = () => {
   return (
     <>
       {registered ? (
-        <OTPForm user={user} verifyAccount={true} />
+        <OTPForm user={pendingUser} verifyAccount={true} />
       ) : (
         <>
           <div className={`${styles.imageFormContainer}`}>
@@ -50,9 +48,8 @@ const RegisterForm = () => {
                 <p className={`${styles.errorMsg}`}>{errors.root.message}</p>
               )}
               <input
-                className={`${styles.formInput} ${
-                  errors.name && `${styles.error}`
-                }`}
+                className={`${styles.formInput} ${errors.name && `${styles.error}`
+                  }`}
                 type="text"
                 placeholder="Name"
                 name="name"
@@ -64,9 +61,8 @@ const RegisterForm = () => {
                 <p className={`${styles.errorMsg}`}>{errors.name.message}</p>
               )}
               <input
-                className={`${styles.formInput} ${
-                  errors.email && `${styles.error}`
-                }`}
+                className={`${styles.formInput} ${errors.email && `${styles.error}`
+                  }`}
                 type="text"
                 placeholder="Email"
                 name="email"
@@ -82,9 +78,8 @@ const RegisterForm = () => {
                 <p className={`${styles.errorMsg}`}>{errors.email.message}</p>
               )}
               <input
-                className={`${styles.formInput} ${
-                  errors.password && `${styles.error}`
-                }`}
+                className={`${styles.formInput} ${errors.password && `${styles.error}`
+                  }`}
                 type="password"
                 placeholder="Password"
                 name="password"
@@ -98,9 +93,8 @@ const RegisterForm = () => {
                 </p>
               )}
               <input
-                className={`${styles.formInput} ${
-                  errors.confirmPassword && `${styles.error}`
-                }`}
+                className={`${styles.formInput} ${errors.confirmPassword && `${styles.error}`
+                  }`}
                 type="password"
                 placeholder="Confirm Password"
                 name="confirmPassword"

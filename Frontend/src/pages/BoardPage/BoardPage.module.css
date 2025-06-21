@@ -74,3 +74,9 @@
   font-size: 0.95rem;
   color: var(--label-color);
 }
+
+@media (max-width: 512px) {
+  .boardName {
+    font-size: 1.2rem;
+  }
+}

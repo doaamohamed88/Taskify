@@ -45,11 +45,7 @@
 }
 
 .landing_content .typingText strong:first-child {
-  /* color: rgb(80, 62, 118); */
-  /* color:#36D1DCz; */
-  /* color: #3c9ee7; */
   color: #c4b5fd;
-  /* color: #fdcb6e; */
 }
 
 .landing_content .typingText strong:last-child {
@@ -152,7 +148,7 @@
   }
 
   .cards_section {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;

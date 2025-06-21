@@ -37,6 +37,10 @@
   --label-color: #c0c0c0;
   --input-color: #2d2d42;
   --table-bg: 0e1218;
+  --createdBackground: linear-gradient(to bottom, #d86dd8, #b451a5);
+  --createdShadow: 0 0 6px #d86dd8, 0 0 12px #b451a5, 0 0 18px #b451a5;
+  --involvedBackground: linear-gradient(to bottom, #5ee7df, #b490ca);
+  --involvedShadow: 0 0 6px #5ee7df, 0 0 12px #b490ca, 0 0 18px #b490ca;
 }
 
 .light {
@@ -48,9 +52,9 @@
   --primary-color: #c6b8e9;
   --button-hover-color: #b0a3db;
   --lilac-border: 5px solid rgb(148, 118, 214);
-  --todo-color: #9b7ede; /* medium lavender */
-  --doing-color: #ff80b3; /* medium pink */
-  --done-color: #4ddbb2; /* teal/mint green */
+  --todo-color: #9b7ede;
+  --doing-color: #ff80b3;
+  --done-color: #4ddbb2;
   --base-color: #0e1218;
   --background-gradient: radial-gradient(
     ellipse at bottom,
@@ -64,6 +68,12 @@
   --glass-bg: rgba(255, 255, 255, 0.8);
   --glass-border: 1px solid rgba(214, 203, 235, 0.4);
   --glass-shadow: 0 10px 35px rgba(156, 139, 197, 0.15);
+  --createdBackground: linear-gradient(to bottom, #ff3c7b, #a259ff);
+  --createdShadow: 0 0 8px rgba(255, 60, 123, 0.7),
+    0 0 16px rgba(162, 89, 255, 0.5), 0 0 24px rgba(162, 89, 255, 0.3);
+  --involvedBackground: linear-gradient(to bottom, #5a6cff, #a259ff);
+  --involvedShadow: 0 0 8px rgba(90, 108, 255, 0.7),
+    0 0 16px rgba(162, 89, 255, 0.5), 0 0 24px rgba(162, 89, 255, 0.3);
 }
 
 *,
