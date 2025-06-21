@@ -9,7 +9,7 @@ import {
   FaCheckCircle,
   FaPlus,
   FaPen,
-  FaTimes // Add this for cancel icon
+  FaTimes
 } from "react-icons/fa";
 import Members from "./Members";
 import { useParams } from "react-router";
@@ -41,8 +41,6 @@ const TaskDetails = ({ modalRef, task }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cardMembers, setCardMembers] = useState(task?.members || []);
   const [showMember, setShowMember] = useState(false);
-
-  // Store original values to revert on cancel
   const [originalValues, setOriginalValues] = useState({ ...detail });
 
   useEffect(() => {
@@ -59,7 +57,6 @@ const TaskDetails = ({ modalRef, task }) => {
       difficulty: task.difficulty || "",
     });
 
-    // Save original values whenever task changes
     setOriginalValues({
       ...task,
       dueDate: formattedDate,
@@ -94,20 +91,18 @@ const TaskDetails = ({ modalRef, task }) => {
     }
   };
 
-  // Toggle edit mode and save/cancel
   const toggleEdit = () => {
     if (isEditing) {
-      // Cancel edit mode - revert to original values
       setDetail({ ...originalValues });
       setCardMembers([...originalValues.members]);
     }
     setIsEditing(!isEditing);
   };
 
+
   return (
     <Modal ref={modalRef}>
-      <form className={styles.form} onSubmit={handleUpdateTask}>
-        {/* Toggle between edit and cancel icon */}
+      <form className={`${styles.form} ${!isEditing ? styles.nonEdit : ''}`} onSubmit={handleUpdateTask}>
         <div className={styles.edit_toggle} onClick={toggleEdit}>
           {isEditing ? (
             <FaTimes className={`${styles.icon} ${styles.edit_icon}`} />
@@ -118,134 +113,134 @@ const TaskDetails = ({ modalRef, task }) => {
 
         <h2 className={styles.title}>{t("Task Details")}</h2>
 
-        <div className={styles.container}>
+        <div className={styles.detailsContainer}>
           {/* Title */}
-          <div className={styles.input_container}>
-            <div className={styles.label_container}>
-              <FaTasks className={styles.icon} />
-              <label className={styles.label}>{t("Title")}</label>
+          <div className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <FaTasks className={styles.sectionIcon} />
+              <h3 className={styles.sectionTitle}>{t("Title")}</h3>
             </div>
-            <input
-              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
-                }`}
-              value={detail.title}
-              onChange={(e) =>
-                isEditing && setDetail({ ...detail, title: e.target.value })
-              }
-              disabled={!isEditing}
-            />
+            {isEditing ? (
+              <input
+                className={styles.input}
+                value={detail.title}
+                onChange={(e) => setDetail({ ...detail, title: e.target.value })}
+              />
+            ) : (
+              <div className={styles.staticValue}>{detail.title}</div>
+            )}
           </div>
 
           {/* Description */}
-          <div className={styles.input_container}>
-            <div className={styles.label_container}>
-              <FaFlag className={styles.icon} />
-              <label className={styles.label}>{t("Description")}</label>
+          <div className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <FaFlag className={styles.sectionIcon} />
+              <h3 className={styles.sectionTitle}>{t("Description")}</h3>
             </div>
-            <input
-              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
-                }`}
-              value={detail.description}
-              onChange={(e) =>
-                isEditing && setDetail({ ...detail, description: e.target.value })
-              }
-              disabled={!isEditing}
-            />
-          </div>
-        </div>
-
-        <div className={styles.container}>
-
-          {/* Difficulty */}
-          <div className={styles.input_container}>
-            <div className={styles.label_container}>
-              <FaCheckCircle className={styles.icon} />
-              <label className={styles.label}>{t("difficulty")}</label>
-            </div>
-            <select
-              name="difficulty"
-              id="difficulty"
-              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
-                }`}
-              value={detail.difficulty}
-              onChange={(e) =>
-                isEditing && setDetail({ ...detail, difficulty: e.target.value })
-              }
-              required
-              disabled={!isEditing}
-            >
-              <option value="Easy">{t("Easy")}</option>
-              <option value="Medium">{t("Medium")}</option>
-              <option value="Hard">{t("Hard")}</option>
-            </select>
-          </div>
-
-          {/* Due Date */}
-          <div className={styles.input_container}>
-            <div className={styles.label_container}>
-              <FaCalendarAlt className={styles.icon} />
-              <label className={styles.label}>{t("Due Date")}</label>
-            </div>
-            <input
-              type="date"
-              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
-                }`}
-              value={detail.dueDate}
-              onChange={(e) =>
-                isEditing && setDetail({ ...detail, dueDate: e.target.value })
-              }
-              disabled={!isEditing}
-            />
-          </div>
-        </div>
-        {/* Members */}
-        <div className={styles.input_container}>
-          <div className={styles.label_container}>
-            <FaUser className={styles.icon} />
-            <label className={styles.label}>{t("Members")}</label>
-          </div>
-          <div className={`${styles.value} ${styles.members_container}`}>
-            {cardMembers.map((member) => (
-              <div
-                key={member._id}
-                className={`${styles.member} ${styles.truncate}`}
-              >
-                <span className={styles.memberAvatar}>
-                  {(member.name || member.email)?.slice(0, 2).toUpperCase()}
-                </span>
+            {isEditing ? (
+              <textarea
+                className={`${styles.input} ${styles.textarea}`}
+                value={detail.description}
+                onChange={(e) => setDetail({ ...detail, description: e.target.value })}
+                rows={4}
+              />
+            ) : (
+              <div className={`${styles.staticValue} ${styles.descriptionText}`}>
+                {detail.description || <span className={styles.placeholder}>No description</span>}
               </div>
-            ))}
-            <FaPlus
-              className={`${styles.addIcon} ${isEditing ? styles.editingAddIcon : ""
-                }`}
-              onClick={() => isEditing && setShowMember(true)}
-            />
+            )}
           </div>
-          <div
-            className={`${showMember ? styles.showMember : styles.hidden} ${styles.members_container
-              }`}
-            onBlur={() => setShowMember(false)}
-          >
-            <Members
-              boardMembers={boardMembers}
-              initialCardMembers={task?.members || []}
-              setCardMembers={setCardMembers}
-              cardMembers={cardMembers}
-              closeMember={() => setShowMember(false)}
-            />
+
+          <div className={styles.row}>
+            {/* Difficulty */}
+            <div className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <FaCheckCircle className={styles.sectionIcon} />
+                <h3 className={styles.sectionTitle}>{t("difficulty")}</h3>
+              </div>
+              {isEditing ? (
+                <select
+                  className={styles.input}
+                  value={detail.difficulty}
+                  onChange={(e) => setDetail({ ...detail, difficulty: e.target.value })}
+                >
+                  <option value="Easy">{t("Easy")}</option>
+                  <option value="Medium">{t("Medium")}</option>
+                  <option value="Hard">{t("Hard")}</option>
+                </select>
+              ) : (
+                <div className={`${styles.staticValue} ${styles[detail.difficulty?.toLowerCase()]}`}>
+                  {detail.difficulty}
+                </div>
+              )}
+            </div>
+
+            {/* Due Date */}
+            <div className={styles.section}>
+              <div className={styles.sectionHeader}>
+                <FaCalendarAlt className={styles.sectionIcon} />
+                <h3 className={styles.sectionTitle}>{t("Due Date")}</h3>
+              </div>
+              {isEditing ? (
+                <input
+                  type="date"
+                  className={styles.input}
+                  value={detail.dueDate}
+                  onChange={(e) => setDetail({ ...detail, dueDate: e.target.value })}
+                />
+              ) : (
+                <div className={styles.staticValue}>
+                  {detail.dueDate || <span className={styles.placeholder}>No due date</span>}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Members */}
+          <div className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <FaUser className={styles.sectionIcon} />
+              <h3 className={styles.sectionTitle}>{t("Members")}</h3>
+            </div>
+            <div className={styles.members_container}>
+              {cardMembers.map((member) => (
+                <div key={member._id} className={styles.member}>
+                  <span className={styles.memberAvatar}>
+                    {(member.name || member.email)?.slice(0, 2).toUpperCase()}
+                  </span>
+                  <span className={styles.memberName}>
+                    {member.name || member.email.split('@')[0]}
+                  </span>
+                </div>
+              ))}
+              {isEditing && (
+                <FaPlus
+                  className={styles.addIcon}
+                  onClick={() => setShowMember(true)}
+                />
+              )}
+            </div>
+            <div className={`${showMember ? styles.showMember : styles.hidden}`}>
+              <Members
+                boardMembers={boardMembers}
+                initialCardMembers={task?.members || []}
+                setCardMembers={setCardMembers}
+                cardMembers={cardMembers}
+                closeMember={() => setShowMember(false)}
+              />
+            </div>
           </div>
         </div>
 
         <div className={styles.buttons}>
           <button
-            className={`${styles.close} ${!isEditing ? styles.editClose : ""}`}
+            className={`${styles.close} ${!isEditing ? styles.editClose : ''}`}
             type="button"
             onClick={() => modalRef.current.close()}
           >
             {t("Close")}
           </button>
           {isEditing && (
-
             <button
               className={styles.main_button}
               type="submit"

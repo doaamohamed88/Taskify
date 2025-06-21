@@ -24,7 +24,7 @@ const Members = ({ boardMembers, cardMembers, setCardMembers, closeMember }) => 
   const filteredBoardMembers = boardMembers.filter(
     (member) =>
       (member?.name || member?.email)?.toLowerCase().includes(searchQuery?.toLowerCase()) &&
-      !cardMembers.some((cm) => cm.id === member._id)
+      !cardMembers.some((cm) => cm._id === member._id)
   );
 
   const addMember = (member) => {
