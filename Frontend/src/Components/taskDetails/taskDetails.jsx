@@ -1,4 +1,4 @@
-import classes from "./taskDetails.module.css";
+import styles from "./taskDetails.module.css";
 import Modal from "../Modal/Modal";
 import { useEffect, useState } from "react";
 import {
@@ -7,9 +7,9 @@ import {
   FaTasks,
   FaFlag,
   FaCheckCircle,
-  FaUserPlus,
   FaPlus,
   FaPen,
+  FaTimes // Add this for cancel icon
 } from "react-icons/fa";
 import Members from "./Members";
 import { useParams } from "react-router";
@@ -18,29 +18,32 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { updateTask } from "../../services/boardService";
 import { fetchBoardById } from "../../store/board/BoardActions";
+import { updateTaskInBoard } from "../../store/selectedBoardSlice";
 
 const TaskDetails = ({ modalRef, task }) => {
-  const { id } = useParams;
+  const { id } = useParams();
   const [detail, setDetail] = useState({
     id: task.id,
     title: task.title || "",
     description: task.description || "",
     dueDate: task.dueDate,
-    members: task.members || "",
+    members: Array.isArray(task.members) ? task.members : [],
     difficulty: task.difficulty || "",
+    status: task.status || "To Do",
   });
+
   const { selectedBoard } = useSelectedBoard();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const boardId = id || selectedBoard?.id || null;
-
   const [boardMembers, setBoardMembers] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const [cardMembers, setCardMembers] = useState(task?.members || []);
   const [showMember, setShowMember] = useState(false);
+
+  // Store original values to revert on cancel
+  const [originalValues, setOriginalValues] = useState({ ...detail });
 
   useEffect(() => {
     const formattedDate = task.dueDate
@@ -50,10 +53,17 @@ const TaskDetails = ({ modalRef, task }) => {
       id: task.id,
       title: task.title || "",
       description: task.description || "",
-      status: task.status || "todo",
+      status: task.status || "To Do",
       dueDate: formattedDate,
-      members: task.members || "",
+      members: Array.isArray(task.members) ? task.members : [],
       difficulty: task.difficulty || "",
+    });
+
+    // Save original values whenever task changes
+    setOriginalValues({
+      ...task,
+      dueDate: formattedDate,
+      members: [...(Array.isArray(task.members) ? task.members : [])]
     });
   }, [task]);
 
@@ -61,12 +71,10 @@ const TaskDetails = ({ modalRef, task }) => {
     setBoardMembers(selectedBoard.members || []);
   }, [selectedBoard]);
 
-  useEffect(() => {
-  }, [isEditing]);
-
   const handleUpdateTask = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     try {
       const updatedTask = {
         ...detail,
@@ -74,121 +82,147 @@ const TaskDetails = ({ modalRef, task }) => {
         dueDate: detail.dueDate ? new Date(detail.dueDate) : null,
         members: [...cardMembers],
       };
+
       await updateTask(boardId, detail.id, updatedTask);
-      dispatch(fetchBoardById(boardId));
+      dispatch(updateTaskInBoard(updatedTask));
+      modalRef.current.close();
     } catch (error) {
       console.error("Error updating task:", error);
     } finally {
       setIsSubmitting(false);
       setIsEditing(false);
-      modalRef.current.close();
     }
+  };
+
+  // Toggle edit mode and save/cancel
+  const toggleEdit = () => {
+    if (isEditing) {
+      // Cancel edit mode - revert to original values
+      setDetail({ ...originalValues });
+      setCardMembers([...originalValues.members]);
+    }
+    setIsEditing(!isEditing);
   };
 
   return (
     <Modal ref={modalRef}>
-      <form className={classes.form} onSubmit={handleUpdateTask}>
-        <FaPen
-          className={`${classes.icon} ${classes.edit_icon}`}
-          onClick={() => setIsEditing(true)}
-        />
-        <h2 className={classes.title}>{t("Task Details")}</h2>
-
-        {/* Title */}
-        <div className={classes.input_container}>
-          <div className={classes.label_container}>
-            <FaTasks className={classes.icon} />
-            <label className={classes.label}>{t("Title")}</label>
-          </div>
-          <input
-            className={`${classes.value} ${classes.input}`}
-            value={detail.title}
-            onChange={(e) =>
-              isEditing && setDetail({ ...detail, title: e.target.value })
-            }
-            disabled={!isEditing}
-          />
+      <form className={styles.form} onSubmit={handleUpdateTask}>
+        {/* Toggle between edit and cancel icon */}
+        <div className={styles.edit_toggle} onClick={toggleEdit}>
+          {isEditing ? (
+            <FaTimes className={`${styles.icon} ${styles.edit_icon}`} />
+          ) : (
+            <FaPen className={`${styles.icon} ${styles.edit_icon}`} />
+          )}
         </div>
 
-        <div className={classes.input_container}>
-          <div className={classes.label_container}>
-            <FaFlag className={classes.icon} />
-            <label className={classes.label}>{t("Description")}</label>
+        <h2 className={styles.title}>{t("Task Details")}</h2>
+
+        <div className={styles.container}>
+          {/* Title */}
+          <div className={styles.input_container}>
+            <div className={styles.label_container}>
+              <FaTasks className={styles.icon} />
+              <label className={styles.label}>{t("Title")}</label>
+            </div>
+            <input
+              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
+                }`}
+              value={detail.title}
+              onChange={(e) =>
+                isEditing && setDetail({ ...detail, title: e.target.value })
+              }
+              disabled={!isEditing}
+            />
           </div>
-          <input
-            className={`${classes.value} ${classes.input}`}
-            value={detail.description}
-            onChange={(e) =>
-              isEditing && setDetail({ ...detail, description: e.target.value })
-            }
-            disabled={!isEditing}
-          />
+
+          {/* Description */}
+          <div className={styles.input_container}>
+            <div className={styles.label_container}>
+              <FaFlag className={styles.icon} />
+              <label className={styles.label}>{t("Description")}</label>
+            </div>
+            <input
+              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
+                }`}
+              value={detail.description}
+              onChange={(e) =>
+                isEditing && setDetail({ ...detail, description: e.target.value })
+              }
+              disabled={!isEditing}
+            />
+          </div>
         </div>
 
-        <div className={classes.input_container}>
-          <div className={classes.label_container}>
-            <FaCheckCircle className={classes.icon} />
-            <label className={classes.label}>{t("difficulty")}</label>
-          </div>
-          <select
-            name="difficulty"
-            id="difficulty"
-            className={`${classes.value} ${classes.input}`}
-            value={detail.difficulty}
-            onChange={(e) =>
-              isEditing && setDetail({ ...detail, difficulty: e.target.value })
-            }
-            required
-            disabled={!isEditing}
-          >
-            <option value="Easy">{t("Easy")}</option>
-            <option value="Medium">{t("Medium")}</option>
-            <option value="Hard">{t("Hard")}</option>
-          </select>
-        </div>
+        <div className={styles.container}>
 
-        {/* Due Date */}
-        <div className={classes.input_container}>
-          <div className={classes.label_container}>
-            <FaCalendarAlt className={classes.icon} />
-            <label className={classes.label}>{t("Due Date")}</label>
+          {/* Difficulty */}
+          <div className={styles.input_container}>
+            <div className={styles.label_container}>
+              <FaCheckCircle className={styles.icon} />
+              <label className={styles.label}>{t("difficulty")}</label>
+            </div>
+            <select
+              name="difficulty"
+              id="difficulty"
+              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
+                }`}
+              value={detail.difficulty}
+              onChange={(e) =>
+                isEditing && setDetail({ ...detail, difficulty: e.target.value })
+              }
+              required
+              disabled={!isEditing}
+            >
+              <option value="Easy">{t("Easy")}</option>
+              <option value="Medium">{t("Medium")}</option>
+              <option value="Hard">{t("Hard")}</option>
+            </select>
           </div>
-          <input
-            type="date"
-            className={`${classes.value} ${classes.input}`}
-            value={detail.dueDate}
-            onChange={(e) =>
-              isEditing && setDetail({ ...detail, dueDate: e.target.value })
-            }
-            disabled={!isEditing}
-          />
-        </div>
 
-        {/* members */}
-        <div className={classes.input_container}>
-          <div className={classes.label_container}>
-            <FaUser className={classes.icon} />
-            <label className={classes.label}>{t("Members")}</label>
+          {/* Due Date */}
+          <div className={styles.input_container}>
+            <div className={styles.label_container}>
+              <FaCalendarAlt className={styles.icon} />
+              <label className={styles.label}>{t("Due Date")}</label>
+            </div>
+            <input
+              type="date"
+              className={`${styles.value} ${styles.input} ${isEditing ? styles.editing : ""
+                }`}
+              value={detail.dueDate}
+              onChange={(e) =>
+                isEditing && setDetail({ ...detail, dueDate: e.target.value })
+              }
+              disabled={!isEditing}
+            />
           </div>
-          <div className={`${classes.value} ${classes.members_container}`}>
+        </div>
+        {/* Members */}
+        <div className={styles.input_container}>
+          <div className={styles.label_container}>
+            <FaUser className={styles.icon} />
+            <label className={styles.label}>{t("Members")}</label>
+          </div>
+          <div className={`${styles.value} ${styles.members_container}`}>
             {cardMembers.map((member) => (
               <div
-                key={member.id}
-                className={`${classes.member} ${classes.truncate}`}
+                key={member._id}
+                className={`${styles.member} ${styles.truncate}`}
               >
-                <span className={classes.memberAvatar}>
+                <span className={styles.memberAvatar}>
                   {(member.name || member.email)?.slice(0, 2).toUpperCase()}
                 </span>
               </div>
             ))}
             <FaPlus
-              className={classes.addIcon}
+              className={`${styles.addIcon} ${isEditing ? styles.editingAddIcon : ""
+                }`}
               onClick={() => isEditing && setShowMember(true)}
             />
           </div>
-          <br />
           <div
-            className={`${showMember ? classes.showMember : classes.hidden} ${classes.members_container
+            className={`${showMember ? styles.showMember : styles.hidden} ${styles.members_container
               }`}
             onBlur={() => setShowMember(false)}
           >
@@ -202,23 +236,25 @@ const TaskDetails = ({ modalRef, task }) => {
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className={classes.buttons}>
+        <div className={styles.buttons}>
           <button
-            className={classes.close}
+            className={`${styles.close} ${!isEditing ? styles.editClose : ""}`}
             type="button"
             onClick={() => modalRef.current.close()}
           >
             {t("Close")}
           </button>
-          <button
-            className={classes.main_button}
-            type="submit"
-            disabled={!isEditing || isSubmitting}
-          >
-            {t("Save")}{" "}
-            {isSubmitting && <span className={classes.loading}>...</span>}
-          </button>
+          {isEditing && (
+
+            <button
+              className={styles.main_button}
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {t("Save")}
+              {isSubmitting && <span className={styles.loading}>...</span>}
+            </button>
+          )}
         </div>
       </form>
     </Modal>

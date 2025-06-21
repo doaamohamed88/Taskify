@@ -11,7 +11,6 @@ const generateAccessToken = (user) => {
             email: user.email,
             boards: user.boards,
             name: user.name,
-            verified: user.verified,
         },
         JWT_SECRET,
         { expiresIn: '15m' }
@@ -24,8 +23,7 @@ const generateRefreshToken = async (user) => {
             id: user.id,
             email: user.email,
             boards: user.boards,
-            name: user.name,
-            verified: user.verified,
+            name: user.name
         },
         REFRESH_SECRET,
         { expiresIn: '7d' }

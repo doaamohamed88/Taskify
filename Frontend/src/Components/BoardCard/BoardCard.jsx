@@ -3,12 +3,12 @@ import { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 import styles from "./BoardCard.module.css";
-import { setSelectedBoard } from "../../store/selectedBoard";
+import { setSelectedBoard } from "../../store/selectedBoardSlice";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import CreateBoardForm from "../CreateBoardForm/CreateBoardForm";
 import { updateBoard } from "../../services/boardService";
-import { updateSelectedBoard } from "../../store/selectedBoard";
+import { updateSelectedBoard } from "../../store/selectedBoardSlice";
 import { fetchUserBoards } from "../../store/board/BoardActions";
 import { deleteBoard } from "../../services/boardService";
 import { useTranslation } from "react-i18next";
@@ -20,6 +20,7 @@ function BoardCard({ board, boardType }) {
   const deleteModalRef = useRef()
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
   function getRandomColor(index) {
     const colors = ["#FFC107", "#03A9F4", "#E91E63", "#4CAF50", "#9C27B0"];
     return colors[index % colors.length];

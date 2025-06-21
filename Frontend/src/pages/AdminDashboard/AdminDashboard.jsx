@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useRef, useState } from "react"
 import Modal from "../../Components/Modal/Modal"
-import { useDispatch, useSelector } from "react-redux"
-import { setSelectedBoard } from "../../store/selectedBoard"
+import { useDispatch } from "react-redux"
+import { setSelectedBoard } from "../../store/selectedBoardSlice"
 import { updateBoard } from "../../services/boardService"
 import { getUserByEmail, updateUser } from "../../services/userService"
 import { hasMinLength, isEmail, isNotEmpty } from "../../utils/validation"
@@ -21,7 +21,6 @@ export default function AdminDashboard() {
   const dispatch = useDispatch()
   // const userBoardId = useSelector((state) => state.user.boards[0].id)
   const { selectedBoard } = useSelectedBoard();
-  const adminInfo = useSelector((state) => state.user)
 
   const [totalTasks, setTotalTasks] = useState(0)
   const [completedTasks, setCompletedTasks] = useState(0)
@@ -101,12 +100,12 @@ export default function AdminDashboard() {
       setEmailError("Member already exists")
     } else {
       getUserByEmail(emailInput).then((res) => {
-        const updatedBoard = { ...selectedBoard, members: [...selectedBoard.members, { score: 0, email: res.email }] }
+        const updatedBoard = { ...selectedBoard, members: [...selectedBoard.members, { score: 0, email: res.email, name: res.name }] }
         dispatch(setSelectedBoard(updatedBoard))
         updateBoard(selectedBoard.id, updatedBoard)
         updateUser(res.id, { boards: [...res.boards, { id: selectedBoard.id }] })
         resetInput()
-        toast.success("Board created successfully!", {
+        toast.success("Member added successfully!", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -170,7 +169,7 @@ export default function AdminDashboard() {
 
         <div className={styles.teamMembers}>
           <div className={styles.teamMembersHeader}>
-            <h2>{t("Team Members")}</h2>
+            <p>{t("Team Members")}</p>
             <FontAwesomeIcon
               icon={faPlus}
               className={styles.addIcon}
@@ -188,14 +187,14 @@ export default function AdminDashboard() {
       </div>
 
       <Modal ref={modalRef}>
-        <form action="" onSubmit={(e) => addMember(e)}>
-          <h3 className="modal-title">{t("Add New Team Member")}</h3>
-          <label htmlFor="teamMemberEmail">{t("Please Enter Team Member Email:")}</label>
+        <form action="" onSubmit={(e) => addMember(e)} className={styles.form}>
+          <p className="modal-title">{t("Add New Team Member")}</p>
+          <label htmlFor="teamMemberEmail">{t("Email")}</label>
           <input
             type="email"
             id="teamMemberEmail"
             name="teamMemberEmail"
-            placeholder={t("Enter Email")}
+            placeholder={t("Please Enter Team Member Email")}
             value={emailInput}
             onChange={(e) => setEmailInput(e.target.value)}
           ></input>

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBoardById } from "../services/boardService";
-import { setSelectedBoard } from "../store/selectedBoard";
+import { setSelectedBoard } from "../store/selectedBoardSlice";
 import { useParams } from "react-router";
 
 export default function useSelectedBoard() {

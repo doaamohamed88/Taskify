@@ -19,13 +19,15 @@
 
 .board_card p {
   margin: 10px;
-}
-
-.board_card p:first-child {
   font-size: 20px;
   font-weight: bold;
+  width: 180px; /* or any fixed width you prefer */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
-
 .board_card::before {
   content: "";
   position: absolute;
@@ -43,17 +45,13 @@
 }
 
 .board_card.created::before {
-  background: linear-gradient(to bottom, #ff3c7b, #ff0050);
-  box-shadow: 0 0 10px #ff3c7b, 0 0 20px #ff0050, 0 0 30px #ff0050;
-  background: linear-gradient(to bottom, #d86dd8, #b451a5);
-  box-shadow: 0 0 6px #d86dd8, 0 0 12px #b451a5, 0 0 18px #b451a5;
+  background: var(--createdBackground);
+  box-shadow: var(--createdShadow);
 }
 
 .board_card.envolved::before {
-  background: linear-gradient(to bottom, #7f5eff, #4ae4ff);
-  box-shadow: 0 0 10px #7f5eff, 0 0 20px #4ae4ff, 0 0 30px #4ae4ff;
-  background: linear-gradient(to bottom, #5ee7df, #b490ca);
-  box-shadow: 0 0 6px #5ee7df, 0 0 12px #b490ca, 0 0 18px #b490ca;
+  background: var(--involvedBackground);
+  box-shadow: var(--involvedShadow);
 }
 
 .members {

@@ -1,47 +1,50 @@
 import TasksList from "../../components/TasksList/TasksList";
 import styles from "./BoardPage.module.css";
-import { DndContext } from "@dnd-kit/core";
+import { DndContext, useSensor, useSensors, PointerSensor, TouchSensor } from "@dnd-kit/core";
 import { useSelector, useDispatch } from "react-redux";
-import { setSelectedBoard } from "../../store/selectedBoard";
-import { updateBoard, updateTask } from "../../services/boardService";
-import { useState, useEffect } from "react";
+import { setSelectedBoard } from "../../store/selectedBoardSlice";
+import { updateBoard } from "../../services/boardService";
 import * as FaIcons from 'react-icons/fa6'
 const STATUSES = ["To Do", "In Progress", "Done"];
 import { useTranslation } from "react-i18next";
 import { fetchBoardById } from "../../store/board/BoardActions";
+
 const BoardPage = () => {
   const dispatch = useDispatch();
   const selectedBoard = useSelector((state) => state.selectedBoard);
-  const [tasks, setTasks] = useState([]);
-  const { t } = useTranslation()
-  useEffect(() => {
-    if (selectedBoard && Array.isArray(selectedBoard.tasks)) {
-      setTasks(selectedBoard.tasks);
-    }
-  }, [selectedBoard]);
+  const { t } = useTranslation();
 
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
+      },
+    })
+  );
   const getScoreBasedOnDifficulty = (difficulty) => {
     if (difficulty === "Easy") return 5;
     if (difficulty === "Medium") return 10;
     if (difficulty === "Hard") return 20;
-
     return 0;
-  }
+  };
 
   const handleDragEnd = async (event) => {
     const { active, over } = event;
     if (!over || !active) return;
     if (active.id === over.id) return;
 
+    const tasks = selectedBoard.tasks || [];
+    console.log(tasks);
+
     const draggedTask = tasks.find((t) => t.id === active.id);
     if (!draggedTask) return;
+    console.log(draggedTask);
 
     const newStatus = over.id;
     if (STATUSES.includes(newStatus) && draggedTask.status !== newStatus) {
       let boardMembers = selectedBoard.members;
-      const selectedTask = tasks.find((task) => task.id === active.id);
-      const asigneeMembers = selectedTask.members;
-      const scoreDelta = getScoreBasedOnDifficulty(selectedTask.difficulty);
 
       let updatedBoardMembers = boardMembers.map(member => {
         if (newStatus === 'Done') {
@@ -49,7 +52,7 @@ const BoardPage = () => {
           if (isAssigned) {
             return {
               ...member,
-              score: (member.score || 0) + getScoreBasedOnDifficulty(draggedTask.difficulty)
+              score: Number(member.score || 0) + getScoreBasedOnDifficulty(draggedTask.difficulty)
             };
           }
         } else if (draggedTask.status === 'Done' && newStatus !== 'Done') {
@@ -57,7 +60,7 @@ const BoardPage = () => {
           if (isAssigned) {
             return {
               ...member,
-              score: Math.max(0, (member.score || 0) - getScoreBasedOnDifficulty(draggedTask.difficulty))
+              score: Math.max(0, Number(member.score || 0) - getScoreBasedOnDifficulty(draggedTask.difficulty))
             };
           }
         }
@@ -66,12 +69,9 @@ const BoardPage = () => {
       const updatedTasks = tasks.map((task) =>
         task.id === active.id ? { ...draggedTask, status: newStatus } : task
       );
-      setTasks(updatedTasks);
       const updatedBoard = { ...selectedBoard, tasks: updatedTasks, members: updatedBoardMembers };
       dispatch(setSelectedBoard(updatedBoard));
-      // Persist the updated board (with updated member scores) to the backend
       await updateBoard(selectedBoard.id, updatedBoard);
-      // Refresh the board from backend
       dispatch(fetchBoardById(selectedBoard.id));
       return;
     }
@@ -83,7 +83,6 @@ const BoardPage = () => {
     const reordered = [...tasks];
     const [removed] = reordered.splice(activeIndex, 1);
     reordered.splice(overIndex, 0, removed);
-    setTasks(reordered);
     const updatedBoard = { ...selectedBoard, tasks: reordered };
     dispatch(setSelectedBoard(updatedBoard));
     await updateBoard(selectedBoard.id, updatedBoard);
@@ -109,14 +108,14 @@ const BoardPage = () => {
           </span>
         </div>
       </div>
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         <div className={styles.boardContainer}>
           {STATUSES.map((status) => (
             <TasksList
               key={status}
               title={status}
               status={status}
-              tasks={tasks.filter((task) => task.status === status)}
+              tasks={selectedBoard?.tasks?.filter((task) => task.status === status) || []}
             />
           ))}
         </div>

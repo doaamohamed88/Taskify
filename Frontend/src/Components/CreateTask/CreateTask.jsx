@@ -4,7 +4,7 @@ import SelectStyle from "../UI/SelectStyle";
 import AsyncSelect from "react-select/async";
 import { createTask } from "../../services/boardService";
 import { useDispatch } from "react-redux";
-import { updateSelectedBoard } from "../../store/selectedBoard";
+import { updateSelectedBoard } from "../../store/selectedBoardSlice";
 import useSelectedBoard from "../../hooks/useSelectedBoard";
 import { useTranslation } from "react-i18next";
 
@@ -68,7 +68,7 @@ function CreateTask({ onClose, boardId }) {
   };
 
   const memberOptions = (selectedBoard?.members || []).map((m) => ({
-    value: m.id,
+    value: m._id,
     label: m.name || m.email,
     email: m.email,
   }));
@@ -79,6 +79,7 @@ function CreateTask({ onClose, boardId }) {
     );
     callback(filtered);
   };
+
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
