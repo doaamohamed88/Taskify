@@ -62,8 +62,5 @@ Advanced React patterns and backend integration.
 
 A heartfelt thank you to my teammates for their dedication and collaboration:
 
-Kareem Ayman, Abdelrahman Ali ,Jamella Abdelrahman
+Jamella Abdelrahman ,Doaa Mohamed ,Kareem Ayman, Abdelrahman Ali 
 
-Abdelrahman Ali
-
-Jameela Ahmed
